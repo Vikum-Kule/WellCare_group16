@@ -1,0 +1,70 @@
+.requested {
+    height: 50%;
+    width: 100%;
+    position: fixed;
+    overflow-x: scroll;
+    text-align: center;
+    margin-top: 60px;
+    background-color: #41B6E6;
+    font-size: 15px;
+}
+
+#request {
+    padding: 10px;
+    width: 100%;
+}
+
+#request td,
+#request th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#request th {
+    color: white;
+    background: -webkit-linear-gradient(black,#07153D,#667EBF,#07153D,black);
+}
+
+#request tr:nth-child(even) {
+    background-color: white;
+}
+
+.accepted {
+    height: 40%;
+    width: 100%;
+    position: fixed;
+    overflow-x: scroll;
+    text-align: center;
+    margin-top: 400px;
+    background-color: #41B6E6;
+    font-size: 15px;
+}
+
+#accept {
+    padding: 10px;
+    width: 100%;
+}
+
+#accept td,
+#accept th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#accept th {
+    color: white;
+    background: -webkit-linear-gradient(black,#07153D,#667EBF,#07153D,black);
+}
+
+#accept tr:nth-child(even) {
+    background-color: white;
+}
+#done{
+    margin-left: 10px;  
+}

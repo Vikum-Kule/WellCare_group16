@@ -1,0 +1,242 @@
+* {
+    box-sizing: border-box;
+}
+
+.leftside {
+    height: 89%;
+    width: 21%;
+    position: fixed;
+    top: 11%;
+    text-align: center;
+    /* margin-top: 80px; */
+    background-color: #00A9CE;
+    font-size: 15px;
+}
+
+.right-bottum {
+    float: left;
+    height: 50%;
+    width: 77.5%;
+    position: fixed;
+    top: 40%;
+    left: 22%;
+    text-align: center;
+    background-color: #41B6E6;
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 1024px) {
+    #table1 {
+        width: 100%;
+        margin: 0 auto;
+        background-color: blue;
+    }
+    #table1.tr {
+        width: 20%;
+        color: white;
+    }
+}
+
+#table2 {
+    right: 5px;
+    padding-top: 10px;
+    width: 100%;
+}
+
+#table2 input {
+    border-radius: 5px;
+}
+
+#second_row {
+    padding-top: 10px;
+}
+
+.order_medicine {
+    position: fixed;
+    left: 22%;
+    overflow-x: scroll;
+    height: 40%;
+    width: 79%;
+    font-size: 15px;
+}
+
+#img {
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+#right-up1 {
+    float: left;
+    height: 23%;
+    width: 77.5%;
+    position: fixed;
+    top: 11%;
+    left: 22%;
+    text-align: center;
+    background-color: #41B6E6;
+    font-size: 20px;
+}
+
+#right-up {
+    float: left;
+    height: 5%;
+    width: 77.5%;
+    position: fixed;
+    top: 34%;
+    left: 22%;
+    text-align: center;
+    background-color: #41B6E6;
+    font-size: 20px;
+}
+
+#right-up a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 4px 15px;
+    margin-top: 2px;
+    background-color: -webkit-linear-gradient(black, #07153D, #667EBF, #07153D, black);
+}
+
+#right-up a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+#right-up .previous {
+    background-color: white
+}
+
+#right-up .next {
+    background-color: -webkit-linear-gradient(black, #07153D, #667EBF, #07153D, black);
+    color: white;
+}
+
+#display {
+    padding: 10px 10px;
+    width: 98%;
+}
+
+#display td,
+#display th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#popup {
+    display: none;
+    position: relative;
+    width: 60%;
+    height: 600px;
+    margin: 50px auto;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#imgDiv {
+    top: 5px;
+    overflow-x: auto;
+    overflow-y: auto;
+    text-align: justify;
+    width: 50%;
+    height: 540px;
+    background-color: #A52A2A;
+    float: left;
+}
+
+#medDiv {
+    top: 5px;
+    width: 50%;
+    height: 540px;
+    background-color: #ff000d;
+    float: left;
+}
+
+#buttonGrid {
+    text-align: center;
+    position: relative;
+}
+
+#overly {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 50px auto;
+    margin-top: 0;
+    margin-left: -9px;
+    background-color: gray;
+    opacity: 0.6;
+}
+
+#buttonGrid button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+    left: 10%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+#display th {
+    color: white;
+    background: -webkit-linear-gradient(black, #07153D, #667EBF, #07153D, black);
+}
+
+#display tr:nth-child(even) {
+    background-color: white;
+}
+
+#buttons {
+    position: fixed;
+    left: 22%;
+    height: 10%;
+    width: 79%;
+    margin-top: 19%;
+    font-size: 15px;
+    background-color: #41B6E6;
+}
+
+#buttons button {
+    margin-top: 10px;
+    font-size: 15px;
+    border-radius: 20px
+}
+
+#submit {
+    margin-top: 10px;
+    margin-right: 20px;
+    float: right;
+    border-radius: 20px
+}
+
+#icon {
+    height: 30px;
+    background-color: white;
+    padding-bottom: 2px;
+    text-align: center;
+}
+
+#tabHidden {
+    color: #07153D;
+    display: none;
+}
+
+#image_wrapp {
+    margin: 4px, 4px;
+    padding: 4px;
+    width: 100%;
+    height: 200px;
+    overflow-x: auto;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+.img-wrapper>img {
+    position: relative;
+}
