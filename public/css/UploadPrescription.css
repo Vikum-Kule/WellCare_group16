@@ -1,0 +1,162 @@
+* {
+    box-sizing: border-box;
+     margin: 0px;
+     padding: 0;
+   }
+   body{
+       
+       background-position: center;
+      background-size:cover;
+       font-family: Roboto;
+       margin-top:40px;
+       height: 100VH;
+   }
+   
+   .topnav {
+     padding: 10px 0px 10px 0px;
+     overflow: hidden;
+     background-color:rgba(22, 25, 189, 0.6);
+   }
+   
+   .topnav a {
+     float: center;
+     display: block;
+     color: #f2f2f2;
+     text-align: center;
+     padding: 14px 16px;
+     text-decoration: none;
+     font-size: 17px;
+     
+     
+   }
+   
+   
+   .topnav a.active {
+     background-color: rgba(17, 17, 85, 0.6);
+     color: white;
+   }
+   .container{
+     border: 3px solid #000000; 
+     padding: 20px;
+     margin: 15px;
+     
+   }
+   .responsive {
+     padding: 10px;
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+     width: 40%;
+    
+   
+   
+   }
+   
+   
+   
+   
+   .uploadFile label {
+     padding: 12px 12px 12px 0;
+     display: inline-block;
+   }
+   
+   .uploadFile input[type=file] {
+     
+     width: 100%;
+     box-sizing: border-box;
+     border: 2px solid #ccc;
+     border-radius: 4px;
+     font-size: 16px;
+     background-color: white;
+     background-image: url('searchicon.png');
+     background-position: 10px 10px; 
+     background-repeat: no-repeat;
+     padding: 12px 20px 12px 40px;
+     -webkit-transition: width 0.4s ease-in-out;
+     transition: width 0.4s ease-in-out;
+     
+   }
+   
+   
+   
+   .uploadFile input[type=submit] {
+   
+     background-color: #4CAF50;
+     color: white;
+     padding: 19px 20px;
+     border: none;
+     border-radius: 4px;
+     cursor: pointer;
+     width: 100%;
+   
+   }
+   .uploadFile{
+   margin: 0px 25%;
+   
+    
+   }
+   @media screen and (max-width: 600px) {
+     .responsive {
+     
+     width: 100%;
+   
+   
+   }
+   .uploadFile{
+   margin: 0px;
+   
+    
+   }
+    
+   }
+   .line3{
+     border: 15px ;
+     padding: 10px;
+     width: 100%;
+     float: left;
+     
+   }
+   
+   .line3.newOrder{
+   width: 25%;
+   margin: 15px;
+   text-align:center;
+    
+   }
+   .line3.confirmOrder{
+    width: 25%;
+    text-align:center;
+    
+    background-color:rgba(22, 25, 189, 0.6);
+   }
+   
+   .confirmOrder button{
+     
+     background-color:   #4CAF50;
+     color: white; 
+     padding: 14px 50px; 
+     margin: 8px 0; 
+     border: none; 
+     cursor: pointer; 
+     width: 25%; 
+     float: left;
+   
+     }
+   .newOrder button{
+     
+     background-color:  rgba(10, 10, 70, 0.7); 
+           color: white; 
+           padding: 14px 50px; 
+           margin: 8px 68px; 
+           border: none; 
+           cursor: pointer;
+       width: 25%; 
+       
+       
+       
+       
+       
+   }
+   .line3 button:hover {
+     opacity: 0.8; 
+   }

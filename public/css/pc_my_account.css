@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+.left-side {
+    height: 50%;
+    width: 25%;
+    position: fixed;
+    left: 10px;
+    text-align: center;
+    margin-top: 60px;
+    border-style: solid;
+    font-size: 15px;
+}
+
+img {
+    margin-top: 0px;
+    padding: 0px 0px;
+}
+
+.right-side {
+    height: 50%;
+    width: 70%;
+    position: fixed;
+    left: 27%;
+    text-align: center;
+    margin-top: 60px;
+    border-style: solid;
+}
+
+#details {
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#details input,
+#details textarea {
+    width: 100%;
+}
+
+#details button {
+    float: right;
+}

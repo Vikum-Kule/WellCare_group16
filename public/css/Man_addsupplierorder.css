@@ -1,0 +1,113 @@
+* { margin: 0; padding: 0; box-sizing: border-box;}
+
+body { font: 16px;  }
+
+
+.container button {
+  background-color:#044D6F  ;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.container button:hover {
+  opacity: 0.95;
+}
+.updateform{
+
+  margin-top: 20px;
+  width: 70%;
+background:#123365 ;
+border: 3px solid #1E5C8F ;
+}
+.container input[type=text], input[type=number] , input[type=price] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  border: 3px solid #1E5C8F ;
+}
+
+.container input[type=Date] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.container input[type=text]:focus, input[type=number]:focus ,input[type=price]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+.container:hover {
+  opacity: 90%;
+}
+
+/* Overwrite default styles of hr */
+
+/* Set a style for the submit button */
+.container button {
+  background-color:  #1E2B81 ;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  opacity: 0.9;
+  border: 3px solid #1E5C8F ;
+}
+.container button:hover {
+  background:  #1E2B81;
+    }
+.container h1 {
+  margin-bottom: 20px;
+}
+
+
+.updateform h1{
+  font-variant: bold;
+  text-align: center;
+   background: -webkit-linear-gradient(#07153D,#667EBF,#07153D);
+  padding: 50px;
+  color: white;
+  border-bottom: 5px solid #709699 ;
+}
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #12727A ;
+  margin-bottom: 50px;
+}
+
+
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.container {
+  padding: 16px;
+}
+.container b {
+  color: white;
+  float: left;
+}
+.container input {
+
+  background-color: #BFBFC3 ;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}

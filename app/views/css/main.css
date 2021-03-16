@@ -1,0 +1,321 @@
+body {
+  background-color: lightblue;
+}
+
+* { margin: 0; padding: 0; }
+
+a{ text-decoration: none; }
+
+.clearfix {overflow: auto;}
+
+.wrapper {
+	margin: 0 auto;
+	width: 100%;
+}
+
+.top-bar{
+	width: 100%;
+	background: #005EBB;
+}
+
+.top-bar-links{
+	padding: 15px;
+	float: right;
+}
+
+.top-bar-links ul{
+	list-style: none;
+}
+
+.top-bar-links ul li{
+	display: inline-block;
+}
+
+.top-bar-links ul li a{
+	color: white;
+}
+
+.top-bar ul li a:hover{
+	color: black;
+}
+.site-search{
+	padding: 3px 5px 3px 10px;
+	margin: 15px;
+	float: left;
+	background: white;
+	border-radius: 10px;
+}
+
+.site-search input{
+	border: 0;
+	float: left;
+}
+
+.site-search button{
+	width: 18px;
+	height: 18px;
+	background: url(../img/icons/search.png);
+	border: 0;
+	float: right;
+}
+
+nav {
+	width: 100%;
+	background: blue;
+	background: linear-gradient(#003087,#005EBB,#003087);
+	text-align: center;
+}
+
+nav ul{
+	list-style: none;
+}
+
+nav ul li{
+	display: inline;
+}
+nav ul li a{
+	color: white;
+	text-transform: uppercase;
+	margin: 25px 40px 25px 40px;
+	display: inline-block;
+}
+
+nav ul li a:hover{
+	color: black;
+}
+
+
+.tabledrug table{
+	height: 30%;
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.tabledrug tr{
+	border: 1px solid blue;
+	padding: 10px;
+}
+.tabledrug tr:nth-child(even) {background-color: #f2f2f2;}
+
+.tabledrug th{
+	background-color: #005EBB;
+	color: white; 
+	border: 3px solid blue;
+	padding: 10px;
+}
+
+.tabledrug1 table{
+	height: 500px;
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.tabledrug1 tr{
+	border: 1px solid blue;
+	padding: 10px;
+}
+.tabledrug1 tr:nth-child(even) {background-color: #f2f2f2;}
+
+.tabledrug1 th{
+	background-color: #005EBB;
+	color: white; 
+	border: 3px solid blue;
+	padding: 10px;
+}
+#first{width: 10px;}
+#second{width: 600px;}
+#third{width: 600px;}
+#fourth{width: 50px;}
+#fifth{width: 50px;}
+#firstt{width: 10px;}
+
+.genericname{
+	padding: 3px 25px 3px 25px;
+	margin: 15px;
+	float: left;
+	background: white;
+	border-radius: 10px;
+}
+
+.genericname input{
+	border: 0;
+	float: left;
+}
+
+.genericname button{
+	width: 18px;
+	height: 18px;
+	background: url(../img/icons/search.png);
+	border: 0;
+	float: right;
+}
+.drugname{
+	padding: 3px 25px 3px 25px;
+	margin: 15px;
+	float: left;
+	background: white;
+	border-radius: 10px;
+}
+
+.drugname input{
+	border: 0;
+	float: left;
+}
+
+.drugname button{
+	width: 18px;
+	height: 18px;
+	background: url(../img/icons/search.png);
+	border: 0;
+	float: right;
+}
+
+.drugcode{
+	padding: 3px 25px 3px 25px;
+	margin: 15px;
+	float: left;
+	background: white;
+	border-radius: 10px;
+}
+
+.drugcode input{
+	border: 0;
+	float: left;
+}
+
+.drugcode button{
+	width: 18px;
+	height: 18px;
+	background: url(../img/icons/search.png);
+	border: 0;
+	float: right;
+}
+
+.buttons button{
+	border: 1px solid blue;
+	background: linear-gradient(#003087,#005EBB,#003087);
+	text-align: center;
+	color: white;
+	padding: 10px 10px;
+	font-size: 15px;
+	margin: 20px 10px 0 10px
+}
+
+.buttons button:hover{
+	color: black;
+	cursor: pointer;
+}
+
+.cap1{
+	margin: 10px 0 20px 0px;
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+}
+.cap2{
+	margin: 10px 0 20px 0px;
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.button1 button{
+	float: right;
+	border: 1px solid blue;
+	background: linear-gradient(#003087,#005EBB,#003087);
+	text-align: center;
+	color: white;
+	padding: 10px 10px;
+	font-size: 15px;
+	margin: 20px 10px 0 10px
+}
+
+.button1 button:hover{
+	color: black;
+	cursor: pointer;
+}
+
+.bodyinquiries{
+	border-collapse: collapse;
+}
+
+.showinquiry{
+	float: left;
+	background: #0072CE;
+	width: 515px;
+	height: 650px;
+	border: 1px solid blue
+}
+
+.tableinquiry{
+	float: right;
+	width: 1000px;
+	border: 1px solid blue;
+}
+
+.showtitle{
+	margin: 10px 0 20px 0px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.photo{
+	float: left;
+	padding-left: 200px;
+	
+}
+
+.accountform{
+	padding-top: 50px;
+	padding-right: 200px;
+	float: right;
+	text-align: center;
+	
+}
+
+.accountform input[type=text]{
+	width: 300px;
+	height: 50px;
+}
+
+#firstq{
+	width: 300px;
+	height: 50px;
+}
+
+#secondq{
+	width: 300px;
+	height: 50px;
+}
+
+.buttonsaccount button{
+	float: right;
+	border: 1px solid blue;
+	background: linear-gradient(#003087,#005EBB,#003087);
+	text-align: center;
+	color: white;
+	padding: 10px 10px;
+	font-size: 15px;
+	margin: 20px 10px 0 10px
+}
+
+.buttonsaccount button:hover{
+	color: black;
+	cursor: pointer;
+}
+
+
+.photo{
+	width: 25px;
+	height: 240px;
+	border: 0;
+	
+}
+
+.photoaccount{
+	padding-top: 80px;
+	text-align: center;
+}
