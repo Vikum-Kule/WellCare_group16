@@ -254,9 +254,10 @@ class Users extends Controller{
                 }
                 else if($userState->Status == "pharmacist"){
                     $loggedInUser = $this->userModel->loginPharmacist($data['username'], $data['password']);
-                
+                    
                     if ($loggedInUser) {
-                       $this->createUserSession_pc($loggedInUser);
+                        //print_r($loggedInUser); 
+                      $this->createUserSession_pc($loggedInUser);
                        
                     } else {
                         $data['passwordError'] = 'Password or username is incorrect. Please try again.';
@@ -297,13 +298,16 @@ class Users extends Controller{
     }
 
     public function createUserSession_pc($user){
-        $_SESSION['username'] = $user->username;
+        print_r($user->userName);
+        $_SESSION['active'] = true;
+        $_SESSION['username'] = $user->userName;
 	    $_SESSION['email'] = $user->email;
+        //echo $_SESSION['username'];
         header('location:' . URLROOT . '/pc_view_drug/show_orders');
     }
 
     public function createUserSession_man($user){
-        $_SESSION['username'] = $user->username;
+        $_SESSION['username'] = $user->userName;
 	    $_SESSION['email'] = $user->email;
         header('location:' . URLROOT . '/Man_Adddrug/showdrugs');
     }

@@ -101,7 +101,7 @@ class User
 
         $hashedPassword = $row->password;
         if (strcmp($password, $hashedPassword)==0) {
-            return true;
+            return $row;
         } else {
             return false;
         }
@@ -116,7 +116,7 @@ class User
 
         $hashedPassword = $row->password;
         if (strcmp($password, $hashedPassword)==0) {
-            return true;
+            return $row;
         } else {
             return false;
         }

@@ -1,6 +1,7 @@
 <?php require_once ($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/config/config.php");?>
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/pc_header.php");?>
     <!-- main content -->
+    
     <div class="wrapper">
         <div class="row">
             <div class="col-3 col-m-6 col-sm-6">

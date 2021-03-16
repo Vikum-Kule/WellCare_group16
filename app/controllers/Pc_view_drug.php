@@ -191,7 +191,7 @@
     
 
     public function show_orders(){
-    	
+    	//echo $_SESSION['username'];
 		    	$nonOrders = $this->postModel->showNonOrders();
 		    	$orders = $this->postModel->showOrders();
 

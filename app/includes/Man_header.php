@@ -34,7 +34,7 @@
         <!-- nav right -->
         <ul class="navbar-nav nav-right">
             <li class="nav-item mode">
-                <h6>user Name</h6>
+                <h6><?php  echo $_SESSION['username'] ; ?></h6>
             </li>
             <li class="nav-item avt-wrapper">
                 <div class="avt dropdown">
