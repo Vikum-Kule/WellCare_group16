@@ -277,6 +277,18 @@ class Users extends Controller{
                         $this->view('Home', $data);
                     }
                 }
+                elseif($userState->Status == "admin"){
+                    $loggedInUser = $this->userModel->loginAdmin($data['username'], $data['password']);
+                
+                    if ($loggedInUser) {
+                       $this->createUserSession_admin($loggedInUser);
+                       
+                    } else {
+                        $data['passwordError'] = 'Password or username is incorrect. Please try again.';
+
+                        $this->view('Home', $data);
+                    }
+                }
                 
             }
 
@@ -294,6 +306,13 @@ class Users extends Controller{
         }
         $this->view('Home', $data);
 
+    }
+
+    public function createUserSession_admin($user){
+        $_SESSION['active'] = true;
+        $_SESSION['username'] = $user->userName;
+	    $_SESSION['email'] = $user->email;
+        header('location:' . URLROOT . '/admin/home');
     }
 
     public function createUserSession_pc($user){
