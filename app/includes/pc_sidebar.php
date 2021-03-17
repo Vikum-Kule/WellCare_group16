@@ -1,18 +1,9 @@
 <!-- sidebar -->
 <div class="sidebar">
         <ul class="sidebar-nav">
-            <li class="sidebar-nav-item" >
-                <a href="http://localhost/mvc/pc_view_drug/show_medicine" class="sidebar-nav-link active">
-                    <div>
-                        <i class="fas fa-tachometer-alt"></i>
-                    </div>
-                    <span>
-						Dashboard
-					</span>
-                </a>
-            </li>
+        
             <li class="sidebar-nav-item">
-                <a href="http://localhost/mvc/pc_view_drug/show_orders" class="sidebar-nav-link">
+                <a href="http://localhost/mvcfinal/pc_view_drug/show_orders" class="sidebar-nav-link">
                     <div>
                         <i class="fab fa-accusoft"></i>
                     </div>
@@ -20,7 +11,7 @@
                 </a>
             </li>
             <li class="sidebar-nav-item">
-                <a href="http://localhost/mvc/pc_view_drug/show_confirm_orders" class="sidebar-nav-link">
+                <a href="http://localhost/mvcfinal/pc_view_drug/show_confirm_orders" class="sidebar-nav-link">
                     <div>
                         <i class="fas fa-tasks"></i>
                     </div>

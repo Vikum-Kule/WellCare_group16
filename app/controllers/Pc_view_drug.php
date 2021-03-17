@@ -173,7 +173,22 @@
 		}	
 		
 	}
+	// else{
+	// 	$this->view('pc_make_order');
+	// }
 }
+
+	public function rowCount(){
+		$pending= $this->postModel->count_pendingOrders();
+		$requested= $this->postModel->count_requestedOrders();
+		$confirmed= $this->postModel->confirmedOrders();
+		$data= [$pending->count,$requested->count,$confirmed->count];
+		header('Content-type: application/json');
+		echo json_encode($data);
+		return;
+
+	}
+
 
 
 	public function show_confirm_orders(){

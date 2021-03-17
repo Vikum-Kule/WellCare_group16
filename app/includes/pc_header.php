@@ -68,7 +68,7 @@
         <!-- end nav right -->
     </div>
     <!-- end navbar -->
-    <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVC/app/includes/sidebar.php");?>
+    <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/pc_sidebar.php");?>
 
     <div id="content">
     <img class="left" id="myBtn" onclick="topFunction()" src="<?php echo URLROOT."/public/img/back-to.png";?>" alt="">
