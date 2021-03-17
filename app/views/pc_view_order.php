@@ -17,13 +17,13 @@
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3><div id="">6</div></h3>
+                    <h3><div id="confirmed"></div></h3>
                     <p>Completed</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
+                    <h3>0</h3>
                     <p>Issues</p>
                 </div>
             </div>

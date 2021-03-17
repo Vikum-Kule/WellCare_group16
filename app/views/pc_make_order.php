@@ -17,7 +17,7 @@
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3><div id="confirm"></div></h3>
+                    <h3><div id="confirmed"></div></h3>
                     <p>Completed</p>
                 </div>
             </div>

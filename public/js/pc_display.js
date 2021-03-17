@@ -18,7 +18,7 @@ function counter() {
             console.log(confirm);
             document.getElementById("pending").innerHTML = pending;
             document.getElementById("request").innerHTML = request;
-            document.getElementById("confirm").innerHTML = pending;
+            document.getElementById("confirmed").innerHTML = confirm;
 
         }
     });
@@ -316,7 +316,7 @@ function displayTable(orderId) {
                 col9.innerHTML = data[x].price;
                 totale = totale + parseFloat(data[x].price);
 
-                col10.innerHTML = "<input id='medId" + rowNum + "' type='hidden' name='medId' value=" + data[x].medicineId + "><button style='width:20px; height:30px; padding-left:20px;' onclick='selectedRow(" + rowNum + ")'><img id='deleteBtn' src='http://localhost/mvc//public/img/delete.png' style='margin-top:-11px; margin-left:-5px;'  ></button>";
+                col10.innerHTML = "<input id='medId" + rowNum + "' type='hidden' name='medId' value=" + data[x].medicineId + "><button style='width:20px; height:30px; padding-left:20px;' onclick='selectedRow(" + rowNum + ")'><img id='deleteBtn' src='http://localhost/mvcfinal//public/img/delete.png' style='margin-top:-11px; margin-left:-5px;'  ></button>";
                 global_final_rowNum = rowNum;
             }
             var total = parseFloat(totale).toFixed(2)
