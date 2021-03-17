@@ -401,7 +401,7 @@ function confirmCheckout() {
 
   $.ajax({
     type: 'post',
-    url: ''+URLROOT+'/cartController/confirmCheckout',
+    url: '' + URLROOT + '/cartController/confirmCheckout',
     data: JSON.stringify({
       streetAddress1: streetAddress1,
       streetAddress2: streetAddress2,
@@ -410,19 +410,43 @@ function confirmCheckout() {
       postalCode: postalCode
     }),
     dataType: 'json',
-    success: function($sucsess) {
-      
+    success: function ($sucsess) {
+
       showCart();
       $(".content").css("height", "80%");
-  $(".footer").css("overflow", "auto");
-  $(".footer").css("height", "15%");
-  
-  $('#b2').html("");
-  
-  $(".input_num").prop('disabled', false);
+      $(".footer").css("overflow", "auto");
+      $(".footer").css("height", "15%");
+
+      $('#b2').html("");
+
+      $(".input_num").prop('disabled', false);
 
     }
   });
 
 
 }
+
+// searchbar **************************************************************************************************
+
+function searchFunction() {
+  var searchBar = $("#searchBar").val();
+  console.log(streetAddress1)
+
+  $.ajax({
+    type: 'post',
+    url: ''+URLROOT+'/orders/searchbar',
+    data: JSON.stringify({
+      searchBar:searchBar
+    }),
+    dataType: 'json',
+    success: function($sucsess) {
+     
+
+    }
+  });
+
+
+}
+
+
