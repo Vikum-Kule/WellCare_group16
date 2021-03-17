@@ -2,6 +2,27 @@ var row = 1;
 var globalId = null;
 var global_final_rowNum = 0;
 
+//take count of table rows..
+counter();
+
+function counter() {
+
+    var url = "http://localhost/mvcfinal/pc_view_drug/rowCount";
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function(data) {
+            var pending = data[0];
+            var request = data[1];
+            var confirm = data[2];
+            console.log(confirm);
+            document.getElementById("pending").innerHTML = pending;
+            document.getElementById("request").innerHTML = request;
+            document.getElementById("confirm").innerHTML = pending;
+
+        }
+    });
+}
 
 function selectData_byName() {
     var val = document.getElementById("medicine").value;
@@ -14,7 +35,7 @@ function selectData_byName() {
             //alert(opts[i].value);
             medName = opts[i].value;
             //console.log(medName);
-            var url = "http://localhost/mvc/pc_view_drug/show_medicine";
+            var url = "http://localhost/mvcfinal/pc_view_drug/show_medicine";
             var price = 0;
             $.ajax({
                 url: url,
@@ -89,7 +110,7 @@ function selectData_byBrand() {
             //alert(opts[i].value);
             medBrand = opts[i].value;
             //console.log(medName);
-            var url = "http://localhost/mvc/pc_view_drug/show_medicine";
+            var url = "http://localhost/mvcfinal/pc_view_drug/show_medicine";
             $.ajax({
                 url: url,
                 type: 'POST',
@@ -162,7 +183,7 @@ function defineQTY() {
     var brand = document.querySelector('#brand').value;
     var dose = $("#allDoses").val();
     console.log(medicine_name_forQTY);
-    var url = "http://localhost/mvc/pc_view_drug/show_medicine";
+    var url = "http://localhost/mvcfinal/pc_view_drug/show_medicine";
     $.ajax({
         url: url,
         type: 'POST',
@@ -237,7 +258,7 @@ function displayDetails() {
     var frequency = document.getElementById("frequency").value;
 
     // console.log(name);
-    var url = "http://localhost/mvc/pc_view_drug/show_medicine";
+    var url = "http://localhost/mvcfinal/pc_view_drug/show_medicine";
     var price = 0;
     $.ajax({
         url: url,
@@ -259,7 +280,7 @@ function displayTable(orderId) {
     var totale = 0;
 
     $("#display tbody").children().remove();
-    var url = "http://localhost/mvc/pc_view_drug/show_medicine";
+    var url = "http://localhost/mvcfinal/pc_view_drug/show_medicine";
     $.ajax({
         url: url,
         type: 'POST',
@@ -313,7 +334,7 @@ function selectedRow(rowNum) {
     var id = document.getElementById(inputId).value;
     console.log(orderId);
     console.log(id);
-    var url = "http://localhost/mvc/pc_view_drug/show_medicine";
+    var url = "http://localhost/mvcfinal/pc_view_drug/show_medicine";
     $.ajax({
         url: url,
         type: 'POST',
@@ -330,7 +351,7 @@ function deleteRow(rowNum) {
     var id = document.getElementById(inputId).value;
     console.log(orderId);
     console.log(id);
-    var url = "http://localhost/mvc/pc_view_drug/show_medicine";
+    var url = "http://localhost/mvcfinal/pc_view_drug/show_medicine";
     $.ajax({
         url: url,
         type: 'POST',
@@ -378,7 +399,7 @@ function selectRow() {
 }
 
 function fill_confirm_table() {
-    var url = "http://localhost/mvc/pc_view_drug/show_medicine";
+    var url = "http://localhost/mvcfinal/pc_view_drug/show_medicine";
     var orderId = document.getElementById("order-id-hidden").value;
     $.ajax({
         url: url,

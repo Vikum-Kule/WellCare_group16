@@ -58,6 +58,22 @@
 
         // }
 
+        public function count_pendingOrders(){
+            $this->db->query("SELECT COUNT(orderId) as count FROM prepared_order;");
+            $count = $this->db->single();
+            return $count;
+        }
+        public function count_requestedOrders(){
+            $this->db->query("SELECT COUNT(orderId) as count FROM nonprepared_order;");
+            $count = $this->db->single();
+            return $count;
+        }
+        public function confirmedOrders(){
+            $this->db->query("SELECT COUNT(orderId) as count FROM completed_orders;");
+            $count = $this->db->single();
+            return $count;
+        }
+
         public function findMedPrice($Drugname,$brand,$dose){
             $this->db->query("SELECT price,medicineId FROM medicine WHERE name = :name AND brand = :brand AND dose = :dose");
             $this->db->bind(':name',$Drugname);
