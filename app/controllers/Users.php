@@ -297,12 +297,14 @@ class Users extends Controller{
     }
 
     public function createUserSession_pc($user){
+        $_SESSION['active'] = true;
         $_SESSION['username'] = $user->userName;
 	    $_SESSION['email'] = $user->email;
         header('location:' . URLROOT . '/pc_view_drug/show_orders');
     }
 
     public function createUserSession_man($user){
+        $_SESSION['active'] = true;
         $_SESSION['username'] = $user->userName;
 	    $_SESSION['email'] = $user->email;
         header('location:' . URLROOT . '/Man_Adddrug/showdrugs');
