@@ -58,6 +58,17 @@ class Orders extends Controller{
         
   
       }
+
+      public function searchbar(){
+        $obj = file_get_contents('php://input');
+        $json = json_decode($obj);
+        $searchBar= trim($json->searchBar);
+        echo json_encode($this->orderModel->searchmedicines($searchBar));
+       
+       
+        
+  
+      }
       
 
 

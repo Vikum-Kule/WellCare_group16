@@ -130,6 +130,14 @@ class Order
         $row = $this->db->resultSet();
         return  $row;
     }
+    public function searchmedicines($searchBar){
+
+        
+
+
+
+
+    }
     public function nonpreparedorder_medicine($data)
     {
 

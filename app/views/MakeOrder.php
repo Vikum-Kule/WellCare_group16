@@ -60,16 +60,35 @@
 
 
 
+ 
+
 
   <!-- search bar -->
   <div class="line1">
-    <div class="searchBar">
+    <!-- <div class="searchBar">
       <form action="/action_page.php">
         <input type="text" placeholder="Search.." name="search">
         <button type="submit"><i class="fa fa-search"></i></button>
       </form>
+    </div> -->
+
+
+    <div class="wrapper">
+      <div class="search-input">
+        <a href="" target="_blank" hidden></a>
+        <input type="text" placeholder="Type to search.." id="searchBar" list="datalist" onkeydown="searchFunction()">
+      <datalist id="datalist">
+        <option value="sudesh"/>
+        <option value="sudesh"/>
+      
+      
+      </datalist>
+        <div class="icon"><i class="fas fa-search"></i></div>
+      </div>
     </div>
 
+
+   
     <div class="uploadPrescription">
 
       <p><a href='<?php echo URLROOT ?>/orders/uploadPrescription'><button>Upload Prescription</button></a></p>
