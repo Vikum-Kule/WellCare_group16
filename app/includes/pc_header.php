@@ -100,7 +100,7 @@
                         </table>
                         <div style="text-align: center;">
                                     <button class="prescription" id="" onclick="close_confirm()">Close</button>
-                                    <button class="" id="orderChecked" onclick="generate()">Confirm</button>
+                                    <button class="" id="orderChecked" onclick="email()">Confirm</button>
                         </div>
                     </div>
         </div>

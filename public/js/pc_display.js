@@ -316,7 +316,7 @@ function displayTable(orderId) {
                 col9.innerHTML = data[x].price;
                 totale = totale + parseFloat(data[x].price);
 
-                col10.innerHTML = "<input id='medId" + rowNum + "' type='hidden' name='medId' value=" + data[x].medicineId + "><button style='width:20px; height:30px; padding-left:20px;' onclick='selectedRow(" + rowNum + ")'><img id='deleteBtn' src='http://localhost/mvcfinal//public/img/delete.png' style='margin-top:-11px; margin-left:-5px;'  ></button>";
+                col10.innerHTML = "<input id='medId" + rowNum + "' type='hidden' name='medId' value=" + data[x].medicineId + "><button style='width:20px; height:30px; padding-left:20px;' onclick='deleteRow(" + rowNum + ")'><img id='deleteBtn' src='http://localhost/mvcfinal//public/img/delete.png' style='margin-top:-11px; margin-left:-5px;'  ></button>";
                 global_final_rowNum = rowNum;
             }
             var total = parseFloat(totale).toFixed(2)
@@ -340,6 +340,7 @@ function selectedRow(rowNum) {
         type: 'POST',
         data: { selected_orderId: orderId, selected_id: id },
         success: function(data) {
+            console.log("hello");
             console.log(data);
         }
     });
@@ -382,21 +383,7 @@ function deleteRow(rowNum) {
 // var index;
 // var display = document.getElementById("display");
 
-function selectRow() {
 
-    for (var i = 0; i < display.rows.length; i++) {
-        display.rows[i].onclick = function() {
-            index = this.rowIndex;
-            document.querySelector('#medicine').value = this.cells[1].innerHTML;
-            document.querySelector('#brand').value = this.cells[2].innerHTML;
-            document.getElementById("QTY").value = this.cells[4].innerHTML;
-            document.getElementById("Frequency").value = this.cells[5].innerHTML;
-            document.getElementById("dose").value = this.cells[6].innerHTML;
-
-
-        };
-    }
-}
 
 function fill_confirm_table() {
     var url = "http://localhost/mvcfinal/pc_view_drug/show_medicine";
@@ -423,26 +410,7 @@ function fill_confirm_table() {
     });
 }
 
-// selectRow();
 
-// var edit = document.getElementById("edit");
-// edit.addEventListener("click", editRow);
-
-function editRow() {
-    console.log(index);
-    var name = document.querySelector('#medicine').value;
-    var brand = document.querySelector('#brand').value;
-    var QTY = document.getElementById("QTY").value;
-    var frequency = document.getElementById("Frequency").value;
-    var dose = document.getElementById("dose").value;
-    display.rows[index].cells[0].innerHTML = index;
-    display.rows[index].cells[1].innerHTML = name;
-    display.rows[index].cells[2].innerHTML = brand;
-    display.rows[index].cells[4].innerHTML = QTY;
-    display.rows[index].cells[5].innerHTML = frequency;
-    display.rows[index].cells[6].innerHTML = dose;
-    clear();
-}
 
 // var remove = document.getElementById("remove");
 // remove.addEventListener("click", removeRow);
@@ -488,92 +456,132 @@ function clear() {
 
 }
 
-function generate() {
-    var doc = new jsPDF('p', 'pt', 'letter');
+function email() {
+    var url = "http://localhost/mvcfinal/pc_view_drug/sendEmail";
+    var orderId = document.getElementById("order-id-hidden").value;
     var name = document.getElementById("order-name-hidden").value;
-    var Id = document.getElementById("order-id-hidden").value;
-    var notAvl = document.getElementById("anAvlMedicine").value;
-    var rows = global_final_rowNum + 2;
-    //console.log(rows);
-    var htmlstring = '';
-    var tempVarToCheckPageHeight = 0;
-    var pageHeight = 0;
-    pageHeight = doc.internal.pageSize.height;
-    specialElementHandlers = {
-        // element with id of "bypass" - jQuery style selector  
-        '#bypassme': function(element, renderer) {
-            // true = "handled elsewhere, bypass text extraction"  
-            return true
+    var unAvl = document.getElementById("anAvlMedicine").value;
+    var note = document.getElementById("extra").value;
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: { email_orderId: orderId, email_name: name, unAvl: unAvl, note: note },
+        success: function(data) {
+            console.log(data);
         }
-    };
-    margins = {
-        top: 150,
-        bottom: 60,
-        left: 40,
-        right: 40,
-        width: 600
-    };
-    var y = 20;
-    doc.setLineWidth(2);
-
-    doc.setFont("helvetica");
-    doc.setFontType("bold");
-    doc.text(230, y = y + 20, "Well Care Pharmacy");
-
-
-    doc.setFont("helvetica");
-    doc.setFontSize(11);
-    doc.setFontType("normal");
-    doc.text(275, y = y + 21, "Order details");
-
-    doc.setFont("helvetica");
-    doc.setFontSize(11);
-    doc.setFontType("bold");
-    doc.text(10, y = y + 21, "Customer Name: " + name);
-
-    doc.setFont("helvetica");
-    doc.setFontSize(11);
-    doc.setFontType("bold");
-    doc.text(10, y = y + 21, "Order No: " + Id);
-
-    doc.autoTable({
-        html: '#display',
-        startY: 160,
-        theme: 'grid',
-        columnStyles: {
-            0: {
-                cellWidth: 180,
-            },
-            1: {
-                cellWidth: 180,
-            },
-            2: {
-                cellWidth: 180,
-            }
-        },
-        styles: {
-            minCellHeight: 20
-        }
-    })
-
-    if (notAvl !== "") {
-        doc.setFont("helvetica");
-        doc.setFontSize(11);
-        doc.setFontType("bold");
-        doc.text(10, 160 + (rows * 20), "Non Available:");
-
-        doc.setFont("helvetica");
-        doc.setFontSize(11);
-        doc.setFontType("normal");
-        doc.text(15, 160 + ((rows * 20) + 10), notAvl);
-
-    }
-
-    doc.setFont("helvetica");
-    doc.setFontSize(11);
-    doc.setFontType("italic");
-    doc.text(50, 160 + ((rows * 20) + 100), "Complete and send your payment recipt within two days");
-
-    doc.save('Marks_Of_Students.pdf');
+    });
     close_confirm();
+
 }
+
+// function generate() {
+//     var doc = new jsPDF('p', 'pt', 'letter');
+//     var name = document.getElementById("order-name-hidden").value;
+//     var Id = document.getElementById("order-id-hidden").value;
+//     var notAvl = document.getElementById("anAvlMedicine").value;
+//     var rows = global_final_rowNum + 2;
+//     //console.log(rows);
+//     var htmlstring = '';
+//     var tempVarToCheckPageHeight = 0;
+//     var pageHeight = 0;
+//     pageHeight = doc.internal.pageSize.height;
+//     specialElementHandlers = {
+//         // element with id of "bypass" - jQuery style selector  
+//         '#bypassme': function(element, renderer) {
+//             // true = "handled elsewhere, bypass text extraction"  
+//             return true
+//         }
+//     };
+//     margins = {
+//         top: 150,
+//         bottom: 60,
+//         left: 40,
+//         right: 40,
+//         width: 600
+//     };
+//     var y = 20;
+//     doc.setLineWidth(2);
+
+//     doc.setFont("helvetica");
+//     doc.setFontType("bold");
+//     doc.text(230, y = y + 20, "Well Care Pharmacy");
+
+
+//     doc.setFont("helvetica");
+//     doc.setFontSize(11);
+//     doc.setFontType("normal");
+//     doc.text(275, y = y + 21, "Order details");
+
+//     doc.setFont("helvetica");
+//     doc.setFontSize(11);
+//     doc.setFontType("bold");
+//     doc.text(10, y = y + 21, "Customer Name: " + name);
+
+//     doc.setFont("helvetica");
+//     doc.setFontSize(11);
+//     doc.setFontType("bold");
+//     doc.text(10, y = y + 21, "Order No: " + Id);
+
+//     doc.autoTable({
+//         html: '#display',
+//         startY: 160,
+//         theme: 'grid',
+//         columnStyles: {
+//             0: {
+//                 cellWidth: 180,
+//             },
+//             1: {
+//                 cellWidth: 180,
+//             },
+//             2: {
+//                 cellWidth: 180,
+//             }
+//         },
+//         styles: {
+//             minCellHeight: 20
+//         }
+//     })
+
+//     if (notAvl !== "") {
+//         doc.setFont("helvetica");
+//         doc.setFontSize(11);
+//         doc.setFontType("bold");
+//         doc.text(10, 160 + (rows * 20), "Non Available:");
+
+//         doc.setFont("helvetica");
+//         doc.setFontSize(11);
+//         doc.setFontType("normal");
+//         doc.text(15, 160 + ((rows * 20) + 10), notAvl);
+
+//     }
+
+//     doc.setFont("helvetica");
+//     doc.setFontSize(11);
+//     doc.setFontType("italic");
+//     doc.text(50, 160 + ((rows * 20) + 100), "Complete and send your payment recipt within two days");
+
+//     var pdf = btoa(doc.output());
+//     var url = "http://localhost/mvcfinal/pc_view_drug/sendEmail";
+//     var file_name = "WellCare" + Id;
+//     //var file_name = 'hello world';
+//     $.ajax({
+//         method: "POST",
+//         url: "upload.php",
+//         data: { data: pdf, filename: file_name },
+//     }).done(function(data) {
+//         //   alert(data);
+//         console.log(data);
+//     });
+
+//     // doc.save("WellCare" + Id + ".pdf");
+//     // const pdf = new File([doc.output("blob")], "WellCare" + Id + ".pdf", { type: "pdf" }),
+//     //     data = new FormData();
+
+//     // data.append("file", pdf);
+
+//     // axios
+//     //     .post("/public/img", data)
+//     //     .then(res => console.log(res))
+//     //     .catch(err => console.log(err));
+//     close_confirm();
+// }

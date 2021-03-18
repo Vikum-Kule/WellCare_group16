@@ -172,11 +172,11 @@
 			$this->view('pc_make_order', $data);
 		}	
 		
-	}
+		}
 	// else{
 	// 	$this->view('pc_make_order');
 	// }
-}
+	}
 
 	public function rowCount(){
 		$pending= $this->postModel->count_pendingOrders();
@@ -202,6 +202,75 @@
 		$this->view('pc_confirmed_orders', $data);
 	}
 
+	public function sendEmail(){
+		if(isset($_POST['email_orderId'])){
+			$email_orderId= $_POST['email_orderId'];
+			$email_Sender_name="Well Care Pharmacy";
+			$email_Sender= "wellcaregroup16@gmail.com";
+			$email_name= $_POST['email_name'];
+			$unavl= $_POST['unAvl'];
+			$note= $_POST['note']; 
+			$table_data = $this->postModel->findData_toTable($email_orderId);
+			$sending_mail= $this->postModel->find_email($email_orderId);
+			$total= 0.00;
+			print_r($sending_mail->Email);
+			
+			//create email..
+			$to = $sending_mail->Email;
+			$mail_subject = "Order Confirmed Well Care Pharmacy";
+			$email_body = "<b>From: </b> {$email_Sender_name}<br>";
+			$email_body .= "<b>To: </b> {$email_name}<br>";
+			$email_body .= "<b>Order No: </b> {$email_orderId}<br>";
+			$email_body .= "<html>
+				<head>
+				</head>
+				<body>
+				<p><b>Your Order Details<b></p>
+				<table>
+				<thead>
+					<tr>
+						<th>medicine</th>
+						<th>does</th>
+						<th>QTY</th>
+						<th>Price</th>
+					</tr>
+				</thead>
+				<tbody>";
+			foreach($table_data as $data):
+			$email_body .="
+				<tr>
+					<td>". $data->medName."(".$data->medBrand.")</td>
+					<td>".$data->dose."</td>
+					<td>".$data->QTY."</td>
+					<td>".$data->price."</td></tr>
+				</tbody>";
+				$total= $data->price+ $total;
+			endforeach;
+			$email_body .="
+			</table>
+				</body>
+				</html>
+			";
+
+			$email_body .= "</table>";
+			$email_body .="<b>Total: </b>".$total."<br>";
+			$email_body .="<b>Unavailable medicine: </b>".$unavl."<br>";
+			$email_body .="<b>Extra notes : </b>".$note."<br>";
+			$email_body .="<i>Please send your reply email with your payment recipt attachment within 48 hours.</i><br>
+							<b>Thank you.</b>";
+			$header = "From: {$email_Sender}\r\nContent-type: text/html;";
+
+			$mail_result=mail($to,$mail_subject,$email_body,$header);
+
+			if($mail_result){
+				echo "message sent";
+			}
+			else{
+				echo "message not sent";
+			}
+
+		}
+	}
     
     
 
