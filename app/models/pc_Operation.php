@@ -165,6 +165,25 @@
 
         }
 
+        public function find_email($orderId){
+            $this->db->query('SELECT 
+            customer. Email
+            FROM 
+            customer
+            INNER JOIN 
+            nonprepared_order 
+            ON
+            customer. customerId=nonprepared_order. customerId
+            WHERE
+            nonprepared_order.orderId = :orderId' );
+
+            $this->db->bind(':orderId', $orderId);
+
+            $results = $this->db->single();
+            return $results;
+
+        }
+
         public function deleteRow($delete_orderId,$delete_medId){
             $this->db->query("DELETE FROM temp_order_medicine WHERE orderId = :orderId AND medicineId = :medicineId LIMIT 1");
             $this->db->bind(':orderId', $delete_orderId);

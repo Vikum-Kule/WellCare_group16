@@ -9,6 +9,7 @@
  <script src="<?php echo URLROOT."/public/js/pc_display.js";?>"></script>
  <script src="<?php echo URLROOT."/public/js/jspdf.js";?>"></script>
  <script src="<?php echo URLROOT."/public/js/autotable.js";?>"></script>
+ <script src="<?php echo URLROOT."/public/js/axios.js";?>"></script>
         <!-- end import script -->
 
 
