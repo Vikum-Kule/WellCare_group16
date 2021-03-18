@@ -62,6 +62,7 @@ class Orders extends Controller{
       public function searchbar(){
         $obj = file_get_contents('php://input');
         $json = json_decode($obj);
+        header('Content-Type: application/json');
         $searchBar= trim($json->searchBar);
         echo json_encode($this->orderModel->searchmedicines($searchBar));
        
@@ -69,7 +70,18 @@ class Orders extends Controller{
         
   
       }
-      
+      public function getsearchmedicines(){
+        $obj = file_get_contents('php://input');
+        $json = json_decode($obj);
+        header('Content-Type: application/json');
+        $searchBar= trim($json->searchBar);
+        $searchBar = explode("(", $searchBar);
+        echo json_encode($this->orderModel->getsearchmedicines($searchBar[0]));
+       
+       
+        
+  
+      }
 
 
 }

@@ -131,12 +131,46 @@ class Order
         return  $row;
     }
     public function searchmedicines($searchBar){
-
         
+        $this->db->query("SELECT 
+                                name,brand
+                                FROM 
+                                medicine
+                                WHERE 
+                                brand LIKE '%$searchBar%' OR name LIKE '%$searchBar%'
+                            ");
 
 
+         $this->db->bind(':searchBar', $searchBar);
+        // $this->db->bind(':x', $x);       
+            
+        $row = $this->db->resultSet();
+
+        return  $row;
+    }
+    public function getsearchmedicines($searchBar){
+        
+        $this->db->query("SELECT 
+        medicine.medicineId ,medicine.name,medicine.brand,medicine.description,medicine.price,subcategory.subCategoryID,subcategory,mainCategory	
+     FROM 
+     medicine
+     INNER JOIN 
+     subcategory
+     ON 
+     subcategory.name = medicine.subCategory 
+     where medicine.brand LIKE '%$searchBar%' OR medicine.name LIKE '%$searchBar%'"
+     );
+        
+        
+       
 
 
+         $this->db->bind(':searchBar', $searchBar);
+              
+            
+        $row = $this->db->resultSet();
+
+        return  $row;
     }
     public function nonpreparedorder_medicine($data)
     {

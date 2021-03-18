@@ -431,8 +431,8 @@ function confirmCheckout() {
 
 function searchFunction() {
   var searchBar = $("#searchBar").val();
-  console.log(streetAddress1)
-
+  console.log(searchBar)
+  $('#datalist').html("");
   $.ajax({
     type: 'post',
     url: ''+URLROOT+'/orders/searchbar',
@@ -440,13 +440,68 @@ function searchFunction() {
       searchBar:searchBar
     }),
     dataType: 'json',
-    success: function($sucsess) {
-     
+    success: function(searchBar) {
+      console.log(searchBar);
+       searchBar.forEach(searchBarItem => {
+        const html='<option value="'+searchBarItem.name+'('+searchBarItem.brand+')"/>';
+        $('#datalist').append(html);
+      });
 
     }
   });
 
 
 }
+function getsearchItems(){
+  var searchBar = $("#searchBar").val();
+ // $('#demo').html(subCategoryID);
+ $.ajax({
+  type: 'post',
+  url: ''+URLROOT+'/orders/getsearchmedicines',
+  // async:false,
+  data: JSON.stringify({
+    searchBar: searchBar
+  }),
+
+  dataType: 'json',
+
+  success: function(medicines) {
+
+    
+    $('#main').html("");
+    medicines.forEach(medicine => {
+      console.log("sudesh");
+
+      const html = '<div class="card"><img src="'+URLROOT+'/public/img/medicines/'+ medicine.mainCategory.split(/\s/).join('').replace(/[^a-zA-Z ]/g, "") + '/' + medicine.medicineId + '.jpg" style="width:30%">' +
+        '<h2>' + medicine.name + '</h2>' +
+        '<h1>' + medicine.brand + '</h1>' +
+        ' <p class="price">rs:' + medicine.price + '</p>' +
+        ' <!-- <p>' + medicine.description + '..</p> -->' +
+        '<p><button onclick="addToCart(' + medicine.medicineId + ',1)">Add to Cart</button></p></div>';
+
+
+
+      // console.log(medicine.subCategory);
+      // console.log(medicine.name);
+      // console.log(medicine.medicineId);
+      // const y = medicines.name.split(/\s/).join('').replace(/[^a-zA-Z ]/g, "")
+
+      $('#main').append(html);
+    });
+  }
+});
+
+
+
+
+}
+
+
+{/* <datalist id="datalist">
+<option value="sudesh"/>
+<option value="sudesh"/>
+
+
+</datalist> */}
 
 
