@@ -78,12 +78,11 @@
         <a href="" target="_blank" hidden></a>
         <input type="text" placeholder="Type to search.." id="searchBar" list="datalist" onkeydown="searchFunction()">
       <datalist id="datalist">
-        <option value="sudesh"/>
-        <option value="sudesh"/>
+        
       
       
       </datalist>
-        <div class="icon"><i class="fas fa-search"></i></div>
+        <div class="icon" onclick="getsearchItems()"><i class="fas fa-search"></i></div>
       </div>
     </div>
 

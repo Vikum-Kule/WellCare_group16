@@ -742,7 +742,7 @@ text-align:center;
 
 .wrapper{
   max-width: 450px;
-  margin: 150px auto;
+  /* margin: 150px auto; */
 }
 
 .wrapper .search-input{
