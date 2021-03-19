@@ -319,7 +319,7 @@ class Users extends Controller{
         $_SESSION['active'] = true;
         $_SESSION['username'] = $user->userName;
 	    $_SESSION['email'] = $user->email;
-        header('location:' . URLROOT . '/pc_view_drug/show_orders');
+        header('location:' . URLROOT . '/pc_view_drug/show_requestedOrders');
     }
 
     public function createUserSession_man($user){

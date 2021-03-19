@@ -239,6 +239,7 @@
 
 			if($mail_result){
 				echo "Email sent to ".$to;
+				$this->request_to_pending($email_orderId,$total);
 			}
 			else{
 				echo "message not sent";
@@ -246,10 +247,48 @@
 
 		}
 	}
+
+	public function request_to_pending($orderId, $total){
+		$orderData_medicine =$this->postModel->findData_toTable($orderId);
+		foreach ($orderData_medicine as $data):
+			$avlQTY = $this->postModel->find_QTY($data->medicineId );
+			$newQTY = $avlQTY->QTY - $data->QTY;
+			$this->postModel->updateQTY($data->medicineId ,$newQTY);
+			$updateOrder_medicine= [
+				'orderId'=>$data->orderId,
+				'medicineId'=>$data->medicineId,
+				'doseStatus'=>$data->doseStatus,
+				'dose'=>$data->dose,
+				'frequencyStatus'=>$data->frequencyStatus,
+				'frequency'=>$data->frequency,
+				'medName'=>$data->medName,
+				'medBrand'=>$data->medBrand,
+				'QTY'=>$data->QTY,
+				'price'=>$data->price,
+			];
+			$this->postModel->add_to_prepared_medicine($updateOrder_medicine);
+
+		endforeach;
+		$orderData = $this->postModel->findData_from_nonOrders($orderId);
+		$updateOrder = [
+			'orderId'=> $orderData[0]->orderId,
+			'DateTime'=>'',
+			'customerId'=>$orderData[0]->customerId,
+			'streetAddress1'=>$orderData[0]->streetAddress1,
+			'streetAddress2'=>$orderData[0]->streetAddress2,
+			'city'=>$orderData[0]->city,
+			'district'=>$orderData[0]->district,
+			'image_path'=>$orderData[0]->image_path,
+			'price'=>$total,
+			'status'=>'pending'
+		];
+		$this->postModel->add_to_prepared($updateOrder);
+
+	}
     
     
 
-    public function show_orders(){
+    public function show_requestedOrders(){
     	
 		    	$nonOrders = $this->postModel->showNonOrders();
 		    	$orders = $this->postModel->showOrders();

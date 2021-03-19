@@ -128,6 +128,26 @@
             return $results;
         }
 
+        public function find_QTY($medicineId ){
+            $this->db->query("SELECT QTY FROM medicine WHERE medicineId = :medId");
+            $this->db->bind(':medId',$medicineId);
+            $results = $this->db->single();
+            return $results;
+        }
+
+        public function updateQTY($medicineId ,$avlQTY){
+            $this->db->query("UPDATE medicine SET QTY = :QTY WHERE medicineId = :medId");
+            $this->db->bind(':medId',$medicineId);
+            $this->db->bind(':QTY',$avlQTY);
+            if ($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+
         public function find_order($orderId){
             $this->db->query("SELECT * FROM prepared_order WHERE orderId = :orderId LIMIT 1");
             $this->db->bind(':orderId', $orderId);
@@ -136,6 +156,30 @@
             return $results;
 
         }
+
+        public function add_to_prepared_medicine($updateOrder_medicine){
+            $this->db->query('INSERT INTO 
+            prepared_order_medicne 
+            (orderId, medicineId, doseStatus, dose, frequencyStatus, frequency, medName, medBrand, QTY, price) 
+            VALUES (:orderId, :medicineId, :doseStatus, :dose, :frequencyStatus, :frequency, :medName, :medBrand, :QTY, :price)');
+            $this->db->bind(':orderId', $updateOrder_medicine['orderId']);
+            $this->db->bind(':medicineId', $updateOrder_medicine['medicineId']);
+            $this->db->bind(':QTY', $updateOrder_medicine['QTY']);
+            $this->db->bind(':doseStatus', $updateOrder_medicine['doseStatus']);
+            $this->db->bind(':dose', $updateOrder_medicine['dose']);
+            $this->db->bind(':frequencyStatus', $updateOrder_medicine['frequencyStatus']);
+            $this->db->bind(':frequency', $updateOrder_medicine['frequency']);
+            $this->db->bind(':medName', $updateOrder_medicine['medName']);
+            $this->db->bind(':medBrand', $updateOrder_medicine['medBrand']);
+            $this->db->bind(':price', $updateOrder_medicine['price']);
+            if ($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
         public function update_order($updateOrder){
              $this->db->query('INSERT INTO completed_orders (orderId, currentLocation, DateTime, customerId, image_path, price) VALUES (NULL, :currentLocation, current_timestamp(), :customerId, :image_path, :price)');
 
@@ -175,12 +219,41 @@
             return $results;
         }
 
+        public function findData_from_nonOrders($orderId){
+            $this->db->query("SELECT * FROM nonprepared_order WHERE orderId = :orderId LIMIT 1");
+            $this->db->bind(':orderId', $orderId);
+            $results = $this->db->resultSet();
+            return $results;
+        }
+
+        public function add_to_prepared($updateOrder){
+            $this->db->query('INSERT INTO prepared_order
+            (orderId,  DateTime, customerId, streetAddress1, streetAddress2, city, district, image_path, price, status) 
+            VALUES 
+            (:orderId,  current_timestamp(), :customerId, :streetAddress1, :streetAddress2, :city, :district, :image_path, :price, :status)');
+
+            $this->db->bind(':orderId', $updateOrder['orderId']);
+            $this->db->bind(':customerId', $updateOrder['customerId']);
+            $this->db->bind(':streetAddress1', $updateOrder['streetAddress1']);
+            $this->db->bind(':streetAddress2', $updateOrder['streetAddress2']);
+            $this->db->bind(':city', $updateOrder['city']);
+            $this->db->bind(':district', $updateOrder['district']);
+            $this->db->bind(':image_path', $updateOrder['image_path']);
+            $this->db->bind(':price', $updateOrder['price']);
+            $this->db->bind(':status', $updateOrder['status']);
+            if ($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+    
+        }
+
         public function process_delete($orderId){
             $this->db->query("DELETE FROM prepared_order WHERE orderId = :orderId");
             $this->db->bind(':orderId', $orderId);
-            
-            
-
+        
         }
 
         public function find_email($orderId){
