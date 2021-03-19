@@ -783,7 +783,14 @@ button:hover {
     font-size: 10px;
 }
 
+#notification {
+    display: none;
+    margin: 20% auto;
+    width: 50%;
+}
+
 #confirm {
+    display: none;
     height: 600px;
     width: 700px;
     margin: 85px auto;

@@ -140,30 +140,6 @@
 		  	return;
 		}		
 
-		   
-		   if(isset($_POST['name'])){
-			$Drugname =$_POST['name'];
-			$brand = $_POST['brand'];
-			$dose = $_POST['dose'];
-			$unitPrice = $this->postModel->findMedPrice($Drugname,$brand,$dose);
-			$price = $unitPrice[0]->price *$_POST['QTY'] ;
-			$updateOrder_medicine = [
-				'orderId'=>$_POST['orderId'],
-				'name'=>$_POST['name'],
-				'brand'=>$_POST['brand'],
-				'QTY'=>$_POST['QTY'],
-				'status'=>$_POST['status'],
-				'freqency'=>$_POST['frequency'],
-				'doseStatus'=>$_POST['doseform'],
-				'dose'=>$_POST['dose'],
-				'barcode'=>$unitPrice[0]->medicineId,
-				'price'=>$price
-				
-		   ];	
-		  
-		  $this->postModel->preparedOrder($updateOrder_medicine);
-		   
-		}
 		
 		if(!isset($_POST['name']) ){
 			$this->view('pc_make_order', $data);
@@ -213,7 +189,6 @@
 			$table_data = $this->postModel->findData_toTable($email_orderId);
 			$sending_mail= $this->postModel->find_email($email_orderId);
 			$total= 0.00;
-			print_r($sending_mail->Email);
 			
 			//create email..
 			$to = $sending_mail->Email;
@@ -263,7 +238,7 @@
 			$mail_result=mail($to,$mail_subject,$email_body,$header);
 
 			if($mail_result){
-				echo "message sent";
+				echo "Email sent to ".$to;
 			}
 			else{
 				echo "message not sent";

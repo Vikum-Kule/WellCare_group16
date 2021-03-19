@@ -109,15 +109,35 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 
+function open_notification(title, content) {
+    if (title == "Warning") {
+        document.querySelector("#title").style.color = "red";
+    } else if (title == "Success") {
+        document.querySelector("#title").style.color = "green";
+    }
+    document.querySelector("#title").innerHTML = title;
+    document.querySelector("#notice_content").innerHTML = content;
+    document.querySelector("#overly").style.display = "block";
+    document.querySelector("#notification").style.display = "block";
+}
 
+function close_notification() {
+    document.querySelector("#title").innerHTML = "";
+    document.querySelector("#notice_content").innerHTML = "";
+    document.querySelector("#overly").style.display = "none";
+    document.querySelector("#notification").style.display = "none";
+
+}
 
 function open_confirm() {
     document.querySelector("#overly").style.display = "block";
+    document.querySelector("#confirm").style.display = "block";
     fill_confirm_table();
 
 }
 
 function close_confirm() {
     document.querySelector("#overly").style.display = "none";
+    document.querySelector("#confirm").style.display = "none";
 
 }
