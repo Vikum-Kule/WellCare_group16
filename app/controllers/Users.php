@@ -513,7 +513,7 @@ class Users extends Controller{
                                     <b>Thank you.</b>";
                     $header = "From: {$email_Sender}\r\nContent-type: text/html;";
 
-                    $mail_result=mail("vikumkulatunga@gmail.com",$mail_subject,$email_body,$header);
+                    $mail_result=mail($to,$mail_subject,$email_body,$header);
 
                     if($mail_result){
                         echo "Email sent to ".$to;
