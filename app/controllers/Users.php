@@ -503,6 +503,25 @@ class Users extends Controller{
                     
                     $dataRecoverPassword['recoverEmail']=$data['email'];
                     $dataRecoverPassword['createdTime']=time();
+                    //email sending...
+                    $to = $dataRecoverPassword['recoverEmail'];
+                    $email_Sender= "wellcaregroup16@gmail.com";
+                    $mail_subject = "Password Recover";
+                    $email_body = "<b>From: </b> Wellcare Pharmacy<br>";
+                    $email_body .="<b>Your Recover Password: </b> {$dataRecoverPassword['recoverpasswords']}<br>";
+                    $email_body .="<i>Please recover your password within 15 minuts..</i><br>
+                                    <b>Thank you.</b>";
+                    $header = "From: {$email_Sender}\r\nContent-type: text/html;";
+
+                    $mail_result=mail($to,$mail_subject,$email_body,$header);
+
+                    if($mail_result){
+                        echo "Email sent to ".$to;
+                    }
+                    else{
+                        echo "message not sent";
+                    }
+
 
                     $this->view('temp', $dataRecoverPassword);
 
