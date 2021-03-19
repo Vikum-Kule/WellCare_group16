@@ -73,6 +73,19 @@
     <div id="content">
     <img class="left" id="myBtn" onclick="topFunction()" src="<?php echo URLROOT."/public/img/back-to.png";?>" alt="">
     <div id="overly">
+        <div class="card" id="notification">
+            <div class="card-header">
+                            <h3>
+                                <div id="title"></div>
+                            </h3>
+                            <i class="fas fa-ellipsis-h"></i>
+                            <img src="<?php echo URLROOT."/public/img/close.png";?>" alt="" style="width: 20px; height:20px; float:right; margin-top:-20px"
+                            onclick="close_notification()">
+                        </div>
+                        <div class="card-content">
+                            <div id="notice_content"></div>
+                        </div>
+        </div>
         <div class="card" id="confirm">
         <div class="card-header">
                         <h3>

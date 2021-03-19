@@ -74,11 +74,12 @@
             return $count;
         }
 
-        public function findMedPrice($Drugname,$brand,$dose){
-            $this->db->query("SELECT price,medicineId FROM medicine WHERE name = :name AND brand = :brand AND dose = :dose");
+        public function findMedPrice($Drugname,$brand,$dose,$doseform){
+            $this->db->query("SELECT price,medicineId,QTY FROM medicine WHERE name = :name AND brand = :brand AND dose = :dose AND doseStatus= :doseForm ");
             $this->db->bind(':name',$Drugname);
             $this->db->bind(':brand',$brand);
             $this->db->bind(':dose',$dose);
+            $this->db->bind(':doseForm',$doseform);
             $results = $this->db->resultSet();
             return $results;
 
@@ -148,6 +149,23 @@
             else{
                 return false;
             }
+        }
+
+        public function findMedicine($orderId,$Drugname,$brand,$dose,$doseform){
+            $this->db->query("SELECT * FROM temp_order_medicine WHERE medName = :name AND medBrand = :brand AND dose = :dose AND orderId= :orderId AND doseStatus= :doseForm");
+            $this->db->bind(':name',$Drugname);
+            $this->db->bind(':brand',$brand);
+            $this->db->bind(':dose',$dose);
+            $this->db->bind(':doseForm',$doseform);
+            $this->db->bind(':orderId',$orderId);
+            $results = $this->db->resultSet();
+            if ($results){
+                return true;
+            }
+            else{
+                return false;
+            }
+        
         }
 
         public function findData_toTable($nonprepaierd_orderId){

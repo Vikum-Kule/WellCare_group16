@@ -215,40 +215,44 @@ add.addEventListener("click", displayDetails);
 function displayDetails() {
     var flag = 1;
     var no = row;
-    var name = "";
-    var brand = "";
-    if (document.querySelector('#medicine').value != "") {
-        name = document.querySelector('#medicine').value;
-    } else {
-        alert("please enter name....");
+    var warning = "";
+
+    if (document.querySelector('#medicine').value == "") {
         flag = 0;
+        warning = "medicine name ";
     }
 
-    if (document.querySelector('#brand').value != "") {
-        brand = document.querySelector('#brand').value;
-    } else {
-        alert("please enter brand....");
+    if (document.querySelector('#brand').value == "") {
         flag = 0;
+        warning = warning + ",medicine barand ";
     }
-    if (document.getElementById("QTY").value != "") {
-        var QTY = document.getElementById("QTY").value;
-    } else {
-        alert("please enter QTY....");
+    if (document.getElementById("QTY").value == "") {
         flag = 0;
+        warning = warning + ",QTY ";
     }
-    if (document.querySelector('#stat').value != "") {
-        var status = document.querySelector('#stat').value;
-    } else {
-        alert("please enter frequency status....");
+    if (document.querySelector('#stat').value == "") {
         flag = 0;
+        warning = warning + ",frequency type ";
     }
-
+    if ($("#allDoses").val() == null) {
+        flag = 0;
+        warning = warning + ",dosage ";
+    }
+    if ($("#allDoseForm").val() == null) {
+        flag = 0;
+        warning = warning + ",dosage form ";
+    }
+    if (document.getElementById("frequency").value == null) {
+        flag = 0;
+        warning = warning + ",frequency ";
+    }
     if (flag == 0) {
-        //return;
+        var content = "Please enter " + warning + " !!!..";
+        open_notification("Warning", content);
+        return;
     }
 
     var orderId = document.getElementById("order-id-hidden").value;
-    console.log(orderId);
     var name = document.querySelector('#medicine').value;
     var brand = document.querySelector('#brand').value;
     var QTY = document.getElementById("QTY").value;
@@ -258,17 +262,24 @@ function displayDetails() {
     var frequency = document.getElementById("frequency").value;
 
     // console.log(name);
-    var url = "http://localhost/mvcfinal/pc_view_drug/show_medicine";
+    var url = "http://localhost/mvcfinal/pc_input_validation/inputVaidation";
     var price = 0;
     $.ajax({
         url: url,
         type: 'POST',
         data: { orderId: orderId, name: name, brand: brand, QTY: QTY, status: frequency_status, frequency: frequency, dose: dose, doseform: doseform },
         success: function(data) {
-            displayTable(orderId);
+            if (data == "duplicate input") {
+                open_notification("Warning", "Sorry...you have entered duplicate input");
+            } else if (data == "Not Available") {
+                open_notification("Warning", "Sorry...there is no available quantity...");
+            } else {
+                clear();
+                open_notification("Success", "Successfully updated...");
+                displayTable(orderId);
+            }
         }
     });
-    clear();
 
 }
 
@@ -468,6 +479,7 @@ function email() {
         data: { email_orderId: orderId, email_name: name, unAvl: unAvl, note: note },
         success: function(data) {
             console.log(data);
+            open_notification("Notification", data);
         }
     });
     close_confirm();
