@@ -267,6 +267,7 @@
 				'price'=>$data->price,
 			];
 			$this->postModel->add_to_prepared_medicine($updateOrder_medicine);
+			$this->postModel->deleteRow($data->orderId,$data->medicineId);
 
 		endforeach;
 		$orderData = $this->postModel->findData_from_nonOrders($orderId);
@@ -283,18 +284,67 @@
 			'status'=>'pending'
 		];
 		$this->postModel->add_to_prepared($updateOrder);
+		$this->postModel->request_delete($orderId);
+		
 
 	}
     
-    
+    public function show_pendingOrders(){
+		$status = "pending";
+		$orders = $this->postModel->showOrders($status);
+		$data = [
+				'orders' => $orders
+		];
+		$this->view('pc_pending_orders', $data);
+
+	}
+	public function show_completedOrders(){
+		$status = "completed";
+		$orders = $this->postModel->showOrders($status);
+		$data = [
+				'orders' => $orders
+		];
+		$this->view('pc_confirmed_orders', $data);
+
+	}
+
+	public function confirm_to_complete(){
+		$orderId= $_POST['orderId'];
+		$result=$this->postModel->updateStatus($orderId);
+		$email =$this->postModel->findEmail($orderId);
+		if($result){
+			$email_orderId= $orderId;
+			$email_Sender_name="Well Care Pharmacy";
+			$email_Sender= "wellcaregroup16@gmail.com";
+			$email_name= $email[0]->FirstName." ".$email[0]->LastName;
+			
+			//create email..
+			$to = $email[0]->Email;
+			$mail_subject = "Order Completed Well Care Pharmacy";
+			$email_body = "<b>From: </b> {$email_Sender_name}<br>";
+			$email_body .= "<b>To: </b> {$email_name}<br>";
+			$email_body .= "<b>Order No: </b> {$email_orderId}<br>";
+			
+			$email_body .="<i>Your Order has been completed.You will be received your medicine within 24 hours.</i><br>
+							<b>Thank you.</b>";
+			$header = "From: {$email_Sender}\r\nContent-type: text/html;";
+
+			$mail_result=mail($to,$mail_subject,$email_body,$header);
+
+			if($mail_result){
+				echo "Email sent";
+			}
+			else{
+				echo "message not sent";
+			}
+		}
+	}
 
     public function show_requestedOrders(){
     	
 		    	$nonOrders = $this->postModel->showNonOrders();
-		    	$orders = $this->postModel->showOrders();
-
-		    	if($_SERVER['REQUEST_METHOD']=='POST'){
-
+		    	
+		    	
     				$_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
     				
     				$updateOrder = [
@@ -332,17 +382,12 @@
     					$orderId = $_POST['orderId'];
     					$this->postModel->process_delete($orderId);	
     				}
-    			}
+    			
 
 		    		
 		    					$data = [
-						    			$data1 = [
 						    				'nonOrders' => $nonOrders
-						    			],
-
-						    			$data2 = [
-						    				'orders' => $orders
-						    			]
+						    			
 		    					];
 		    				$this->view('pc_view_order', $data);
 		    			

@@ -114,6 +114,10 @@ function open_notification(title, content) {
         document.querySelector("#title").style.color = "red";
     } else if (title == "Success") {
         document.querySelector("#title").style.color = "green";
+    } else if (title == "Order Proceed...") {
+        document.querySelector("#title").style.color = "green";
+    } else if (title == "Order Completed...") {
+        document.querySelector("#title").style.color = "green";
     }
     document.querySelector("#title").innerHTML = title;
     document.querySelector("#notice_content").innerHTML = content;
@@ -122,11 +126,17 @@ function open_notification(title, content) {
 }
 
 function close_notification() {
+    var titel = document.getElementById('title').textContent;
     document.querySelector("#title").innerHTML = "";
     document.querySelector("#notice_content").innerHTML = "";
     document.querySelector("#overly").style.display = "none";
     document.querySelector("#notification").style.display = "none";
-
+    if (titel == "Order Proceed...") {
+        window.location.href = "http://localhost/mvcfinal/pc_view_drug/show_requestedOrders";
+    }
+    if (titel == "Order Completed...") {
+        clear();
+    }
 }
 
 function open_confirm() {

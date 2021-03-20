@@ -3,27 +3,27 @@
     <!-- main content -->
     <div class="wrapper">
         <div class="row">
-            <div class="col-3 col-m-6 col-sm-6">
+        <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
-                    <p>To do</p>
+                    <h3><div id="request"></div></h3>
+                    <p>Requested</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
-                    <p>In progress</p>
+                    <h3><div id="pending"></div></h3>
+                    <p>Pending</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
+                    <h3><div id="confirmed"></div></h3>
                     <p>Completed</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
+                    <h3>0</h3>
                     <p>Issues</p>
                 </div>
             </div>
@@ -44,23 +44,21 @@
                                     <th>Order number</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
-                                    <th>date & time</th>
-                                    <th>Total Price</th>
+                                    <th>Date & time</th>
+                                    <th>Price</th>
                                 </tr>
                             </thead>
-                           
-                                <?php foreach($data['orders'] as $orders): ?>
-                                    <tbody>
-                                    <tr>
-                                            <td><?php echo $orders->orderId; ?></td>
-                                            <td><?php echo $orders->FirstName; ?></td>
-                                            <td><?php echo $orders->LastName; ?></td>
-                                            <td><?php echo $orders->DateTime; ?></td>
-                                            <td><?php echo $orders->price; ?></td>
-                                            
-                                    </tr>
-                                    </tbody>
-                                    <?php endforeach;?>
+                            <?php foreach($data['orders'] as $orders): ?>
+                            <tbody>
+                            <tr>
+                                <td><?php echo $orders->orderId; ?></td>
+                                <td><?php echo $orders->FirstName; ?></td>
+                                <td><?php echo $orders->LastName; ?></td>
+                                <td><?php echo $orders->DateTime; ?></td>
+                                <td><?php echo $orders->price; ?></td>
+                        </tr>
+                            </tbody>
+                            <?php endforeach;?>
                         </table>
                     </div>
                 </div>
@@ -81,5 +79,4 @@
         </div>
 
         <!-- end main content -->
-
-        <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/pc_footer.php");?>
+    <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/pc_footer.php");?>

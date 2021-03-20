@@ -48,7 +48,7 @@
                                     <th>Image Path</th>
                                 </tr>
                             </thead>
-                            <?php foreach($data[0]['nonOrders'] as $nonOrders): ?>
+                            <?php foreach($data['nonOrders'] as $nonOrders): ?>
                             <tbody>
                             <tr>
                                 <td><?php echo $nonOrders->orderId; ?></td>

@@ -44,20 +44,20 @@
                                     <th>Order number</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
-                                    <th>date & time</th>
-                                    <th>Image Path</th>
+                                    <th>Date & time</th>
+                                    <th>Price</th>
                                 </tr>
                             </thead>
-                            <?php foreach($data[0]['nonOrders'] as $nonOrders): ?>
+                            <?php foreach($data['orders'] as $orders): ?>
                             <tbody>
                             <tr>
-                                <td><?php echo $nonOrders->orderId; ?></td>
-                                <td><?php echo $nonOrders->FirstName; ?></td>
-                                <td><?php echo $nonOrders->LastName; ?></td>
-                                <td><?php echo $nonOrders->DateTime; ?></td>
-                                <td><?php echo $nonOrders->image_path; ?></td>
-
-                                <td><form method="POST" action="<?php echo URLROOT; ?>/pc_view_drug/show_medicine"> <input id="orderId" type="hidden" name="orderId" value="<?php echo $nonOrders->orderId; ?>"><button id="process" type="submit" name="process" >Process</button></form></td>
+                                <td><?php echo $orders->orderId; ?></td>
+                                <td><?php echo $orders->FirstName; ?></td>
+                                <td><?php echo $orders->LastName; ?></td>
+                                <td><?php echo $orders->DateTime; ?></td>
+                                <td><?php echo $orders->price; ?></td>
+                                <td><input id="orderId" type="hidden" name="orderId" value="<?php echo $orders->orderId; ?>">
+                                <button id="confirm_btn" type="submit" name="confirm_btn" onclick="add_to_complete()" >Confirm</button></form></td>
                                 
                         </tr>
                             </tbody>
