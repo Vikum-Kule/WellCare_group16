@@ -3,7 +3,15 @@
         <ul class="sidebar-nav">
         
             <li class="sidebar-nav-item">
-                <a href="http://localhost/mvcfinal/pc_view_drug/show_orders" class="sidebar-nav-link">
+                <a href="http://localhost/mvcfinal/pc_view_drug/show_requestedOrders" class="sidebar-nav-link">
+                    <div>
+                        <i class="fab fa-accusoft"></i>
+                    </div>
+                    <span>Requested Orders</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="http://localhost/mvcfinal/pc_view_drug/show_pendingOrders" class="sidebar-nav-link">
                     <div>
                         <i class="fab fa-accusoft"></i>
                     </div>
@@ -11,11 +19,11 @@
                 </a>
             </li>
             <li class="sidebar-nav-item">
-                <a href="http://localhost/mvcfinal/pc_view_drug/show_confirm_orders" class="sidebar-nav-link">
+                <a href="http://localhost/mvcfinal/pc_view_drug/show_completedOrders" class="sidebar-nav-link">
                     <div>
                         <i class="fas fa-tasks"></i>
                     </div>
-                    <span>Confirmed Orders</span>
+                    <span>Completed Orders</span>
                 </a>
             </li>
             <!-- <li class="sidebar-nav-item">

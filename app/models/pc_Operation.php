@@ -14,11 +14,23 @@
             return $results;
         }
 
-        public function findMedId(){
-            
+        public function findEmail($orderId){
+            $this->db->query('SELECT 
+             prepared_order. price,customer. FirstName, customer. LastName, customer. Email
+            FROM 
+            customer
+            INNER JOIN 
+            prepared_order 
+            ON
+            customer. customerId=prepared_order. customerId
+            WHERE
+            prepared_order.orderId = :orderId' );
+            $this->db->bind(':orderId', $orderId);
+            $results = $this->db->resultSet();
+            return $results; 
         }
 
-        public function showOrders(){
+        public function showOrders($status){
             $this->db->query('SELECT 
             prepared_order. orderId, prepared_order. DateTime, prepared_order. price,customer. FirstName, customer. LastName
             FROM 
@@ -26,8 +38,10 @@
             INNER JOIN 
             prepared_order 
             ON
-            customer. customerId=prepared_order. customerId' );
-
+            customer. customerId=prepared_order. customerId
+            WHERE
+            prepared_order.status= :status' );
+            $this->db->bind(':status', $status);
             $results = $this->db->resultSet();
             return $results;   
         }
@@ -59,7 +73,8 @@
         // }
 
         public function count_pendingOrders(){
-            $this->db->query("SELECT COUNT(orderId) as count FROM prepared_order;");
+            $this->db->query("SELECT COUNT(orderId) as count FROM prepared_order WHERE status= :status;");
+            $this->db->bind(':status',"pending");
             $count = $this->db->single();
             return $count;
         }
@@ -69,7 +84,8 @@
             return $count;
         }
         public function confirmedOrders(){
-            $this->db->query("SELECT COUNT(orderId) as count FROM completed_orders;");
+            $this->db->query("SELECT COUNT(orderId) as count FROM prepared_order WHERE status= :status;");
+            $this->db->bind(':status',"completed");
             $count = $this->db->single();
             return $count;
         }
@@ -180,20 +196,7 @@
             }
         }
 
-        public function update_order($updateOrder){
-             $this->db->query('INSERT INTO completed_orders (orderId, currentLocation, DateTime, customerId, image_path, price) VALUES (NULL, :currentLocation, current_timestamp(), :customerId, :image_path, :price)');
-
-             $this->db->bind(':currentLocation', $updateOrder['currentLocation']);
-             $this->db->bind(':customerId', $updateOrder['customerId']);
-             $this->db->bind(':image_path', $updateOrder['image_path']);
-             $this->db->bind(':price', $updateOrder['price']);
-             if ($this->db->execute()){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
+        
 
         public function findMedicine($orderId,$Drugname,$brand,$dose,$doseform){
             $this->db->query("SELECT * FROM temp_order_medicine WHERE medName = :name AND medBrand = :brand AND dose = :dose AND orderId= :orderId AND doseStatus= :doseForm");
@@ -250,9 +253,29 @@
     
         }
 
-        public function process_delete($orderId){
-            $this->db->query("DELETE FROM prepared_order WHERE orderId = :orderId");
+        public function updateStatus($orderId){
+            $this->db->query("UPDATE prepared_order SET status=:status,DateTime= current_timestamp() WHERE orderId = :orderId");
             $this->db->bind(':orderId', $orderId);
+            $this->db->bind(':status', "completed");
+            if ($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        
+
+        public function request_delete($orderId){
+            $this->db->query("DELETE FROM nonprepared_order WHERE orderId = :orderId");
+            $this->db->bind(':orderId', $orderId);
+            if ($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
         
         }
 

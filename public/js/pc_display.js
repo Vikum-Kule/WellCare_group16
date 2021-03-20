@@ -479,11 +479,25 @@ function email() {
         data: { email_orderId: orderId, email_name: name, unAvl: unAvl, note: note },
         success: function(data) {
             console.log(data);
-            open_notification("Notification", data);
+            open_notification("Order Proceed...", data);
         }
     });
     close_confirm();
 
+}
+
+function add_to_complete() {
+    var url = "http://localhost/mvcfinal/pc_view_drug/confirm_to_complete";
+    var orderId = document.getElementById("orderId").value;
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: { orderId: orderId },
+        success: function(data) {
+            open_notification("Order Completed...", "Order: " + orderId + " marked as completed..");
+
+        }
+    });
 }
 
 // function generate() {
