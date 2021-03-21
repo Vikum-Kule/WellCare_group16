@@ -431,7 +431,7 @@ function confirmCheckout() {
 
 function searchFunction() {
   var searchBar = $("#searchBar").val();
-  console.log(searchBar)
+  //console.log(searchBar)
   $('#datalist').html("");
   $.ajax({
     type: 'post',
@@ -443,6 +443,7 @@ function searchFunction() {
     success: function(searchBar) {
       console.log(searchBar);
        searchBar.forEach(searchBarItem => {
+         
         const html='<option value="'+searchBarItem.name+'('+searchBarItem.brand+')"/>';
         $('#datalist').append(html);
       });
@@ -496,12 +497,5 @@ function getsearchItems(){
 
 }
 
-
-{/* <datalist id="datalist">
-<option value="sudesh"/>
-<option value="sudesh"/>
-
-
-</datalist> */}
 
 

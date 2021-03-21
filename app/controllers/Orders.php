@@ -26,12 +26,7 @@ class Orders extends Controller{
     public function getmaincategories(){
         header('Content-Type: application/json');
 		echo json_encode($this->orderModel->getmaincategories());
-
-        
-  
-      }
-      
-    
+    }
     public function getsubcategories(){
        
        
@@ -48,6 +43,11 @@ class Orders extends Controller{
         $this->view('Cart', $data);
 
     }
+
+
+
+
+
     public function getmedicines(){
        
        
