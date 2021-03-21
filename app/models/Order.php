@@ -192,4 +192,158 @@ class Order
             return false;
         }
     }
+
+    public function tempPrescription($data)
+    {
+        $this->db->query('INSERT INTO tempprescription(time,customerId,ext) VALUES (:time,:id,:ext)');
+        //bind values
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':time', $data['time']);
+        $this->db->bind(':ext', $data['ext']);
+
+        if ($this->db->execute()) {
+            return $this->getTempPrescriptionId($data);
+        } else {
+            return false;
+        }
+        
+    }
+    // $data = ['id' => $_SESSION['user_id'], 'time' => time(),'ext'=>$ext];
+    public function getTempPrescriptionId($data)
+    {
+        $this->db->query('SELECT 
+                                tempPrescriptionId
+                                FROM 
+                                tempprescription
+                                WHERE 
+                                customerId  =:id AND time=:time' );
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':time', $data['time']);
+        
+        
+
+        $row = $this->db->resultSet();
+        return  $row;
+    }
+
+    public function removePrescription($id){
+        $this->db->query('DELETE FROM tempprescription WHERE customerId=:id');
+        
+        $this->db->bind(':id', $id);
+        
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+
+
+    }
+    public function nonPreparedPrescription($data){
+        
+        $this->db->query('INSERT INTO nonprepared_order(orderId,DateTime,customerId,streetAddress1,streetAddress2,city,district,image_path) VALUES (:orderId,:dateTime,:customerId,:streetAddress1,:streetAddress2,:city,:district,:image_path)');
+        
+        $this->db->bind(':dateTime', $data['dateTime']);
+        $this->db->bind(':orderId', $data['orderId']);
+        $this->db->bind(':streetAddress1', $data['streetAddress1']);
+        $this->db->bind(':streetAddress2', $data['streetAddress2']);
+        $this->db->bind(':city', $data['city']);
+        $this->db->bind(':district', $data['district']);
+        $this->db->bind(':customerId', $data['customerId']);
+        $this->db->bind(':image_path', $data['image_path']);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+        
+
+    }
+    public function getTempPrescriptionData($id){
+
+        $this->db->query('SELECT 
+        *
+        FROM 
+        tempprescription
+        WHERE 
+        customerId  =:id ');
+    $this->db->bind(':id', $id);
+    $row = $this->db->resultSet();
+    return  $row;
+    
+
+    }
+
+
+
+    // 'streetAddress1' => trim($json->streetAddress1),
+    //         'streetAddress2' => trim($json->streetAddress2),
+    //         'city' => trim($json->city),
+    //         'district' => trim($json->streetAddress1),
+    //         'postalCode' => trim($json->postalCode),
+    //         'dateTime' => time(),
+    //         'customerId' => $_SESSION['user_id'],
+    //         'orderId'=>$result[0]->Auto_increment,
+    //         'image_path'=>$result[0]->Auto_increment
+    public function getNextOrderId(){
+        $this->db->query("SHOW TABLE STATUS LIKE 'nonprepared_order'");
+        $row = $this->db->resultSet();
+        return  $row;
+}
+    public function getNextTempPrescriptionId(){
+        $this->db->query("SHOW TABLE STATUS LIKE 'tempprescription'");
+        $row = $this->db->resultSet();
+        return  $row;
+ }
+
+    // public function getOrderidNonPreparedPrescription($data){
+    //     $this->db->query('SELECT 
+    //                             orderId
+    //                             FROM 
+    //                             nonprepared_order
+    //                             WHERE 
+    //                             DateTime  =:dateTime AND customerId  =:customerId AND streetAddress1  =:streetAddress1 AND streetAddress2  =:streetAddress2 AND city  =:city AND district  =:district AND postalCode  =:postalCode 
+    //                         ');
+    //     $this->db->bind(':dateTime', $data['dateTime']);
+    //     $this->db->bind(':customerId', $data['customerId']);
+    //     $this->db->bind(':streetAddress1', $data['streetAddress1']);
+    //     $this->db->bind(':streetAddress2', $data['streetAddress2']);
+    //     $this->db->bind(':city', $data['city']);
+    //     $this->db->bind(':district', $data['district']);
+    //     $this->db->bind(':postalCode', $data['postalCode']);
+
+
+
+
+
+
+    // }
+    // 'streetAddress1' => trim($json->streetAddress1),
+    //         'streetAddress2' => trim($json->streetAddress2),
+    //         'city' => trim($json->city),
+    //         'district' => trim($json->streetAddress1),
+    //         'postalCode' => trim($json->postalCode),
+    //         'dateTime' => time(),
+    //         'customerId' => $_SESSION['user_id']
+
+
+    public function checkTempPrescriptionUserId($id)
+    {
+        $this->db = new Database;
+        $this->db->query('SELECT * FROM tempprescription WHERE 	customerId= :id');
+        //bind email
+
+        $this->db->bind(':id', $id);
+
+        $row2 = $this->db->single();
+        //  echo $this->db->rowCount()
+        //check email already taken
+        if ($this->db->rowCount() > 0) {
+
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

@@ -79,7 +79,7 @@
    
    
    
-   .uploadFile input[type=submit] {
+   .uploadFile .btnSubmit{
    
      background-color: #4CAF50;
      color: white;
@@ -235,4 +235,326 @@
     text-decoration: none;
     cursor: pointer;
   }
+  .card .btn {
+    
+    
+    background-color: #FF0000;
+    
+    font-size: 16px;
+    padding: 2px 2px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    width: 30%;
+}
+  
+  
+  .card .btn:hover {
+    background-color: black;
+  }
+
+  .remove{
+
+display: none;
+
+  }
+  .add{
+
+    display: block;
+  }
+
+
+     /* model************************************************************************************ */
+     .main {
+      width: 100%;
+      height: 400px;
+      text-align: center;
+      display: none;
+    }
+  
+    .main div {
+      width: 400px;
+      height: 400px;
+      margin: 0 auto;
+      text-align: center;
+  
+    }
+  
+    .main div button {
+      top: 500px;
+      height: 30px;
+      margin: 0 auto;
+    }
+  
+  
+    .modelcontainer {
+  
+      display: none;
+      width: 100%;
+      height: 100vh;
+      position: fixed;
+      opacity: 0.9;
+      background: #222;
+      z-index: 40000;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+  
+      animation-name: fadeIn_Container;
+      animation-duration: 1s;
+  
+    }
+  
+    .modal {
+      display: none;
+      top: 0;
+      min-width: 250px;
+      width: 80%;
+      height: 80%;
+      margin: 0 auto;
+      position: fixed;
+      z-index: 40001;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px #000;
+      margin-top: 30px;
+      margin-left: 10%;
+  
+      animation-name: fadeIn_Modal;
+      animation-duration: 0.8s;
+  
+    }
+   
+  
+    .header {
+      width: 100%;
+      height: 70px;
+      border-radius: 10px 10px 0px 0px;
+      border-bottom: 2px solid #ccc;
+      font-size: x-large;
+      text-align: center;
+      /* margin: 15px 5px; */
+    }
+  
+    .header a {
+      text-decoration: none;
+      float: right;
+      line-height: 70px;
+      margin-right: 20px;
+      color: #aaa;
+    }
+  
+    .content {
+      width: 100%;
+      height: 80%;
+      overflow-x: hidden; 
+     overflow-y: scroll;
+    }
+  
+  
+  
+    #first_label {
+      padding-top: 30px;
+    }
+  
+    #second_label {
+      padding-top: 25px;
+    }
+  
+  
+    .footer {
+      width: 100%;
+      height: 80px;
+      border-radius: 0px 0px 10px 10px;
+      border-top: 2px solid #ccc;
+      /* overflow: scroll; */
+    }
+  
+    .fotter button {
+      float: right;
+      margin-right: 10px;
+      margin-top: 18px;
+      text-decoration: none;
+    }
+    /*check out *************************************************** */
+    #caption {
+      margin: auto;
+      display: block;
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+      /* float: left; */
+      padding: 10px 0;
+      /* height: 150px; */
+    }
+    .col-25 {
+    text-align: center;
+     float:left;
+     width: 100%;
+     margin-top: 6px;
+   }
+   
+   .col-75 {
+   
+     float: left;
+     width:100%;
+     margin-top: 6px;
+     padding: 10px 10px;
+  
+   }
+   .col-75  input{
+    width: 100%;
+  
+    
+   }
+   .footterButton{
+  
+    width: 100%;
+   }
+   
+  
+    /****MEDIA QUERIES****/
+  
+    @media screen and (max-width: 600px) {
+  
+  
+  
+  
+      .header {
+        width: 100%;
+        height: 15%;
+      }
+  
+      .header a {
+        line-height: 40px;
+        margin-right: 10px;
+      }
+  
+      .content {
+        width: 100%;
+        height: 70%;
+      }
+  
+  
+  
+      .footer {
+       
+        border-radius: 0px 0px 10px 10px;
+        border-top: 2px solid #ccc;
+        overflow: scroll;
+        width: 100%;
+        height: 15%;
+      }
+  
+      
+      
+  
+    }
+  
+    /*LARGE SCREEN*/
+    @media screen and (min-width: 1300px) {}
+  
+    /****ANIMATIONS****/
+  
+    @keyframes fadeIn_Modal {
+      from {
+        opacity: 0;
+      }
+  
+      to {
+        opacity: 1;
+      }
+    }
+  
+    @keyframes fadeIn_Container {
+      from {
+        opacity: 0;
+      }
+  
+      to {
+        opacity: 0.9;
+      }
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  
+    .cardInfo {
+  
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    th {
+      text-align: left;
+      padding: 5px;
+      color: #fff;
+      background: #000000;
+      font-weight: normal;
+  
+    }
+  
+    td {
+      padding: 10px 5px;
+    }
+  
+    td input {
+      width: 40px;
+      height: 30px;
+      padding: 5px;
+    }
+  
+    td a {
+      color: #ff523b;
+      font-size: 12px;
+    }
+  
+    td img {
+      width: 80px;
+      margin-right: 10px;
+    }
+  
+    td button {
+      background-color: #e92d26;
+      color: white;
+      /* padding: 14px 50px; */
+      /* margin: 8px 0; */
+      border: none;
+      cursor: pointer;
+      /* width: 50%; */
+      /* float: left; */
+      text-align: center;
+    }
+  
+    td button:hover {
+      opacity: 0.8;
+    }
+  
+    .totalPrice {
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    .totalPrice table {
+      border-top: 3px solid #000000;
+      width: 100%;
+      max-width: 350px;
+  
+  
+    }
+  
+    td:last-child {
+      text-align: right;
+    }
+  
+    th:last-child {
+      text-align: right;
+    }
+  
+    /* model************************************************************************************ */
+
+  
   
