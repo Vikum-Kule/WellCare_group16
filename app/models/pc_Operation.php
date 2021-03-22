@@ -165,7 +165,7 @@
         }
 
         public function find_order($orderId){
-            $this->db->query("SELECT * FROM prepared_order WHERE orderId = :orderId LIMIT 1");
+            $this->db->query("SELECT * FROM prepared_order_medicne WHERE orderId = :orderId LIMIT 1");
             $this->db->bind(':orderId', $orderId);
 
             $results = $this->db->resultSet();
@@ -228,6 +228,21 @@
             $results = $this->db->resultSet();
             return $results;
         }
+         public function find_medicine_nonOrders($orderId){
+            $this->db->query("SELECT
+            medicine.name,medicine.brand,nonpreparedorder_medicine.price,nonpreparedorder_medicine.qty            
+            FROM 
+            nonpreparedorder_medicine 
+            INNER JOIN 
+            medicine 
+            ON
+            nonpreparedorder_medicine. medicineId=medicine. medicineId
+            WHERE 
+            orderId = :orderId");
+            $this->db->bind(':orderId', $orderId);
+            $results = $this->db->resultSet();
+            return $results;
+         }
 
         public function add_to_prepared($updateOrder){
             $this->db->query('INSERT INTO prepared_order
@@ -319,16 +334,18 @@
             
         }
 
-        public function findconOrders(){
+        public function find_prepaired_Orders($orderId){
              $this->db->query('SELECT 
-            completed_orders. orderId, completed_orders. DateTime, completed_orders. price,customer. FirstName, customer. LastName
+            customer.PhoneNum, prepared_order.customerId, customer.FirstName, customer.LastName, prepared_order.image_path 
             FROM 
-            customer
+            prepared_order
             INNER JOIN 
-            completed_orders 
+            customer 
             ON
-            customer. customerId=completed_orders. customerId' );
-
+            customer. customerId=prepared_order. customerId
+            WHERE
+            prepared_order.orderId = :orderId' );
+            $this->db->bind(':orderId', $orderId);
             $results = $this->db->resultSet();
             return $results;   
         }

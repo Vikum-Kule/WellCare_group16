@@ -1,5 +1,6 @@
 <?php require_once ($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/config/config.php");?>
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/pc_header.php");?>
+ 
     <!-- main content -->
     <div class="wrapper">
         <div class="row">
@@ -143,7 +144,7 @@
                         </form>
                     </div>
                     <div style="text-align: center;height:50px;">
-                        <button class="add" id="add" >Add</button>
+                        <button class="add" id="add" onclick="displayDetails()">Add</button>
                         <button class="reset" id="reset">Reset</button>
                     </div>
                 </div>
@@ -307,9 +308,8 @@
                 </div>
             </div>
         </div>
-        <div>
+    </div>
 
-</div>
 
 
         <!-- end main content -->

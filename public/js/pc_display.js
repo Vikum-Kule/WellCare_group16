@@ -15,7 +15,6 @@ function counter() {
             var pending = data[0];
             var request = data[1];
             var confirm = data[2];
-            console.log(confirm);
             document.getElementById("pending").innerHTML = pending;
             document.getElementById("request").innerHTML = request;
             document.getElementById("confirmed").innerHTML = confirm;
@@ -207,8 +206,8 @@ $(".allDoseForm option").val(function(idx, val) {
 
 
 
-var add = document.getElementById("add");
-add.addEventListener("click", displayDetails);
+// var add = document.getElementById("add");
+// add.addEventListener("click", displayDetails);
 
 
 
@@ -283,7 +282,7 @@ function displayDetails() {
 
 }
 
-if ($("#order-id-hidden")) {
+if (document.getElementById("order-id-hidden")) {
     displayTable($("#order-id-hidden").val());
 }
 
@@ -300,6 +299,7 @@ function displayTable(orderId) {
             //console.log(data);
 
             var display = document.getElementById("display");
+
             display.querySelector('tbody').innerHTML = "";
             for (var x = 0; x < data.length; x++) {
                 var rowNum = x + 1;
@@ -330,6 +330,9 @@ function displayTable(orderId) {
                 col10.innerHTML = "<input id='medId" + rowNum + "' type='hidden' name='medId' value=" + data[x].medicineId + "><button style='width:20px; height:30px; padding-left:20px;' onclick='deleteRow(" + rowNum + ")'><img id='deleteBtn' src='http://localhost/mvcfinal//public/img/delete.png' style='margin-top:-11px; margin-left:-5px;'  ></button>";
                 global_final_rowNum = rowNum;
             }
+
+
+
             var total = parseFloat(totale).toFixed(2)
             document.getElementById("totalPrice").innerHTML = "Rs. " + total;
 
@@ -437,7 +440,9 @@ function removeRow() {
 
 
 var reset = document.getElementById("reset");
-reset.addEventListener("click", clear);
+if (reset) {
+    reset.addEventListener("click", clear);
+}
 
 document.addEventListener("DOMContentLoaded", function(event) {
     var scrollpos = localStorage.getItem('scrollpos');
@@ -499,6 +504,139 @@ function add_to_complete() {
         }
     });
 }
+var pendingOrder_tab = document.getElementById("pendingOrder_tab");
+if (pendingOrder_tab) {
+    $("#pendingOrder_tab tr").click(function() {
+        var selected = $(this).hasClass("rowColor");
+        $("#pendingOrder_tab tr").removeClass("rowColor");
+        if (!selected)
+            $(this).addClass("rowColor");
+    });
+
+}
+
+var requested_tab = document.getElementById("requested_tab");
+if (requested_tab) {
+    $("#requested_tab tr").click(function() {
+        var selected = $(this).hasClass("rowColor");
+        $("#requested_tab tr").removeClass("rowColor");
+        if (!selected)
+            $(this).addClass("rowColor");
+    });
+
+}
+
+var completed_tab = document.getElementById("completed_tab");
+if (completed_tab) {
+    $("#completed_tab tr").click(function() {
+        var selected = $(this).hasClass("rowColor");
+        $("#completed_tab tr").removeClass("rowColor");
+        if (!selected)
+            $(this).addClass("rowColor");
+    });
+
+}
+
+
+var global_previous_rows = 0;
+
+function rowData_fromReq(orderId) {
+    for (var x = 3 + global_previous_rows; x > 3; x--) {
+        var rowNum = x;
+        document.getElementById("req_data").deleteRow(rowNum);
+    }
+
+    var url = "http://localhost/mvcfinal/pc_view_drug/find_data_req_row";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: { orderId: orderId },
+        success: function(data) {
+
+            console.log(data[1].length);
+            document.getElementById("req_name").innerHTML = data[0][0].FirstName + " " + data[0][0].LastName;
+            document.getElementById("req_tel").innerHTML = data[0][0].PhoneNum;
+            if (data[0][0].image_path != null) {
+                document.getElementById("orderPrescription").innerHTML = "yes";
+            } else {
+                document.getElementById("orderPrescription").innerHTML = "no";
+            }
+
+            var display = document.getElementById("req_data");
+            global_previous_rows = data[1].length;
+            for (var x = 0; x < data[1].length; x++) {
+                var rowNum = x + 4;
+                var newRow = display.insertRow(rowNum);
+
+                var col1 = newRow.insertCell(0);
+                var col2 = newRow.insertCell(1);
+                var col3 = newRow.insertCell(2);
+                var col4 = newRow.insertCell(3);
+
+                col1.innerHTML = rowNum - 3;
+                col2.innerHTML = data[1][x].name + "(" + data[1][x].brand + ")";
+                col3.innerHTML = data[1][x].qty;
+                col4.innerHTML = data[1][x].price;
+            }
+
+        }
+    });
+}
+
+function pen_rowData(orderId) {
+    for (var x = 3 + global_previous_rows; x > 3; x--) {
+        var rowNum = x;
+        document.getElementById("pen_data").deleteRow(rowNum);
+    }
+
+    var url = "http://localhost/mvcfinal/pc_view_drug/find_data_pen_row";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: { orderId: orderId },
+        success: function(data) {
+
+            console.log(data[1]);
+            document.getElementById("pen_name").innerHTML = data[0][0].FirstName + " " + data[0][0].LastName;
+            document.getElementById("pen_tel").innerHTML = data[0][0].PhoneNum;
+            if (data[0][0].image_path == null) {
+                document.getElementById("orderPrescription").innerHTML = "yes";
+            } else {
+                document.getElementById("orderPrescription").innerHTML = "no";
+            }
+
+            var display = document.getElementById("pen_data");
+            global_previous_rows = data[1].length;
+            for (var x = 0; x < data[1].length; x++) {
+                var rowNum = x + 4;
+                var newRow = display.insertRow(rowNum);
+
+                var col1 = newRow.insertCell(0);
+                var col2 = newRow.insertCell(1);
+                var col3 = newRow.insertCell(2);
+                var col4 = newRow.insertCell(3);
+
+                col1.innerHTML = rowNum - 3;
+                col2.innerHTML = data[1][x].medName + "(" + data[1][x].medBrand + ")";
+                col3.innerHTML = "X " + data[1][x].QTY;
+                col4.innerHTML = data[1][x].price;
+            }
+
+        }
+    });
+}
+
+// function process_rowData() {
+//     var url = "http://localhost/mvcfinal/pc_view_drug/show_medicine";
+//     var orderId = document.getElementById("orderId2").value;
+//     $.ajax({
+//         url: url,
+//         type: 'POST',
+//         data: { process_orderId: orderId },
+//         success: function(data) {
+//         }
+//     });
+// }
 
 // function generate() {
 //     var doc = new jsPDF('p', 'pt', 'letter');
