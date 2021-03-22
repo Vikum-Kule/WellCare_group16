@@ -821,3 +821,7 @@ button:hover {
     overflow-x: auto;
     overflow-y: auto;
 }
+
+.rowColor {
+    background-color: rgb(224, 224, 228);
+}

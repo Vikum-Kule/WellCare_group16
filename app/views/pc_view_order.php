@@ -38,7 +38,7 @@
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <div class="card-content">
-                        <table>
+                        <table id="requested_tab">
                             <thead>
                                 <tr>
                                     <th>Order number</th>
@@ -50,7 +50,7 @@
                             </thead>
                             <?php foreach($data['nonOrders'] as $nonOrders): ?>
                             <tbody>
-                            <tr>
+                            <tr onclick="rowData_fromReq(<?php echo $nonOrders->orderId; ?>)">
                                 <td><?php echo $nonOrders->orderId; ?></td>
                                 <td><?php echo $nonOrders->FirstName; ?></td>
                                 <td><?php echo $nonOrders->LastName; ?></td>
@@ -70,16 +70,38 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Progress bar
+                            Order Details
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <div class="card-content">
-
+                            <table id="req_data" style="font-size: 12px;">
+                            <tbody>
+                                <tr>
+                                    <th> Name: </th>
+                                    <td id="req_name"></td>
+                                </tr>
+                                <tr>
+                                    <th>Tel: </th>
+                                    <td id="req_tel"></td>
+                                </tr>
+                                <tr>
+                                    <th>Prescription: </th>
+                                    <td id="orderPrescription"></td>
+                                </tr>
+                                <tr>
+                                    <th>Medicine List: </th>
+                                </tr>
+                                
+	    					</tbody>   
+                            </table>
+                            
                     </div>
                 </div>
             </div>
         </div>
+
+
 
         <!-- end main content -->
     <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/pc_footer.php");?>

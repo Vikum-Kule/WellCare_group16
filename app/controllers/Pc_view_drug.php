@@ -49,14 +49,10 @@
 					$orderId
 					
 				];
-				// $this->view('pc_make_order', $data);
-				// $table_data = $this->postModel->findData_toTable($orderId);
-				// header('Content-type: application/json');
-				// echo json_encode($table_data);
 				
-		 	    //  return;
-				
-		}
+			}
+
+			
 
 		if(isset($_POST['right'])){
 			$currentId = $_POST['currentId'];
@@ -308,6 +304,30 @@
 
 	}
 
+	public function find_data_req_row(){
+		$orderId= $_POST['orderId']; 
+		$orderData = $this->postModel-> fetchData($orderId);
+		$medicine_data = $this->postModel->find_medicine_nonOrders($orderId);
+		$data = [
+			$orderData,$medicine_data
+		];
+		header('Content-type: application/json');
+		echo json_encode($data);
+		return;
+	}
+
+	public function find_data_pen_row(){
+		$orderId= $_POST['orderId'];
+		$orderData = $this->postModel->find_prepaired_Orders($orderId);
+		$orderMedicine = $this->postModel->find_order($orderId);
+		$data = [
+			$orderData,$orderMedicine
+		];
+		header('Content-type: application/json');
+		echo json_encode($data);
+		return;
+	}
+
 	public function confirm_to_complete(){
 		$orderId= $_POST['orderId'];
 		$result=$this->postModel->updateStatus($orderId);
@@ -357,31 +377,31 @@
 			   			 
    					];
 
-    				if(isset($_POST['done'])){
+    				// if(isset($_POST['done'])){
 
-    					$orderId = $_POST['orderId'];
-    					$order_data = $this->postModel->find_order($orderId);
-    					$data3 = [
-				    		'order_data' => $order_data
-				    	];
-				    	foreach($data3['order_data'] as $order_data){
-				    		$updateOrder = [
-					   			 'currentLocation'=>trim($order_data->currentLocation),
-					   			 'customerId'=>trim($order_data->customerId),
-					   			 'image_path'=>trim($order_data->image_path),
-					   			 'price'=>trim($order_data->price)
+    				// 	$orderId = $_POST['orderId'];
+    				// 	$order_data = $this->postModel->find_order($orderId);
+    				// 	$data3 = [
+				    // 		'order_data' => $order_data
+				    // 	];
+				    // 	foreach($data3['order_data'] as $order_data){
+				    // 		$updateOrder = [
+					//    			 'currentLocation'=>trim($order_data->currentLocation),
+					//    			 'customerId'=>trim($order_data->customerId),
+					//    			 'image_path'=>trim($order_data->image_path),
+					//    			 'price'=>trim($order_data->price)
 			   			 
-   					];
-				    	}
+   					// ];
+				    // 	}
 
-    					$this->postModel->update_order($updateOrder);
-    					$this->postModel->process_delete($orderId);
-    				}
+    				// 	$this->postModel->update_order($updateOrder);
+    				// 	$this->postModel->process_delete($orderId);
+    				// }
 
-    				if(isset($_POST['done'])){
-    					$orderId = $_POST['orderId'];
-    					$this->postModel->process_delete($orderId);	
-    				}
+    				// if(isset($_POST['done'])){
+    				// 	$orderId = $_POST['orderId'];
+    				// 	$this->postModel->process_delete($orderId);	
+    				// }
     			
 
 		    		

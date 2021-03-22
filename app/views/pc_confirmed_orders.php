@@ -38,7 +38,7 @@
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <div class="card-content">
-                        <table>
+                        <table id="completed_tab">
                             <thead>
                                 <tr>
                                     <th>Order number</th>
@@ -50,7 +50,7 @@
                             </thead>
                             <?php foreach($data['orders'] as $orders): ?>
                             <tbody>
-                            <tr>
+                            <tr onclick="pen_rowData(<?php echo $orders->orderId; ?>)">
                                 <td><?php echo $orders->orderId; ?></td>
                                 <td><?php echo $orders->FirstName; ?></td>
                                 <td><?php echo $orders->LastName; ?></td>
@@ -67,12 +67,32 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Progress bar
+                            Order Details
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <div class="card-content">
-
+                            <table id="pen_data" style="font-size: 12px;">
+                            <tbody>
+                                <tr>
+                                    <th> Name: </th>
+                                    <td id="pen_name"></td>
+                                </tr>
+                                <tr>
+                                    <th>Tel: </th>
+                                    <td id="pen_tel"></td>
+                                </tr>
+                                <tr>
+                                    <th>Prescription: </th>
+                                    <td id="orderPrescription"></td>
+                                </tr>
+                                <tr>
+                                    <th>Medicine List: </th>
+                                </tr>
+                                
+	    					</tbody>   
+                            </table>
+                                
                     </div>
                 </div>
             </div>
