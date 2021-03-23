@@ -135,6 +135,13 @@
             return $results;
         }
 
+        public function find_using_brand_name($medName,$medBrand){
+            $this->db->query("SELECT medicineId FROM medicine WHERE name= :medName AND brand = :medBrand");
+            $this->db->bind(':medName', $medName);
+            $this->db->bind(':medBrand', $medBrand);
+            $results = $this->db->single();
+            return $results;
+        }
         public function find_avl_qty($defineQty_medicine){
             $this->db->query("SELECT QTY FROM medicine WHERE name = :name AND brand = :brand AND dose = :dose");
             $this->db->bind(':name',$defineQty_medicine['name']);
@@ -228,6 +235,18 @@
             $results = $this->db->resultSet();
             return $results;
         }
+
+        public function deleteRow_nonPrepaired($nonprepaierd_orderId){
+            $this->db->query("DELETE FROM nonpreparedorder_medicine WHERE orderId = :orderId");
+            $this->db->bind(':orderId', $nonprepaierd_orderId);
+            if ($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
          public function find_medicine_nonOrders($orderId){
             $this->db->query("SELECT
             medicine.name,medicine.brand,nonpreparedorder_medicine.price,nonpreparedorder_medicine.qty            

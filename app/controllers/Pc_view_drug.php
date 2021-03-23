@@ -37,8 +37,8 @@
 				$medicine = $this->postModel->findMedName();
 				$orderId = $_POST['orderId'];
 				$orderData = $this->postModel->fetchData($orderId);
-				$orderData = $this->postModel->fetchData($orderId);
-				//$this->postModel->pending_process($orderId);
+				//$non_prescrip_medicine= $this->postModel->findNonPrepaired_medicine($orderId);
+				
 				$data = [
 					$data1 = [
 						'medicine' => $medicine
@@ -130,10 +130,33 @@
 
 		if(isset($_POST['nonprepaired_orderId'])){
 			$nonprepaierd_orderId= $_POST['nonprepaired_orderId']; 
+			$nonPrescrip_med = $this->postModel->find_medicine_nonOrders($nonprepaierd_orderId);
+			for($x= 0 ; $x< count($nonPrescrip_med); $x++){
+				$medId= $this->postModel->find_using_brand_name($nonPrescrip_med[$x]->name,$nonPrescrip_med[$x]->brand);
+				$updateOrder_medicine = [
+                    'orderId'=>$nonprepaierd_orderId,
+                    'name'=>$nonPrescrip_med[$x]->name,
+                    'brand'=>$nonPrescrip_med[$x]->brand,
+                    'QTY'=>$nonPrescrip_med[$x]->qty,
+                    'status'=>"-",
+                    'freqency'=>"-",
+                    'doseStatus'=>"-",
+                    'dose'=>"-",
+                    'barcode'=>$medId->medicineId,
+                    'price'=>$nonPrescrip_med[$x]->price
+                    
+                   ];	
+				   
+				   
+                  $this->postModel->preparedOrder($updateOrder_medicine);
+			}
+			$this->postModel->deleteRow_nonPrepaired($nonprepaierd_orderId);
 			$table_data = $this->postModel->findData_toTable($nonprepaierd_orderId);
-		  	header('Content-type: application/json');
+			//$data= array_merge($nonPrescrip_med,$table_data);
+			header('Content-type: application/json');
 		  	echo json_encode($table_data);
 		  	return;
+		  	
 		}		
 
 		
