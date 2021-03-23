@@ -36,7 +36,7 @@
 
 <form action="" method="POST">
  
-<div class="container">
+<!--<div class="container">
    <h1>Add Invoice</h1>
     <hr>
      <label for="name"><b>Invoice Number</b></label>
@@ -47,8 +47,37 @@
 
     <button type="submit" class="registerbtn">Add</button>
       
-  </div>
-  
+  </div>-->
+  <div class="row">
+            <div class="col-8 col-m-12 col-sm-12" id="inputTable">
+                <div class="card">
+                    <div class="card-content">
+                    <form ‍>
+                    
+                    <input type="hidden" name="rowNum" id="rowNum">
+                        <table id="openTab">
+                            <tbody>
+                            <tr>
+                                <form method="POST">
+                                    <th>Invoice Number</th>
+                                    <th><input type="text" placeholder="Enter Invoice Number" name="invoiceNo" id="invoiceNo" required> </th>
+                                </form>
+                                </tr>
+                                <tr>
+								<form >
+                                    <th>Medicine List</th>
+                                    <th><textarea placeholder="Enter MedicineList" name="medicineList" id="medicineList"></textarea></th>
+                                </form>
+                                </tr>
+                                </tbody>
+                        </table>
+                        </form>
+                    </div>
+                    <div style="text-align: center;height:50px;">
+                    <button type="submit" name="submit" class="registerbtn">ADD</button>
+                    </div>
+                </div>
+            </div>
   
 </form>
 
