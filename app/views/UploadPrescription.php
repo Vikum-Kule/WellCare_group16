@@ -10,6 +10,7 @@
     var URLROOT = "<?php echo URLROOT ?>"
   </script>
   <script src="<?php echo URLROOT ?>/public/js/UploadPrescription.js"></script>
+  
 
 </head>
 
@@ -20,13 +21,7 @@
 
 
   </div>
-
-
-
-
-
-
-  <div class="container">
+ <div class="container">
     <img src="<?php echo URLROOT ?>/public/img/uploadprescriptions1.JPG" class="responsive">
 
 
@@ -51,10 +46,7 @@
     </div>
 
     <img src="<?php echo URLROOT ?>/public/img/uploadprescriptions2.JPG" class="responsive">
-
-
-
-  </div>
+ </div>
   <div class="line3">
     <div class="confirmOrder">
       <a href='<?php echo URLROOT ?>/orders/makeOrder'> <button><i class="fa fa-caret-square-o-left"></i> Continue Shopping</button></a>
@@ -87,62 +79,63 @@
 
       </div>
       <div class="content" id="content">
-
-
-
-
-
-
-
-      </div>
+</div>
       
+<!-- ************************************************************************************************ -->
 
-
-      <!-- ************************************************************************************************ -->
-
-
-    </div>
+</div>
 <script>
-
-window.onload = function() {
-      
-  $.ajax({
-          type: 'post',
-          url: '' + URLROOT + '/cartController/checkSignin',
-
-
-
-          dataType: 'json',
-          success: function(signIn) {
-            if (signIn) {
-              $.ajax({
-                type: 'post',
-                url: '' + URLROOT + '/prescriptionController/getTempPrescriptionData',
-
-
-
-                dataType: 'json',
-                success: function(response) {
-                  console.log(response);
-                  const html = '<div class="card"><img src="' + URLROOT + '/public/img/tempPrescriptions/' + response[0].tempPrescriptionId+'.'+response[0].ext + '" style="width:30%"><br><button class="btn" onclick="removePrescription()">Remove</button></div>';
-                  $("#message").show();
-                    $("#message").append(html);
-                    $("#upload").hide();
-
-
-                }
-              });
-
-
-
-
-            }
-          }
-
+$("#open").click(function() {
+    $("#a").css("display", "block");
+    $("#b").css("display", "block");
   });
-    };
+
+
+  $(".cancel").click(function() {
+    $("#a").fadeOut();
+    $("#b").fadeOut();
+  });
+
+// window.onload = function() {
+      
+//   $.ajax({
+//           type: 'post',
+//           url: '' + URLROOT + '/cartController/checkSignin',
+
+
+
+//           dataType: 'json',
+//           success: function(signIn) {
+//             if (signIn) {
+//               $.ajax({
+//                 type: 'post',
+//                 url: '' + URLROOT + '/prescriptionController/getTempPrescriptionData',
+
+
+
+//                 dataType: 'json',
+//                 success: function(response) {
+//                   console.log(response);
+//                   const html = '<div class="card"><img src="' + URLROOT + '/public/img/tempPrescriptions/' + response[0].tempPrescriptionId+'.'+response[0].ext + '" style="width:30%"><br><button class="btn" onclick="removePrescription()">Remove</button></div>';
+//                   $("#message").show();
+//                     $("#message").append(html);
+//                     $("#upload").hide();
+
+
+//                 }
+//               });
+
+
+
+
+//             }
+//           }
+
+//   });
+//     };
 
 </script>
+<!-- 
     <script type="text/javascript">
       function submit() {
         $.ajax({
@@ -286,11 +279,6 @@ window.onload = function() {
 
                       ' <input type="text" id="district" name="district" placeholder="Enter Your District .." value="' + signIn.district + '">' +
                       ' <span class="invalidFeedback"></span>' +
-
-                      '<input type="text" id="postalCode" name="postalCode" placeholder="Postal Code .." value="' + signIn.postalCode + '">' +
-                      ' <span class="invalidFeedback"></span>' +
-
-
                       '</div>' +
                       '<div ><button onclick ="confirmCheckout()">confirm</button></div>';
 
@@ -326,10 +314,9 @@ window.onload = function() {
 
   var streetAddress1 = $("#streetAddress1").val();
   var streetAddress2 = $("#streetAddress2").val();
-
   var city = $("#city").val();
   var district = $("#district").val();
-  var postalCode = $("#postalCode").val();
+ 
   
   $.ajax({
     type: 'post',
@@ -339,7 +326,7 @@ window.onload = function() {
       streetAddress2: streetAddress2,
       city: city,
       district: district,
-      postalCode: postalCode
+      
     }),
     dataType: 'json',
     success: function ($sucsess) {
@@ -354,7 +341,7 @@ window.onload = function() {
   });
 
 
-}
+} -->
 
 
     </script>
