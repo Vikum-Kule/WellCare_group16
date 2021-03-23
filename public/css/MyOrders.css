@@ -230,7 +230,7 @@
      padding: 10px 5px;
    }
    td input{
-     width: 40px;
+     width: 100px;
      height: 30px;
      padding: 5px;
    }
@@ -507,8 +507,8 @@
   }
 
   td input {
-    width: 40px;
-    height: 30px;
+    width: 100px;
+    height: 50px;
     padding: 5px;
   }
 
@@ -557,6 +557,22 @@
 
   th:last-child {
     text-align: right;
+  }
+  .topnav a.logout {
+    background-color: rgb(0, 0, 0, 0.7);
+    color: white;
+  }
+
+  .topnav a.logout:hover {
+    background-color: black;
+    color: white;
+  }
+
+  #headername {
+    font-size: 15px;
+
+    border: none;
+    margin: none;
   }
 
   /* model************************************************************************************ */

@@ -83,13 +83,12 @@ class CartController extends Controller
             'streetAddress1' => trim($json->streetAddress1),
             'streetAddress2' => trim($json->streetAddress2),
             'city' => trim($json->city),
-            'district' => trim($json->streetAddress1),
-            'postalCode' => trim($json->postalCode),
-            'dateTime' => time(),
+            'district' => trim($json->district),
+            
             'customerId' => $_SESSION['user_id']
         ];
-
-        $result = $this->orderModel->nonprepared_order($data);
+        $result=$this->orderModel->getNextOrderId();
+        $result2= $this->orderModel->nonprepared_order($data);
 
         for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
 
@@ -97,7 +96,7 @@ class CartController extends Controller
             if ($_SESSION['cart'][$i][0]->qty > 0) {
 
                 $data2 = [
-                    'orderId' => $result[0]->orderId,
+                    'orderId' => $result[0]->Auto_increment,
                     'medicineId' =>  $_SESSION['cart'][$i][0]->medicineId,
                     'price' =>  $_SESSION['cart'][$i][0]->price,
                     'qty' =>  $_SESSION['cart'][$i][0]->qty

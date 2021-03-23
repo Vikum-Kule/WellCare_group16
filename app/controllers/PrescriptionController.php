@@ -45,8 +45,6 @@ class PrescriptionController extends Controller
 
         $obj = file_get_contents('php://input');
         $json = json_decode($obj);
-
-        
         $result=$this->orderModel->getNextOrderId();
         header('Content-Type: application/json');
 
@@ -56,21 +54,21 @@ class PrescriptionController extends Controller
             'streetAddress1' => trim($json->streetAddress1),
             'streetAddress2' => trim($json->streetAddress2),
             'city' => trim($json->city),
-            'district' => trim($json->streetAddress1),
-            //'postalCode' => trim($json->postalCode),
-            'dateTime' => time(),
+            'district' => trim($json->district),
+            
             'customerId' => $_SESSION['user_id'],
             'orderId'=>$result[0]->Auto_increment,
             'image_path'=>$result[0]->Auto_increment
         ];
        
-        // $result=$this->orderModel->nonPreparedPrescription($data);
-        $result2=$this->orderModel->getTempPrescriptionData($_SESSION['user_id']);
+        
+        $result2=$this->orderModel->getTempPrescriptionData($_SESSION['user_id']); 
+        $result3=$this->orderModel->nonPreparedPrescription($data);
         
         rename("../public/img/tempPrescriptions/" . $result2[0]->tempPrescriptionId . "." . $result2[0]->ext,"../public/img/prescriptions/" . $result[0]->Auto_increment . "." . $result2[0]->ext);
         header('Content-Type: application/json');
 
-        echo json_encode($result2);
+        echo json_encode($result3);
 
 
     }
@@ -91,11 +89,7 @@ class PrescriptionController extends Controller
         } else {
 
             $data = ['id' => '', 'time' => '','ext'=>''];
-            // $data = ['id' => $_SESSION['user_id'], 'time' => time()];
-
             
-            //echo basename($_FILES['image']['name']);
-            // print_r($result[0]->tempPrescriptionId) ;
             $result = $this->orderModel->getNextTempPrescriptionId();
             $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
 

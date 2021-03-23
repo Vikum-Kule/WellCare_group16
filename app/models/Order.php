@@ -69,9 +69,11 @@ class Order
     {
 
         $this->db->query('SELECT 
-           	medicineId,name,brand,description,price,subcategory,imageLocation
+           	medicine.medicineId,medicine.name,medicine.brand,medicine.description,medicine.price,medicine.subcategory,medicine.imageLocation,subcategory.mainCategory
             FROM 
             medicine
+            INNER JOIN subcategory
+            ON subcategory.name=medicine.subcategory
             WHERE 
             medicineId  =:id
             ');
@@ -91,47 +93,28 @@ class Order
         $this->db = new Database;
         $this->db->query(
             'INSERT INTO
-                            nonprepared_order (DateTime,customerId,streetAddress1,streetAddress2,city,district,postalCode) 
+                            nonprepared_order (customerId,streetAddress1,streetAddress2,city,district) 
                             VALUES
-                            (:dateTime,:customerId,:streetAddress1,:streetAddress2,:city,:district,:postalCode)'
+                            (:customerId,:streetAddress1,:streetAddress2,:city,:district)'
         );
 
-        $this->db->bind(':dateTime', $data['dateTime']);
+        
         $this->db->bind(':customerId', $data['customerId']);
         $this->db->bind(':streetAddress1', $data['streetAddress1']);
         $this->db->bind(':streetAddress2', $data['streetAddress2']);
         $this->db->bind(':city', $data['city']);
         $this->db->bind(':district', $data['district']);
-        $this->db->bind(':postalCode', $data['postalCode']);
+
 
         if ($this->db->execute()) {
-            return $this->getOrderId($data);;
+            return true;
         } else {
             return false;
         }
     }
-    public function getOrderId($data)
+    public function searchmedicines($searchBar)
     {
-        $this->db->query('SELECT 
-                                orderId
-                                FROM 
-                                nonprepared_order
-                                WHERE 
-                                DateTime  =:dateTime AND customerId  =:customerId AND streetAddress1  =:streetAddress1 AND streetAddress2  =:streetAddress2 AND city  =:city AND district  =:district AND postalCode  =:postalCode 
-                            ');
-        $this->db->bind(':dateTime', $data['dateTime']);
-        $this->db->bind(':customerId', $data['customerId']);
-        $this->db->bind(':streetAddress1', $data['streetAddress1']);
-        $this->db->bind(':streetAddress2', $data['streetAddress2']);
-        $this->db->bind(':city', $data['city']);
-        $this->db->bind(':district', $data['district']);
-        $this->db->bind(':postalCode', $data['postalCode']);
 
-        $row = $this->db->resultSet();
-        return  $row;
-    }
-    public function searchmedicines($searchBar){
-        
         $this->db->query("SELECT 
                                 name,brand
                                 FROM 
@@ -141,16 +124,18 @@ class Order
                             ");
 
 
-         $this->db->bind(':searchBar', $searchBar);
-        // $this->db->bind(':x', $x);       
-            
+        $this->db->bind(':searchBar', $searchBar);
+              
+
         $row = $this->db->resultSet();
 
         return  $row;
     }
-    public function getsearchmedicines($searchBar){
-        
-        $this->db->query("SELECT 
+    public function getsearchmedicines($searchBar)
+    {
+
+        $this->db->query(
+            "SELECT 
         medicine.medicineId ,medicine.name,medicine.brand,medicine.description,medicine.price,subcategory.subCategoryID,subcategory,mainCategory	
      FROM 
      medicine
@@ -159,15 +144,15 @@ class Order
      ON 
      subcategory.name = medicine.subCategory 
      where medicine.brand LIKE '%$searchBar%' OR medicine.name LIKE '%$searchBar%'"
-     );
-        
-        
-       
+        );
 
 
-         $this->db->bind(':searchBar', $searchBar);
-              
-            
+
+
+
+        $this->db->bind(':searchBar', $searchBar);
+
+
         $row = $this->db->resultSet();
 
         return  $row;
@@ -202,65 +187,48 @@ class Order
         $this->db->bind(':ext', $data['ext']);
 
         if ($this->db->execute()) {
-            return $this->getTempPrescriptionId($data);
+            return true;
         } else {
             return false;
         }
-        
     }
-    // $data = ['id' => $_SESSION['user_id'], 'time' => time(),'ext'=>$ext];
-    public function getTempPrescriptionId($data)
+    
+
+    public function removePrescription($id)
     {
-        $this->db->query('SELECT 
-                                tempPrescriptionId
-                                FROM 
-                                tempprescription
-                                WHERE 
-                                customerId  =:id AND time=:time' );
-        $this->db->bind(':id', $data['id']);
-        $this->db->bind(':time', $data['time']);
-        
-        
-
-        $row = $this->db->resultSet();
-        return  $row;
-    }
-
-    public function removePrescription($id){
         $this->db->query('DELETE FROM tempprescription WHERE customerId=:id');
-        
+
         $this->db->bind(':id', $id);
-        
+
 
         if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
-
-
     }
-    public function nonPreparedPrescription($data){
+    public function nonPreparedPrescription($data)
+    {
+
+        $this->db->query('INSERT INTO nonprepared_order(customerId,streetAddress1,streetAddress2,city,district,image_path) VALUES (:customerId,:streetAddress1,:streetAddress2,:city,:district,:image_path)');
+
         
-        $this->db->query('INSERT INTO nonprepared_order(orderId,DateTime,customerId,streetAddress1,streetAddress2,city,district,image_path) VALUES (:orderId,:dateTime,:customerId,:streetAddress1,:streetAddress2,:city,:district,:image_path)');
         
-        $this->db->bind(':dateTime', $data['dateTime']);
-        $this->db->bind(':orderId', $data['orderId']);
         $this->db->bind(':streetAddress1', $data['streetAddress1']);
         $this->db->bind(':streetAddress2', $data['streetAddress2']);
         $this->db->bind(':city', $data['city']);
         $this->db->bind(':district', $data['district']);
         $this->db->bind(':customerId', $data['customerId']);
         $this->db->bind(':image_path', $data['image_path']);
+
         if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
-        
-
     }
-    public function getTempPrescriptionData($id){
+    public function getTempPrescriptionData($id)
+    {
 
         $this->db->query('SELECT 
         *
@@ -268,11 +236,9 @@ class Order
         tempprescription
         WHERE 
         customerId  =:id ');
-    $this->db->bind(':id', $id);
-    $row = $this->db->resultSet();
-    return  $row;
-    
-
+        $this->db->bind(':id', $id);
+        $row = $this->db->resultSet();
+        return  $row;
     }
 
 
@@ -286,16 +252,18 @@ class Order
     //         'customerId' => $_SESSION['user_id'],
     //         'orderId'=>$result[0]->Auto_increment,
     //         'image_path'=>$result[0]->Auto_increment
-    public function getNextOrderId(){
+    public function getNextOrderId()
+    {
         $this->db->query("SHOW TABLE STATUS LIKE 'nonprepared_order'");
         $row = $this->db->resultSet();
         return  $row;
-}
-    public function getNextTempPrescriptionId(){
+    }
+    public function getNextTempPrescriptionId()
+    {
         $this->db->query("SHOW TABLE STATUS LIKE 'tempprescription'");
         $row = $this->db->resultSet();
         return  $row;
- }
+    }
 
     // public function getOrderidNonPreparedPrescription($data){
     //     $this->db->query('SELECT 
