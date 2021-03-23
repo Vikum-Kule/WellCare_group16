@@ -2,6 +2,7 @@ var row = 1;
 var globalId = null;
 var global_final_rowNum = 0;
 
+
 //take count of table rows..
 counter();
 
@@ -296,7 +297,7 @@ function displayTable(orderId) {
         type: 'POST',
         data: { nonprepaired_orderId: orderId },
         success: function(data) {
-            //console.log(data);
+            console.log(data);
 
             var display = document.getElementById("display");
 
@@ -326,6 +327,8 @@ function displayTable(orderId) {
                 col8.innerHTML = data[x].QTY;
                 col9.innerHTML = data[x].price;
                 totale = totale + parseFloat(data[x].price);
+
+
 
                 col10.innerHTML = "<input id='medId" + rowNum + "' type='hidden' name='medId' value=" + data[x].medicineId + "><button style='width:20px; height:30px; padding-left:20px;' onclick='deleteRow(" + rowNum + ")'><img id='deleteBtn' src='http://localhost/mvcfinal//public/img/delete.png' style='margin-top:-11px; margin-left:-5px;'  ></button>";
                 global_final_rowNum = rowNum;
