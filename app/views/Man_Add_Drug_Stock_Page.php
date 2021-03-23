@@ -32,10 +32,10 @@
 
         <form action="<?php echo URLROOT; ?>/Man_adddrug/adddrugs" method="POST">
  
- <div class="card">
+ <!--<div class="container">
     <h1>Add Drug Details</h1>
      <hr>
-     <label for="name"><b>Medicine ID</b></label>
+      <label for="name"><b>Medicine ID</b></label>
      <input type="text" placeholder="Enter Medicine ID" name="medicineId" id="medicineId" required>
      <label for="name"><b>Generic Name</b></label>
      <input type="text" placeholder="Enter Generic Name" name="name" id="name" required>
@@ -62,11 +62,111 @@
      <label for="tempurature"><b>Image Location</b></label>
      <input type="text" placeholder="Enter Image Location" name="imageLocation" id="imageLocation" required>
      
-    
+    <tr>
+    <th>Medicine ID </th>
+    <th><input type="text" placeholder="Enter Medicine ID" name="medicineId" id="medicineId" required> </th>
+    </tr>
+    <tr>
+    <th>Generic Name </th>
+    <th><input type="text" placeholder="Enter Generic Name" name="name" id="name" required> </th>
+    </tr>
+    <tr>
+    <th>Brand Name </th>
+    <th><input type="text" placeholder="Enter Brand Name" name="brand" id="brand" required> </th>
+    </tr>
+    <tr>
+    <th>Description </th>
+    <th><input type="text" placeholder="Enter Medicine ID" name="medicineId" id="medicineId" required> </th>
+    </tr>
+    <tr>
+    <th>Medicine ID </th>
+    <th><input type="text" placeholder="Enter Medicine ID" name="medicineId" id="medicineId" required> </th>
+    </tr>
+    <tr>
+    <th>Medicine ID </th>
+    <th><input type="text" placeholder="Enter Medicine ID" name="medicineId" id="medicineId" required> </th>
+    </tr>-->
  
-    
+    <div class="row">
+            <div class="col-8 col-m-12 col-sm-12" id="inputTable">
+                <div class="card">
+                    <div class="card-content">
+                    <form ‍>
+                    
+                    <input type="hidden" name="rowNum" id="rowNum">
+                        <table id="openTab">
+                            <tbody>
+                                <tr>
+                                <form method="POST">
+                                    <th>Medicine ID</th>
+                                    <th><input type="text" placeholder="Enter Medicine ID" name="medicineId" id="medicineId" required> </th>
+                                </form>
+								<form >
+                                    <th>Generic Name</th>
+                                    <th><input type="text" placeholder="Enter Generic Name" name="name" id="name" required> </th>
+                                </form>
+                                </tr>
+                                <tr>
+                                    <th>Brand Name</th>
+                                    <th>
+                                    <input type="text" placeholder="Enter Brand Name" name="brand" id="brand" required>
+                                    </th>
+                                    <th>Description</th>
+                                    <th>
+                                    <input type="text" placeholder="Enter Description" name="description" id="description" required>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Price</th>
+                                    <th>
+                                    <input type="price" placeholder="Enter price" name="price" id="price" required>
+                                    </th>
+                                    <th>Expiration Date</th>
+                                    <th>
+                                    <input type="Date" placeholder="Enter Expiration Date" name="EXP" id="EXP" required>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Manufacture Date</th>
+                                    <th>
+                                    <input type="Date" placeholder="Enter Manufacture Date" name="MFD" id="MFD" required>
+                                    </th>
+                                    <th>Dose Status</th>
+                                    <th>
+                                    <input type="text" placeholder="Enter Dose Status" name="doseStatus" id="doseStatus" required>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Dose</th>
+                                    <th>
+                                    <input type="text" placeholder="Enter Dose" name="dose" id="dose" required>
+                                    </th>
+                                    <th>Tempurature</th>
+                                    <th>
+                                    <input type="text" placeholder="Enter Tempurature" name="temperature" id="temperature" required>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Sub Category</th>
+                                    <th>
+                                    <input type="text" placeholder="Enter Sub Category" name="subCategory" id="subCategory" required>
+                                    </th>
+                                    <th>Image Location</th>
+                                    <th>
+                                    <input type="text" placeholder="Enter Image Location" name="imageLocation" id="imageLocation" required>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </form>
+                    </div>
+                    <div style="text-align: center;height:50px;">
+                    <button type="submit" name="submit" class="registerbtn">ADD</button>
+                    </div>
+                </div>
+            </div>
  
-     <button type="submit" name="submit" class="registerbtn">ADD</button>
+     
        
    </div>
    
