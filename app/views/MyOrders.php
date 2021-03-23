@@ -6,36 +6,29 @@
   <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/MyOrders.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script>
-      var URLROOT= "<?php echo URLROOT ?>"
+    var URLROOT = "<?php echo URLROOT ?>"
   </script>
   <script src="<?php echo URLROOT ?>/public/js/jquery-3.5.1.min.js"></script>
-  <style>
-    .topnav a.logout {
-      background-color: rgb(0, 0, 0, 0.7);
-      color: white;
-    }
-
-    .topnav a.logout:hover {
-      background-color: black;
-      color: white;
-    }
-  </style>
+  
 </head>
 <script src="<?php echo URLROOT ?>/public/js/topnavigation.js"></script>
+<script src="<?php echo URLROOT ?>/public/js/myOrder.js"></script>
+  
 
 <body>
   <div class="topnav" id="myTopnav">
     <a href="<?php echo URLROOT ?>/orders/makeOrder">Make Order</a>
 
-    <a href="<?php echo URLROOT ?>/myOrders/myorder" class="active">My Orders</a>
-
     <?php
     if ($_SESSION['active'] == true) {
+      echo ('<a href=' . URLROOT . '/myOrders/myorder>My Orders</a>');
       echo ('<a href=' . URLROOT . '/users/profile>Profile</a>');
-      echo ('<a href=' . URLROOT . '/users/logout">logout</a>');
+      echo ('<a href=' . URLROOT . '/users/logout>logout</a>');
     } else {
+
       echo ('<a href=' . URLROOT . '/users/loginVIew>Login</a>');
       echo ('<a href=' . URLROOT . '/users/register>Sign Up</a>');
+      echo ('<a href=' . URLROOT . '/pages/fogotPasswordView>Forgot Password</a>');
     }  ?>
 
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -59,23 +52,24 @@
   <div class="modal" id="b">
 
     <div class="header">
-      CART
+      <div id="headername"></div>
+
 
       <a href="#" class="cancel">X</a>
 
     </div>
-    <div class="content">
-     
+    <div class="content" id="cont">
+
 
 
       <table id="customers">
 
-        <tr>
+        <!-- <tr>
           <th>ITEM</th>
           <th>QUANTITY</th>
           <th>PRICE</th>
 
-        </tr>
+        </tr> -->
 
       </table>
 
@@ -100,67 +94,32 @@
     </div>
 
 
-    <div class="footer">
-    <div class=footterButton>
-    <button onclick="checkout()">Checkout</button>
-      <button class="cancelCheckout">Cancel</button>
-    
-    </div>
-     
-      <div id="b2"></div>
-    </div>
+    <div id="b2"></div>
+  </div>
   </div>
 
-  <a> <button onclick="showCart()"><i class="fa fa-shopping-cart"></i>Cart</i></button></a>
+
 
 
 
   <div class="smallContainer cartPage">
-    <table id="customers">
+    <table id="orders">
       <tr>
         <th></th>
         <th>ORDER NUMBER</th>
-        <th>DATE</th>
-        <th>MEDICINE LIST</th>
-        <th>PRICE</th>
+        <th>DATE AND TIME</th>
+
         <th>STATE</th>
-        <th>CONFIRM DELIVERY</th>
-      </tr>
-      <tr>
-        <td class="view"><a href="<?php echo URLROOT ?>/myOrders/order"><button>View</button></a></td>
-        <td class="view">01 </td>
-        <td>10/03/2020</td>
-
-        <td>panadol<br>chandanalepa<br>iodex balm</td>
-        <td>100</td>
-        <td>PENDING or READY TO DELIVER OR DELIVERD </td>
-        <td><button><i class="fa fa-check-square-o"></i>CONFIRM AS DELIVERD</button></td>
+        <th>NOTIFICATION</th>
       </tr>
 
-      <tr>
-        <td class="view"><a href="<?php echo URLROOT ?>/myOrders/order"><button>View</button></a></td>
-        <td class="view">02 </td>
 
-        <td>11/03/2020</td>
-        <td>panadol <br>ayurwedik hair oil</td>
-        <td>300</td>
-        <td>PENDING or READY TO DELIVER OR DELIVERD </td>
-        <td><button><i class="fa fa-check-square-o"></i>CONFIRM AS DELIVERD</button></td>
-      </tr>
-
-      <tr>
-        <td class="view"><a href="<?php echo URLROOT ?>/myOrders/order"><button>View</button></a></td>
-        <td class="view">03 </td>
-
-        <td>12/03/2020</td>
-        <td>PRESCRIPTION</td>
-        <td>3000</td>
-        <td>PENDING or READY TO DELIVER OR DELIVERD </td>
-        <td><button><i class="fa fa-check-square-o"></i>CONFIRM AS DELIVERD</button></td>
-      </tr>
 
 
     </table>
+    <div id="sudesh">
+
+    </div>
 
 
   </div>
@@ -173,29 +132,78 @@
 
     </div>
     <script>
+      // window.onload = function() {
+      //   viewNonPreparedOrders();
+      //   viewPreparedOrders();
+      // };
 
-window.onload = function() {
-      viewOrder();
-    };
+      // //1=nonprepared ,non prescription
+      // //3=nonprepared ,prescription
+      // //2=prepared
+      // function viewNonPreparedOrders() {
+      //   $.ajax({
+      //     type: 'get',
+      //     url: '' + URLROOT + '/myorders/getNonPreparedMyOrders',
+      //     dataType: 'json',
+      //     success: (MyNonPreparedMyOrders) => {
+      //       console.log(MyNonPreparedMyOrders);
 
+      //       MyNonPreparedMyOrders.forEach(nonPreparedMyOrder => {
+      //         var type = 0;
+      //         if (nonPreparedMyOrder.image_path) {
+      //           type = 3;
 
-    function viewOrders(){
-      $.ajax({
-        type: 'get',
-        url: ''+URLROOT+'/myorders/getMyOrders',
-        dataType: 'json',
-        success: (MyOrders) => {
+      //         } else {
 
+      //           type = 1;
+      //         }
 
-          
+      //         const html = '<tr id=" np' + nonPreparedMyOrder.orderId + ' ">' +
+      //           '<td class="view"><button onclick="showCart(' + type + ',' + nonPreparedMyOrder.orderId + ')">View</button></a></td>' +
+      //           '<td class="view">' + nonPreparedMyOrder.orderId + ' </td>' +
+      //           '<td>' + nonPreparedMyOrder.DateTime + '</td>' +
 
-        }
-      });
+      //           '<td>PENDING </td>' +
+      //           '<td><button disabled><i class="fa fa-check-square-o"></i>ENABLE</button></td>'
+      //         '</tr>';
+      //         $('#orders').append(html);
+      //       });
 
+      //     }
+      //   });
+      // }
 
+      // function viewPreparedOrders() {
+      //   $.ajax({
+      //     type: 'get',
+      //     url: '' + URLROOT + '/myorders/getPreparedMyOrders',
+      //     dataType: 'json',
+      //     success: (MyPreparedOrders) => {
+      //       console.log(MyPreparedOrders);
+      //       MyPreparedOrders.forEach(PreparedMyOrder => {
+      //         var status;
+      //         if (PreparedMyOrder.status == "completed") {
 
+      //           status = "READY TO DELIVER";
+      //         } else if (PreparedMyOrder.status == "delivered") {
+      //           status = "delivered"
+      //         } else {
+      //           status = "ORDER IS READY,DO THE PAYMENTS";
+      //         }
+      //         const html = '<tr id="p' + PreparedMyOrder.orderId + '">' +
+      //           '<td class="view"><button onclick="showCart(2,' + PreparedMyOrder.orderId + ')">View</button></a></td>' +
+      //           '<td class="view">' + PreparedMyOrder.orderId + ' </td>' +
+      //           '<td>' + PreparedMyOrder.DateTime + '</td>' +
 
-    }
+      //           '<td>' + status + '</td>' +
+      //           '<td><button><i class="fa fa-check-square-o"></i>ENABLE</button></td>'
+      //         '</tr>';
+      //         $('#orders').append(html);
+      //       });
+      //     }
+      //   });
+      // }
+
       $("#open").click(function() {
         $("#a").css("display", "block");
         $("#b").css("display", "block");
@@ -203,26 +211,129 @@ window.onload = function() {
 
 
       $(".cancel").click(function() {
+        
         $("#a").fadeOut();
         $("#b").fadeOut();
+        
       });
+      // var subtotal = 0;
 
-      function showCart() {
-      subtotal = 0;
-      $('#customers').html(' <tr>' +
-        ' <th>ITEM</th>' +
-        ' <th>QUANTITY</th>' +
-        ' <th>PRICE</th>' +
-        ' <!-- <th>REMOVE</th> -->' +
-        '  </tr>'
-      );
-      $("#a").css("display", "block");
-      $("#main").css("display", "block");
-      $("#b").css("display", "block");
+      // function showCart(type, orderId) {
+
+      //   subtotal = 0;
+      //   $('#customers').html(' <tr>' +
+      //     ' <th>ITEM</th>' +
+      //     ' <th>QUANTITY</th>' +
+      //     ' <th>PRICE</th>' +
+      //     ' <!-- <th>REMOVE</th> -->' +
+      //     '  </tr>'
+      //   );
+      //   $("#a").css("display", "block");
+      //   $("#main").css("display", "block");
+      //   $("#b").css("display", "block");
+      //   $("#headername").html("ORDER N0:" + orderId);
+
+      //   if (type == 1) {
+      //     loadNonPreparedMyOrderMedicineList(orderId);
+      //   } else if (type == 3) {
+      //     loadPrescription(orderId);
+
+      //   } else {
+      //     loadPreparedMyOrderMedicineList(orderId);
+      //   }
+        
+      // }
+
+      // function loadPrescription(orderId) {
+      //   const html = '<div class="card"><img src="' + URLROOT + '/public/img/prescriptions/' + orderId + '.JPG" style="width:100%"></div>';
+      //   $('#customers').html(html);
+      // }
+
+      // function loadNonPreparedMyOrderMedicineList(orderId) {
+
+      //   $.ajax({
+      //     type: 'post',
+      //     url: '' + URLROOT + '/myorders/nonPreparedMyOrdersData',
+      //     data: JSON.stringify({
+      //       orderId: orderId
+      //     }),
+      //     dataType: 'json',
+      //     success: (nonPreparedMyOrdersData) => {
+      //       //console.log(_isempty.nonPreparedMyOrdersData);
+      //       nonPreparedMyOrdersData.forEach(cartItem => {
+      //         //console.log(cartItem.image_path);
+      //         // console.log(cartItem[1]);
+      //         if (cartItem) {
+      //           const html =
+      //             ' <tr >' +
+      //             ' <td>' +
+      //             ' <div class="cartInfo"><img src="' + URLROOT + '/public/img/medicines/' + cartItem.medicineId + '.jpg" style= "width:10%">' +
+      //             ' <div>' +
+      //             ' <p>' + cartItem.name + '</p><small>' + cartItem.price + '</small>' + //"addToCart('+medicine.medicineId+',1)"
+      //             ' </div>' +
+      //             ' </div>' +
+      //             ' </td>' +
+      //             ' <input type="hidden" class="pid" value="' + cartItem.medicineId + '">' +
+      //             ' <td ><input disabled class="input_num" type="number"  value="' + cartItem.qty + '" ></td>' +
+      //             ' <td>' + cartItem.price * cartItem.qty + ' </td>' +
+
+      //             '</tr>';
+
+      //           total(cartItem.price * cartItem.qty, 200);
+      //           $('#customers').append(html);
+      //         }
+      //       });
+      //     }
+      //   });
+      // }
+
+      // function total(price, deliverFee) {
+      //   subtotal = subtotal + price;
+      //   // console.log(subtotal);
+      //   $('#SUBTOTAL').html('RS' + subtotal);
+      //   $('#DELIVERYFEE').html('RS' + deliverFee);
+      //   var fulltotal = subtotal + deliverFee;
+      //   $('#TOTAL').html('RS' + fulltotal);
+      // }
+
+      // function loadPreparedMyOrderMedicineList(orderId) {
+
+      //   $.ajax({
+      //     type: 'post',
+      //     url: '' + URLROOT + '/myorders/preparedMyOrdersData',
+      //     data: JSON.stringify({
+      //       orderId: orderId
+      //     }),
+      //     dataType: 'json',
+      //     success: (preparedMyOrdersData) => {
+      //       console.log(preparedMyOrdersData);
+      //       preparedMyOrdersData.forEach(cartItem => {
 
 
+      //         if (cartItem) {
+      //           const html =
+      //             ' <tr >' +
+      //             ' <td>' +
+      //             ' <div class="cartInfo"><img src="' + URLROOT + '/public/img/medicines/med4.jpg">' +
+      //             ' <div>' +
+      //             ' <p>' + cartItem.name + '</p><small>' + cartItem.price + '</small><button onclick="removeItem(' + cartItem[0].medicineId + ')">REMOVE</button>' + //"addToCart('+medicine.medicineId+',1)"
+      //             ' </div>' +
+      //             ' </div>' +
+      //             ' </td>' +
+      //             ' <input type="hidden" class="pid" value="' + cartItem.medicineId + '">' +
+      //             ' <td ><input class="input_num" type="number"  value="' + cartItem.qty + '" ></td>' +
+      //             ' <td>' + cartItem.price * cartItem.qty + ' </td>' +
+      //             '</tr>';
 
-    }
+      //           total(cartItem.price * cartItem.qty, 200);
+      //           $('#customers').append(html);
+
+      //         }
+      //       });
+      //     }
+      //   });
+
+      // }
     </script>
 </body>
 

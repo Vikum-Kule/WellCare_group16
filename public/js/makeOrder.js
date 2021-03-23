@@ -56,7 +56,7 @@ function viewCategoryBar() {
 
         medicines.forEach(medicine => {
 
-          const html = '<div class="card"><img src="'+URLROOT+'/public/img/medicines/' + medicine.mainCategory.split(/\s/).join('').replace(/[^a-zA-Z ]/g, "") + '/' + medicine.medicineId + '.jpg" style="width:30%">' +
+          const html = '<div class="card"><img src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
             '<h2>' + medicine.name + '</h2>' +
             '<h1>' + medicine.brand + '</h1>' +
             ' <p class="price">rs:' + medicine.price + '</p>' +
@@ -122,7 +122,7 @@ function viewCategoryBar() {
         medicines.forEach(medicine => {
           var base = URLROOT;
           console.log(URLROOT);
-          const html = '<div class="card"><img src="'+base+'/public/img/medicines/'+ medicine.mainCategory.split(/\s/).join('').replace(/[^a-zA-Z ]/g, "") + '/' + medicine.medicineId + '.jpg" style="width:30%">' +
+          const html = '<div class="card"><img src="'+base+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
             '<h2>' + medicine.name + '</h2>' +
             '<h1>' + medicine.brand + '</h1>' +
             ' <p class="price">rs:' + medicine.price + '</p>' +
@@ -220,14 +220,14 @@ function showCart() {
             const html =
               ' <tr >' +
               ' <td>' +
-              ' <div class="cartInfo"><img src="<?php echo URLROOT ?>/public/img/medicines/med4.jpg">' +
+              ' <div class="cartInfo"><img src="'+URLROOT+'/public/img/medicines/'+cartItem[0].medicineId+'.jpg" style= "width:10%">' +
               ' <div>' +
               ' <p>' + cartItem[0].name + '</p><small>' + cartItem[0].price + '</small><button onclick="removeItem(' + cartItem[0].medicineId + ')">REMOVE</button>' + //"addToCart('+medicine.medicineId+',1)"
               ' </div>' +
               ' </div>' +
               ' </td>' +
               ' <input type="hidden" class="pid" value="' + cartItem[0].medicineId + '">' +
-              ' <td ><input class="input_num" type="number"  value="' + cartItem[0].qty + '" ></td>' +
+              ' <td ><input class="input_num" pattern="[0-9]" min="1" step="1"/  type="number"  value="' + cartItem[0].qty + '" ></td>' +
               ' <td>' + cartItem[0].price * cartItem[0].qty + ' </td>' +
 
               '</tr>';
@@ -353,9 +353,6 @@ function checkout() {
               ' <input type="text" id="district" name="district" placeholder="Enter Your District .." value="'+signIn.district+'">'+
               ' <span class="invalidFeedback"></span>'+
 
-              '<input type="text" id="postalCode" name="postalCode" placeholder="Postal Code .." value="'+signIn.postalCode+'">'+
-              ' <span class="invalidFeedback"></span>'+
-
 
           '</div>'+
           '<div ><button onclick ="confirmCheckout()">confirm</button></div>' 
@@ -389,25 +386,15 @@ function confirmCheckout() {
 
   var city = $("#city").val();
   var district = $("#district").val();
-  var postalCode = $("#postalCode").val();
-  
-  
-
-
-
-
-
-
-
-  $.ajax({
+ $.ajax({
     type: 'post',
     url: '' + URLROOT + '/cartController/confirmCheckout',
     data: JSON.stringify({
       streetAddress1: streetAddress1,
       streetAddress2: streetAddress2,
       city: city,
-      district: district,
-      postalCode: postalCode
+      district: district
+      
     }),
     dataType: 'json',
     success: function ($sucsess) {
@@ -420,7 +407,7 @@ function confirmCheckout() {
       $('#b2').html("");
 
       $(".input_num").prop('disabled', false);
-
+      $('.content').html('<div id="caption">YOUR ORDER HAS BEEN SUCCESSFULLY PLACED...</div>');
     }
   });
 
@@ -473,7 +460,7 @@ function getsearchItems(){
     medicines.forEach(medicine => {
       console.log("sudesh");
 
-      const html = '<div class="card"><img src="'+URLROOT+'/public/img/medicines/'+ medicine.mainCategory.split(/\s/).join('').replace(/[^a-zA-Z ]/g, "") + '/' + medicine.medicineId + '.jpg" style="width:30%">' +
+      const html = '<div class="card"><img src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
         '<h2>' + medicine.name + '</h2>' +
         '<h1>' + medicine.brand + '</h1>' +
         ' <p class="price">rs:' + medicine.price + '</p>' +
@@ -496,6 +483,7 @@ function getsearchItems(){
 
 
 }
+
 
 
 
