@@ -48,7 +48,7 @@ class PrescriptionController extends Controller
         $result=$this->orderModel->getNextOrderId();
         header('Content-Type: application/json');
 
-        
+        $result2=$this->orderModel->getTempPrescriptionData($_SESSION['user_id']);
 
         $data = [
             'streetAddress1' => trim($json->streetAddress1),
@@ -58,11 +58,11 @@ class PrescriptionController extends Controller
             
             'customerId' => $_SESSION['user_id'],
             'orderId'=>$result[0]->Auto_increment,
-            'image_path'=>$result[0]->Auto_increment
+            'image_path'=>$result[0]->Auto_increment.'.'.$result2[0]->ext
         ];
        
         
-        $result2=$this->orderModel->getTempPrescriptionData($_SESSION['user_id']); 
+       // $result2=$this->orderModel->getTempPrescriptionData($_SESSION['user_id']); 
         $result3=$this->orderModel->nonPreparedPrescription($data);
         
         rename("../public/img/tempPrescriptions/" . $result2[0]->tempPrescriptionId . "." . $result2[0]->ext,"../public/img/prescriptions/" . $result[0]->Auto_increment . "." . $result2[0]->ext);
