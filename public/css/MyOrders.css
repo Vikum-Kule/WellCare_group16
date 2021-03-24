@@ -574,6 +574,25 @@
     border: none;
     margin: none;
   }
+  .btnComplain{
+
+    width: 100%;
+  }
+  .btnComplain input{
+
+
+    background-color: rgba(199, 5, 5, 0.9);
+    color: white;
+    padding: 14px 50px;
+    /* margin: 8px 68px; */
+    margin-left: 10px;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    text-align: center;
+  }
+
+  
 
   /* model************************************************************************************ */
     

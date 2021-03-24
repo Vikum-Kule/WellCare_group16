@@ -4,7 +4,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/Complaint.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+  <script>
+    var URLROOT = "<?php echo URLROOT ?>"
+  </script>
+  <script src="<?php echo URLROOT ?>/public/js/jquery-3.5.1.min.js"></script>
+  <script src="<?php echo URLROOT ?>/public/js/topnavigation.js"></script>
+  <script src="<?php echo URLROOT ?>/public/js/complaint.js"></script>
 </head>
 
 <body>
@@ -21,14 +26,14 @@
 
 
 <div class="container">
-  <form action="/action_page.php">
+  
     
     <div class="row">
       <div class="col-25">
         <label for="orderNumber">Order Number</label>
       </div>
       <div class="col-75">
-        <input type="text" id="Order Number" name="Order Number" placeholder="Order Number..">
+        <input type="text" id="OrderNumber" name="OrderNumber" placeholder="Order Number.." value=" <?php if(isset( $data['complaintOrderId'])){ echo $data['complaintOrderId']; }?>">
       </div>
     </div>
     
@@ -44,9 +49,10 @@
       </div>
     </div>
     <div class="row">
-      <input type="submit" value="Send">
+      <button  onclick="sendComplaint()">Submit</button>
     </div>
-  </form>
+    <div id="successMessage"></div>
+  
 </div>
 <div class="smallContainer cartPage">
   <table id="customers">
@@ -57,34 +63,6 @@
       <th>COMPLAINT</th>
       
     </tr>
-    <tr>
-      
-      <td>01 </td>
-     
-      <td>10/03/2020</td>
-      
-      <td>COMPLAINT 1</td>
-      
-    </tr>
-
-    <tr>
-      
-      <td >02 </td>
-     
-      <td>11/03/2020</td>
-      
-      <td>COMPLAINT 2</td>
-    </tr>
-
-    <tr>
-     
-      <td>03 </td>
-     
-      <td>12/03/2020</td>
-      <td>COMPLAINT 3</td>
-      
-    </tr>
-    
     
   </table>
   

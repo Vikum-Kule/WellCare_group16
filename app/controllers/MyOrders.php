@@ -6,13 +6,28 @@ class MyOrders extends Controller{
         
     }
     public function myorder(){
-        $data=0;
-        $this->view('MyOrders');
+        //varName=value
+        //echo $_GET["varName"];
+       $data=0;
+       $this->view('MyOrders');
 
     }
-    public function complaint(){
-        $data=0;
-        $this->view('Complaint', $data);
+    public function complaint(){//myOrders
+
+
+
+
+        $data = ['complaintId'=>''];
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $data = ['complaintOrderId' => $_POST['complaintOrderId']];
+            $this->view('Complaint', $data);
+        }else{
+            $data = 0;
+            $this->view('Complaint', $data);
+
+        }
+       
+        
 
     }
     public function order(){
@@ -59,6 +74,53 @@ class MyOrders extends Controller{
 
 
     }
+    public function getPrescriptionData(){
+        $obj = file_get_contents('php://input');
+        $json = json_decode($obj);
+
+        header('Content-Type: application/json');
+		echo json_encode($this->myOrderModel->getPrescriptionData($json->orderId));
+
+
+
+
+    }
+    public function loadPreparedPrescription(){
+        $obj = file_get_contents('php://input');
+        $json = json_decode($obj);
+
+        header('Content-Type: application/json');
+		echo json_encode($this->myOrderModel->loadPreparedPrescription($json->orderId));
+
+    }
+    public function sendComplaint(){
+        $data = [
+            'OrderId' => "",
+            'complaint' =>""
+            
+        ];
+        $obj = file_get_contents('php://input');
+        $json = json_decode($obj);
+
+        $data = [
+            'OrderId' => trim($json->OrderNumber),
+            'complaint' => trim($json->complaint)
+        ];
+
+    
+        header('Content-Type: application/json');
+		echo json_encode($this->myOrderModel->sendComplaint($data));
+        // header('Content-Type: application/json');
+		// echo json_encode($data);
+        
+
+    }
+    public function getComplaint(){
+
+        header('Content-Type: application/json');
+		echo json_encode($this->myOrderModel->getComplaint($_SESSION['user_id']));
+
+}
 
     // $obj = file_get_contents('php://input');
     //     $json = json_decode($obj);

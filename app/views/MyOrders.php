@@ -21,7 +21,7 @@
 
     <?php
     if ($_SESSION['active'] == true) {
-      echo ('<a href=' . URLROOT . '/myOrders/myorder>My Orders</a>');
+      echo ('<a href=' . URLROOT . '/myOrders/myorder class="active">My Orders</a>');
       echo ('<a href=' . URLROOT . '/users/profile>Profile</a>');
       echo ('<a href=' . URLROOT . '/users/logout>logout</a>');
     } else {
@@ -30,7 +30,7 @@
       echo ('<a href=' . URLROOT . '/users/register>Sign Up</a>');
       echo ('<a href=' . URLROOT . '/pages/fogotPasswordView>Forgot Password</a>');
     }  ?>
-
+ 
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
       <i class="fa fa-bars"></i>
     </a>
@@ -88,15 +88,20 @@
             <td id="TOTAL">RS0</td>
           </tr>
         </table>
+        
 
       </div>
+      <div id="btnComplain" class="btnComplain"></div>
 
     </div>
+    
 
 
     <div id="b2"></div>
   </div>
+  
   </div>
+ 
 
 
 
@@ -105,11 +110,11 @@
   <div class="smallContainer cartPage">
     <table id="orders">
       <tr>
-        <th></th>
+        <th>view</th>
         <th>ORDER NUMBER</th>
         <th>DATE AND TIME</th>
-
         <th>STATE</th>
+        <th></th>
         <th>NOTIFICATION</th>
       </tr>
 
