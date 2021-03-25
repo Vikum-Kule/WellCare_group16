@@ -12,5 +12,14 @@
 		return;
     }
 
+    public function notificationcounter(){
+        $totalnotifications=$this->postModel->countallnotifications();
+        $data= [$totalnotifications->count];
+        header('Content-type: application/json');
+		echo json_encode($data);
+		return;
+    }
+
+
     }
     ?>
