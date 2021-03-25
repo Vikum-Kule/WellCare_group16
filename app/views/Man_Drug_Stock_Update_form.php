@@ -72,7 +72,7 @@
                         <table id="openTab">
                             <tbody>
                                 <tr>
-                                <form method="POST">
+                               <!-- <form method="POST">
                                 <th>Generic Name</th>
                                     <th><input type="text" placeholder="Enter Generic Name" name="name" id="name" value = "<?php echo $data['drug']->name ?>"required></th>
                                 </form>
@@ -82,6 +82,14 @@
                                     <input type="text" placeholder="Enter Brand Name" name="brand" id="brand" value = "<?php echo $data['drug']->brand ?>" required>
                                     </th>
                                 </form>
+                                </tr>-->
+                                <tr>
+                                <th>Generic Name</th>
+                                    <th><input type="text" placeholder="Enter Generic Name" name="name" id="name" value = "<?php echo $data['drug']->name ?>"required></th>
+                                    <th>Brand Name</th>
+                                    <th>
+                                    <input type="text" placeholder="Enter Brand Name" name="brand" id="brand" value = "<?php echo $data['drug']->brand ?>" required>
+                                    </th>
                                 </tr>
                                 <tr>
                                 <th>Description</th>

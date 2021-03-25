@@ -69,7 +69,7 @@
                     <input type="hidden" name="rowNum" id="rowNum">
                         <table id="openTab">
                             <tbody>
-                                <tr>
+                               <!-- <tr>
                                 <form method="POST">
                                     <th>Order ID</th>
                                     <th><input type="text" placeholder="Enter Order ID" name="orderid" id="orderid" required> </th>
@@ -80,6 +80,14 @@
                                     <th>Supplier Id</th>
                                     <th><input type="text" placeholder="Enter SupplierId" name="supplierId" id="supplierId" required> </th>
                                 </form>
+                                </tr>-->
+                                <tr>
+                                <th>Order ID</th>
+                                    <th><input type="text" placeholder="Enter Order ID" name="orderid" id="orderid" required> </th>
+                                    </tr>
+                                <tr>
+                                <th>Supplier Id</th>
+                                    <th><input type="text" placeholder="Enter SupplierId" name="supplierId" id="supplierId" required> </th>
                                 </tr>
                                 <tr>
                                     <th>Invoice No</th>
