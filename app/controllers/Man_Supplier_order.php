@@ -15,7 +15,7 @@
 
     public function addorder(){
         $data = [
-             'supplierId'=>'',
+             'supplyId'=>'',
              'invoiceNo'=>'',
              'price'=>'',
              'date'=>''
@@ -26,7 +26,7 @@
             $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
 
             $data = [
-             'supplierId' => trim($_POST['supplierId']),
+             'supplyId' => trim($_POST['supplierId']),
              'invoiceNo' => trim($_POST['invoiceNo']),
              'price' => trim($_POST['price']),
              'date' => trim($_POST['date']),
@@ -46,7 +46,7 @@
         
         $data = [
             'order' => $order,
-            'supplierId'=>'',
+            'supplyId'=>'',
              'invoiceNo'=>'',
              'price'=>'',
              'date'=>''
@@ -58,7 +58,7 @@
             $data = [
              'orderId'=> $orderId,
             'order' => $order,
-            'supplierId'=>trim($_POST['supplierId']),
+            'supplyId'=>trim($_POST['supplierId']),
              'invoiceNo'=>trim($_POST['invoiceNo']),
              'price'=>trim($_POST['price']),
              'date'=>trim($_POST['date'])
