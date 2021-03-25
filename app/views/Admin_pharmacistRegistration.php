@@ -8,21 +8,28 @@
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <a href="http://localhost/mvcfinal/admin/addpharmacist" title="">Pharmacist Registration</a>
+                    <h3>click here</h3>
                 </div>
-            </div>
+            </div> 
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                 <a href="http://localhost/mvcfinal/admin/adddeliveryperson" title="">DeliveryBoy Registration</a>
+                <h3>click here</h3>
+
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <a href="http://localhost/mvcfinal/admin/addsupplier" title="">Supplier Registration</a>
+                    <h3>click here</h3>
+
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                   <a href="http://localhost/mvcfinal/admin/addmanager" title="">Manager Registration</a>
+                  <h3>click here</h3>
+
                 </div>
             </div>
         </div>
@@ -42,6 +49,7 @@
     <input type="text" placeholder="Enter First Name" name="LastName" id="LastName" required>
      <label for="name"><b>First Name</b></label>
     <input type="text" placeholder="Enter Last Name" name="FirstName" id="FirstName" required>
+    
     <label for="Date"><b>DOB</b></label>
     <input type="Date" placeholder="Enter Date Of Birthday" name="DOB" id="DOB" required>
 
@@ -58,12 +66,14 @@
     <input type="Date" placeholder="Enter The Starting Date" name="formDate" id="fromDate" required>
      <label for="Date"><b>To Date</b></label>
     <input type="Date" placeholder="Enter The Ending Date" name="toDate" id="toDate" required>
-
-    <label for="text"><b>LicenseNo</b></label>
-    <input type="text" placeholder="Enter LicenseNo" name="licenseNo" id="licenseNo" required>
-
-    <label for="NIC"><b>NIC</b></label>
+      <label for="licenseNo"><b>License No</b></label>
+    <input type="text" placeholder="Enter licenseNo" name="licenseNo" id="licenseNo" required>
+      <label for="NIC"><b>NIC</b></label>
     <input type="text" placeholder="Enter NIC" name="NIC" id="NIC" required>
+
+
+
+  
 
     <button type="submit" class="registerbtn">Add</button>
       

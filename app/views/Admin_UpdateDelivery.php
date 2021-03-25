@@ -31,48 +31,45 @@
         </div>
         <div class="row">
             <div class="col-8 col-m-12 col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>
-                            Table
-                        </h3>
-                        <i class="fas fa-ellipsis-h"></i>
-                    </div>
-                    <div class="card-content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Project</th>
-                                    <th>Manager</th>
-                                    <th>Status</th>
-                                    <th>Due date</th>
-                                    <th>Due date</th>
-                                    <th>Due date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <form action="<?php echo URLROOT;?>/admin/updatedeliveryperson/<?php echo $data['dils']->userName ?>" method="POST">
+ 
+<div class="container">
+   <h1>Update Delivery Details</h1>
+    <hr>
+    <label for="userName"><b>User Name</b></label>
+    <input type="text" placeholder="Enter User Name" name="userName" id="userName" value="<?php echo $data['dils']->userName ?>" >
+    <label for="LastName"><b>Last Name</b></label>
+    <input type="text" placeholder="Enter Last Name" name="LastName" id="LastName" value="<?php echo $data['dils']->LastName ?>">
+    <label for="FirstName"><b>First Name</b></label>
+    <input type="text" placeholder="Enter FirstName" name="FirstName" id="FirstName" value="<?php echo $data['dils']->FirstName ?>">
+    <label for="NIC"><b>NIC</b></label>
+    <input type="text" placeholder="Enter NIC" name="NIC" id="NIC" value="<?php echo $data['dils']->NIC ?>" >
+
+   
+    <label for="DOB"><b>DOB</b></label>
+    <input type="text" placeholder="Enter DOB" name="DOB" id="DOB" value="<?php echo $data['dils']->DOB ?>">
+    <label for="email"><b>email</b></label>
+    <input type="email" placeholder="Enter Email" name="email" id="email" value="<?php echo $data['dils']->email ?>" >
+     <label for="phoneNumber"><b>phoneNumber</b></label>
+    <input type="number" placeholder="Enter phoneNumber" name="phoneNumber" id="phoneNumber" value="<?php echo $data['dils']->phoneNumber?>">
+     <label for="password"><b>password</b></label>
+    <input type="text" placeholder="Enter password" name="password" id="password" value="<?php echo $data['dils']->password ?>" required>
+    <label for="fromDate"><b>fromDate</b></label>
+    <input type="text" placeholder="Enter fromDate" name="fromDate" id="fromDate" value="<?php echo $data['dils']->fromDate ?>">
+
+    <label for="toDate"><b>toDate</b></label>
+    <input type="text" placeholder="Enter toDate" name="toDate" id="toDate" value="<?php echo $data['dils']->toDate ?>">
+    
+
+
+   
+
+    <button type="submit" class="registerbtn">Update</button>
+      
+  </div>
+  
+  
+</form>
             </div>
             <div class="col-4 col-m-12 col-sm-12">
                 <div class="card">

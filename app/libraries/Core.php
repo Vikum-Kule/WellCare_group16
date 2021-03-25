@@ -6,8 +6,8 @@
    */
   
   class Core {
-    protected $currentController = 'Orders';
-    protected $currentMethod = 'makeOrder';
+    protected $currentController = 'Admin';
+    protected $currentMethod = 'showdrugs';
     protected $params = [];
 
     public function __construct(){

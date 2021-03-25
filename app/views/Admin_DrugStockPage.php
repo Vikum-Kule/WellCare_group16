@@ -34,10 +34,24 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Table
+                           Medicine Details
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
+                    <center>
+                <div class="viewform">
+                    <form method="post">
+                        <br><br>
+                        <label> Search  </label>
+                        <input type="text" name="code">
+                        
+                        <button class="btn6" type="submit" name="view"><b>View</b></button>
+                        
+                       
+                    </form>
+                </div>          
+              </center>
+
                     <div class="card-content">
                         <table>
                             <thead>
@@ -51,9 +65,11 @@
             <th>Price</th>
             <th>Expire Date</th>
             <th>ManuFaDate</th>
-            <th>Category</th>
+            <th>DoseStatus</th>
             <th>Dose</th>
             <th>Temperature</th>
+            <th>SubCategory</th>
+            <th>imageLocation</th>
             <th>Delete</th>
             <th>Update</th>
             
@@ -71,9 +87,12 @@
                         <td><?php echo $drug->price; ?></td>
                         <td><?php echo $drug->EXP; ?></td>
                         <td><?php echo $drug->MFD; ?></td>
-                        <td><?php echo $drug->category; ?></td>
-                        <td><?php echo $drug->dose; ?></td>
+                        <td><?php echo $drug->doseStatus; ?></td>
+                        <td><?php echo $drug->dose; ?></td> 
                         <td><?php echo $drug->temperature; ?></td>
+                        <td><?php echo $drug->subCategory; ?></td>
+                        <td><?php echo $drug->imageLocation; ?></td>
+                       
                         <td><form action="<?php echo URLROOT . "/admin/deletedrug/" . $drug->medicineId ?>" method = "POST">
                             <input type="submit" name="delete" value="Delete">
                         </form></td>

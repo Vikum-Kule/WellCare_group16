@@ -3,9 +3,7 @@ class Admin extends Controller {
 	 public function __construct() {
 	 	$this->postModel = $this->model('Admin_Operation');
 	 }
-	  public function home(){
-        $this->view('Admin_Home');
-    }
+	
 
 	 public function showdrugs(){
 	 	$drugs =$this->postModel->drugs();
@@ -15,8 +13,27 @@ class Admin extends Controller {
 	 	]; 
 	 	$this->view('Admin_DrugStockPage', $data);
 	 }
+	  public function customer(){
+	 	$cus =$this->postModel->customer();
+
+	 	$data = [
+ 			'cus' => $cus
+	 	]; 
+	 	$this->view('Admin_CustomerData', $data);
+	 }
+
+  public function users(){
+	 	$uses =$this->postModel->users();
+
+	 	$data = [
+ 			'uses' => $uses
+	 	]; 
+	 	$this->view('Admin_Users', $data);
+	 }
+
 	 public function adddrugs(){
 	 	$data = [
+	 		'medicineId'=>'',
 	 		'name'=>'',
 	 		'brand'=>'',
 	 		'description'=>'',
@@ -24,13 +41,17 @@ class Admin extends Controller {
 	 		'price'=>'',
 	 		'EXP'=>'',
 	 		'MFD'=>'',
-	 		'category'=>'',
+	 		'doseStatus'=>'',
 	 		'dose'=>'',
-	 		'temperature'=>''
+	 		'temperature'=>'',
+	 		'subCategory'=>'',
+	 		'imageLocation'=>''
+	 		
 	 	];
 	 	if($_SERVER['REQUEST_METHOD']=='POST'){
 	 		$_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
 	 		$data = [
+	 			'medicineId'=> trim($_POST['medicineId']),
 	 			'name'=> trim($_POST['name']),
 	 			'brand'=> trim($_POST['brand']),
 	 			'description'=> trim($_POST['description']),
@@ -38,9 +59,12 @@ class Admin extends Controller {
 	 			'price'=> trim($_POST['price']),
 	 			'EXP'=> trim($_POST['EXP']),
 	 			'MFD'=> trim($_POST['MFD']),
-	 			'category'=> trim($_POST['category']),
+	 			'doseStatus'=> trim($_POST['doseStatus']),
 	 			'dose'=> trim($_POST['dose']),
-	 			'temperature'=> trim($_POST['temperature'])
+	 			'temperature'=> trim($_POST['temperature']),
+	 			'subCategory'=> trim($_POST['subCategory']),
+	 			'imageLocation'=> trim($_POST['imageLocation'])
+	 			
 
 
 	 		];
@@ -87,29 +111,35 @@ class Admin extends Controller {
 	 	$this->view('Admin_AddSupplier', $data);
 	 }
 	 public function updatedrugs($medicineId){
+	 	//echo $medicineId;
 	 	$drug=$this->postModel->finddrugsbyId($medicineId);
-
+	 	
 	 	$data= [
-	 		'drug'=>$drug,
-	 		'name'=>'',
-	 		'brand'=>'',
-	 		'description'=>'',
-	 		'QTY'=>'',
-	 		'price'=>'',
-	 		'EXP'=>'',
-	 		'MFD'=>'',
-	 		'category'=>'',
-	 		'dose'=>'',
-	 		'temperature'=>''
+	 		'drug'=>$drug
+	 		// 'medicineId'=>'',
+	 		// 'name'=>'',
+	 		// 'brand'=>'',
+	 		// 'description'=>'',
+	 		// 'QTY'=>'',
+	 		// 'price'=>'',
+	 		// 'EXP'=>'',
+	 		// 'MFD'=>'',
+	 		// 'doseStatus'=>'',
+	 		// 'dose'=>'',
+	 		// 'temperature'=>'',
+	 		// 'subCategory'=>'',
+	 		// 'imageLocation'=>''
 
 
 
 	 	];
+	 	//print_r($data);
 	 	if($_SERVER['REQUEST_METHOD']=='POST'){
 	 		$_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
 	 		$data = [
 	 			'medicineId'=>$medicineId,
 	 			'drug'=> $drug,
+	 			'medicineId'=> trim($_POST['medicineId']),
 	 			'name'=> trim($_POST['name']),
 	 			'brand'=> trim($_POST['brand']),
 	 			'description'=> trim($_POST['description']),
@@ -117,9 +147,12 @@ class Admin extends Controller {
 	 			'price'=> trim($_POST['price']),
 	 			'EXP'=> trim($_POST['EXP']),
 	 			'MFD'=> trim($_POST['MFD']),
-	 			'category'=> trim($_POST['category']),
+	 			'doseStatus'=> trim($_POST['doseStatus']),
 	 			'dose'=> trim($_POST['dose']),
-	 			'temperature'=> trim($_POST['temperature'])
+	 			'temperature'=> trim($_POST['temperature']),
+	 			'subCategory'=> trim($_POST['subCategory']),
+	 			'imageLocation'=> trim($_POST['imageLocation'])
+	 			
 
 
 	 		];
@@ -129,7 +162,7 @@ class Admin extends Controller {
 	 		
 	 		}
 	 }
-	 $this->view('UpdateDrug',$data);
+	 $this->view('Admin_UpdateDrug',$data);
 	 
 
 }
@@ -138,6 +171,7 @@ class Admin extends Controller {
 
 	 	$data= [
 	 		'drug'=>$drug,
+	 		'medicineId'=>'',
 	 		'name'=>'',
 	 		'brand'=>'',
 	 		'description'=>'',
@@ -145,9 +179,11 @@ class Admin extends Controller {
 	 		'price'=>'',
 	 		'EXP'=>'',
 	 		'MFD'=>'',
-	 		'category'=>'',
+	 		'doseStatus'=>'',
 	 		'dose'=>'',
-	 		'temperature'=>''
+	 		'temperature'=>'',
+	 		'subCategory'=>'',
+	 		'imageLocation'=>''
 
 	 	];
 	 	if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -182,10 +218,14 @@ class Admin extends Controller {
 	 		'toDate'=>'',
 	 		'licenseNo'=>'',
 	 		'NIC'=>''
+
+	 		
 	 		
 	 	];
 	 	if($_SERVER['REQUEST_METHOD']=='POST'){
 	 		$_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+	 		$userName = trim($_POST['userName']);
+	 		$userStatus = "pharmacist";
 	 		$data = [
 	 			'userName'=> trim($_POST['userName']),
 	 			'LastName'=> trim($_POST['LastName']),
@@ -199,8 +239,11 @@ class Admin extends Controller {
 	 			'licenseNo'=> trim($_POST['licenseNo']),
 	 			'NIC'=> trim($_POST['NIC'])
 	 			
+	 			
+	 			
 
 	 		];
+	 		$this->postModel->setStatus($userName,$userStatus);
 	 		$this->postModel->addpharmacistm($data);
 	 	}
 	 	$this->view('Admin_pharmacistRegistration', $data);
@@ -229,6 +272,8 @@ class Admin extends Controller {
 	 	];
 	 	if($_SERVER['REQUEST_METHOD']=='POST'){
 	 		$_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+	 		$userName = trim($_POST['userName']);
+	 		$userStatus = "manager";
 	 		$data = [
 	 			'userName'=> trim($_POST['userName']),
 	 			'LastName'=> trim($_POST['LastName']),
@@ -244,6 +289,8 @@ class Admin extends Controller {
 	 			
 
 	 		];
+	 		
+	 		$this->postModel->setStatus($userName,$userStatus);
 	 		$this->postModel->addmanagerm($data);
 	 	}
 	 	$this->view('Admin_Addmanager', $data);
@@ -261,64 +308,7 @@ class Admin extends Controller {
 	 }
 
 
-	 //888
-	 	public function delivery_login(){
-			$data = [
-				//'title' =>'Login Page',
-				'userName'=>'',
-				'password'=>'',
-				'usernameError'=>'',
-				'passwordError'=>''
-			]; 
 
-			if($_SERVER['REQUEST_METHOD']=='POST'){
-				$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-				$data = [
-				'userName'=>trim($_POST['userName']),
-				'password'=>trim($_POST['password']),
-				'usernameError'=>'',
-				'passwordError'=>''
-			];
-
-			if(empty($data['userName'])){
-					$data['usernameError'] = 'Please enter the username.';
-			}
-			if(empty($data['password'])){
-					$data['passwordError'] = 'Please enter the password.';
-			}
-			if(empty($data['usernameError']) && empty($data['passwordError'])){
-				$loggedInUser = $this->userModel->delivery_login($data['userName'], $data['password']);
-				if($loggedInUser) {
-					$this->createDeliverySession($loggedInUser);
-					
-				}
-				else{
-					$data['passwordError'] = 'Password or username is incorrect. Please try again.';
-					$this->view('Admin_DeliveryLogin', $data);
-				}
-
-
-			}
-
-			}
-			else{
-				$data = [
-				'title' =>'Login Page',
-				'userName'=>'',
-				'password'=>'',
-				'usernameError'=>'',
-				'passwordError'=>''
-			];
-			}
-
-			$this->view('Admin_DeliveryLogin', $data);
-		}
-
-		public function createDeliverySession($user) {
-	        $_SESSION['userName'] = $user->username;
-	        $_SESSION['email'] = $user->email;
-        	header('location:' . URLROOT . '/admin_Pages/myaccount');
-    }
 
 
 	 public function adddeliveryperson(){
@@ -333,14 +323,14 @@ class Admin extends Controller {
 	 		'password'=>'',
 	 		'fromDate'=>'',
 	 		'toDate'=>'',
-	 		'usernameError'=>'',
-			'emailError'=>'',
-			'passwordError'=>''
+	 		
 	 		
 	 		
 	 	];
 	 	if($_SERVER['REQUEST_METHOD']=='POST'){
 	 		$_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+	 		$userName = trim($_POST['userName']);
+	 		$userStatus = "deliveryperson";
 	 		$data = [
 	 			'userName'=> trim($_POST['userName']),
 	 			'LastName'=> trim($_POST['LastName']),
@@ -352,69 +342,20 @@ class Admin extends Controller {
 	 			'password'=> trim($_POST['password']),
 	 			'fromDate'=> trim($_POST['fromDate']),
 	 			'toDate'=> trim($_POST['toDate']),
-	 			'usernameError'=>'',
-				'emailError'=>'',
-				'passwordError'=>''
+	 			
 	 			
 
 	 		];
 
 
-				$nameValidation = "/^[a-zA-Z0-9]*$/";
-				$passwordValidation = "/^(.{0,7}|[^a-z]*|[^\d]*)$/i";
-				
-
-				if(empty($data['userName'])){
-					$data['usernameError'] = 'Please enter username.';
-				}
-				elseif(!preg_match($nameValidation, $data['userName'])){
-					$daata['usernameError'] = 'Name can only contain letters and numbers.';
-				}
-
-				if(empty($data['email'])){
-					$data['emailError'] = 'please enter email.';
-				}
-				elseif(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
-					$data['emailError'] = 'Please enter the correct format.';
-				}
-				else{
-					if($this->userModel->findUserByEmail($data['email'])){
-						$data['emailError'] = 'Email is already taken.';
-					}
-				}
-
-				if(empty($data['password'])){
-					$data['passwordError'] = 'Please enter the password.';
-				}
-				elseif(strlen($data['password'])<8){
-					$data['passwordError'] = 'Password must be at least 8 characters';
-				}
-				elseif(preg_match($passwordValidation, $data['password'])){
-					$data['passwordError'] = 'Password must have at least one numeric value';
-				}
-				
-				if(empty($data['usernameError']) && empty($data['emailError']) && empty($data['passwordError'])){
-					$data['password'] = password_hash($data['password'],PASSWORD_DEFAULT);
-
-					if($this->userModel->adddeliverypersonm($data)){
-						header('location: ' . URLROOT . '/admin/showdeliveryperson');
-					}
-					else{
-						die('Something went wrong'); 
-					}
-				}
-
-
+				$this->postModel->setStatus($userName,$userStatus);
+				$this->postModel->adddeliverypersonm($data);
 
 	 		
 	 	}
 	 	$this->view('Admin_AddDeliveryboy', $data);
 	 }
-	public function logout() {
-        unset($_SESSION['userName']);
-        unset($_SESSION['email']);
-        header('location:' . URLROOT . '/admin/delivery_login');
-    }
+
 
 
 //**************************************************************************************//
@@ -497,6 +438,39 @@ class Admin extends Controller {
 
      }
 }
+//**********************************************************************************************//
+
+
+
+	public function deletepharmacist($userName) {
+		$dils = $this->postModel->findpharmacistbyId($userName);
+
+	 	$data= [
+	 		'phas'=>$phas,
+	 		'userName'=>'',
+	 		'LastName'=>'',
+	 		'FirstName'=>'',
+	 		'DOB'=>'',
+	 		'email'=>'',
+	 		'phoneNumber'=>'',
+	 		'password'=>'',
+	 		'fromDate'=>'',
+	 		'toDate'=>'',
+	 		'licenseNo'=>'',
+	 		'NIC'=>''
+	 	];
+	 	if($_SERVER['REQUEST_METHOD']=='POST'){
+	 		$_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+	 		if ($this->postModel->deletepharmacist($userName)) {
+	 			header("Location:". URLROOT . "/admin/showpharmacist");
+	 		
+	 		}
+
+     }
+}
+
+
+
 //*********************************************************************************************//
 
 	 public function updatemanager($userName){
@@ -614,6 +588,7 @@ public function updatepharmacist($userName){
 	 		'licenseNo'=>'',
 	 		'NIC'=>''
 	 		
+	 		
 
 	 	];
 	 	if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -631,7 +606,9 @@ public function updatepharmacist($userName){
 	 			'fromDate'=> trim($_POST['fromDate']),
 	 			'toDate'=> trim($_POST['toDate']),
 	 			'licenseNo'=> trim($_POST['licenseNo']),
-	 			'NIC'=> trim($_POST['NIC'])
+	 			'NIC'=> trim($_POST['NIC']),
+	 			
+	 			
 	 			
 	 		];
 	 		//$this->postModel->updatedrug($data);
@@ -663,7 +640,7 @@ public function updatesupply($supplyId){
 	 	if($_SERVER['REQUEST_METHOD']=='POST'){
 	 		$_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
 	 		$data = [
-	 			'userName'=>$userName,
+	 			'supplyId'=>$supplyId,
 	 			'sups'=> $sups,
 	 			'supplyId'=> trim($_POST['supplyId']),
 	 			'companyName'=> trim($_POST['companyName']),

@@ -31,10 +31,24 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Table
+                         Delivery Details
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
+                    <center>
+                <div class="viewform">
+                    <form method="post">
+                        <br><br>
+                        <label> Search  </label>
+                        <input type="text" name="code">
+                        
+                        <button class="btn6" type="submit" name="view"><b>View</b></button>
+                        
+                       
+                    </form>
+                </div>          
+              </center>
+
                     <div class="card-content">
                         <table>
                             <thead>

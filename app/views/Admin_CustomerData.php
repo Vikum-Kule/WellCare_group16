@@ -38,25 +38,67 @@
                             Customer Details
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
+                        <center>
+                <div class="viewform">
+                    <form method="post">
+                        <br><br>
+                        <label> Search  </label>
+                        <input type="text" name="code">
+                        
+                        <button class="btn6" type="submit" name="view"><b>View</b></button>
+                        
+                       
+                    </form>
+                </div>          
+              </center>
+
                     </div>
                     <div class="card-content">
-                        <table width="100%">
+                        <table>
+                            <thead>
     <tr>
-            <th>Number</th>
-            <th>CustomerId</th>
+            <th>customerId</th>
             <th>UserName</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>DOB</th>
+            <th>LastName</th>
+            <th>FirstName</th>
             <th>Email</th>
-            <th>Gender</th>
-            <th>Contact Number</th>
-            <th>NIC</th>
-            <th>Address</th>
-            
+            <th>PhoneNumber</th>
+             <th>NIC</th>
+            <th>StreetAddress1</th>
+            <th>StreetAddress2</th>
+            <th>City</th>
+            <th>District</th>
+            <th>postalcode</th>
+    
             
 
     </tr>
+</thead>
+<tbody>
+              
+                <?php foreach($data['cus'] as $cus): ?>
+                <tr>
+                        <td><?php echo $cus->customerId; ?></td>
+                        <td><?php echo $cus->userName; ?></td>
+                        <td><?php echo $cus->LastName; ?></td>
+                        <td><?php echo $cus->FirstName; ?></td>
+                        <td><?php echo $cus->Email; ?></td>
+                        <td><?php echo $cus->PhoneNum; ?></td>
+                        <td><?php echo $cus->NIC; ?></td> 
+                        <td><?php echo $cus->streetAddress1; ?></td>
+                        <td><?php echo $cus->streetAddress2; ?></td>   
+                        <td><?php echo $cus->city; ?></td>
+                        <td><?php echo $cus->district; ?></td>
+                        <td><?php echo $cus->postalCode; ?></td>
+
+                                            
+
+                    
+                
+                </tr>
+                <?php endforeach;?>
+            </tbody>
+
 
     </table>
                            

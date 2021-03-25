@@ -353,7 +353,8 @@ span.psw {
 <div class="container">
    <h1>Add Drug Details</h1>
     <hr>
-    
+    <label for="medicineId"><b>medicineId</b></label>
+    <input type="text" placeholder="Enter medicineId" name="medicineId" id="medicineId">
     <label for="name"><b>Generic Name</b></label>
     <input type="text" placeholder="Enter Generic Name" name="name" id="name">
     <label for="name"><b>Brand Name</b></label>
@@ -368,12 +369,16 @@ span.psw {
     <input type="Date" placeholder="Enter Expiration Date" name="EXP" id="EXP">
     <label for="Date"><b>Manufacture Date</b></label>
     <input type="Date" placeholder="Enter Manufacture Date" name="MFD" id="MFD">
-    <label for="category"><b>Category</b></label>
-    <input type="text" placeholder="Enter Category" name="category" id="category">
+    <label for="Dose"><b>DoseStatus</b></label>
+    <input type="text" placeholder="Enter Dose" name="doseStatus" id="doseStatus">
     <label for="Dose"><b>Dose</b></label>
     <input type="text" placeholder="Enter Dose" name="dose" id="dose">
     <label for="temperature"><b>Tempurature</b></label>
     <input type="text" placeholder="Enter Temperature" name="temperature" id="temperature">
+    <label for="subCategory"><b>subCategory</b></label>
+    <input type="text" placeholder="Enter SubCategory" name="subCategory" id="subCategory">
+  
+    
     
    
 

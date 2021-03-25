@@ -1,5 +1,6 @@
 <?php require_once ($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/config/config.php");?>
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/Admin_header.php");?>
+<link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/Admin_style.css">
 
     <!-- main content -->
     <div class="wrapper">
@@ -34,43 +35,54 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Table
+                            User Details
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
+                    <center>
+                <div class="viewform">
+                    <form method="post">
+                        <br><br>
+                        <label> Search  </label>
+                        <input type="text" name="code">
+                        
+                        <button class="btn6" type="submit" name="view"><b>View</b></button>
+                        
+                       
+                    </form>
+                </div>          
+              </center>
+
                     <div class="card-content">
                         <table>
                             <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Project</th>
-                                    <th>Manager</th>
-                                    <th>Status</th>
-                                    <th>Due date</th>
-                                    <th>Due date</th>
-                                    <th>Due date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
-                            </tbody>
-                        </table>
+    <tr>
+           
+            <th>UserName</th>
+             <th>Status</th>
+            
+    
+            
+
+    </tr>
+</thead>
+<tbody>
+              
+                <?php foreach($data['uses'] as $uses): ?>
+                <tr>
+                        
+                        <td><?php echo $uses->userName; ?></td>
+                        <td><?php echo $uses->Status; ?></td>
+                        
+                      
+                
+                </tr>
+                <?php endforeach;?>
+            </tbody>
+
+
+    </table>
+                           
                     </div>
                 </div>
             </div>

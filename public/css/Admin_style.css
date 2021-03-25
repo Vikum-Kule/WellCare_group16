@@ -646,6 +646,7 @@ table {
 table td {
     border-top: 1px solid #f1f1f1;
     padding: 15px;
+    background-color: #ccd4e5;
 }
 
 table th {
@@ -657,6 +658,7 @@ table th {
     background: #435585 ;
     padding: 15px;
 }
+
 
 .dot i {
     display: inline-block;

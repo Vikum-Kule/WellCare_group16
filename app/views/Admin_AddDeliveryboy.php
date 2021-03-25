@@ -8,25 +8,25 @@
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <a href="http://localhost/mvcfinal/admin/addpharmacist" title="">Pharmacist Registration</a>
-                    <h1>Click Here</h1>
+                         <h3>click here</h3>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                 <a href="http://localhost/mvcfinal/admin/adddeliveryperson" title="">DeliveryBoy Registration</a>
-                  <h1>Click Here</h1>
+                       <h3>click here</h3>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <a href="http://localhost/mvcfinal/admin/addsupplier" title="">Supplier Registration</a>
-                      <h1>Click Here</h1>
+                          <h3>click here</h3>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                   <a href="http://localhost/mvcfinal/admin/addmanager" title="">Manager Registration</a>
-                    <h1>Click Here</h1>
+                   <h3>click here</h3>
                 </div>
             </div>
         </div>
