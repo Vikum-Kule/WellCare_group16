@@ -11,26 +11,26 @@
 //     });
 
   // Get the modal
-  var modal = document.getElementById("myModal");
-  var myBtn= document.getElementById("myBtn");
-  // Get the image and insert it inside the modal - use its "alt" text as a caption
-  var img = document.getElementById("myImg");
-  var modalImg = document.getElementById("img01");
-  var captionText = document.getElementById("caption");
-  myBtn.onclick = function(){
-    modal.style.display = "block";
-    modalImg.src =myImg.src;
-    captionText.innerHTML =caption.innerHTML;
-  }
+  // var modal = document.getElementById("myModal");
+  // var myBtn= document.getElementById("myBtn");
+  // // Get the image and insert it inside the modal - use its "alt" text as a caption
+  // var img = document.getElementById("myImg");
+  // var modalImg = document.getElementById("img01");
+  // var captionText = document.getElementById("caption");
+  // myBtn.onclick = function(){
+  //   modal.style.display = "block";
+  //   modalImg.src =myImg.src;
+  //   captionText.innerHTML =caption.innerHTML;
+  // }
   
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
+  // // Get the <span> element that closes the modal
+  // var span = document.getElementsByClassName("close")[0];
   
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() { 
-    modal.style.display = "none";
+  // // When the user clicks on <span> (x), close the modal
+  // span.onclick = function() { 
+  //   modal.style.display = "none";
     
-  }
+  // }
   window.onload = function() {
       
     $.ajax({
@@ -51,7 +51,7 @@
                   dataType: 'json',
                   success: function(response) {
                     console.log(response);
-                    const html = '<div class="card"><img src="' + URLROOT + '/public/img/tempPrescriptions/' + response[0].tempPrescriptionId+'.'+response[0].ext + '" style="width:30%"><br><button class="btn" onclick="removePrescription()">Remove</button></div>';
+                    const html = '<div class="card"><iframe src="' + URLROOT + '/public/img/tempPrescriptions/' + response[0].tempPrescriptionId+'.'+response[0].ext + '" style="width:100%"></iframe><br><button class="btn" onclick="removePrescription()">Remove</button></div>';
                     $("#message").show();
                       $("#message").append(html);
                       $("#upload").hide();
@@ -67,7 +67,7 @@
             }
   
     });
-      };
+      }
   
 
   function submit() {
@@ -103,7 +103,7 @@
 
               if (response.image !== "") {
 
-                const html = '<div class="card"><img src="' + URLROOT + '/public/img/tempPrescriptions/' + response.image + '" style="width:30%"><br><button class="btn" onclick="removePrescription()">Remove</button></div>';
+                const html = '<div class="card"><iframe src="' + URLROOT + '/public/img/tempPrescriptions/' + response.image + '" style="width:100%"></iframe><br><button class="btn" onclick="removePrescription()">Remove</button></div>';
                 $("#message").append(html);
                 $("#upload").hide();
 

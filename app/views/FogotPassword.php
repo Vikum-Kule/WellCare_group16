@@ -34,7 +34,7 @@
 
       echo ('<a href=' . URLROOT . '/users/loginVIew>Login</a>');
       echo ('<a href=' . URLROOT . '/users/register>Sign Up</a>');
-      echo ('<a href=' . URLROOT . '/pages/fogotPasswordView>Forgot Password</a>');
+      echo ('<a href=' . URLROOT . '/pages/fogotPasswordView class="active">Forgot Password</a>');
     }  ?>
 
 

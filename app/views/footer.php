@@ -2,7 +2,7 @@
 
 			<div class="footer-left">
 
-				<h3>Company<span>logo</span></h3>
+				<h3>Well<span>Care</span></h3>
 
 				<p class="footer-links">
 					<a href="#">Home</a>
@@ -18,7 +18,7 @@
 					<a href="#">Contact</a>
 				</p>
 
-				<p class="footer-company-name">Company Name © 2015</p>
+				<p class="footer-company-name">WellCare © 2021</p>
 
 				<div class="footer-icons">
 
@@ -37,10 +37,10 @@
 
 				<form action="#" method="post">
 
-          <input type="text" name="email" placeholder="Email">
-          <br>
-					<textarea name="message" placeholder="Message"></textarea>
-					<button>Send</button>
+          		<input type="text" name="email" placeholder="Email">
+          		<br>
+				<textarea name="message" placeholder="Message"></textarea>
+				<button type="submit">Send</button>
 
 				</form>
 
