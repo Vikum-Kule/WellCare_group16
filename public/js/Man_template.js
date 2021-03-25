@@ -43,7 +43,7 @@ function openCloseDropdown(event) {
         }
     }
 }
-$(".sidebar-nav-item").on("click", function() {
-    $(".sidebar-nav-link").find(".active").removeClass("active");
-    $(this).parent().addClass("active");
-});
+//$(".sidebar-nav-item").on("click", function() {
+  //  $(".sidebar-nav-link").find(".active").removeClass("active");
+    //$(this).parent().addClass("active");
+//});
