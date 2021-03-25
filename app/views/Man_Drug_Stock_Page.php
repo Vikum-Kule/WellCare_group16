@@ -6,7 +6,7 @@
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <h3><div id="totaldrugs"></div></h3>
-                    <p>Total</p>
+                    <p>Total Medicines</p>
                 </div>
             </div>
            <!-- <div class="col-3 col-m-6 col-sm-6">
