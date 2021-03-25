@@ -63,7 +63,7 @@
                         <table id="openTab">
                             <tbody>
                                 <tr>
-                                <form method="POST">
+                                <!--<form method="POST">
                                     <th>Refill ID</th>
                                     <th><input type="text" placeholder="Enter Refill ID" name="refilid" id="refilid" required> </th>
                                 </form>
@@ -73,6 +73,14 @@
                                     <th>Brand Name</th>
                                     <th><input type="text" placeholder="Enter Brand Name" name="brandname" id="brandname" required> </th>
                                 </form>
+                                </tr>-->
+                                <tr>
+                                <th>Refill ID</th>
+                                    <th><input type="text" placeholder="Enter Refill ID" name="refilid" id="refilid" required> </th>
+                                    </tr>
+                                <tr>
+                                <th>Brand Name</th>
+                                    <th><input type="text" placeholder="Enter Brand Name" name="brandname" id="brandname" required> </th>
                                 </tr>
                                 <tr>
                                     <th>Supplier ID</th>
