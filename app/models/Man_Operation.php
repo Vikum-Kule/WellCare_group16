@@ -52,7 +52,7 @@
     }
 
     public function updatedrug($data){
-        $this->db->query('UPDATE medicine SET name = :name, brand = :brand, description = :description, QTY = :QTY, price = :price, EXP = :EXP , MFD = :MFD, category = :category, dose = :dose, temperature = :temperature WHERE medicineId = :medicineId');
+        $this->db->query('UPDATE medicine SET name = :name, brand = :brand, description = :description, QTY = :QTY, price = :price, EXP = :EXP , MFD = :MFD, doseStatus = :doseStatus, dose = :dose, temperature = :temperature,subCategory = :subCategory,imageLocation = :imageLocation WHERE medicineId = :medicineId');
 
 
         $this->db->bind(':medicineId', $data['medicineId']);

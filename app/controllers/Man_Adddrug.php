@@ -82,8 +82,8 @@ class Man_Adddrug extends Controller {
    			$_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
 
    			$data = [
-   			 'medicineId'=> $medicineId,
-   			 'drug' => $drug,
+			
+   			// 'medicineId' => trim($_POST['medicineId']),
    			 'name' => trim($_POST['name']),
    			 'brand' => trim($_POST['brand']),
    			 'description' => trim($_POST['description']),
@@ -91,9 +91,11 @@ class Man_Adddrug extends Controller {
    			 'price' => trim($_POST['price']),
    			 'EXP' => trim($_POST['EXP']), 
    			 'MFD' => trim($_POST['MFD']),
-   			 'category' => trim($_POST['category']),
+   			 'doseStatus' => trim($_POST['doseStatus']),
    			 'dose' => trim($_POST['dose']),
-   			 'temperature' => trim($_POST['temperature'])
+   			 'temperature' => trim($_POST['temperature']),
+			 'subCategory' => trim($_POST['subCategory']),
+   			 'imageLocation' => trim($_POST['imageLocation'])
    			];
 
    			
