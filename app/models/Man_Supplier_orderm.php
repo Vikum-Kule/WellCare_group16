@@ -15,9 +15,9 @@
         }
          public function addorderm($data) {
 
-        $this->db->query('INSERT INTO supply (supplierId,invoiceNo,price,date) VALUES (:supplierId, :invoiceNo, :price, :date)');
+        $this->db->query('INSERT INTO supply (supplyId,invoiceNo,price,date) VALUES (:supplyId, :invoiceNo, :price, :date)');
 
-        $this->db->bind(':supplierId', $data['supplierId']);
+        $this->db->bind(':supplyId', $data['supplyId']);
         $this->db->bind(':invoiceNo', $data['invoiceNo']);
         $this->db->bind(':price', $data['price']);
         $this->db->bind(':date', $data['date']);
@@ -40,10 +40,10 @@
     }
 
     public function updateorder($data){
-        $this->db->query('UPDATE supply SET supplierId = :supplierId, invoiceNo = :invoiceNo, price = :price, date = :date  WHERE orderId = :orderId');
+        $this->db->query('UPDATE supply SET supplyId = :supplyId, invoiceNo = :invoiceNo, price = :price, date = :date  WHERE orderId = :orderId');
 
         $this->db->bind(':orderId', $data['orderId']);
-        $this->db->bind(':supplierId', $data['supplierId']);
+        $this->db->bind(':supplyId', $data['supplyId']);
         $this->db->bind(':invoiceNo', $data['invoiceNo']);
         $this->db->bind(':price', $data['price']);
         $this->db->bind(':date', $data['date']);

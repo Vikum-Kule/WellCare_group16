@@ -64,8 +64,8 @@ class Man_Adddrug extends Controller {
    		$drug= $this->postModel->findDrugById($medicineId);
    		
    		$data = [
-   			'drug' => $drug,
-		    'medicineId'=>'',
+			'drug' => $drug,
+			'medicineId'=>'',
    			'name'=>'',
    			'brand'=>'',
    			'description'=>'',
@@ -73,9 +73,11 @@ class Man_Adddrug extends Controller {
    			'price'=>'',
    			'EXP'=>'', 
    			'MFD'=>'',
-   			'category'=>'',
+   			'doseStatus'=>'',
    			'dose'=>'',
-   			'temperature'=>''
+			'temperature'=>'',
+			'subCategory'=>'',
+   			'imageLocation'=>''
    		];
 
 		if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -121,9 +123,11 @@ class Man_Adddrug extends Controller {
    			'price'=>'',
    			'EXP'=>'', 
    			'MFD'=>'',
-   			'category'=>'',
+   			'doseStatus'=>'',
    			'dose'=>'',
-   			'temperature'=>''
+			'temperature'=>'',
+			'subCategory'=>'',
+   			'imageLocation'=>''
    		];
    		if($_SERVER['REQUEST_METHOD']=='POST'){
    			$_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
