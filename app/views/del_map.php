@@ -2,8 +2,8 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/del_header.php");?>
 
     <!-- main content -->
-    <div class="wrapper" >
-
+    <div class="wrapper" id="wrapper">
+    
     
         <div class="row" id="city_wrapper">
             <div class="col-3 col-m-6 col-sm-6">
@@ -33,32 +33,15 @@
         </div>
         <div class="row">
             <div class="col-8 col-m-12 col-sm-12" id="city_card">
-                <div class="card">
+                <div class="card" id="map">
                     <div class="card-header">
                         <h3>
-                            Street List
+                        
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <div class="card-content">
-                        <table id="allStreets">
-                            <thead>
-                                <tr>
-                                    <th>Street</th>
-                                    <th>Order</th>
-                                </tr>
-                            </thead>
-                            <?php foreach($data['streets'] as $streets ): ?>
-                            <tbody>
-                            <tr>
-                                <td><?php echo $streets->streetAddress2; ?></td>
-                                <td><form method="POST" action="<?php echo URLROOT; ?>/del_orders/show_streetOrders"> <input id="street" type="hidden" name="street" value="<?php echo $streets->streetAddress2; ?>"><button id="select" type="submit" name="select" >Select</button></form></td>                     
-                            </tr>
-                            </tbody>
-                            <?php endforeach;?>
-                            
-                            
-                        </table>
+                        
                     </div>
                 </div>
             </div>
