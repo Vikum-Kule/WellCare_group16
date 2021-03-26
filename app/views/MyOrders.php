@@ -37,6 +37,7 @@
   </div>
 
 
+  
 
   <div class="main">
 
@@ -136,7 +137,88 @@
       <div class="confirmOrder"><a href='<?php echo URLROOT ?>/myOrders/complaint'> <button><i class="fa fa-caret-square-o-left"></i> Complaint</button></a></div>
 
     </div>
+    <!-- <button class="trigger2">Click here to trigger the modal!</button> -->
+
+    <!-- model2 -->
+    <div class="modal2">
+      <div class="modal2-content">
+          <span class="close-button2">&times;</span>
+          <h2>Enable SMS Notifications</h2><br>
+          <h4>Click ENABLE button to get reminder sms for your medication in order NO:</h4>
+
+          <div class="enable">
+
+          
+          <label for="cars">NUMBER OF DAYS:</label>
+
+          <select name="noOfDays" id="noOfDays">
+            <option value="1">ONLY 1 DAY</option>
+            <option value="2">ONLY 2 DAYS</option>
+            <option value="3">ONLY 3 DAYS</option>
+            <option value="4">ONLY 4 DAYS</option>
+          </select>
+          <div id="notificationEnableBar"></div>
+          
+          </div>
+      </div>
+  </div>
+  
+    <!-- model2 -->
+
     <script>
+      const modal = document.querySelector(".modal2");
+  // const trigger = document.querySelector(".trigger2");
+  const closeButton = document.querySelector(".close-button2");
+
+  function toggleModal(orderId) {
+      modal.classList.toggle("show-modal2");
+
+    
+    $("#notificationEnableBar").html('<button onclick="enableNotification('+orderId+')">ENABLE</button>');
+
+
+  }
+  function enableNotification(orderId){
+    console.log(orderId);
+    var noOfDays = $("#noOfDays").val();
+    console.log(noOfDays);
+
+
+  }
+
+  function windowOnClick(event) {
+      if (event.target === modal) {
+          toggleModal();
+      }
+  }
+
+  // trigger.addEventListener("click", toggleModal);
+  closeButton.addEventListener("click", toggleModal);
+  window.addEventListener("click", windowOnClick);
+
+  function disable(orderId){
+    console.log(orderId);
+    $.ajax({
+      type: 'post',
+      url: '' + URLROOT + '/myorders/disableMsg',
+      data: JSON.stringify({
+        orderId: orderId
+      }),
+      dataType: 'json',
+      success: (responce) => {
+        if(responce){
+          viewPreparedOrders();
+          viewNonPreparedOrders();
+        }
+       
+       
+      }
+    });
+
+
+  }
+
+
       // window.onload = function() {
       //   viewNonPreparedOrders();
       //   viewPreparedOrders();

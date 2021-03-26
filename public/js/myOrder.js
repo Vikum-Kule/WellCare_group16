@@ -67,7 +67,11 @@ window.onload = function() {
           var notification;
           if(PreparedMyOrder.image_path){
             type=4;
-           notification='<td><button ><i class="fa fa-check-square-o"></i>ENABLE</button></td>';
+           //notification='<td><button onclick="toggleModal('+PreparedMyOrder.orderId+')">ENABLE</button></td>';
+           notification='<td id="EnableMsgButton_'+PreparedMyOrder.orderId+'"></td>';
+           loadEnableMsgButton(PreparedMyOrder.orderId);
+
+         // <button  onclick="toggleModal(2)">Click here to trigger the modal!</button>
           }else{
               type =2;
               notification='<td></td>';
@@ -232,9 +236,10 @@ window.onload = function() {
         }),
         dataType: 'json',
         success: (PrescriptionData) => {
-            console.log(PrescriptionData);
+            //console.log(PrescriptionData);
             const html = '<div class="card"><embed src="' + URLROOT + '/public/img/prescriptions/' +PrescriptionData[0].image_path+'" style="display: block; margin-left: auto;margin-right: auto;width: 50%;"></div>';
              $('#customers').html(html);
+             
 
 
         }
@@ -360,3 +365,31 @@ window.onload = function() {
 
 
   }
+  function  loadEnableMsgButton(orderId){
+    $.ajax({
+      type: 'post',
+      url: '' + URLROOT + '/myorders/EnableMsgButton',
+      data: JSON.stringify({
+        orderId: orderId
+      }),
+      dataType: 'json',
+      success: (responce) => {
+
+        if(responce.isSet){  //thiyanawa
+          var notification='<button  class="disableBtn" onclick="disable('+responce.orderId+')">DISABLE</button>';
+          $('#EnableMsgButton_'+responce.orderId).html(notification);
+
+        }else{
+          //<td id="EnableMsgButton_'+PreparedMyOrder.orderId+'"></td>';
+       var notification='<button onclick="toggleModal('+responce.orderId+')">ENABLE</button>';
+       $('#EnableMsgButton_'+responce.orderId).html(notification);
+        }
+       
+      }
+    });
+
+
+
+  }
+ 
+  

@@ -120,13 +120,44 @@ class MyOrders extends Controller{
         header('Content-Type: application/json');
 		echo json_encode($this->myOrderModel->getComplaint($_SESSION['user_id']));
 
-}
+    }
 
     // $obj = file_get_contents('php://input');
     //     $json = json_decode($obj);
         // header('Content-Type: application/json');
     //     $searchBar= trim($json->orderId);
+    public function EnableMsgButton(){
+        $data = [
+            'isSet' => "",
+            'orderId' =>""
+            
+        ];
+        $obj = file_get_contents('php://input');
+        $json = json_decode($obj);
+        $result=$this->myOrderModel->EnableMsgButton($json->orderId);
+        $data = [
+            'isSet' =>$result,
+            'orderId' =>$json->orderId
+            
+        ];
 
+
+        header('Content-Type: application/json');
+		echo json_encode($data);
+
+
+
+    }
+    public function disableMsg(){
+        
+        $obj = file_get_contents('php://input');
+        $json = json_decode($obj);
+
+        header('Content-Type: application/json');
+		echo json_encode($this->myOrderModel->disableMsg($json->orderId));
+
+
+    }
 
 
 

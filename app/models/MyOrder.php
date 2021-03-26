@@ -180,6 +180,38 @@
 
 
         }
+        public function EnableMsgButton($orderId){
+            $this->db = new Database;
+        $this->db->query('SELECT * from reminder WHERE 	orderId = :orderId');
+        //bind email
+
+        $this->db->bind(':orderId', $orderId);
+
+        $row2 = $this->db->single();
+        //  echo $this->db->rowCount()
+        //check email already taken
+        if ($this->db->rowCount() > 0) {
+
+            return true;
+        } else {
+            return false;
+        }
+
+
+        }
+        public function disableMsg($orderId){
+             $this->db = new Database;
+             $this->db->query('DELETE FROM reminder WHERE orderId = :orderId');
+             $this->db->bind(':orderId', $orderId);
+
+             if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+
+
+        }
         
     
     }
