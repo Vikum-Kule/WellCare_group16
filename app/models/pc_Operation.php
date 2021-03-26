@@ -172,7 +172,7 @@
         }
 
         public function find_order($orderId){
-            $this->db->query("SELECT * FROM prepared_order_medicne WHERE orderId = :orderId LIMIT 1");
+            $this->db->query("SELECT * FROM prepared_order_medicne WHERE orderId = :orderId");
             $this->db->bind(':orderId', $orderId);
 
             $results = $this->db->resultSet();

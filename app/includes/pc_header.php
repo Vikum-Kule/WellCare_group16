@@ -15,6 +15,9 @@
         }
     </style>
     <link rel="stylesheet" type="text/css" href="<?php echo URLROOT."/public/css/pc_style.css";?>">
+    <script>
+    var URLROOT = "<?php echo URLROOT ?>"
+  </script>
 </head>
 
 <body class="overlay-scrollbar">
@@ -106,7 +109,8 @@
                                     </th>
                                     <th>
                                         <div id="image_wrapp_confirm">
-                                        <img src="<?php echo URLROOT."/public/img/prescriptions/order18.jpg";?>" alt="" style="height: 550px;width:350px">
+                                        </div>
+                                        
                                     </th>
                                 </tr>
                             </tbody>    

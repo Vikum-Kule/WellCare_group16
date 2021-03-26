@@ -137,6 +137,21 @@ class User
         }
     }
 
+    public function loginDelivery($username, $password){
+        $this->db->query('SELECT * FROM deliveryperson WHERE userName = :username');
+        //Bind value
+        $this->db->bind(':username', $username);
+
+        $row = $this->db->single();
+
+        $hashedPassword = $row->password;
+        if (strcmp($password, $hashedPassword)==0) {
+            return $row;
+        } else {
+            return false;
+        }
+    }
+
     public function findUserByUsername($userName)
     {
         $this->db = new Database;

@@ -32,7 +32,7 @@
 
         <div class="card">
 
-        <form action="<?php echo URLROOT; ?>/Man_adddrug/updatedrugs/<?php echo $data['drug']->medicineId ?>" method="POST">
+        
  
 <!--<div class="container">
    <h1>Update Drug Details</h1>
@@ -62,27 +62,16 @@
     <button type="submit" class="registerbtn">Update</button>
       
   </div>-->
+  
   <div class="row">
             <div class="col-8 col-m-12 col-sm-12" id="inputTable">
                 <div class="card">
                     <div class="card-content">
-                    <form ‍>
+                    <form method="POST" action="<?php echo URLROOT; ?>/Man_adddrug/updatedrugs/<?php echo $data['drug']->medicineId ?>" >
                     
                     <input type="hidden" name="rowNum" id="rowNum">
                         <table id="openTab">
                             <tbody>
-                                <tr>
-                               <!-- <form method="POST">
-                                <th>Generic Name</th>
-                                    <th><input type="text" placeholder="Enter Generic Name" name="name" id="name" value = "<?php echo $data['drug']->name ?>"required></th>
-                                </form>
-								<form >
-                                <th>Brand Name</th>
-                                    <th>
-                                    <input type="text" placeholder="Enter Brand Name" name="brand" id="brand" value = "<?php echo $data['drug']->brand ?>" required>
-                                    </th>
-                                </form>
-                                </tr>-->
                                 <tr>
                                 <th>Generic Name</th>
                                     <th><input type="text" placeholder="Enter Generic Name" name="name" id="name" value = "<?php echo $data['drug']->name ?>"required></th>
@@ -140,19 +129,21 @@
                                     <th>
                                     <input type="text" placeholder="Enter Image Location" name="imageLocation" id="imageLocation" value = "<?php echo $data['drug']->imageLocation ?>" required>
                                     </th>
+                                    <input id="medId" type="hidden" name="medId" value="<?php echo $data['drug']->medicineId ?>">
                                 </tr>
                             </tbody>
                         </table>
-                        </form>
+                        <div style="text-align: center;height:50px;">
+                    <button  id="update" type="submit" name="update" class="registerbtn">Update</button>
                     </div>
-                    <div style="text-align: center;height:50px;">
-                    <button type="submit" class="registerbtn">Update</button>
+                    </form>
                     </div>
+                    
                 </div>
             </div>
   
   
-</form>
+
 
 
 

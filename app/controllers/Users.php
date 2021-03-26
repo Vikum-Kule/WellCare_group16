@@ -289,6 +289,18 @@ class Users extends Controller{
                         $this->view('Home', $data);
                     }
                 }
+                elseif($userState->Status == "delivery"){
+                    $loggedInUser = $this->userModel->loginDelivery($data['username'], $data['password']);
+                
+                    if ($loggedInUser) {
+                       $this->createUserSession_delivery($loggedInUser);
+                       
+                    } else {
+                        $data['passwordError'] = 'Password or username is incorrect. Please try again.';
+
+                        $this->view('Home', $data);
+                    }
+                }
                 
             }
 
@@ -327,6 +339,13 @@ class Users extends Controller{
         $_SESSION['username'] = $user->userName;
 	    $_SESSION['email'] = $user->email;
         header('location:' . URLROOT . '/Man_Adddrug/showdrugs');
+    }
+
+    public function createUserSession_delivery($user){
+        $_SESSION['active'] = true;
+        $_SESSION['username'] = $user->userName;
+	    $_SESSION['email'] = $user->email;
+        header('location:' . URLROOT . '/Del_orders/show_locations');
     }
 
     public function createUserSession($user) {
