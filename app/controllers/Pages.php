@@ -91,6 +91,9 @@ class Pages extends Controller {
     public function passwordRecoverVIew(){
         $this ->view("passwordRecover");
     }
+    public function  verifyEmail(){
+        $this ->view("verifyEmail");
+    }
    
 //pharmacist..
     public function make_order() {

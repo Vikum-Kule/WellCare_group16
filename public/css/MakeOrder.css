@@ -810,4 +810,183 @@ text-align:center;
   color: #644bff;
   cursor: pointer;
 }
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.card:hover image {
+  opacity: 0.3;
+}
+/* model2***************************************** */
+.modal2 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+.modal2-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 24rem;
+  border-radius: 0.5rem;
+}
+.close-button2 {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+.close-button2:hover {
+  background-color: darkgray;
+}
+.show-modal2 {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+.modal2 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+}
+.modal2-content  {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 24rem;
+  border-radius: 0.5rem;
+}
+.close-button2 {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+.close-button2:hover {
+  background-color: darkgray;
+}
+.show-modal2 {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+.enable{
+width: 100%;
+margin-left: 10px;
+margin-top: 20px;
+margin-bottom: 50px;
+}
+.enable button {
+    background-color: #1e8126;
+    color: white;
+    padding: 14px 50px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center; 
+  }
+  
+  .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #modal2_image .image{
+
+    width: 50%;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+    
+  }
+ #modal2_name,#modal2_brand{
+
+    width: 100%;
+    
+    text-align: center;
+  }
+  #modal2_description{
+    width: 100%;
+    font-size: small;
+    text-align: center;
+    float: left;
+
+
+  }
+  #modal2_quantity,#modal2_addToCart{
+    width: 40%;
+    float: left;
+    margin-top: 20px;
+
+
+
+  }
+  #modal2_quantity input{
+    
+    outline: 0;
+    padding: 12px;
+    
+    
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    margin-left: 10px;
+
+
+
+  }
+  #modal2_addToCart button{
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    margin-left: 30px;
+}
+
+
+
+  
+ 
+  
+  /* <div id="modal2_quantity"></div>
+          <div id="modal2_addToCart"></div> */
+  
   
