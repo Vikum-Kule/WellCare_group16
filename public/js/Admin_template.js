@@ -9,7 +9,28 @@ const themeLight = 'light'
 
 const body = document.getElementsByTagName('body')[0]
 
+function searchBlog(){
+    let filter = document.getElementById('filter').value.toUpperCase();
+    console.log(filter);
 
+    let tableRecord = document.getElementById('tableRecord');
+    let tr = tableRecord.getElementsByTagName('tr');
+
+    for(var i=0; i<tr.length;i++){
+        let td=tr[i].getElementsByTagName('id')[0];
+
+        if(td){
+            let textvalue = td.textContent || td.innerHTML;
+            if(textvalue.toUpperCase().indexOf() >-1){
+                tr[i].style.display ="";
+
+            }else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+
+}
 
 function collapseSidebar() {
     body.classList.toggle('sidebar-expand')
@@ -43,10 +64,10 @@ function openCloseDropdown(event) {
         }
     }
 }
-$(".sidebar-nav-item").on("click", function() {
-    $(".sidebar-nav-link").find(".active").removeClass("active");
-    $(this).parent().addClass("active");
-});
+//$(".sidebar-nav-item").on("click", function() {
+  //  $(".sidebar-nav-link").find(".active").removeClass("active");
+   // $(this).parent().addClass("active");
+//});
 
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:

@@ -36,21 +36,15 @@
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <center>
-                <div class="viewform">
-                    <form method="post">
-                        <br><br>
-                        <label> Search  </label>
-                        <input type="text" name="code">
-                        
-                        <button class="btn6" type="submit" name="view"><b>View</b></button>
-                        
-                       
-                    </form>
-                </div>          
-              </center>
+               <div class="filter-post">
+                <input type="text" name="filter" id="filter" placeholder="Enter Drug Name" onkeyup="searchBlog()">
+                <button type="">view</button>
+                   
+               </div>
+               </center>
 
                     <div class="card-content">
-                        <table>
+                        <table id="tableRecord">
                             <thead>
     <tr>
             
