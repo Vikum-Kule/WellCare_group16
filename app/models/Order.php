@@ -264,6 +264,17 @@ class Order
         $row = $this->db->resultSet();
         return  $row;
     }
+    public function getOneMedicine($medicineId){
+        $this->db->query('SELECT 
+        *
+        FROM 
+        medicine
+        WHERE 
+        medicineId  =:medicineId ');
+        $this->db->bind(':medicineId', $medicineId);
+        $row = $this->db->resultSet();
+        return  $row;
+}
 
     // public function getOrderidNonPreparedPrescription($data){
     //     $this->db->query('SELECT 

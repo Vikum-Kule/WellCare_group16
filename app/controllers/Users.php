@@ -179,13 +179,17 @@ class Users extends Controller{
                 //hash password
                 $data['password']=password_hash($data['password'],PASSWORD_DEFAULT);
                 //REGISTER USER FROM MODEL FUNCTION
-                $this->userModel->updateStatus($data['userName']);
-                if($this->userModel->register($data)){
-                    header('location: ' . URLROOT . '/Home');
+                header('location: ' . URLROOT . '/Home');
 
-                }else{
-                    die('Something went wrong');
-                }
+
+
+                // $this->userModel->updateStatus($data['userName']);
+                // if($this->userModel->register($data)){
+                //     header('location: ' . URLROOT . '/Home');
+
+                // }else{
+                //     die('Something went wrong');
+                // }
 
             }
         }
