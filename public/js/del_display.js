@@ -48,7 +48,18 @@ function opdenSlide(orderId) {
         document.querySelector("#hiddenData" + orderId).style.display = "none";
     });
 }
+var map = document.getElementById('map');
+if (map) {
+    displyTab();
+}
 
+function displyTab() {
+    document.querySelector(".grabPromo").style.display = "block";
+}
+
+$('.grabPromo').click(function(e) {
+    $('.slideDown').slideToggle();
+});
 // function showRow_Streets($city) {
 
 //     var url = "http://localhost/mvcfinal/del_orders/findStreets";
