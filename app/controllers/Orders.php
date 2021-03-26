@@ -82,6 +82,15 @@ class Orders extends Controller{
         
   
       }
+      public function getOneMedicine(){
+        $obj = file_get_contents('php://input');
+        $json = json_decode($obj);
+
+        header('Content-Type: application/json');
+        echo json_encode($this->orderModel->getOneMedicine($json->medicineId));
+
+
+      }
 
 
 }

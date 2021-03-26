@@ -56,7 +56,7 @@ function viewCategoryBar() {
 
         medicines.forEach(medicine => {
 
-          const html = '<div class="card"><img src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
+          const html = '<div class="card"><img onclick="toggleModal(' + medicine.medicineId + ')" src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
             '<h2>' + medicine.name + '</h2>' +
             '<h1>' + medicine.brand + '</h1>' +
             ' <p class="price">rs:' + medicine.price + '</p>' +
@@ -122,7 +122,7 @@ function viewCategoryBar() {
         medicines.forEach(medicine => {
           var base = URLROOT;
           console.log(URLROOT);
-          const html = '<div class="card"><img src="'+base+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
+          const html = '<div class="card"><img onclick="toggleModal(' + medicine.medicineId + ')" src="'+base+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
             '<h2>' + medicine.name + '</h2>' +
             '<h1>' + medicine.brand + '</h1>' +
             ' <p class="price">rs:' + medicine.price + '</p>' +
@@ -460,7 +460,7 @@ function getsearchItems(){
     medicines.forEach(medicine => {
       console.log("sudesh");
 
-      const html = '<div class="card"><img src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
+      const html = '<div class="card"><img onclick="toggleModal(' + medicine.medicineId + ')" src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
         '<h2>' + medicine.name + '</h2>' +
         '<h1>' + medicine.brand + '</h1>' +
         ' <p class="price">rs:' + medicine.price + '</p>' +

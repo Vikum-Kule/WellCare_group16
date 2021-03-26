@@ -2,7 +2,6 @@
 <html>
 
 <head>
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/MakeOrder.css">
   <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/footer.css">
@@ -22,6 +21,7 @@
  
 
 </head>
+<!-- <button onclick="toggleModal()">Click here to trigger the modal!</button> -->
 <script src="<?php echo URLROOT ?>/public/js/topnavigation.js"></script>
 
 <body>
@@ -175,11 +175,94 @@
       <div id="b2"></div>
     </div>
   </div>
+  <!-- model************************************************************************************************ -->
+  <div class="modal2">
+      <div class="modal2-content">
+          <span class="close-button2">&times;</span>
+          <h2 id="modal2_name">Name</h2><br>
+          <div id="modal2_image"></div>
+          <h4 id="modal2_brand">Click </h4>
+          <h3 id="modal2_description"></h3>
+         
+          
+          
+          <div id="modal2_quantity"></div>
+          <div id="modal2_addToCart"></div>
+          
+          
+
+          
+        
+          
+          </div>
+      </div>
+  </div>
+  <!-- ************************************************************************************************ -->
   <script>
     window.onload = function() {
       
       viewCategoryBar();
     };
+
+const modal = document.querySelector(".modal2");
+// const trigger = document.querySelector(".trigger2");
+const closeButton = document.querySelector(".close-button2");
+
+function toggleModal(medicineId) {
+
+      modal.classList.toggle("show-modal2");
+      $.ajax({
+      type: 'post',
+      url: ''+URLROOT+'/orders/getOneMedicine',
+      // async:false,
+      data: JSON.stringify({
+        medicineId: medicineId
+      }),
+
+      dataType: 'json',
+
+      success: function(medicine) {
+console.log(medicine[0]);
+// <h2 id="modal2_name">Name</h2><br>
+//           <h4 id="modal2_brand">Click </h4>
+//           <h3 id="modal2_description"></h3>
+$("#modal2_name").html(medicine[0].	name);
+$("#modal2_brand").html(medicine[0].	brand);
+$("#modal2_description").html(medicine[0].	description);
+// <img onclick="toggleModal(' + medicine.medicineId + ')" src="'+base+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">'
+var html='<img src="'+URLROOT+'/public/img/medicines/'+ medicine[0].medicineId + '.jpg" style="width:30%">';
+$("#modal2_image").html(html);  
+var html2='<input id="model2_quantity" pattern="[0-9]" min="1" step="1"/  type="number" placeholder="Enter Quantity" >';
+$("#modal2_quantity").html(html2);
+var html3='<button onclick="addToCartModel(' +medicine[0].medicineId +')">Add to Cart</button>';
+$("#modal2_addToCart").html(html3);
+
+
+       
+
+      }
+    });
+
+}
+function windowOnClick(event) {
+      if (event.target === modal) {
+          toggleModal();
+      }
+}
+
+  // trigger.addEventListener("click", toggleModal);
+closeButton.addEventListener("click", toggleModal);
+window.addEventListener("click", windowOnClick);
+
+function addToCartModel(medicineId){
+  var quantity=$("#model2_quantity").val();
+  if(quantity>=1){
+    addToCart(medicineId,quantity);
+  }
+  
+
+
+}
 
     // function viewCategoryBar() {
     //   $.ajax({
