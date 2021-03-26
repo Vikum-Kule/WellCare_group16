@@ -666,3 +666,7 @@ button:hover {
 .rowColor {
     background-color: rgb(224, 224, 228);
 }
+
+.hiddenData {
+    display: none;
+}
