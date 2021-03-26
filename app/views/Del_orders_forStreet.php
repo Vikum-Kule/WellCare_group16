@@ -2,8 +2,8 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/del_header.php");?>
 
     <!-- main content -->
-    <div class="wrapper" >
-
+    <div class="wrapper" id="wrapper">
+    
     
         <div class="row" id="city_wrapper">
             <div class="col-3 col-m-6 col-sm-6">
@@ -36,24 +36,27 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Street List
+                        <?php echo $data[1] ;?> Street Orders
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <div class="card-content">
                         <table id="allStreets">
-                            <thead>
-                                <tr>
-                                    <th>Street</th>
-                                    <th>Order</th>
-                                </tr>
-                            </thead>
-                            <?php foreach($data['streets'] as $streets ): ?>
+                            <?php foreach($data[0]['order'] as $order ): ?>
                             <tbody>
-                            <tr>
-                                <td><?php echo $streets->streetAddress2; ?></td>
-                                <td><form method="POST" action="<?php echo URLROOT; ?>/del_orders/show_streetOrders"> <input id="street" type="hidden" name="street" value="<?php echo $streets->streetAddress2; ?>"><button id="select" type="submit" name="select" >Select</button></form></td>                     
-                            </tr>>
+                            <tr id="openData<?php echo $order->orderId; ?>" onclick="opdenSlide(<?php echo $order->orderId; ?>)" >
+                                <td><?php echo $order->orderId; ?></td>
+                                <td><?php echo $order->streetAddress1; ?></td>
+                            </tr>
+                                <div id="hiddenData<?php echo $order->orderId; ?>" class="hiddenData">
+                                    <tr>
+                                    <td><?php echo $order->	FirstName; ?> <?php echo $order->LastName; ?></td>
+                                    <td><?php echo $order->PhoneNum; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><form method="POST" action="<?php echo URLROOT; ?>/del_orders/selectedOrder"> <input id="orderId " type="hidden" name="orderId " value="<?php echo $order->orderId; ?>"><button id="select" type="submit" name="select" >Select</button></form></td>                     
+                                    </tr>
+                                </div>
                             </tbody>
                             <?php endforeach;?>
                             

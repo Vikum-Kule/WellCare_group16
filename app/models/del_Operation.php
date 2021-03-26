@@ -59,6 +59,25 @@
             return $count;
         }
 
+        public function findStreetOrders($street){
+            $this->db->query('SELECT 
+            customer.PhoneNum, customer.FirstName, customer.LastName,prepared_order.orderId, prepared_order.price, prepared_order.streetAddress1
+            FROM 
+            prepared_order
+            INNER JOIN 
+            customer 
+            ON
+            customer. customerId=prepared_order. customerId
+            WHERE
+            prepared_order.	status = :status
+            AND
+            prepared_order.streetAddress2 = :street');
+            $this->db->bind(':status', "completed");
+            $this->db->bind(':street', $street);
+            $results = $this->db->resultSet();
+            return $results; 
+        }
+
     }
 
 ?>
