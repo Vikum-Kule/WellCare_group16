@@ -179,7 +179,50 @@ class Users extends Controller{
                 //hash password
                 $data['password']=password_hash($data['password'],PASSWORD_DEFAULT);
                 //REGISTER USER FROM MODEL FUNCTION
-                header('location: ' . URLROOT . '/Home');
+               
+                $data2 = [
+            
+                    'email'=>'',
+                    
+                    'pinError'=>'',
+                    
+                ];
+                $data2 = [
+            
+                    'email'=>$data['email'],
+                    
+                    'pinError'=>'',
+                    
+                    
+                ];
+                $_SESSION['pin']=rand(1000,9999);
+
+                $to = $data['email'];
+                $email_Sender= "wellcaregroup16@gmail.com";
+                $mail_subject = "Verify email";
+                $email_body = "<b>From: </b> Wellcare Pharmacy<br>";
+                $email_body .="<b>Your Recover Password: </b> {$_SESSION['pin']}<br>";
+                $email_body .="<i>Verify email using this 4 digit pin..</i><br>
+                                <b>Thank you.</b>";
+                $header = "From: {$email_Sender}\r\nContent-type: text/html;";
+
+                $mail_result=mail($to,$mail_subject,$email_body,$header);
+
+                if($mail_result){
+                    $data2['pinError']="4 -digit pin sent...";
+                }
+                else{
+                    $data2['pinError']="Unable to send pin";
+                }
+
+               
+
+                $_SESSION['updateState_userName']=$data['userName'];
+                $_SESSION['updateState_data']=$data;
+                $this->view('verifyEmail',$data2);
+
+
+                // header('location: ' . URLROOT . '/Home');
 
 
 
@@ -237,13 +280,18 @@ class Users extends Controller{
             if (empty($data['password'])) {
                 $data['passwordError'] = 'Please enter a password.';
             }
+           
             
 
             if (empty($data['usernameError']) && empty($data['passwordError'])) {
                 //check user status..
                 $userState = $this->userModel->findState($data['username']);
                 
-                //print_r($userState->Status);
+               // print_r($userState);
+         if(isset($userState->Status)){
+
+                    
+
                 if($userState->Status == "customer"){
                    
                     $loggedInUser = $this->userModel->login($data['username'], $data['password']);
@@ -293,7 +341,11 @@ class Users extends Controller{
                         $this->view('Home', $data);
                     }
                 }
-                
+            }else{
+                $data['usernameError'] = 'Username is incorrect. Please try again';
+                $this->view('Home', $data);
+
+            }  
             }
 
 
@@ -644,6 +696,50 @@ class Users extends Controller{
         }
 
         $this->view('passwordRecover', $data);
+    }
+    public function verifyEmail(){
+        $data= [
+
+            'enteredPin' => '',
+            'pinError'=>''
+            
+
+        ];
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data= [//$_SESSION['pin']
+                'enteredPin' => trim($_POST['verifyEmail']),
+                'pinError'=>''
+                
+            ];
+
+        } if (empty($data['enteredPin'])) {
+            $data['pinError'] = 'Please enter 4 digit pin.';
+            $this->view('verifyEmail',$data);
+        } elseif ($data['enteredPin']!=$_SESSION['pin']) {
+            $data['pinError'] = 'Enter correct pin...';
+            $this->view('verifyEmail',$data);
+            
+        } else{
+           
+
+
+            $this->userModel->updateStatus( $_SESSION['updateState_userName']);
+            if($this->userModel->register($_SESSION['updateState_data'])){
+                header('location: ' . URLROOT . '/Home');
+
+            }else{
+                die('Something went wrong');
+            }
+
+
+
+
+        }
+
+
+
     }
 
 

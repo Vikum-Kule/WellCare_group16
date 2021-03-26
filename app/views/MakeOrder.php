@@ -167,8 +167,8 @@
 
     <div class="footer">
     <div class=footterButton>
-    <button onclick="checkout()">Checkout</button>
-      <button class="cancelCheckout">Cancel</button>
+    <button id ="btnCheckout" onclick="checkout()">Checkout</button>
+      <button id ="btnfooterCancel" class="cancelCheckout">Cancel</button>
     
     </div>
      
@@ -456,17 +456,23 @@ function addToCartModel(medicineId){
 $(".cancel").click(function() {
       $("#a").fadeOut();
       $("#b").fadeOut();
+      $("#btnfooterCancel").hide();
+      $("#btnCheckout").show();
+      $(".content").css("height", "75%");
+      $(".footer").css("overflow", "auto");
+      $(".footer").css("height", "15%");
+      $('#b2').html("");
+      $(".input_num").prop('disabled', false);
       
 
 });
 $(".cancelCheckout").click(function() {
-
-      $(".content").css("height", "80%");
+      $("#btnfooterCancel").hide();
+      $("#btnCheckout").show();
+      $(".content").css("height", "75%");
       $(".footer").css("overflow", "auto");
       $(".footer").css("height", "15%");
-      
       $('#b2').html("");
-      
       $(".input_num").prop('disabled', false);
 
 });
