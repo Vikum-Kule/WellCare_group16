@@ -77,6 +77,7 @@
                     <input type="hidden" name="order-id-hidden" id="order-id-hidden" value="<?php echo $data[2]; ?>">
                     <?php foreach ($data[1]['orderData'] as $orderData):?> 
                     <input type="hidden" name="order-name-hidden" id="order-name-hidden" value="<?php echo $orderData->FirstName." ".$orderData->LastName ?>">
+                    <input type="hidden" name="prescription-hidden" id="prescription-hidden" value="<?php echo $orderData->image_path ?>">
                     <?php endforeach?> 
                     <input type="hidden" name="rowNum" id="rowNum">
                         <table id="openTab">
@@ -130,13 +131,17 @@
 									<input list="status" name="stat" id="stat">
 
 										<datalist id="status">
+                                        <option value="Per Week">Per Week</option>
 										<option value="Per Day">Per Day</option>
-										<option value="hour by">hour by</option>
-										<option value="day by">day by</option>
+										<option value="Thrice a Day">Thrice a Day</option>
+                                        <option value="Twice a Day">Twice a Day</option>
+                                        <option value="Per 8 hours">Per 8 hours</option>
+                                        <option value="Per 6 hours">Per 6 hours</option>
+                                        <option value="Per hour">Per hour</option>
 										</datalist>
 									</th>
 									<th>Frequency</th>
-									<th><input type="Number" id="frequency"></th>
+									<th><input type="text" id="frequency"></th>
 								</tr>
                                 <tr></tr>
                             </tbody>
@@ -162,16 +167,17 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>Medicine</th>
                                     <th>QTY</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
+                            <?php foreach ($data[3]['orderMedicine'] as $orderMedicine):?> 
+                            <tr>
+                                    <td><?php echo $orderMedicine->name; ?>(<?php echo $orderMedicine->brand; ?>)</td>
+                                    <td><?php echo $orderMedicine->qty; ?></td>
                                 </tr>
+                            <?php endforeach?> 
                                 <tr>
                                     <th></th>
                                     <th></th>
@@ -196,7 +202,6 @@
                     </div>
                     <div class="card-content">
                         <div id="image_wrapp">
-                            <img src="<?php echo URLROOT."/public/img/prescriptions/order18.jpg";?>" alt="">
                         </div>
                     </div>
                    
@@ -272,7 +277,7 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Extea Note</th>
+                                    <th>Extra Note</th>
                                 </tr>
                                 <tr>
                                 <th><textarea name="extra" id="extra" cols="30" rows="10"></textarea></th>

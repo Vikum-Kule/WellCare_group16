@@ -82,11 +82,16 @@ class PrescriptionController extends Controller
 
             ];
 
-            $prescriptiondata['message'] = 'FAILED TxO UPLOAD!...';
+            $prescriptiondata['message'] = 'FAILED TO UPLOAD!...';
             header('Content-Type: application/json');
 
             echo json_encode($prescriptiondata);
         } else {
+            $prescriptiondata = [
+                'message' => '',
+                'image' => ''
+
+            ];
 
             $data = ['id' => '', 'time' => '','ext'=>''];
             
@@ -96,11 +101,15 @@ class PrescriptionController extends Controller
             $target = "../public/img/tempPrescriptions/" . $result[0]->Auto_increment . "." . $ext;
             $data = ['id' => $_SESSION['user_id'], 'time' => time(),'ext'=>$ext];
 
-            $result2 = $this->orderModel->tempPrescription($data);
+           
+
+            if($_FILES['image']['name']==null){
+                $prescriptiondata['message'] = 'NO FILE CHOSEN!...';
+                header('Content-Type: application/json');
+                echo json_encode($prescriptiondata);
 
 
-
-            if ($ext != "jpg" && $ext != "JPG" && $ext != "jpeg" && $ext != "png" && $ext != "pdf") {
+            }else if ($ext != "jpg" && $ext != "JPG" && $ext != "jpeg" && $ext != "png" && $ext != "pdf") {
                 $prescriptiondata['message'] = 'ONLY JPG ,PNG ,PDF FILES ARE ALLOWED!...';
                 header('Content-Type: application/json');
                 echo json_encode($prescriptiondata);
@@ -110,6 +119,7 @@ class PrescriptionController extends Controller
                 header('Content-Type: application/json');
                 echo json_encode($prescriptiondata);
             } else if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+                $result2 = $this->orderModel->tempPrescription($data);
                 $prescriptiondata['message'] = 'SUCCSESSFULL!...';
                 $prescriptiondata['image'] = $result[0]->Auto_increment . "." . $ext;
                 header('Content-Type: application/json');
@@ -117,7 +127,6 @@ class PrescriptionController extends Controller
             } else {
                 $prescriptiondata['message'] = 'FAILED TO UPLOAD!...';
                 header('Content-Type: application/json');
-
                 echo json_encode($prescriptiondata);
             }
         }

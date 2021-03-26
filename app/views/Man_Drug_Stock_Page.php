@@ -5,11 +5,11 @@
         <div class="row">
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
-                    <p>To do</p>
+                    <h3><div id="totaldrugs"></div></h3>
+                    <p>Total Medicines</p>
                 </div>
             </div>
-            <div class="col-3 col-m-6 col-sm-6">
+           <!-- <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <h3>100+</h3>
                     <p>In progress</p>
@@ -26,7 +26,7 @@
                     <h3>100+</h3>
                     <p>Issues</p>
                 </div>
-            </div>
+            </div>-->
         </div>
 
 

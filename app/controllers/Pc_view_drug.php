@@ -37,8 +37,8 @@
 				$medicine = $this->postModel->findMedName();
 				$orderId = $_POST['orderId'];
 				$orderData = $this->postModel->fetchData($orderId);
-				//$non_prescrip_medicine= $this->postModel->findNonPrepaired_medicine($orderId);
-				
+				$non_prescrip_medicine= $this->postModel->find_medicine_nonOrders($orderId);
+				//print_r($non_prescrip_medicine);
 				$data = [
 					$data1 = [
 						'medicine' => $medicine
@@ -46,7 +46,10 @@
 					$data2 = [
 						'orderData' => $orderData 
 					],
-					$orderId
+					$orderId,
+					$data3=[
+						'orderMedicine'=> $non_prescrip_medicine
+					]
 					
 				];
 				
@@ -372,7 +375,7 @@
 							<b>Thank you.</b>";
 			$header = "From: {$email_Sender}\r\nContent-type: text/html;";
 
-			$mail_result=mail($to,$mail_subject,$email_body,$header);
+			$mail_result=mail('vikumkulatunga@gmail.com',$mail_subject,$email_body,$header);
 
 			if($mail_result){
 				echo "Email sent";
@@ -399,32 +402,6 @@
 			   			 'price'=>''
 			   			 
    					];
-
-    				// if(isset($_POST['done'])){
-
-    				// 	$orderId = $_POST['orderId'];
-    				// 	$order_data = $this->postModel->find_order($orderId);
-    				// 	$data3 = [
-				    // 		'order_data' => $order_data
-				    // 	];
-				    // 	foreach($data3['order_data'] as $order_data){
-				    // 		$updateOrder = [
-					//    			 'currentLocation'=>trim($order_data->currentLocation),
-					//    			 'customerId'=>trim($order_data->customerId),
-					//    			 'image_path'=>trim($order_data->image_path),
-					//    			 'price'=>trim($order_data->price)
-			   			 
-   					// ];
-				    // 	}
-
-    				// 	$this->postModel->update_order($updateOrder);
-    				// 	$this->postModel->process_delete($orderId);
-    				// }
-
-    				// if(isset($_POST['done'])){
-    				// 	$orderId = $_POST['orderId'];
-    				// 	$this->postModel->process_delete($orderId);	
-    				// }
     			
 
 		    		

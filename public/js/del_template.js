@@ -43,7 +43,24 @@ function openCloseDropdown(event) {
         }
     }
 }
-//$(".sidebar-nav-item").on("click", function() {
-  //  $(".sidebar-nav-link").find(".active").removeClass("active");
-    //$(this).parent().addClass("active");
-//});
+
+
+function slidebarOpen() {
+    var x = document.getElementById("sidebar");
+    // if (x.style.width === "0px") {
+    //     document.getElementById("sidebar").style.width = "250px";
+    // } else {
+    //     document.getElementById("sidebar").style.width = "0px";
+    // }
+    if (x.classList.contains("show")) {
+        document.getElementById("sidebar").classList.remove("show");
+        document.getElementById("sidebar").classList.add("hide");
+        document.getElementById("wrapper").style.backgroundColor = "#f1f1f1";
+    } else {
+        document.getElementById("sidebar").classList.remove("hide");
+        document.getElementById("sidebar").classList.add("show");
+        document.getElementById("wrapper").style.backgroundColor = "gray";
+    }
+
+
+}

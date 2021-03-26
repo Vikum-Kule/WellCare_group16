@@ -45,6 +45,7 @@
                                 <th>Inquiry ID</th>
                                 <th>Order ID</th>
                                 <th>Inquiry Date</th>
+                                <th>Inquiry </th>
                                 <th>Status</th>
                                 </tr>
                             </thead>
