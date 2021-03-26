@@ -95,7 +95,6 @@
                                 
 	    					</tbody>   
                             </table>
-                            <button>Confirm</button>
                     </div>
                 </div>
             </div>

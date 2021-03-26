@@ -50,6 +50,10 @@ function openCloseDropdown(event) {
 
 
 function prescription() {
+    var prescription = document.getElementById("prescription-hidden").value;
+    console.log(prescription);
+    const html = '<embed src="http://localhost/mvcfinal/public/img/prescriptions/' + prescription + '" style="display: block; margin-left: auto;margin-right: auto;width: 100%;"></embed>';
+    $('#image_wrapp').html(html);
     document.getElementById("inputTable").style.width = "50%";
     var x = document.getElementById("prescriptionCard");
     //var y = document.getElementById("openTab");
@@ -140,6 +144,10 @@ function close_notification() {
 }
 
 function open_confirm() {
+    var prescription = document.getElementById("prescription-hidden").value;
+    console.log(prescription);
+    const html = '<embed src="http://localhost/mvcfinal/public/img/prescriptions/' + prescription + '" style="display: block; margin-left: auto;margin-right: auto;width: 100%;"></embed>';
+    $('#image_wrapp_confirm').html(html);
     document.querySelector("#overly").style.display = "block";
     document.querySelector("#confirm").style.display = "block";
     fill_confirm_table();
