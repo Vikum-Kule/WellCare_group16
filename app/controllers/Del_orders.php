@@ -64,6 +64,19 @@
         
     }
 
+    public function showOrder(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            if(isset($_POST['select'])){
+                $orderId = $_POST['orderId'];
+                $orderData= $this->postModel->find_selectOrders($orderId);
+                $data = [
+                    'orderData'=> $orderData
+                ];
+                $this->view('del_map',$data);
+            } 
+        }
+    }
+
  }
 
 ?>

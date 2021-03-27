@@ -44,7 +44,22 @@
                         <table id="allStreets">
                             <?php foreach($data[0]['order'] as $order ): ?>
                             <tbody>
-                            <tr id="openData<?php echo $order->orderId; ?>" onclick="opdenSlide(<?php echo $order->orderId; ?>)" >
+                            <tr>
+                            <form action="<?php echo URLROOT; ?>/del_orders/showOrder" method="POST">
+                                <button type="submit" name="select" id="select" style="width: 100%; background-color:rgb(224, 224, 228) ; " >
+                                <input id="orderId" type="hidden" name="orderId" value="<?php echo $order->orderId; ?>">
+                                   <div style="float: left;">
+                                    <b>Order: </b><?php echo $order->orderId; ?>
+                                   </div>
+                                   <div style="float: right;">
+                                    <b>Street: </b><?php echo $order->streetAddress1; ?>
+                                    </div>
+                                </button>
+                            </form>   
+                            
+                            </tr>
+                            
+                            <!-- <tr id="openData<?php echo $order->orderId; ?>" onclick="opdenSlide(<?php echo $order->orderId; ?>)" >
                                 <td><?php echo $order->orderId; ?></td>
                                 <td><?php echo $order->streetAddress1; ?></td>
                             </tr>
@@ -56,7 +71,7 @@
                                     <tr>
                                         <td><form method="POST" action="<?php echo URLROOT; ?>/del_orders/selectedOrder"> <input id="orderId " type="hidden" name="orderId " value="<?php echo $order->orderId; ?>"><button id="select" type="submit" name="select" >Select</button></form></td>                     
                                     </tr>
-                                </div>
+                                </div> -->
                             </tbody>
                             <?php endforeach;?>
                             

@@ -1,6 +1,6 @@
 
 var slideshow1 = document.getElementById("slideshow1");
-slideshow1.currentSlideIndex = 1;
+slideshow1.currentSlideIndex =2;
 showSlides(slideshow1.currentSlideIndex, slideshow1);
 
 var slideshow3 = document.getElementById("slideshow3");
