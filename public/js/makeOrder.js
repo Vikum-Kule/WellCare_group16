@@ -25,7 +25,7 @@ function viewCategoryBar() {
           $('#myTopnav2').append(html);
 
 
-          html2 = '<div id="' + mainCategory.name.split(/\s/).join('').replace(/[^a-zA-Z ]/g, "") + '"  class="category"> <div  style=" background-color:white; color:#24034D; padding:1px; cursor: pointer; width: 100%; float: left; height:20px;font-size:2vw">' + mainCategory.name + '<div> <br></div>';
+          html2 = '<div id="' + mainCategory.name.split(/\s/).join('').replace(/[^a-zA-Z ]/g, "") + '"  class="category"> <div  style=" background-color:white; color:#24034D; padding:1px; cursor: pointer; width: 100%; float: left; height:20px;font-size:20px">' + mainCategory.name + '<div> <br></div>';
 
           $('#main').append(html2);
 
@@ -50,13 +50,13 @@ function viewCategoryBar() {
 
       success: function(medicines) {
 
-        const html3 = '<div class="category"> <div  style=" background-color:white; color:#24034D; padding:1px; cursor: pointer; width: 100%; float: left; height:20px;font-size:2vw">' + medicines[0].subcategory + '<div> <br></div>';
+        const html3 = '<div class="category"> <div  style=" background-color:white; color:#24034D; padding:1px; cursor: pointer; width: 100%; float: left; height:20px;font-size:15px">' + medicines[0].subcategory + '<div> <br></div>';
 
         $('#main').html(html3);
 
         medicines.forEach(medicine => {
 
-          const html = '<div class="card"><img onclick="toggleModal(' + medicine.medicineId + ')" src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
+          const html = '<div class="card"><img onclick="toggleModal(' + medicine.medicineId + ')" src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%,height:20%">' +
             '<h2>' + medicine.name + '</h2>' +
             '<h1>' + medicine.brand + '</h1>' +
             ' <p class="price">rs:' + medicine.price + '</p>' +
@@ -189,6 +189,13 @@ function viewCategoryBar() {
 var subtotal = 0;
 
 function showCart() {
+  
+  $("#a").css("display", "block");
+  $("#main").css("display", "block");
+  $("#b").css("display", "block");
+
+  
+
   subtotal = 0;
   $('#customers').html(' <tr>' +
     ' <th>ITEM</th>' +
@@ -197,9 +204,9 @@ function showCart() {
     ' <!-- <th>REMOVE</th> -->' +
     '  </tr>'
   );
-  $("#a").css("display", "block");
-  $("#main").css("display", "block");
-  $("#b").css("display", "block");
+  $("#btnfooterCancel").hide();
+  $("#btnCheckout").show();
+  
 
   $.ajax({
     type: 'post',
@@ -311,6 +318,11 @@ $(document).ready(function() {
 });
 
 function checkout() {
+  //$("#btnfooterCancel").hide();
+  $("#btnfooterCancel").show();
+      $("#btnCheckout").hide();
+
+
   $(".content").css("height", "0%");
         $(".footer").css("overflow", "auto");
         $(".footer").css("height", "80%");
@@ -355,14 +367,14 @@ function checkout() {
 
 
           '</div>'+
-          '<div ><button onclick ="confirmCheckout()">confirm</button></div>' 
+          '<div ><button id="btnConfirmCheckout" onclick ="confirmCheckout()">confirm</button></div>' 
           ;
 
           $('#b2').html(html);
         }else{
           console.log(signIn);
 
-          $('#b2').append('<div id="caption">LOGIN TO CHECKOUT...<p><a href="'+URLROOT+' /users/loginVIew"><button>LOGIN</button></a></p></div>');
+          $('#b2').append('<div id="caption">LOGIN TO CHECKOUT...<p><a href="'+URLROOT+' /users/loginVIew"><button id="btnLogin">LOGIN</button></a></p></div>');
 
         }
         
@@ -379,6 +391,8 @@ function checkout() {
 }
 
 function confirmCheckout() {
+
+  
   console.log("sudeh");
 
   var streetAddress1 = $("#streetAddress1").val();
@@ -399,15 +413,17 @@ function confirmCheckout() {
     dataType: 'json',
     success: function ($sucsess) {
 
-      showCart();
+      
       $(".content").css("height", "80%");
       $(".footer").css("overflow", "auto");
       $(".footer").css("height", "15%");
 
       $('#b2').html("");
-
+      
       $(".input_num").prop('disabled', false);
-      $('.content').html('<div id="caption">YOUR ORDER HAS BEEN SUCCESSFULLY PLACED...</div>');
+      $('#customers').html('<div id="caption">YOUR ORDER HAS BEEN SUCCESSFULLY PLACED...</div>');
+      $("#btnfooterCancel").hide();
+      $("#btnCheckout").hide();
     }
   });
 

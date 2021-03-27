@@ -51,7 +51,7 @@
         </div>
         <div class="col-75">
           <input type="text" id="firstname" name="firstname" placeholder="Your First Name..">
-          <span class="invalidFeedback"><?php echo $data['firstnameError']; ?></span>
+          <span class="invalidFeedback"><?php if(isset($data['firstnameError'])) {echo $data['firstnameError']; }?></span>
         </div>
       </div>
 
@@ -71,7 +71,7 @@
         </div>
         <div class="col-75">
           <input type="text" id="nic" name="nic" placeholder="Your NIC..">
-          <span class="invalidFeedback"><?php echo $data['nicError']; ?></span>
+          <span class="invalidFeedback"><?php if(isset($data['firstnameError'])) {echo $data['nicError']; }?></span>
         </div>
       </div>
 
@@ -81,7 +81,7 @@
         </div>
         <div class="col-75">
           <input type="text" id="userName" name="userName" placeholder="User Name..">
-          <span class="invalidFeedback"><?php echo $data['usernameError']; ?></span>
+          <span class="invalidFeedback"><?php if(isset($data['usernameError'])){echo $data['usernameError'];} ?></span>
 
         </div>
       </div>
@@ -94,7 +94,7 @@
         </div>
         <div class="col-75">
           <input type="password" id="password" name="password" placeholder="Password..">
-          <span class="invalidFeedback"><?php echo $data['passwordError']; ?></span>
+          <span class="invalidFeedback"><?php if(isset($data['passwordError'])){ echo $data['passwordError'];} ?></span>
 
         </div>
       </div>
@@ -105,7 +105,7 @@
         </div>
         <div class="col-75">
           <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password..">
-          <span class="invalidFeedback"><?php echo $data['confirmPasswordError']; ?></span>
+          <span class="invalidFeedback"><?php if(isset($data['confirmPasswordError'])){echo $data['confirmPasswordError'];} ?></span>
 
         </div>
       </div>
@@ -117,7 +117,7 @@
         </div>
         <div class="col-75">
           <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number..">
-          <span class="invalidFeedback"><?php echo $data['phoneNumberError']; ?></span>
+          <span class="invalidFeedback"><?php if(isset($data['phoneNumberError'])){echo $data['phoneNumberError']; }?></span>
         </div>
       </div>
 
@@ -130,7 +130,7 @@
         </div>
         <div class="col-75">
           <input type="text" id="email" name="email" placeholder="Enter Your Email Address..">
-          <span class="invalidFeedback"><?php echo $data['emailError']; ?></span>
+          <span class="invalidFeedback"><?php if(isset($data['emailError'])){echo $data['emailError'];} ?></span>
         </div>
       </div>
 
@@ -140,19 +140,19 @@
         </div>
         <div class="col-75">
           <input type="text" id="streetAddress1" name="streetAddress1" placeholder="Enter Street Address 1..">
-          <span class="invalidFeedback"><?php echo $data['streetAddress1Error']; ?></span>
+          <span class="invalidFeedback"><?php if(isset($data['streetAddress1Error'])) {echo $data['streetAddress1Error'];} ?></span>
 
           <input type="text" id="streetAddress2" name="streetAddress2" placeholder="Enter Street Address 2..(optional)">
-          <span class="invalidFeedback"><?php echo $data['streetAddress2Error']; ?></span>
+          <span class="invalidFeedback"><?php if(isset($data['streetAddress2Error'])){echo $data['streetAddress2Error'];} ?></span>
 
           <input type="text" id="city" name="city" placeholder="Enter Your City ..">
-          <span class="invalidFeedback"><?php echo $data['cityError']; ?></span>
+          <span class="invalidFeedback"><?php if(isset($data['cityError'])){ echo $data['cityError'];} ?></span>
 
           <input type="text" id="district" name="district" placeholder="Enter Your District ..">
-          <span class="invalidFeedback"><?php echo $data['districtError']; ?></span>
+          <span class="invalidFeedback"><?php if(isset($data['districtError'])){ echo $data['districtError']; }?></span>
 
           <input type="text" id="postalCode" name="postalCode" placeholder="Postal Code ..">
-          <span class="invalidFeedback"><?php echo $data['postalCodeError']; ?></span>
+          <span class="invalidFeedback"><?php if(isset($data['postalCodeError'])) {echo $data['postalCodeError']; }?></span>
 
 
           <!-- <textarea id="address" name="address" placeholder="Write Your Address.." style="height:100px"></textarea> -->

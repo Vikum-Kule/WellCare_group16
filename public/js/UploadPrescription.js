@@ -119,7 +119,7 @@
         } else {
           console.log(signIn);
 
-          $('#sudesh').html('<div id="caption">FIRST LOGIN TO UPLOAD PRESCRIPTION...<p><a href="' + URLROOT + ' /users/loginVIew"><button>LOGIN</button></a></p></div>');
+          $('#sudesh').html('<div id="caption">FIRST LOGIN TO UPLOAD PRESCRIPTION...<p><a href="' + URLROOT + ' /users/loginVIew"><button id="btnLogin">LOGIN</button></a></p></div>');
 
         }
 
@@ -213,7 +213,7 @@
                   ' <input type="text" id="district" name="district" placeholder="Enter Your District .." value="' + signIn.district + '">' +
                   ' <span class="invalidFeedback"></span>' +
                   '</div>' +
-                  '<div ><button onclick ="confirmCheckout()">confirm</button></div>';
+                  '<div ><button id="btnConfirmCheckout" onclick ="confirmCheckout()">confirm</button></div>';
 
                 $('#content').html(html);
               } else {
