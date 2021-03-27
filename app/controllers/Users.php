@@ -100,7 +100,7 @@ class Users extends Controller{
             if(empty($data['phoneNumber'])){
                 $data['phoneNumberError']='please enter Phone number.';
 
-            }elseif(!preg_match( $phoneNumberVAlidation,$data['phoneNumber'])){
+            }elseif(!preg_match($phoneNumberVAlidation,$data['phoneNumber'])){
                 $data['phoneNumberError']='Not a valid phoneNumber';
             }
 
@@ -110,9 +110,6 @@ class Users extends Controller{
                 $data['streetAddress1Error']='please enter street address 1.';
 
             }
-
-           
-
             if(empty($data['city'])){
                 $data['cityError']='please enter city.';
 
@@ -341,11 +338,19 @@ class Users extends Controller{
                         $this->view('Home', $data);
                     }
                 }
-            }else{
-                $data['usernameError'] = 'Username is incorrect. Please try again';
-                $this->view('Home', $data);
+                elseif($userState->Status == "delivery"){
+                    $loggedInUser = $this->userModel->loginDelivery($data['username'], $data['password']);
+                
+                    if ($loggedInUser) {
+                       $this->createUserSession_delivery($loggedInUser);
+                       
+                    } else {
+                        $data['passwordError'] = 'Password or username is incorrect. Please try again.';
 
-            }  
+                        $this->view('Home', $data);
+                    }
+                }
+                
             }
 
 
@@ -362,7 +367,7 @@ class Users extends Controller{
         }
         $this->view('Home', $data);
 
-    }
+    }}
 
     public function createUserSession_admin($user){
         $_SESSION['active'] = true;
@@ -383,6 +388,13 @@ class Users extends Controller{
         $_SESSION['username'] = $user->userName;
 	    $_SESSION['email'] = $user->email;
         header('location:' . URLROOT . '/Man_Adddrug/showdrugs');
+    }
+
+    public function createUserSession_delivery($user){
+        $_SESSION['active'] = true;
+        $_SESSION['username'] = $user->userName;
+	    $_SESSION['email'] = $user->email;
+        header('location:' . URLROOT . '/Del_orders/show_locations');
     }
 
     public function createUserSession($user) {

@@ -230,10 +230,6 @@ function displayDetails() {
         flag = 0;
         warning = warning + ",QTY ";
     }
-    if (document.querySelector('#stat').value == "") {
-        flag = 0;
-        warning = warning + ",frequency type ";
-    }
     if ($("#allDoses").val() == null) {
         flag = 0;
         warning = warning + ",dosage ";
@@ -241,10 +237,6 @@ function displayDetails() {
     if ($("#allDoseForm").val() == null) {
         flag = 0;
         warning = warning + ",dosage form ";
-    }
-    if (document.getElementById("frequency").value == null) {
-        flag = 0;
-        warning = warning + ",frequency ";
     }
     if (flag == 0) {
         var content = "Please enter " + warning + " !!!..";
@@ -586,6 +578,7 @@ function rowData_fromReq(orderId) {
     });
 }
 
+
 function pen_rowData(orderId) {
     for (var x = 3 + global_previous_rows; x > 3; x--) {
         var rowNum = x;
@@ -628,6 +621,45 @@ function pen_rowData(orderId) {
         }
     });
 }
+//reminder();
+
+function reminder() {
+    console.log("hello");
+    var orderId = 22;
+    var dates = 3;
+
+    var url = "http://localhost/mvcfinal/reminder/addReminder";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: { orderId: orderId, dates: dates },
+        success: function(data) {
+            console.log(data);
+        }
+    });
+
+}
+//getReminder();
+
+
+
+function myLoop() {
+    setTimeout(function() {
+        var url = "http://localhost/mvcfinal/reminder/setReminder";
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function(data) {
+                console.log(data);
+            }
+        });
+        if (true) {
+            myLoop();
+        }
+    }, 3000)
+}
+
+//myLoop();
 
 // function process_rowData() {
 //     var url = "http://localhost/mvcfinal/pc_view_drug/show_medicine";

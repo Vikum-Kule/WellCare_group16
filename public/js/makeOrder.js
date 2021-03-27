@@ -25,7 +25,7 @@ function viewCategoryBar() {
           $('#myTopnav2').append(html);
 
 
-          html2 = '<div id="' + mainCategory.name.split(/\s/).join('').replace(/[^a-zA-Z ]/g, "") + '"  class="category"> <div  style=" background-color:white; color:#24034D; padding:1px; cursor: pointer; width: 100%; float: left; height:20px;font-size:2vw">' + mainCategory.name + '<div> <br></div>';
+          html2 = '<div id="' + mainCategory.name.split(/\s/).join('').replace(/[^a-zA-Z ]/g, "") + '"  class="category"> <div  style=" background-color:white; color:#24034D; padding:1px; cursor: pointer; width: 100%; float: left; height:20px;font-size:20px">' + mainCategory.name + '<div> <br></div>';
 
           $('#main').append(html2);
 
@@ -56,7 +56,7 @@ function viewCategoryBar() {
 
         medicines.forEach(medicine => {
 
-          const html = '<div class="card"><img onclick="toggleModal(' + medicine.medicineId + ')" src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
+          const html = '<div class="card"><img onclick="toggleModal(' + medicine.medicineId + ')" src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%,height:20%">' +
             '<h2>' + medicine.name + '</h2>' +
             '<h1>' + medicine.brand + '</h1>' +
             ' <p class="price">rs:' + medicine.price + '</p>' +
