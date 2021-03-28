@@ -11,6 +11,7 @@ class Man_Inquiry extends Controller {
     		'inquiries' => $inquiries
     	];
 
-    	 $this->view('Man_Drug_Stock_page', $data);
+    	 $this->view('Man_Inquiries_Manager', $data);
     }
 
+}

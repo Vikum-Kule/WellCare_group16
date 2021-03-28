@@ -1,5 +1,5 @@
 <?php
-    class Man_Operation {
+    class Man_Inquirym {
         private $db;
 
         public function __construct() {
