@@ -3,7 +3,7 @@
 
 <div class="wrapper">
         <div class="row">
-            <div class="col-3 col-m-6 col-sm-6">
+           <!-- <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <h3>100+</h3>
                     <p>To do</p>
@@ -26,7 +26,7 @@
                     <h3>100+</h3>
                     <p>Issues</p>
                 </div>
-            </div>
+            </div>-->
         </div>
 
 
@@ -50,7 +50,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+                            <?php foreach($data['inquiries'] as $inquiry): ?>
+			                	<tr>
+                                    <td><?php echo $inquiry->inquiryId; ?></td>
+                                    <td><?php echo $inquiry->orderId; ?></td>
+                                    <td><?php echo $inquiry->inquiryDate; ?></td>
+                                    <td><?php echo $inquiry->Inquiry; ?></td>
+                                    <td><?php echo $inquiry->status; ?></td>
+                                    
+                                    
+				                </tr>
+				                <?php endforeach;?>
                             </tbody>
                         </table>
                         </div>
