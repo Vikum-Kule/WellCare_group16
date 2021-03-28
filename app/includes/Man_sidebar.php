@@ -50,6 +50,14 @@
                     <span>Invoices</span>
                 </a>
             </li>
+            <li class="sidebar-nav-item">
+                <a href="http://localhost/mvcfinal/Man_invoices/showinvoices" class="sidebar-nav-link">
+                    <div>
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <span>To Deliver Orders</span>
+                </a>
+            </li>
             
         </ul>
     </div>

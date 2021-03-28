@@ -48,6 +48,8 @@
                                     <th>Dose</th>
                                     <th>Supplier ID</th>
                                     <th>Refill Date and TIme</th>
+                                    <th>Expiration Date</th>
+                                    <th>Manufacture Date</th>
                                     <th>Medicine ID</th>
                                     <th>QTY</th>
                                 </tr>
@@ -61,6 +63,8 @@
                                     <td><?php echo $refill->dose; ?></td>
                                     <td><?php echo $refill->supplyId; ?></td>
                                     <td><?php echo $refill->refillDateTime; ?></td>
+                                    <td><?php echo $refill->EXP; ?></td>
+                                    <td><?php echo $refill->MFD; ?></td>
                                     <td><?php echo $refill->medicineId; ?></td>
                                     <td><?php echo $refill->QTY; ?></td>
                                     

@@ -62,7 +62,7 @@
                                 <tr>
                                 <th>Brand Name</th>
                                     <th><input type="text" placeholder="Enter Brand Name" name="brandName" id="brandName" required> </th>
-                                </tr>
+                                
                                 <th>Generic Name</th>
                                     <th><input type="text" placeholder="Enter Generic Name" name="genericName" id="medName" required> </th>
                                 </tr>
@@ -71,9 +71,9 @@
                                     <th>
                                     <input type="text" placeholder="Enter Dose Status" name="doseStatus" id="doseStatus" required>
                                     </th>
-                                    </tr>
-                                <tr>
-                                <tr>
+                                   
+                                
+                                
                                     <th>Dose</th>
                                     <th>
                                     <input type="number" placeholder="Enter Dose" name="dose" id="dose" required>
@@ -85,12 +85,21 @@
                                     <th>
                                     <input type="number" placeholder="Enter Supplier ID" name="supplyId" id="supplyId" required>
                                     </th>
-                                    </tr>
-                                
-                                <tr>
+                                    
                                     <th>Quantity</th>
                                     <th>
                                     <input type="number" placeholder="Enter Quantity" name="QTY" id="QTY" required>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Expiration Date</th>
+                                    <th>
+                                    <input type="date" placeholder="Enter Expiration date" name="EXP" id="EXP" required>
+                                    </th>
+                                    
+                                    <th>Manufacture Date</th>
+                                    <th>
+                                    <input type="date" placeholder="Enter Manufacture Date" name="MFD" id="MFD" required>
                                     </th>
                                 </tr>
                                 <tr>
