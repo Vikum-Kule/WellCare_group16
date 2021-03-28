@@ -14,7 +14,7 @@
             return $results;
         }
         public function findMedId($brand, $name, $dose,$doseForm){
-            $this->db->query("SELECT medicineId FROM medicine WHERE name = :name AND brand = :brand AND dose = :dose AND doseStatus= :doseForm ");
+            $this->db->query("SELECT medicineId,QTY FROM medicine WHERE name = :name AND brand = :brand AND dose = :dose AND doseStatus= :doseForm ");
             $this->db->bind(':name',$name);
             $this->db->bind(':brand',$brand);
             $this->db->bind(':dose',$dose);
@@ -23,10 +23,10 @@
             return $results;
         }
 
-        public function updateQty($medId, $qty){
+        public function updateQty($medId, $Qty){
             $this->db->query("UPDATE medicine SET QTY = :QTY WHERE medicineId = :medId");
             $this->db->bind(':medId',$medId);
-            $this->db->bind(':QTY',$qty);
+            $this->db->bind(':QTY',$Qty);
             if ($this->db->execute()){
                 return true;
             }
