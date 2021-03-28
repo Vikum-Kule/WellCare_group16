@@ -47,12 +47,12 @@
                                     <th>orders</th>
                                 </tr>
                             </thead>
-                            <?php foreach($data['city'] as $city ): ?>
+                            <?php foreach($data['city'] as $city): ?>
                             <tbody>
-                            <tr onclick="showRow_Streets('<?php echo $city->city; ?>')">
+                            <tr>
                                 <td><?php echo $city->city; ?></td>
-                                <td></td>
-                        </tr>
+                                <td><form method="POST" action="<?php echo URLROOT; ?>/del_orders/show_streets"> <input id="city" type="hidden" name="city" value="<?php echo $city->city; ?>"><button id="select" type="submit" name="select" >Select</button></form></td>                     
+                            </tr>
                             </tbody>
                             <?php endforeach;?>
                             

@@ -30,17 +30,53 @@
         $this->view('Del_cityList', $data);
     }
 
-    public function findStreets(){
-        $city = $_POST['city'];
-        $streets = $this->postModel->findStreets($city);
-        header('Content-type: application/json');
-		echo json_encode($streets);
-		return;
-    }
+    
     public function show_Streets(){
-        $this->view('Del_cityList');
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            if(isset($_POST['select'])){
+                $city = $_POST['city'];
+                $streets = $this->postModel->findStreets($city);
+                $data=[
+                'streets'=> $streets
+                ];
+                echo $city;
+                $this->view('Del_streetList',$data);        
+            }
+        
+        }  
     }
 
-}
+    public function show_streetOrders(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            if(isset($_POST['select'])){
+                $street = $_POST['street'];
+                $order = $this->postModel->findStreetOrders($street);
+                $data = [
+                    $data1=[
+                        'order'=> $order
+                    ],
+                    $street
+                ];
+                //print_r($data);
+                $this->view('Del_orders_forStreet',$data);        
+            }
+        }
+        
+    }
+
+    public function showOrder(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            if(isset($_POST['select'])){
+                $orderId = $_POST['orderId'];
+                $orderData= $this->postModel->find_selectOrders($orderId);
+                $data = [
+                    'orderData'=> $orderData
+                ];
+                $this->view('del_map',$data);
+            } 
+        }
+    }
+
+ }
 
 ?>

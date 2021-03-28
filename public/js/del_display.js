@@ -39,32 +39,53 @@ if (allCities) {
 
 }
 
-function showRow_Streets($city) {
-
-    var url = "http://localhost/mvcfinal/del_orders/findStreets";
-    $.ajax({
-        url: url,
-        type: 'POST',
-        data: {
-            city: $city
-        },
-        success: function(data) {
-            console.log(data);
-            window.location.href = "http://localhost/mvcfinal/del_orders/show_Streets";
-            var display = document.getElementById("allStreets");
-            // display.querySelector('tbody').innerHTML = "";
-            for (var x = 0; x < data[1].length; x++) {
-                var rowNum = x + 1;
-                var newRow = display.insertRow(rowNum);
-
-                var col1 = newRow.insertCell(0);
-                var col2 = newRow.insertCell(1);
-
-                col1.innerHTML = data[0].city;
-                col2.innerHTML = ' ';
-
-            }
-
-        }
+function opdenSlide(orderId) {
+    $("#openData" + orderId).toggle(function() {
+        $("#hiddenData" + orderId).slideDown();
+        document.querySelector("#hiddenData" + orderId).style.display = "block";
+    }, function() {
+        $("#hiddenData" + orderId).slideUp();
+        document.querySelector("#hiddenData" + orderId).style.display = "none";
     });
 }
+var map = document.getElementById('map');
+if (map) {
+    displyTab();
+}
+
+function displyTab() {
+    document.querySelector(".grabPromo").style.display = "block";
+}
+
+$('.grabPromo').click(function(e) {
+    $('.slideDown').slideToggle();
+});
+// function showRow_Streets($city) {
+
+//     var url = "http://localhost/mvcfinal/del_orders/findStreets";
+//     $.ajax({
+//         url: url,
+//         type: 'POST',
+//         data: {
+//             city: $city
+//         },
+//         success: function(data) {
+//             console.log(data);
+//             window.location.href = "http://localhost/mvcfinal/del_orders/show_Streets";
+//             var display = document.getElementById("allStreets");
+//             // display.querySelector('tbody').innerHTML = "";
+//             for (var x = 0; x < data[1].length; x++) {
+//                 var rowNum = x + 1;
+//                 var newRow = display.insertRow(rowNum);
+
+//                 var col1 = newRow.insertCell(0);
+//                 var col2 = newRow.insertCell(1);
+
+//                 col1.innerHTML = data[0].streetAddress2;
+//                 col2.innerHTML = ' ';
+
+//             }
+
+//         }
+//     });
+// }
