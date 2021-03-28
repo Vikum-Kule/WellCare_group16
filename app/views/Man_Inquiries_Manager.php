@@ -3,16 +3,16 @@
 
 <div class="wrapper">
         <div class="row">
-           <!-- <div class="col-3 col-m-6 col-sm-6">
+           < <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <h3>100+</h3>
-                    <p>To do</p>
+                    <p>Unread</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <h3>100+</h3>
-                    <p>In progress</p>
+                    <p>Processing</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
@@ -21,12 +21,7 @@
                     <p>Completed</p>
                 </div>
             </div>
-            <div class="col-3 col-m-6 col-sm-6">
-                <div class="notification">
-                    <h3>100+</h3>
-                    <p>Issues</p>
-                </div>
-            </div>-->
+           
         </div>
 
 
@@ -34,7 +29,7 @@
 
         <div class="card-header">
                         <h3>
-                            Table
+                            Inquiries
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
@@ -64,6 +59,7 @@
                             </tbody>
                         </table>
                         </div>
+                        
 
         </div><!--buttons-->
 

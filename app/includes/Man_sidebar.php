@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="sidebar-nav-item">
-                <a href="http://localhost/mvcfinal/Man_pages/inquiriesmanagerview" class="sidebar-nav-link">
+                <a href="http://localhost/mvcfinal/Man_Inquiry/showinquiries" class="sidebar-nav-link">
                     <div>
                         <i class="fas fa-spinner"></i>
                     </div>
