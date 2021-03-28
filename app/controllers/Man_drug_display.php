@@ -20,6 +20,14 @@
 		return;
     }
 
-
+    public function inquiriescounter(){
+      $unread=$this->postModel->count_unread();
+      $processing=$this->postModel->count_processing();
+      $completed=$this->postModel->count_completed();
+      $data= [$unread->count,$processing->count,$completed->count];
+      header('Content-type: application/json');
+  echo json_encode($data);
+  return;
+  }
     }
     ?>
