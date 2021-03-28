@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li class="sidebar-nav-item">
-                <a href="http://localhost/mvcfinal/Man_pages/stockrefilview" class="sidebar-nav-link">
+                <a href="http://localhost/mvcfinal/Man_Stock_Refilc/showrefill" class="sidebar-nav-link">
                     <div>
                         <i class="fas fa-check-circle"></i>
                     </div>
