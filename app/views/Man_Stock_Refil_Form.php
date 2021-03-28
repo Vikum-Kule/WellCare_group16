@@ -76,28 +76,37 @@
                                 </tr>-->
                                 <tr>
                                 <th>Refill ID</th>
-                                    <th><input type="text" placeholder="Enter Refill ID" name="refilid" id="refilid" required> </th>
+                                    <th><input type="text" placeholder="Enter Refill ID" name="refillId" id="refillId" required> </th>
                                     </tr>
                                 <tr>
                                 <th>Brand Name</th>
-                                    <th><input type="text" placeholder="Enter Brand Name" name="brandname" id="brandname" required> </th>
+                                    <th><input type="text" placeholder="Enter Brand Name" name="brandName" id="brandName" required> </th>
                                 </tr>
                                 <tr>
-                                    <th>Supplier ID</th>
+                                    <th>Dose Status</th>
                                     <th>
-                                    <input type="text" placeholder="Enter Supplier ID" name="supplierid" id="supplierid" required>
+                                    <input type="text" placeholder="Enter Dose Status" name="doseStatus" id="doseStatus" required>
                                     </th>
                                     </tr>
+                                <tr>
                                 <tr>
                                     <th>Dose</th>
                                     <th>
                                     <input type="text" placeholder="Enter Dose" name="dose" id="dose" required>
                                     </th>
-                                </tr>
+                                    </tr>
+                                <tr>
+                                <tr>
+                                    <th>Supplier ID</th>
+                                    <th>
+                                    <input type="text" placeholder="Enter Supplier ID" name="supplyId" id="supplyId" required>
+                                    </th>
+                                    </tr>
+                                
                                 <tr>
                                     <th>Quantity</th>
                                     <th>
-                                    <input type="number" placeholder="Enter Quantity" name="qty" id="qty" required>
+                                    <input type="number" placeholder="Enter Quantity" name="QTY" id="QTY" required>
                                     </th>
                                 </tr>
                                 </tbody>
