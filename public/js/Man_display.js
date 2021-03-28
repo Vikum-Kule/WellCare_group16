@@ -1,4 +1,3 @@
-
 if (document.getElementById("totalnotifications")) {
     notificationcounter();
 }
@@ -52,11 +51,11 @@ function inquirycounter() {
             var unread = data[0];
             var processing = data[1];
             var completed = data[2];
-            
+
             document.getElementById("unread").innerHTML = unread;
             document.getElementById("processing").innerHTML = processing;
             document.getElementById("completed").innerHTML = completed;
-           
+
         }
     });
 }
