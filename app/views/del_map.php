@@ -1,6 +1,6 @@
 <?php require_once ($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/config/config.php");?>
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/del_header.php");?>
-<script type='text/javascript' src="http://maps.googleapis.com/maps/api/js?&sensor=false">
+<!-- <script type='text/javascript' src="http://maps.googleapis.com/maps/api/js?&sensor=false">
 </script>
 <script>
     if (navigator.geolocation) {
@@ -24,10 +24,10 @@
             });
         });
     }
-</script>
+</script> -->
 <!-- main content -->
 <div class="wrapper" id="wrapper">
-<div class="slideDown" style="width: 100%; height: 150px;">
+<!-- <div class="slideDown" style="width: 100%; height: 150px;">
        <?php foreach($data['orderData'] as $data): ?>
         <table style="margin-top: 20px; margin-bottom: 0px">
             <tr>
@@ -49,24 +49,20 @@
                 <td><?php echo $data->PhoneNum;?></td>
             </tr>
             <tr>
+            <td><b>Price</b></td>
+            <td><?php echo $data->price;?></td>
+            </tr>
+            <tr>
             <td><img src="<?php echo URLROOT."/public/img/customer.png";?>" style="height: 20px;width:20px;" alt=""></td>
             <td><?php echo $data->FirstName;?> <?php echo $data->LastName;?></td>
             </tr>
        </table> 
        <?php endforeach; ?>
     </div>
+     -->
     
-    
-    
-        
             
-                <div class="card" id="map">
-                    <div class="card-content">
-                        
-                    </div>
-                </div>
-            
-            <!-- <div class="col-4 col-m-12 col-sm-12" id="addressCard">
+            <div class="col-4 col-m-12 col-sm-12" id="addressCard">
                 <div class="card" >
                     <div class="card-header">
                         <h3>
@@ -96,7 +92,7 @@
                         </table>
                     </div>
                 </div>
-            </div> -->
+            </div>
        
         
 

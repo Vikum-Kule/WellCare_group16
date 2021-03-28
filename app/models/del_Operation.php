@@ -81,7 +81,7 @@
         public function find_selectOrders($orderId){
             $this->db->query('SELECT 
             customer.PhoneNum, customer.FirstName, customer.LastName,prepared_order.orderId, prepared_order.price, prepared_order.streetAddress1,
-            prepared_order.streetAddress2, prepared_order.city, prepared_order.district
+            prepared_order.streetAddress2, prepared_order.city, prepared_order.district, prepared_order.price
             FROM 
             prepared_order
             INNER JOIN 
