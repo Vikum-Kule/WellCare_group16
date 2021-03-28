@@ -1,6 +1,12 @@
-drugcounter();
-notificationcounter();
-inquirycounter();
+
+if (document.getElementById("totalnotifications")) {
+    notificationcounter();
+}
+if (document.getElementById("totaldrugs")) {
+    drugcounter();
+}
+
+
 
 function drugcounter() {
 
@@ -11,9 +17,9 @@ function drugcounter() {
         success: function(data) {
             console.log(data);
             var totaldrugs = data[0];
-            
+
             document.getElementById("totaldrugs").innerHTML = totaldrugs;
-           
+
         }
     });
 }
@@ -27,12 +33,13 @@ function notificationcounter() {
         success: function(data) {
             console.log(data);
             var totalnotifications = data[0];
-            
+
             document.getElementById("totalnotifications").innerHTML = totalnotifications;
-           
+
         }
     });
 }
+
 
 function inquirycounter() {
 
@@ -53,3 +60,4 @@ function inquirycounter() {
         }
     });
 }
+

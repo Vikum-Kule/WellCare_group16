@@ -1,50 +1,71 @@
 <?php require_once ($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/config/config.php");?>
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/del_header.php");?>
-
-    <!-- main content -->
-    <div class="wrapper" id="wrapper">
+<script type='text/javascript' src="http://maps.googleapis.com/maps/api/js?&sensor=false">
+</script>
+<script>
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (p) {
+            var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+            var mapOptions = {
+                center: LatLng,
+                zoom: 13,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+            var marker = new google.maps.Marker({
+                position: LatLng,
+                map: map,
+                title: "<div style = 'height:60px;width:200px'><b>Your location:</b><br />Latitude: " + p.coords.latitude + "<br />Longitude: " + p.coords.longitude
+            });
+            google.maps.event.addListener(marker, "click", function (e) {
+                var infoWindow = new google.maps.InfoWindow();
+                infoWindow.setContent(marker.title);
+                infoWindow.open(map, marker);
+            });
+        });
+    }
+</script>
+<!-- main content -->
+<div class="wrapper" id="wrapper">
+<div class="slideDown" style="width: 100%; height: 150px;">
+       <?php foreach($data['orderData'] as $data): ?>
+        <table style="margin-top: 20px; margin-bottom: 0px">
+            <tr>
+                <td><img src="<?php echo URLROOT."/public/img/location.jpg";?>" style="height: 30px;width:30px;" alt=""></td>
+                <td><?php echo $data->streetAddress1;?>,<?php echo $data->streetAddress2;?>,<?php echo $data->city;?>,<?php echo $data->district;?></td>
+            </tr>
+            <tr>
+            <td><img src="<?php echo URLROOT."/public/img/order.png";?>" style="height: 20px;width:20px;" alt=""></td>
+            <td><?php echo $data->orderId;?></td>
+            </tr>
+            
+       </table> 
+    </div>
+    <div class="grabPromo" style="width: 100%; height: 110px;">
+       <table style="margin-top: -5px;text-align:left;">
+            
+            <tr>
+                <td><img src="<?php echo URLROOT."/public/img/tel.png";?>" style="height: 20px;width:20px;" alt=""></td>
+                <td><?php echo $data->PhoneNum;?></td>
+            </tr>
+            <tr>
+            <td><img src="<?php echo URLROOT."/public/img/customer.png";?>" style="height: 20px;width:20px;" alt=""></td>
+            <td><?php echo $data->FirstName;?> <?php echo $data->LastName;?></td>
+            </tr>
+       </table> 
+       <?php endforeach; ?>
+    </div>
     
     
-        <div class="row" id="city_wrapper">
-            <div class="col-3 col-m-6 col-sm-6">
-                <div class="notification">
-                    <h3>100+</h3>
-                    <p>To do</p>
-                </div>
-            </div>
-            <div class="col-3 col-m-6 col-sm-6">
-                <div class="notification">
-                    <h3>100+</h3>
-                    <p>In progress</p>
-                </div>
-            </div>
-            <div class="col-3 col-m-6 col-sm-6">
-                <div class="notification">
-                    <h3>100+</h3>
-                    <p>Completed</p>
-                </div>
-            </div>
-            <div class="col-3 col-m-6 col-sm-6">
-                <div class="notification">
-                    <h3>100+</h3>
-                    <p>Issues</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-8 col-m-12 col-sm-12" id="city_card">
+    
+        
+            
                 <div class="card" id="map">
-                    <div class="card-header">
-                        <h3>
-                        
-                        </h3>
-                        <i class="fas fa-ellipsis-h"></i>
-                    </div>
                     <div class="card-content">
                         
                     </div>
                 </div>
-            </div>
+            
             <!-- <div class="col-4 col-m-12 col-sm-12" id="addressCard">
                 <div class="card" >
                     <div class="card-header">
@@ -76,7 +97,7 @@
                     </div>
                 </div>
             </div> -->
-        </div>
+       
         
 
         <!-- end main content -->

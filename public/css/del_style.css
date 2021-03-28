@@ -333,10 +333,14 @@ c .overlay-scrollbar::-webkit-scrollbar-thumb {
     #city_wrapper {
         display: none;
     }
+    #map {
+        width: 100%;
+        height: 100vh;
+    }
     .wrapper {
-        padding: 10px;
+        padding: 0px;
         margin-left: 0px;
-        padding-top: 75px;
+        padding-top: 15px;
         background: #f1f1f1;
         transition: margin-left .5s;
     }
@@ -345,6 +349,7 @@ c .overlay-scrollbar::-webkit-scrollbar-thumb {
     }
     .sidebar {
         width: 0px;
+        margin-top: 60px;
     }
     .sidebar-nav-link:hover {
         background: #f1f1f1 !important;
@@ -677,7 +682,6 @@ button:hover {
 }
 
 .grabPromo {
-    display: none;
     cursor: pointer;
     padding: 20px;
     border-bottom-left-radius: 25px;
