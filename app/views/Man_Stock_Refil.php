@@ -44,7 +44,7 @@
                                 <tr>
                                     <th>Refill ID</th>
                                     <th>Brand Name</th>
-                                    <th>Dose Status</th>
+                                    <th>Dosage forms</th>
                                     <th>Dose</th>
                                     <th>Supplier ID</th>
                                     <th>Refill Date and TIme</th>

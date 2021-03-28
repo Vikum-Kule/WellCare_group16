@@ -4,16 +4,16 @@
         <li class="sidebar-nav-item">
                 <a href="http://localhost/mvcfinal/del_orders/show_locations" class="sidebar-nav-link">
                     <div>
-                        <i class="fab fa-accusoft"></i>
                     </div>
+                    <img src="<?php echo URLROOT."/public/img/home.png";?>" style="height: 20px;width:30px;" alt="">
                     <span>Home</span>
                 </a>
             </li>
         <li class="sidebar-nav-item">
                 <a href="http://localhost/mvcfinal/del_orders/show_cities" class="sidebar-nav-link">
                     <div>
-                        <i class="fab fa-accusoft"></i>
                     </div>
+                    <img src="<?php echo URLROOT."/public/img/location_s.jpg";?>" style="height: 30px;width:30px;" alt="">
                     <span>Location</span>
                 </a>
             </li>

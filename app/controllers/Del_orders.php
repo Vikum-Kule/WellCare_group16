@@ -69,10 +69,11 @@
             if(isset($_POST['select'])){
                 $orderId = $_POST['orderId'];
                 $orderData= $this->postModel->find_selectOrders($orderId);
-                $data = [
+                $dataMap = [
                     'orderData'=> $orderData
                 ];
-                $this->view('del_map',$data);
+                
+                $this->view('del_map',$dataMap);
             } 
         }
     }

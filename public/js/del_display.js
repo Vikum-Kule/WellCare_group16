@@ -48,18 +48,27 @@ function opdenSlide(orderId) {
         document.querySelector("#hiddenData" + orderId).style.display = "none";
     });
 }
-var map = document.getElementById('map');
-if (map) {
-    displyTab();
-}
-
-function displyTab() {
-    document.querySelector(".grabPromo").style.display = "block";
-}
 
 $('.grabPromo').click(function(e) {
     $('.slideDown').slideToggle();
 });
+
+
+
+
+
+// function initMap() {
+//     var location = {
+//         lat: 6.817353,
+//         lng: 80.021455
+//     };
+//     var map = new google.maps.Map(document.getElementById("map"), {
+//         zoom: 4,
+//         center: location
+//     });
+// }
+
+
 // function showRow_Streets($city) {
 
 //     var url = "http://localhost/mvcfinal/del_orders/findStreets";
