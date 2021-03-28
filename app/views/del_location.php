@@ -2,12 +2,12 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/del_header.php");?>
 
     <!-- main content -->
-    <div class="wrapper" id="wrapper">
+    <div class="wrapper" id="wrapper" style="">
         <div class="row">
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <h3>100+</h3>
-                    <p>To do</p>
+                    <p>To Deliver</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
