@@ -5,19 +5,19 @@
         <div class="row">
            < <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
+                    <h3><div id="unread"></div></h3>
                     <p>Unread</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
+                    <h3><div id="processing"></div></h3>
                     <p>Processing</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
+                    <h3><div id="completed"></div></h3>
                     <p>Completed</p>
                 </div>
             </div>
