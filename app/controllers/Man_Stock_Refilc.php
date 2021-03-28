@@ -12,5 +12,6 @@ class Man_Stock_Refilc extends Controller {
 
     	 $this->view('Man_Stock_Refil', $data);
     }
+	
 
 }
