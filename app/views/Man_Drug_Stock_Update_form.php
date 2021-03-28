@@ -95,21 +95,12 @@
                                     <th>
                                     <input type="price" placeholder="Enter price" name="price" id="price" value = "<?php echo $data['drug']->price ?>" required>
                                     </th>
-                                    <th>Expiration Date</th>
-                                    <th>
-                                    <input type="Date" placeholder="Enter Expiration Date" name="EXP" id="EXP" value = "<?php echo $data['drug']->EXP ?>" required>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>Manufacture Date</th>
-                                    <th>
-                                    <input type="Date" placeholder="Enter Manufacture Date" name="MFD" id="MFD" value = "<?php echo $data['drug']->MFD ?>" required>
-                                    </th>
                                     <th>Dose Status</th>
                                     <th>
                                     <input type="text" placeholder="Enter Dose Status" name="doseStatus" id="doseStatus" value = "<?php echo $data['drug']->doseStatus ?>" required>
                                     </th>
                                 </tr>
+                               
                                 <tr>
                                     <th>Dose</th>
                                     <th>
