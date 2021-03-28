@@ -1,3 +1,4 @@
+
 if (document.getElementById("totalnotifications")) {
     notificationcounter();
 }
@@ -39,36 +40,24 @@ function notificationcounter() {
     });
 }
 
-function refillData() {
-    var brand = document.getElementById("brandName").value;
-    var name = document.getElementById("medName").value;
-    var status = document.getElementById("doseStatus").value;
-    var dose = document.getElementById("dose").value;
-    var supplyId = document.getElementById("supplyId").value;
-    var qty = document.getElementById("QTY").value;
-    var price = document.getElementById("price").value;
 
+function inquirycounter() {
 
-    // console.log(data);
-
-    var url = "http://localhost/mvcfinal/Man_Stock_Refilc/stock_add";
+    var url = "http://localhost/mvcfinal/Man_Drug_Display/inquiriescounter";
     $.ajax({
         url: url,
-        type: 'POST',
-        data: {
-            brand: brand,
-            name: name,
-            status: status,
-            dose: dose,
-            supplyId: supplyId,
-            qty: qty,
-            price: price
-        },
+        type: 'GET',
         success: function(data) {
-            window.location.href = "http://localhost/mvcfinal/Man_Stock_Refilc/showrefill";
-
-
+            console.log(data);
+            var unread = data[0];
+            var processing = data[1];
+            var completed = data[2];
+            
+            document.getElementById("unread").innerHTML = unread;
+            document.getElementById("processing").innerHTML = processing;
+            document.getElementById("completed").innerHTML = completed;
+           
         }
     });
-
 }
+
