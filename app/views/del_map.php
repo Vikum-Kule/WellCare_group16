@@ -27,7 +27,7 @@
 </script> -->
 <!-- main content -->
 <div class="wrapper" id="wrapper">
-<?php print_r($data['0']);$data_back = $data['0']; ?>
+<?php $data_back = $data['0']; ?>
      
             <div class="col-4 col-m-12 col-sm-12" >
                 <div class="card" >
@@ -42,7 +42,7 @@
                         <table>
                         <tbody>
                             <tr>
-                                <th>Order Id: </th><td ><?php echo $data->orderId;?></td>
+                                <th>Order Id: </th><td id="orderId"><?php echo $data->orderId;?></td>
                             </tr>
                             <tr>
                                 <th>Name: </th><td ><?php echo $data->FirstName;?> <?php echo $data->LastName;?></td>
@@ -74,7 +74,7 @@
                         <?php }else{ ?>
                             <button onclick="window.location.assign('http://localhost/mvcfinal/del_orders/show_cities')" style="float: left;">Cancel</button>
                         <?php } ?>
-                        <button style="float: right;">Delivered</button>
+                        <button style="float: right;" onclick='orderDeliverd("<?php echo $data_back; ?>")'>Delivered</button>
                         
                     </div>
                     

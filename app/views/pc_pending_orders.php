@@ -11,6 +11,7 @@
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
+
                     <h3><div id="pending"></div></h3>
                     <p>Pending</p>
                 </div>
@@ -56,8 +57,8 @@
                                 <td><?php echo $orders->LastName; ?></td>
                                 <td><?php echo $orders->DateTime; ?></td>
                                 <td><?php echo $orders->price; ?></td>
-                                <td><input id="orderId" type="hidden" name="orderId" value="<?php echo $orders->orderId; ?>">
-                                <button id="confirm_btn" type="submit" name="confirm_btn" onclick="add_to_complete()" >Confirm</button></form></td>
+                                <!-- <td><input id="orderId" type="hidden" name="orderId" value="<?php echo $orders->orderId; ?>">
+                                <button id="confirm_btn" type="submit" name="confirm_btn" onclick="add_to_complete()" >Confirm</button></form></td> -->
                                 
                         </tr>
                             </tbody>

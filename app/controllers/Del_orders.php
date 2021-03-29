@@ -113,6 +113,10 @@
             } 
         }
     }
+    public function updateStatus(){
+        $orderId = $_POST['orderId'];
+        $this->postModel->updateStatus($orderId);
+    }
 
  }
 

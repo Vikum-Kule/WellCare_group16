@@ -69,8 +69,25 @@ function counter() {
     });
 }
 
-function goback() {
-    window.location.href = "http://localhost/mvcfinal/del_orders/show_streetOrders";
+function orderDeliverd(redirect) {
+    var orderId = document.getElementById("orderId").innerHTML;
+    console.log(orderId);
+    var url = "http://localhost/mvcfinal/del_orders/updateStatus";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            orderId: orderId
+        },
+        success: function(data) {
+            if (redirect == "del_location") {
+                window.location.assign('http://localhost/mvcfinal/del_orders/show_locations');
+            } else {
+                window.location.assign('http://localhost/mvcfinal/del_orders/show_cities');
+            }
+        }
+    });
+
 }
 
 // function initMap() {

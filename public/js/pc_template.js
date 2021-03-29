@@ -76,10 +76,10 @@ function prescription() {
 function showNote() {
     var x = document.getElementById("noteCard");
     var z = document.getElementById("prescriptionCard");
+    var y = document.getElementById("selectedMedicine");
     x.style.display = "block";
     z.style.display = "none";
-    x.style.width = "40%";
-    x.style.float = "right";
+    y.style.width = "100%"
 }
 
 function closeNote() {
@@ -155,8 +155,18 @@ function close_notification() {
 function open_confirm() {
     var prescription = document.getElementById("prescription-hidden").value;
     console.log(prescription);
-    const html = '<embed src="http://localhost/mvcfinal/public/img/prescriptions/' + prescription + '" style="display: block; margin-left: auto;margin-right: auto;width: 100%;"></embed>';
-    $('#image_wrapp_confirm').html(html);
+    if (prescription) {
+        console.log(prescription);
+        const html = '<embed src="http://localhost/mvcfinal/public/img/prescriptions/' + prescription + '" style="display: block; margin-left: auto;margin-right: auto;width: 100%;"></embed>';
+        $('#image_wrapp_confirm').html(html);
+    } else {
+        console.log("none");
+        const html = '<div>No Prescription<div>';
+        $('#image_wrapp_confirm').html(html);
+    }
+
+    // const html = '<embed src="http://localhost/mvcfinal/public/img/prescriptions/' + prescription + '" style="display: block; margin-left: auto;margin-right: auto;width: 100%;"></embed>';
+    // $('#image_wrapp_confirm').html(html);
     document.querySelector("#overly").style.display = "block";
     document.querySelector("#confirm").style.display = "block";
     fill_confirm_table();

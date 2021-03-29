@@ -107,6 +107,19 @@
             return $count;
         }
 
+        public function updateStatus($orderId){
+            $this->db->query("UPDATE prepared_order SET status= :status WHERE orderId= :orderId");
+            $this->db->bind(':status', "delivered");
+            $this->db->bind(':orderId', $orderId);
+            if ($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+
     }
 
 ?>
