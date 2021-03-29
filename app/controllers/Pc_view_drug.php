@@ -136,6 +136,7 @@
 			$nonPrescrip_med = $this->postModel->find_medicine_nonOrders($nonprepaierd_orderId);
 			for($x= 0 ; $x< count($nonPrescrip_med); $x++){
 				$medId= $this->postModel->find_using_brand_name($nonPrescrip_med[$x]->name,$nonPrescrip_med[$x]->brand);
+				$non_prescrip_Total = $nonPrescrip_med[$x]->price * $nonPrescrip_med[$x]->qty; 
 				$updateOrder_medicine = [
                     'orderId'=>$nonprepaierd_orderId,
                     'name'=>$nonPrescrip_med[$x]->name,
@@ -146,7 +147,7 @@
                     'doseStatus'=>"-",
                     'dose'=>"-",
                     'barcode'=>$medId->medicineId,
-                    'price'=>$nonPrescrip_med[$x]->price
+                    'price'=>$non_prescrip_Total
                     
                    ];	
 				   
@@ -253,8 +254,7 @@
 			$email_body .="<b>Total: </b>".$total."<br>";
 			$email_body .="<b>Unavailable medicine: </b>".$unavl."<br>";
 			$email_body .="<b>Extra notes : </b>".$note."<br>";
-			$email_body .="<i>Please send your reply email with your payment recipt attachment within 48 hours.</i><br>
-							<b>Thank you.</b>";
+			$email_body .="<b>Thank you.</b>";
 			$header = "From: {$email_Sender}\r\nContent-type: text/html;";
 
 			$mail_result=mail($to,$mail_subject,$email_body,$header);
@@ -366,16 +366,16 @@
 			
 			//create email..
 			$to = $email[0]->Email;
-			$mail_subject = "Order Completed Well Care Pharmacy";
+			$mail_subject = "Order Confirmation Well Care Pharmacy";
 			$email_body = "<b>From: </b> {$email_Sender_name}<br>";
 			$email_body .= "<b>To: </b> {$email_name}<br>";
 			$email_body .= "<b>Order No: </b> {$email_orderId}<br>";
 			
-			$email_body .="<i>Your Order has been completed.You will be received your medicine within 24 hours.</i><br>
+			$email_body .="<i>Your Order has been confirmed.You will be received your medicine within 24 hours.</i><br>
 							<b>Thank you.</b>";
 			$header = "From: {$email_Sender}\r\nContent-type: text/html;";
 
-			$mail_result=mail('vikumkulatunga@gmail.com',$mail_subject,$email_body,$header);
+			$mail_result=mail($to,$mail_subject,$email_body,$header);
 
 			if($mail_result){
 				echo "Email sent";

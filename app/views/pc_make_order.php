@@ -122,7 +122,7 @@
                                     <th>Qty</th>
                                     <th>
                                        <div class="Qty"> 
-                                        <input  type="Number" id="QTY"><span class="messageQTY" id="messageQTY" style="font-size: 12px;"></span>
+                                        <input  type="Number" min="1" id="QTY"><span class="messageQTY" id="messageQTY"  style="font-size: 12px;"></span>
                                         </div>
                                     </th>
 
@@ -130,7 +130,7 @@
                                 <tr>
 									<th>Frequency type</th>
 									<th>
-									<input list="status" name="stat" id="stat">
+									<input list="status" name="stat" id="stat" autocomplete="off">
 
 										<datalist id="status">
                                         <option value="Per Week">Per Week</option>
@@ -157,41 +157,39 @@
                 </div>
             </div>
             <div class="col-4 col-m-12 col-sm-12">
-			<div class="card" style="position: relative;display:none">
+			
+            </div>
+        </div>
+        <div class="card" id="noteCard" style="position: relative;width:40%;display:none;float:right;margin-top: -330px;">
                     <div class="card-header">
                         <h3>
-                            Medicine List
-                            <button class="prescription" id="prescription" onclick="prescription()">Prescription</button>
+                            Note
+                            <button id="submitNote" onclick="closeNote()">Close</button>
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <div class="card-content">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Medicine</th>
-                                    <th>QTY</th>
-                                </tr>
-                            </thead>
                             <tbody>
-                            <?php foreach ($data[3]['orderMedicine'] as $orderMedicine):?> 
-                            <tr>
-                                    <td><?php echo $orderMedicine->name; ?>(<?php echo $orderMedicine->brand; ?>)</td>
-                                    <td><?php echo $orderMedicine->qty; ?></td>
-                                </tr>
-                            <?php endforeach?> 
                                 <tr>
-                                    <th></th>
-                                    <th></th>
+                                    <th>Unavailable Medicine</th>
                                 </tr>
-                                <tr></tr>
-                                <tr></tr>
+                                <tr>
+                                    <th>
+                                    <textarea name="anAvlMedicine" id="anAvlMedicine" cols="30" rows="10"></textarea>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Extra Note</th>
+                                </tr>
+                                <tr>
+                                <th><textarea name="extra" id="extra" cols="30" rows="10"></textarea></th>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
             </div>
-        </div>
+
     
         <div class="card" id="prescriptionCard" style="position: relative;width: 40%; margin-top:-330px;">
                     
@@ -259,36 +257,7 @@
             </div>
         </div>
         
-        <div class="card" id="noteCard" style="width: 40%;margin-top:-330px;">
-                    <div class="card-header">
-                        <h3>
-                            Note
-                            <button id="submitNote" onclick="closeNote()">Close</button>
-                        </h3>
-                        <i class="fas fa-ellipsis-h"></i>
-                    </div>
-                    <div class="card-content">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Unavailable Medicine</th>
-                                </tr>
-                                <tr>
-                                    <th>
-                                    <textarea name="anAvlMedicine" id="anAvlMedicine" cols="30" rows="10"></textarea>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>Extra Note</th>
-                                </tr>
-                                <tr>
-                                <th><textarea name="extra" id="extra" cols="30" rows="10"></textarea></th>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-            </div>
-		
+        
         <!-- <div class="col-2 col-m-2 col-sm-2" id="priceCard">
 			<div class="card" style="position: relative;">
                     <div class="card-content">
