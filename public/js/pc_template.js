@@ -54,7 +54,18 @@ function prescription() {
     var prescription = document.getElementById("prescription-hidden").value;
     if (prescription) {
         console.log(prescription);
-        const html = '<embed src="http://localhost/mvcfinal/public/img/prescriptions/' + prescription + '" style="display: block; margin-left: auto;margin-right: auto;width: 100%;"></embed>';
+
+        var res = prescription.split(".");
+
+            if(res[1]=='pdf'){
+              var html = '<iframe src="' + URLROOT + '/public/img/prescriptions/' + prescription+ '" height="480"width="300" style="display: block;margin-left: auto;margin-right: auto;width: 100%"></iframe> ';
+
+            }else{
+              var html = '<div class="card"><img src="' + URLROOT + '/public/img/prescriptions/' + prescription+ '" style="display: block;margin-left: auto;margin-right: auto;width: 100%"></iframe>';
+            }
+
+
+        //const html = '<embed src="http://localhost/mvcfinal/public/img/prescriptions/' + prescription + '" style="display: block; margin-left: auto;margin-right: auto;width: 100%;"></embed>';
         $('#image_wrapp').html(html);
     } else {
         console.log("none");
