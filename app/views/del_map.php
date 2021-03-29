@@ -27,70 +27,57 @@
 </script> -->
 <!-- main content -->
 <div class="wrapper" id="wrapper">
-<!-- <div class="slideDown" style="width: 100%; height: 150px;">
-       <?php foreach($data['orderData'] as $data): ?>
-        <table style="margin-top: 20px; margin-bottom: 0px">
-            <tr>
-                <td><img src="<?php echo URLROOT."/public/img/location.jpg";?>" style="height: 30px;width:30px;" alt=""></td>
-                <td><?php echo $data->streetAddress1;?>,<?php echo $data->streetAddress2;?>,<?php echo $data->city;?>,<?php echo $data->district;?></td>
-            </tr>
-            <tr>
-            <td><img src="<?php echo URLROOT."/public/img/order.png";?>" style="height: 20px;width:20px;" alt=""></td>
-            <td><?php echo $data->orderId;?></td>
-            </tr>
-            
-       </table> 
-    </div>
-    <div class="grabPromo" style="width: 100%; height: 110px;">
-       <table style="margin-top: -5px;text-align:left;">
-            
-            <tr>
-                <td><img src="<?php echo URLROOT."/public/img/tel.png";?>" style="height: 20px;width:20px;" alt=""></td>
-                <td><?php echo $data->PhoneNum;?></td>
-            </tr>
-            <tr>
-            <td><b>Price</b></td>
-            <td><?php echo $data->price;?></td>
-            </tr>
-            <tr>
-            <td><img src="<?php echo URLROOT."/public/img/customer.png";?>" style="height: 20px;width:20px;" alt=""></td>
-            <td><?php echo $data->FirstName;?> <?php echo $data->LastName;?></td>
-            </tr>
-       </table> 
-       <?php endforeach; ?>
-    </div>
-     -->
-    
-            
-            <div class="col-4 col-m-12 col-sm-12" id="addressCard">
+<?php print_r($data['0']);$data_back = $data['0']; ?>
+     
+            <div class="col-4 col-m-12 col-sm-12" >
                 <div class="card" >
                     <div class="card-header">
                         <h3>
-                            Address
+                            Order Details
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <div class="card-content">
+                    <?php foreach($data['orderData'] as $data): ?>
                         <table>
                         <tbody>
                             <tr>
-                                <th>Order Id </th><td id="id"></td>
+                                <th>Order Id: </th><td ><?php echo $data->orderId;?></td>
                             </tr>
                             <tr>
-                                <th>Street Address1: </th><td id="streetAddress1"></td>
+                                <th>Name: </th><td ><?php echo $data->FirstName;?> <?php echo $data->LastName;?></td>
                             </tr>
                             <tr>
-                                <th>Street Address2: </th><td id="streetAddress2"></td>
+                                <th>Phone: </th><td ><?php echo $data->PhoneNum;?></td>
                             </tr>
                             <tr>
-                                <th>City: </th><td id="city"></td>
+                                <th>Street Address1: </th><td id="streetAddress1"><?php echo $data->streetAddress1;?></td>
                             </tr>
                             <tr>
-                                <th>District: </th><td id="district"></td>
+                                <th>Street Address2: </th><td id="streetAddress2"><?php echo $data->streetAddress2;?></td>
+                            </tr>
+                            <tr>
+                                <th>City: </th><td id="city"><?php echo $data->city;?></td>
+                            </tr>
+                            <tr>
+                                <th>District: </th><td id="district"><?php echo $data->district;?></td>
+                            </tr>
+                            <tr>
+                                <th>Price </th><td ><?php echo $data->price;?></td>
                             </tr>
                         </tbody>
                         </table>
+
+                        <?php endforeach; ?>
+                        <?php if($data_back == 'del_location'){ ?>
+                            <button onclick="window.location.assign('http://localhost/mvcfinal/del_orders/show_locations')" style="float: left;">Cancel</button>
+                        <?php }else{ ?>
+                            <button onclick="window.location.assign('http://localhost/mvcfinal/del_orders/show_cities')" style="float: left;">Cancel</button>
+                        <?php } ?>
+                        <button style="float: right;">Delivered</button>
+                        
                     </div>
+                    
                 </div>
             </div>
        
