@@ -6,6 +6,7 @@ loadComplaints();
 
 
 
+
  }
  function loadComplaints(){
      const html2='<tr>'+
@@ -26,7 +27,7 @@ loadComplaints();
             console.log(responce);
             responce.forEach(complaint => {
                 const html= '<tr>'+
-                            '<td>'+complaint.inquiryId+' </td>'+
+                            '<td>'+complaint.orderId+' </td>'+
                             '<td>'+complaint.inquiryDate+'</td>'+
                             '<td>'+complaint.inquiry+'</td>'+
                             '</tr>';
@@ -50,7 +51,7 @@ loadComplaints();
 function sendComplaint() {
 
     // console.log("sudesh");
-    var OrderNumber = $("#OrderNumber").val();
+    var OrderNumber = $("#OrderNumberSearch").val();
     var complaint = $("textarea#complaint").val();
    // $("textarea#msg").val(result.message);
     $.ajax({
@@ -61,7 +62,7 @@ function sendComplaint() {
             complaint: complaint
 
         }),
-        contentType: "application/json; charset=utf-8",
+        //contentType: "application/json; charset=utf-8",
         dataType: 'json',
         success: function ($sucsess) {
 
@@ -72,7 +73,7 @@ function sendComplaint() {
 
             } else {
 
-                $('#successMessage').html("SOMTHING WENT WRONG....");
+                $('#successMessage').html("INVALID ORDER ID....");
             }
             loadComplaints();
 
@@ -81,3 +82,28 @@ function sendComplaint() {
     });
 
 }
+function searchFunction() {
+    var OrderNumberSearch = $("#OrderNumberSearch").val();
+    //console.log(OrderNumberSearch);
+    $('#datalist').html("");
+    $.ajax({
+      type: 'post',
+      url: ''+URLROOT+'/myOrders/OrderNumberSearch',
+      data: JSON.stringify({
+        searchOrderId:OrderNumberSearch
+      }),
+      dataType: 'json',
+      success: function(preparedMyOrders) {
+        console.log(preparedMyOrders);
+        preparedMyOrders.forEach(preparedMyOrder => {
+           
+          const html='<option value="'+preparedMyOrder.orderId+'"/>';
+          console.log(html);
+          $('#datalist').append(html);
+        });
+  
+      }
+    });
+  
+  
+  }

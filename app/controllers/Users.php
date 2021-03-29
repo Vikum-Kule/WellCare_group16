@@ -727,10 +727,10 @@ class Users extends Controller{
             ];
 
         } if (empty($data['enteredPin'])) {
-            $data['pinError'] = 'Please enter 4 digit pin.';
+            $data['pinError'] = 'ENTER THE 4 DIGIT PIN...';
             $this->view('verifyEmail',$data);
         } elseif ($data['enteredPin']!=$_SESSION['pin']) {
-            $data['pinError'] = 'Enter correct pin...';
+            $data['pinError'] = 'PIN IS INCORRECT...';
             $this->view('verifyEmail',$data);
             
         } else{
@@ -739,7 +739,7 @@ class Users extends Controller{
 
             $this->userModel->updateStatus( $_SESSION['updateState_userName']);
             if($this->userModel->register($_SESSION['updateState_data'])){
-                header('location: ' . URLROOT . '/Home');
+                header('location: ' . URLROOT . '/pages/Home');
 
             }else{
                 die('Something went wrong');

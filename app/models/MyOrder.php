@@ -5,6 +5,36 @@
         public function __construct() {
             $this->db = new Database;
         }
+        public function cofirmOrderByCustomer($orderId){
+            $status="completed";
+            $this->db->query("UPDATE prepared_order SET status=:status WHERE orderId = :orderId");
+            $this->db->bind(':orderId', $orderId);
+            $this->db->bind(':status', "completed");
+            if ($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+
+
+        }
+        public function cancelOrderByCustomer($orderId){
+            $status="canceled";
+            $this->db->query("UPDATE prepared_order SET status=:status WHERE orderId = :orderId");
+            $this->db->bind(':orderId', $orderId);
+            $this->db->bind(':status', "canceled");
+            if ($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+
+
+        }
         public function getNonPreparedMyOrders($UserId){
 
             $this->db->query('SELECT 
@@ -154,6 +184,30 @@
                 return false;
             }
         }
+        public function checkOrderNumber($orderId){
+
+            $this->db->query("SELECT orderId
+                              FROM 
+                              prepared_order
+                              where orderId =:orderId");
+
+            // $this->db->bind(':searchOrderId',$data['searchOrderId']);
+            $this->db->bind(':orderId',$orderId);
+            //$this->db->bind(':searchOrderId', $searchOrderId);
+    
+            $row2 = $this->db->single();
+        //  echo $this->db->rowCount()
+        //check email already taken
+        if ($this->db->rowCount() > 0) {
+
+            return true;
+        } else {
+            return false;
+        }
+
+
+
+        }
         public function getComplaint($UserId){
 
             $this->db->query('SELECT 
@@ -212,21 +266,27 @@
 
 
         }
+        public function OrderNumberSearch($data){
+             
+           
+
+            $this->db->query("SELECT orderId
+                              FROM 
+                              prepared_order
+                              where customerId =:user_id");
+
+            // $this->db->bind(':searchOrderId',$data['searchOrderId']);
+            $this->db->bind(':user_id',$data['user_id']);
+            //$this->db->bind(':searchOrderId', $searchOrderId);
+    
+            $row = $this->db->resultSet();
+            return  $row;
+        }
         
     
     }
 
 
 
-    // echo json_encode($this->myOrderModel->nonPreparedMyOrdersData($json->orderId));
-
-
-
-    // }
-    //  public function sendComplaint(){}
-    //     $obj = file_get_contents('php://input');
-    //     $json = json_decode($obj);
-
-    //     header('Content-Type: application/json');
-	// 	echo json_encode($this->myOrderModel->preparedMyOrdersData($json->orderId));
+  
 

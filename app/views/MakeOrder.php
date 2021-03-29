@@ -29,7 +29,7 @@
   <div id="demo"></div>
   <div class="topnav" id="myTopnav">
 
-    <a href="<?php echo URLROOT ?>/orders/makeOrder" class="active">Make Order</a>
+    <a href="<?php echo URLROOT ?>/orders/makeOrder" class="active">Home</a>
 
 
 
@@ -76,7 +76,7 @@
     <div class="wrapper">
       <div class="search-input">
         <a href="" target="_blank" hidden></a>
-        <input type="text" placeholder="Type to search.." id="searchBar" list="datalist" onkeydown="searchFunction()">
+        <input type="text" placeholder="Type to search.." id="searchBar" list="datalist" onkeyup="searchFunction()">
       <datalist id="datalist">
         
       
@@ -222,6 +222,19 @@ function toggleModal(medicineId) {
       dataType: 'json',
 
       success: function(medicine) {
+
+
+        var html3
+          if(medicine[0].QTY<2){
+            html3='<button style="background-color: #5a5a5a;">Out Of Stock</button>';
+
+          }else if(medicine[0].QTY>=2){
+           
+            html3='<button onclick="addToCartModel(' +medicine[0].medicineId +')">Add to Cart</button>';
+
+
+          }
+
 console.log(medicine[0]);
 // <h2 id="modal2_name">Name</h2><br>
 //           <h4 id="modal2_brand">Click </h4>
@@ -230,11 +243,11 @@ $("#modal2_name").html(medicine[0].	name);
 $("#modal2_brand").html(medicine[0].	brand);
 $("#modal2_description").html(medicine[0].	description);
 // <img onclick="toggleModal(' + medicine.medicineId + ')" src="'+base+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">'
-var html='<img src="'+URLROOT+'/public/img/medicines/'+ medicine[0].medicineId + '.jpg" style="width:30%">';
+var html='<img src="'+URLROOT+'/public/img/medicines/'+ medicine[0].medicineId + '.jpg" style="width:100%">';
 $("#modal2_image").html(html);  
 var html2='<input id="model2_quantity" pattern="[0-9]" min="1" step="1"/  type="number" placeholder="Enter Quantity" >';
 $("#modal2_quantity").html(html2);
-var html3='<button onclick="addToCartModel(' +medicine[0].medicineId +')">Add to Cart</button>';
+//var html3='<button onclick="addToCartModel(' +medicine[0].medicineId +')">Add to Cart</button>';
 $("#modal2_addToCart").html(html3);
 
 

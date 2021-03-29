@@ -238,20 +238,37 @@
   .card .btn {
     
     
-    background-color: #FF0000;
+    background-color: #f83333;
     
     font-size: 16px;
     padding: 2px 2px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    
     text-align: center;
     width: 30%;
 }
+.btnRemove{
+  background-color: #f83333;
+    
+    font-size: 16px;
+    padding: 2px 2px;
+    border: none;
+    cursor: pointer;
+   
+    text-align: center;
+    width: 30%;
+
+}
+.btnRemove:hover{
+
+  background-color: rgb(255, 0, 0);
+}
+
   
   
   .card .btn:hover {
-    background-color: black;
+    background-color: rgb(255, 0, 0);
   }
 
   .remove{
@@ -603,6 +620,11 @@ display: none;
  .col-75  input{
   width: 100%;
 
+ }
+ #message{
+
+
+  height: 100%;
  }
     
   

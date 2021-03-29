@@ -51,30 +51,42 @@ window.onload = function() {
         MyPreparedOrders.forEach(PreparedMyOrder => {
           var status;
          
-          if (PreparedMyOrder.status == "completed") {
+          if (PreparedMyOrder.status == "pending") {
 
-            status = "READY TO DELIVER";
+            status = "ORDER IS READY,WAITING FOR CONFIRMATION";
+            btnConfirm='<td><button id="btnConfirmOrder'+PreparedMyOrder.orderId+'" onclick="toggleModal(1,'+PreparedMyOrder.orderId+')">CONFIRM</button></td>';
+            btnCansel='<td><button class="btnCansel" id="btnCanselOrder'+PreparedMyOrder.orderId+'" onclick="toggleModal(2,'+PreparedMyOrder.orderId+')">CANCEL</button></td>';
            
           } else if (PreparedMyOrder.status == "delivered") {
             status = "DELIVERED";
+            btnConfirm='<td></td>';
+            btnCansel='<td></td>';
             
-          } else {
-            status = "ORDER IS READY,DO THE PAYMENTS";
-            
+          } else if(PreparedMyOrder.status=='completed') {
+            status = "CONFIRMED,IT MIGHT TAKE 3-4 WEEK DAYS TO DELIVER.THANK YOU!...";
+            btnConfirm='<td></td>';
+            btnCansel='<td></td>';
 
+          }else if(PreparedMyOrder.status=='canceled'){
+            status = "ORDER HAS BEEN CANCELED!...";
+            btnConfirm='<td></td>';
+            btnCansel='<td></td>';
+
+
+          }else{
+
+            status = "SOMETHING WRONG!...";
           }
           var type=0;
           var notification;
           if(PreparedMyOrder.image_path){
             type=4;
-           //notification='<td><button onclick="toggleModal('+PreparedMyOrder.orderId+')">ENABLE</button></td>';
-           notification='<td id="EnableMsgButton_'+PreparedMyOrder.orderId+'"></td>';
-           loadEnableMsgButton(PreparedMyOrder.orderId);
+           
 
          // <button  onclick="toggleModal(2)">Click here to trigger the modal!</button>
           }else{
               type =2;
-              notification='<td></td>';
+           
           }
 
 
@@ -82,8 +94,9 @@ window.onload = function() {
                           '<td class="view"><button onclick="showCart('+type+',' + PreparedMyOrder.orderId + ')">View</button></a></td>' +
                           '<td class="view">' + PreparedMyOrder.orderId + ' </td>' +
                           '<td>' + PreparedMyOrder.DateTime + '</td>' +
-                          '<td>' + status + '</td>' +
-                          '<td>' +  notification+ '</td>'
+                          '<td id="status'+PreparedMyOrder.orderId+'">' + status + '</td>' +
+                          '<td>' +  btnConfirm+ '</td>'+
+                          '<td>' +  btnCansel+ '</td>'+
                        '</tr>';
 
           $('#orders').append(html);
@@ -92,18 +105,7 @@ window.onload = function() {
     });
   }
 
-//   $("#open").click(function() {
-//     $("#a").css("display", "block");
-//     $("#b").css("display", "block");
-//   });
 
-
-//   $(".cancel").click(function() {
-    
-//     $("#a").fadeOut();
-//     $("#b").fadeOut();
-    
-//   });
   var subtotal = 0;
 
   function showCart(type, orderId) {
@@ -146,7 +148,7 @@ window.onload = function() {
     }else{
         $('#customers').html(' <tr>' +
         ' <th>ITEM</th>' +
-        ' <th>DOES</th>' +
+        ' <th>DOSE</th>' +
         ' <th>FREQUENCY</th>' +
         ' <th>QUANTITY</th>' +
         ' <th>PRICE</th>' +
@@ -173,24 +175,24 @@ window.onload = function() {
             // console.log(cartItem[1]);
             if (cartItem) {
               const html =
-                ' <tr >' +
-                    ' <td>' +
-                        ' <div class="cartInfo"><img src="' + URLROOT + '/public/img/medicines/' + cartItem.medicineId + '.jpg" style= "width:10%">' +
-                        ' <div>' +
-                        ' <p>' + cartItem.medName + '</p><small>' + cartItem.price + '</small>' + //"addToCart('+medicine.medicineId+',1)"
-                        ' </div>' +
-                        ' </div>' +
-                    ' </td>' +
-                    '<td>'+cartItem.dose+'('+cartItem.doseStatus+')'+'</td>'+
-                    '<td>'+cartItem.frequency+'('+cartItem.frequencyStatus+')'+'</td>'+
+                '<tr >' +
+                '<td>' +
+                '<div class="cartInfo"><img src="' + URLROOT + '/public/img/medicines/' + cartItem.medicineId + '.jpg" style= "width:10%">' +
+                '<div>' +
+                '<p>' + cartItem.medName + '</p><small>' + cartItem.price + '</small>' + //"addToCart('+medicine.medicineId+',1)"
+                '</div>' +
+                '</div>' +
+                '</td>' +
+                '<td>' + cartItem.dose + '(' + cartItem.doseStatus + ')' + '</td>' +
+                '<td>' + cartItem.frequency + '(' + cartItem.frequencyStatus + ')' + '</td>' +
 
 
-                        ' <input type="hidden" class="pid" value="' + cartItem.medicineId + '">' +
-                    ' <td ><input disabled class="input_num" type="number"  value="' + cartItem.QTY + '" ></td>' +
-                    ' <td>' + cartItem.price * cartItem.QTY + ' </td>' +
-  
+                ' <input type="hidden" class="pid" value="' + cartItem.medicineId + '">' +
+                ' <td ><input disabled class="input_num" type="number"  value="' + cartItem.QTY + '" ></td>' +
+                ' <td>' + cartItem.price * cartItem.QTY + ' </td>' +
+
                 '</tr>';
-  
+
               total(cartItem.price * cartItem.QTY, 200);
               $('#customers').append(html);
             }
@@ -236,9 +238,18 @@ window.onload = function() {
         }),
         dataType: 'json',
         success: (PrescriptionData) => {
-            //console.log(PrescriptionData);
-            const html = '<div class="card"><embed src="' + URLROOT + '/public/img/prescriptions/' +PrescriptionData[0].image_path+'" style="display: block; margin-left: auto;margin-right: auto;width: 50%;"></div>';
-             $('#customers').html(html);
+            console.log(PrescriptionData);
+            var res = PrescriptionData[0].image_path.split(".");
+
+            if(res[1]=='pdf'){
+              var html = '<iframe src="' + URLROOT + '/public/img/prescriptions/' + PrescriptionData[0].image_path+ '" height="400" width="80%" style="display: block;margin-left: auto;margin-right: auto;width: 50%"></iframe> ';
+
+            }else{
+              var html = '<div class="card"><img src="' + URLROOT + '/public/img/prescriptions/' + PrescriptionData[0].image_path+ '" style="display: block;margin-left: auto;margin-right: auto;width: 50%"></iframe>';
+            }
+           //const html = '<div class="card"><embed src="' + URLROOT + '/public/img/prescriptions/' +PrescriptionData[0].image_path+'" style="display: block; margin-left: auto;margin-right: auto;width: 50%;"></div>';
+             
+            $('#customers').html(html);
              
 
 

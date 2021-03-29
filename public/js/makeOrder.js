@@ -7,7 +7,7 @@ function viewCategoryBar() {
 
 
         mainCategory.forEach(mainCategory => {
-
+          if(mainCategory.name!='Prescription'){
 
           const html = ' <div class="dropdown2">' +
             '<button class="dropbtn2">' +
@@ -28,9 +28,9 @@ function viewCategoryBar() {
           html2 = '<div id="' + mainCategory.name.split(/\s/).join('').replace(/[^a-zA-Z ]/g, "") + '"  class="category"> <div  style=" background-color:white; color:#24034D; padding:1px; cursor: pointer; width: 100%; float: left; height:20px;font-size:20px">' + mainCategory.name + '<div> <br></div>';
 
           $('#main').append(html2);
-
+        }
         });
-
+        
       }
     });
 
@@ -55,13 +55,23 @@ function viewCategoryBar() {
         $('#main').html(html3);
 
         medicines.forEach(medicine => {
+          var addButton;
+          if(medicine.QTY<2){
+            addButton='<button style="background-color: #5a5a5a;">Out of stock</button>';
 
-          const html = '<div class="card"><img onclick="toggleModal(' + medicine.medicineId + ')" src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%,height:20%">' +
+
+          }else if(medicine.QTY>=2){
+            addButton='<button onclick="addToCart(' + medicine.medicineId + ',1)">Add to Cart</button>';
+
+
+          }
+
+          const html = '<div class="card"><img onclick="toggleModal(' + medicine.medicineId + ')" src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
             '<h2>' + medicine.name + '</h2>' +
             '<h1>' + medicine.brand + '</h1>' +
             ' <p class="price">rs:' + medicine.price + '</p>' +
             ' <!-- <p>' + medicine.description + '..</p> -->' +
-            '<p><button onclick="addToCart(' + medicine.medicineId + ',1)">Add to Cart</button></p></div>';
+            '<p>'+addButton+'</p></div>';
 
 
 
@@ -120,6 +130,16 @@ function viewCategoryBar() {
       success: function(medicines) {
 
         medicines.forEach(medicine => {
+          var addButton;
+          if(medicine.QTY<2){
+            addButton='<button style="background-color: #5a5a5a;">Out of stock</button>';
+
+
+          }else if(medicine.QTY>=2){
+            addButton='<button onclick="addToCart(' + medicine.medicineId + ',1)">Add to Cart</button>';
+
+
+          }
           var base = URLROOT;
           console.log(URLROOT);
           const html = '<div class="card"><img onclick="toggleModal(' + medicine.medicineId + ')" src="'+base+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
@@ -127,7 +147,7 @@ function viewCategoryBar() {
             '<h1>' + medicine.brand + '</h1>' +
             ' <p class="price">rs:' + medicine.price + '</p>' +
             ' <!-- <p>' + medicine.description + '..</p> -->' +
-            '<p><button onclick="addToCart(' + medicine.medicineId + ',1)">Add to Cart</button></p></div>';
+            '<p>'+addButton+'</p></div>';
 
           console.log(medicine.mainCategory);
           console.log(medicine.brand);
@@ -343,15 +363,15 @@ function checkout() {
           if(signIn){
           console.log(signIn);
           const html = 
-          '<div id="caption">YOUR ORDER IS PROCESS AFTER CONFIRMED... ' +
-          '  <br>CHECK YOUR EMAILS...' +
-          '  <br>PAY THE AMOUNT OF ORDER TO BANK ACCOUNT NUMBER : XXXXXXXX' +
-          '  <br>REPLY TO THAT EMAIL,INCLUDE BANK SLIP IMAGES OF RELEVANT PAYMENT OR SCREENSHOTS OF PAYMENT DETAILS WITH ORDER NUMBER' +
-          '  <br>THANK YOU !...' +
+          '<div id="caption">ENTER YOUR SHIPPING ADDRESS AND PLACE YOUR ORDER... ' +
+                  '  <br>CHECK YOUR EMAILS...' +
+                  '  <br>AFTER GOT DETAILS ABOUT YOUR ORDER THROUGH EMAIL,LOGIN TO WELLCARE WEBSITE AND CONFIRM IT' +
+                 
+                  '  <br>THANK YOU !...' +
          
           ' </div>'+
           '<br>'+
-          '<div class="col-25"><label for="address">Address</label> <div>'+
+          '<div class="col-25"><label for="address">ENTER YOUR SHIPPING ADDRESS</label> <div>'+
           '<div class="col-75">'+
               '<input type="text" id="streetAddress1" name="streetAddress1" placeholder="Enter Street Address 1.." value="'+signIn.streetAddress1+'">'+
               '<span class="invalidFeedback"></span>'+
@@ -367,7 +387,7 @@ function checkout() {
 
 
           '</div>'+
-          '<div ><button id="btnConfirmCheckout" onclick ="confirmCheckout()">confirm</button></div>' 
+          '<div ><button id="btnConfirmCheckout" onclick ="confirmCheckout()">plase Order</button></div>' 
           ;
 
           $('#b2').html(html);
@@ -475,13 +495,23 @@ function getsearchItems(){
     $('#main').html("");
     medicines.forEach(medicine => {
       console.log("sudesh");
+      var addButton;
+      if(medicine.QTY<2){
+        addButton='<button style="background-color: #5a5a5a;">Out of stock</button>';
+
+
+      }else if(medicine.QTY>=2){
+        addButton='<button onclick="addToCart(' + medicine.medicineId + ',1)">Add to Cart</button>';
+
+
+      }
 
       const html = '<div class="card"><img onclick="toggleModal(' + medicine.medicineId + ')" src="'+URLROOT+'/public/img/medicines/'+ medicine.medicineId + '.jpg" style="width:30%">' +
         '<h2>' + medicine.name + '</h2>' +
         '<h1>' + medicine.brand + '</h1>' +
         ' <p class="price">rs:' + medicine.price + '</p>' +
         ' <!-- <p>' + medicine.description + '..</p> -->' +
-        '<p><button onclick="addToCart(' + medicine.medicineId + ',1)">Add to Cart</button></p></div>';
+        '<p>'+addButton+'</p></div>';
 
 
 
