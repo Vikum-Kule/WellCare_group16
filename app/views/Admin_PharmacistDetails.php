@@ -2,6 +2,12 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/Admin_header.php");?>
 
     <!-- main content -->
+    <style>
+    
+    .card {
+        width: 1200px;
+    }
+</style>
     <div class="wrapper">
         <div class="row">
             <div class="col-3 col-m-6 col-sm-6">
@@ -13,7 +19,7 @@
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                   <a href="http://localhost/mvcfinal/admin/showsupplier">Supplier Details</a>
-                     <p>dfdfsds</p>
+                     <p>.</p> 
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
@@ -36,6 +42,20 @@
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
+                   <!-- <center>
+                <div class="viewform">
+                    <form method="post">
+                        <br><br>
+                        <label> Search  </label>
+                        <input type="text" name="code">
+                        
+                        <button class="btn6" type="submit" name="view"><b>View</b></button>
+                        
+                       
+                    </form>
+                </div>          
+              </center>-->
+
                     <div class="card-content">
                         <table>
                             <thead>
@@ -47,9 +67,7 @@
             <th>DOB</th>
             <th>Email</th>
             <th>PhoneNumber</th>
-            <th>FromDate</th>
-            <th>ToDate</th>
-            <th>LicenseNo</th>
+            <th>licenseNo</th>
             <th>NIC</th>
             <th>Delete</th>
             <th>Update</th>
@@ -67,10 +85,8 @@
                         <td><?php echo $phas->DOB; ?></td>
                         <td><?php echo $phas->email; ?></td>
                         <td><?php echo $phas->phoneNumber; ?></td>
-                        <td><?php echo $phas->fromDate; ?></td>
-                        <td><?php echo $phas->toDate; ?></td>
                         <td><?php echo $phas->licenseNo; ?></td>
-                        <td><?php echo $phas->NIC; ?></td>
+                        <td><?php echo $phas->NIC; ?></td>                     
 
                     
                         <td><form action="<?php echo URLROOT . "/admin/deletepharmacist/" . $phas->userName ?>" method = "POST">

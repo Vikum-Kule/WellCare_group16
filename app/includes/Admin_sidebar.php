@@ -28,7 +28,7 @@
                 </a>
             </li>
              <li class="sidebar-nav-item">
-                <a href="http://localhost/mvcfinal/admin_Pages/customerdetails" class="sidebar-nav-link">
+                <a href="http://localhost/mvcfinal/admin/customer" class="sidebar-nav-link">
                     <div>
                         <i class="fas fa-tasks"></i>
                     </div>
@@ -42,6 +42,23 @@
                         <i class="fas fa-book-open"></i>
                     </div>
                     <span>REGISTRATION</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="http://localhost/mvcfinal/admin/users" class="sidebar-nav-link">
+                    <div>
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <span>USERS DETAILS</span>
+                </a>
+            </li>
+
+               <li class="sidebar-nav-item">
+                <a href="http://localhost/mvcfinal/admin/dashbordp" class="sidebar-nav-link">
+                    <div>
+                        <i class="fab fa-accusoft"></i>
+                    </div>
+                    <span>DASHBORD</span>
                 </a>
             </li>
         </ul>

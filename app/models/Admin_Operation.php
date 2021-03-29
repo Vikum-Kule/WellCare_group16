@@ -4,15 +4,139 @@
 
 		public function __construct() {
 			$this->db = new Database;
-		}
+		} 
 		public function drugs(){
 			$this->db->query('SELECT * FROM medicine');
 			$results = $this->db->resultSet();
 			return $results;
 		}
-		public function adddrugm($data) {
-			 $this->db->query('INSERT INTO medicine (name, brand, description, QTY, price, EXP, MFD, category, dose, temperature) VALUES (:name, :brand, :description, :QTY, :price, :EXP, :MFD, :category, :dose, :temperature)');
 
+ 		public function dashbordp(){
+            $this->db->query("SELECT COUNT(userName) as count FROM pharmacist");
+          	$results = $this->db->single();
+			return $results; 
+
+        }
+		public function dashbordc(){
+            $this->db->query("SELECT COUNT(userName) as count FROM customer");
+          	$results = $this->db->single();
+			return $results; 
+
+        }
+
+		public function dashbordm(){
+            $this->db->query("SELECT COUNT(userName) as count FROM manager");
+          	$results = $this->db->single();
+			return $results; 
+
+        }
+		public function dashbordd(){
+            $this->db->query("SELECT COUNT(userName) as count FROM deliveryperson");
+          	$results = $this->db->single();
+			return $results; 
+
+        }
+        public function dashbords(){
+            $this->db->query("SELECT COUNT(supplyId) as count FROM supplier");
+          	$results = $this->db->single();
+			return $results; 
+
+        }
+         public function dashbordu(){
+            $this->db->query("SELECT COUNT(userName) as count FROM users");
+          	$results = $this->db->single();
+			return $results; 
+
+        }
+
+		public function customer(){
+			$this->db->query('SELECT * FROM customer');
+			$results = $this->db->resultSet();
+			return $results;
+		}
+		public function users(){
+			$this->db->query('SELECT * FROM users');
+			$results = $this->db->resultSet();
+			return $results;
+		}
+
+	    public function findUserByEmail($email){
+
+        $this->db->query('SELECT * FROM manager WHERE email = :email');
+
+        $this->db->bind(':email', $email);
+        $row = $this->db->single();
+        //echo $row;
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function findUserByEmailPha($email){
+
+        $this->db->query('SELECT * FROM pharmacist WHERE email = :email');
+
+        $this->db->bind(':email', $email);
+        $row = $this->db->single();
+        //echo $row;
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+     public function findUserByEmaildel($email){
+
+        $this->db->query('SELECT * FROM deliveryperson WHERE email = :email');
+
+        $this->db->bind(':email', $email);
+        $row = $this->db->single();
+        //echo $row;
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+      public function findUserByUsername($userName)
+    {
+        $this->db = new Database;
+        $this->db->query('SELECT * FROM users WHERE userName= :userName');
+        //bind email
+
+        $this->db->bind(':userName', $userName);
+
+        $row2 = $this->db->single();
+        //  echo $this->db->rowCount()
+        //check email already taken
+        if ($this->db->rowCount() > 0) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+		public function setStatus($userName,$userStatus){
+			$this->db->query('INSERT INTO users (userName,Status) VALUES (:userName,:Status)');
+			$this->db->bind(':userName',$userName);
+			$this->db->bind(':Status',$userStatus);
+			if ($this->db->execute()){
+				return true;
+			}
+			else{
+				return false;
+			}
+
+		}
+
+		public function adddrugm($data) {
+			 $this->db->query('INSERT INTO medicine (medicineId, name, brand, description, QTY, price, EXP, MFD, doseStatus, dose, temperature, subCategory, imageLocation) VALUES (:medicineId, :name, :brand, :description, :QTY, :price, :EXP, :MFD, :doseStatus, :dose, :temperature, :subCategory, :imageLocation)');
+
+			$this->db->bind(':medicineId', $data['medicineId']);
 			$this->db->bind(':name', $data['name']);
 			$this->db->bind(':brand', $data['brand']);
 			$this->db->bind(':description', $data['description']);
@@ -20,9 +144,12 @@
 			$this->db->bind(':price', $data['price']);
 			$this->db->bind(':EXP', $data['EXP']);
 			$this->db->bind(':MFD', $data['MFD']);
-			$this->db->bind(':category', $data['category']);
+			$this->db->bind(':doseStatus', $data['doseStatus']);
 			$this->db->bind(':dose', $data['dose']);
 			$this->db->bind(':temperature', $data['temperature']);
+			$this->db->bind(':subCategory', $data['subCategory']);
+			$this->db->bind(':imageLocation', $data['imageLocation']);
+			
 			if ($this->db->execute()){
 				return true;
 			}
@@ -56,11 +183,11 @@
 		public function finddrugsbyId($medicineId){
 			$this->db->query('SELECT * FROM medicine WHERE medicineId = :medicineId');
 			$this->db->bind(':medicineId',$medicineId);
-			$row = $this->db->single();
+			$row = $this->db->resultSet();
 			return $row;
 		}
 		public function updatedrug($data){
-			$this->db->query('UPDATE medicine SET name = :name, brand = :brand, description= :description, QTY= :QTY, price= :price, EXP= :EXP, MFD= :MFD, category= :category, dose= :dose, temperature= :temperature WHERE medicineId= :medicineId');
+			$this->db->query('UPDATE medicine SET medicineId = :medicineId, name = :name, brand = :brand, description= :description, QTY= :QTY, price= :price, EXP= :EXP, MFD= :MFD, doseStatus= :doseStatus, dose= :dose, temperature= :temperature, subCategory= :subCategory, imageLocation= :imageLocation WHERE medicineId= :medicineId');
 
 			$this->db->bind(':medicineId', $data['medicineId']);
 			$this->db->bind(':name', $data['name']);
@@ -70,9 +197,12 @@
 			$this->db->bind(':price', $data['price']);
 			$this->db->bind(':EXP', $data['EXP']);
 			$this->db->bind(':MFD', $data['MFD']);
-			$this->db->bind(':category', $data['category']);
+			$this->db->bind(':doseStatus', $data['doseStatus']);
 			$this->db->bind(':dose', $data['dose']);
 			$this->db->bind(':temperature', $data['temperature']);
+			$this->db->bind(':subCategory', $data['subCategory']);
+			$this->db->bind(':imageLocation', $data['imageLocation']);
+			
 
 			if ($this->db->execute()){
 				return true;
@@ -101,7 +231,7 @@
 			return $results;
 		}
 		public function addpharmacistm($data) {
-			 $this->db->query('INSERT INTO pharmacist (userName, LastName, FirstName, DOB, email, phoneNumber, password, fromDate, toDate, licenseNo, NIC) VALUES (:userName, :LastName, :FirstName, :DOB, :email, :phoneNumber, :password, :fromDate, :toDate, :licenseNo, :NIC)');
+			 $this->db->query('INSERT INTO pharmacist (userName, LastName, FirstName, DOB, email, phoneNumber, password, fromDate, toDate, licenseNo, NIC ) VALUES (:userName, :LastName, :FirstName, :DOB, :email, :phoneNumber, :password, :fromDate, :toDate, :licenseNo, :NIC )');
 
 			$this->db->bind(':userName', $data['userName']);
 			$this->db->bind(':LastName', $data['LastName']);
@@ -114,6 +244,8 @@
 			$this->db->bind(':toDate', $data['toDate']);
 			$this->db->bind(':licenseNo', $data['licenseNo']);
 			$this->db->bind(':NIC', $data['NIC']);
+			
+			
 			
 			if ($this->db->execute()){
 				return true;
@@ -229,8 +361,7 @@ public function deliveryperson(){
 			$this->db->bind(':fromDate', $data['fromDate']);
 			$this->db->bind(':toDate', $data['toDate']);
 			
-			
-			
+		
 			if ($this->db->execute()){
 				return true;
 			}
@@ -242,35 +373,7 @@ public function deliveryperson(){
 
 
 
-        public function delivery_login($userName, $password){
-            $this->db->query('SELECT * FROM deliveryperson WHERE userName = :userName');
-
-            $this->db->bind(':userName', $userName);
-
-            $row = $this->db->single();
-            $hashedPassword = $row->password;
-            if(password_verify($password, $hashedPassword)){
-                return $row;
-            }
-            else{
-                return false;
-            }
-
-        }
-
-        public function findUserByEmail($email){
-            $this->db->query('SELECT * FROM deliveryperson WHERE email = :email');
-
-            $this->db->bind(':email',$email);
-
-            if($this->db->rowCount() > 0){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-
+       
 
 	
 //########################################################################################################
@@ -334,7 +437,7 @@ public function deletepharmacist($userName) {
 			}
 			else{
 				return false;
-			} 
+			}  
 
 		}
 
@@ -407,7 +510,7 @@ public function updatemanager($data){
 		}
 
 public function updatepharmacist($data){
-	     $this->db->query('UPDATE pharmacist SET userName = :userName, LastName = :LastName, FirstName = :FirstName, DOB = :DOB, email = :email, phoneNumber = :phoneNumber, password = :password, fromDate = :fromDate, toDate = :toDate, licenseNo = :licenseNo,  NIC = :NIC WHERE userName= :userName');
+	     $this->db->query('UPDATE pharmacist SET userName = :userName, LastName = :LastName, FirstName = :FirstName, DOB = :DOB, email = :email, phoneNumber = :phoneNumber, password = :password, fromDate = :fromDate, toDate = :toDate, licenseNo = :licenseNo, NIC = :NIC WHERE userName= :userName');
 
 			$this->db->bind(':userName', $data['userName']);
 			$this->db->bind(':LastName', $data['LastName']);
@@ -420,6 +523,7 @@ public function updatepharmacist($data){
 			$this->db->bind(':toDate', $data['toDate']);
 			$this->db->bind(':licenseNo', $data['licenseNo']);
 			$this->db->bind(':NIC', $data['NIC']);
+		
 			
 			if ($this->db->execute()){
 				return true;

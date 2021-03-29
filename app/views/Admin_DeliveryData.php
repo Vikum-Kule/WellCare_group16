@@ -1,6 +1,12 @@
 <?php require_once ($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/config/config.php");?>
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/Admin_header.php");?>
     <!-- main content -->
+    <style>
+    
+    .card {
+        width: 1200px;
+    }
+</style>
     <div class="wrapper">
         <div class="row">
              <div class="col-3 col-m-6 col-sm-6">
@@ -12,7 +18,7 @@
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                   <a href="http://localhost/mvcfinal/admin/showsupplier">Supplier Details</a>
-                     <p>dfdfsds</p>
+                     <p>.</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
@@ -31,12 +37,20 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Table
+                         Delivery Details
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
+                    <!--<center>
+               <div class="filter-post">
+                <input type="text" name="filter" id="filter" placeholder="Enter Drug Name" onkeyup="searchBlog()">
+                <button type="">view</button>
+                   
+               </div>
+               </center>-->
+
                     <div class="card-content">
-                        <table>
+                        <table id="tableRecord">
                             <thead>
     <tr>
             
@@ -48,7 +62,6 @@
             <th>Email</th>
             <th>Phone Number</th>
             <th>From Date</th>
-            <th>To Date</th>
             <th>Delete</th>
             <th>Update</th>
             
@@ -66,8 +79,6 @@
                         <td><?php echo $dils->email; ?></td>
                         <td><?php echo $dils->phoneNumber; ?></td>
                         <td><?php echo $dils->fromDate; ?></td>
-                        <td><?php echo $dils->toDate; ?></td>
-                        
 
                         <td><form action="<?php echo URLROOT . "/admin/deletedeliveryperson/" . $dils->userName ?>" method = "POST">
                             <input type="submit" name="delete" value="Delete">

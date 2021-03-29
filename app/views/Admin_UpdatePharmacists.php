@@ -31,7 +31,8 @@
         </div>
         <div class="row">
             <div class="col-8 col-m-12 col-sm-12">
-               <div class="container">
+                <form action="<?php echo URLROOT;?>/admin/updatepharmacist/<?php echo $data['phas']->userName ?>" method="POST">
+    <div class="container">
    <h1>Update Pharmacist Details</h1>
     <hr>
     <label for="userName"><b>User Name</b></label>
@@ -51,12 +52,12 @@
     <label for="fromDate"><b>fromDate</b></label>
     <input type="text" placeholder="Enter fromDate" name="fromDate" id="fromDate" value="<?php echo $data['phas']->fromDate ?>">
 
-    <label for="toDate"><b>toDate</b></label>
-    <input type="text" placeholder="Enter toDate" name="toDate" id="toDate" value="<?php echo $data['phas']->toDate ?>">
-     <label for="toDate"><b>licenseNo</b></label>
-    <input type="text" placeholder="Enter toDate" name="licenseNo" id="licenseNo" value="<?php echo $data['phas']->licenseNo ?>">
+    <label for="licenseNo"><b>licenseNo</b></label>
+    <input type="text" placeholder="Enter licenseNo" name="licenseNo" id="licenseNo" value="<?php echo $data['phas']->licenseNo ?>" >
     <label for="NIC"><b>NIC</b></label>
     <input type="text" placeholder="Enter NIC" name="NIC" id="NIC" value="<?php echo $data['phas']->NIC ?>" >
+    
+  
     
 
 
