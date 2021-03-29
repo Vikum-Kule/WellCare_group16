@@ -14,7 +14,7 @@
 
 
   <div class="topnav" id="myTopnav">
-    <a href="<?php echo URLROOT ?>/orders/makeOrder" >Make Order</a>
+    <a href="<?php echo URLROOT ?>/orders/makeOrder" >Home</a>
 
     <a href="<?php echo URLROOT ?>/myOrders/myorder">My Orders</a>
 

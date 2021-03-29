@@ -8,21 +8,21 @@ class Order
         $this->db = new Database;
     }
 
-    public function findNutritionSupplements()
-    {
+    // public function findNutritionSupplements()
+    // {
 
-        $this->db->query('SELECT 
-            medicine.name,medicine.brand,medicine.price ,medicine.description  
-            FROM 
-            medicine 
-            INNER JOIN 
-            subcategory 
-            ON 
-            medicine.subCategory = subcategory.name AND subcategory.mainCategory ="Nutrition & Supplements"');
+    //     $this->db->query('SELECT 
+    //         medicine.name,medicine.brand,medicine.price ,medicine.description  
+    //         FROM 
+    //         medicine 
+    //         INNER JOIN 
+    //         subcategory 
+    //         ON 
+    //         medicine.subCategory = subcategory.name AND subcategory.mainCategory ="Nutrition & Supplements"');
 
-        $results = $this->db->resultSet();
-        return $results;
-    }
+    //     $results = $this->db->resultSet();
+    //     return $results;
+    // }
 
     public function getmaincategories()
     {
@@ -52,7 +52,7 @@ class Order
     public function getmedicines($x)
     {
         $this->db->query('SELECT 
-           	medicine.medicineId ,medicine.name,medicine.brand,medicine.description,medicine.price,subcategory.subCategoryID,subcategory,mainCategory	
+           	medicine.QTY,medicine.medicineId ,medicine.name,medicine.brand,medicine.description,medicine.price,subcategory.subCategoryID,subcategory,mainCategory	
             FROM 
             medicine
             INNER JOIN 
@@ -69,7 +69,7 @@ class Order
     {
 
         $this->db->query('SELECT 
-           	medicine.medicineId,medicine.name,medicine.brand,medicine.description,medicine.price,medicine.subcategory,medicine.imageLocation,subcategory.mainCategory
+           	medicine.QTY,medicine.medicineId,medicine.name,medicine.brand,medicine.description,medicine.price,medicine.subcategory,medicine.imageLocation,subcategory.mainCategory
             FROM 
             medicine
             INNER JOIN subcategory
@@ -114,17 +114,20 @@ class Order
     }
     public function searchmedicines($searchBar)
     {
+        $Prescription='Prescription';
 
         $this->db->query("SELECT 
                                 name,brand
                                 FROM 
                                 medicine
                                 WHERE 
-                                brand LIKE '%$searchBar%' OR name LIKE '%$searchBar%'
+                                brand LIKE '%$searchBar%' OR name LIKE '%$searchBar%' AND subCategory<>'$Prescription'
                             ");
 
 
         $this->db->bind(':searchBar', $searchBar);
+        $this->db->bind(':Prescription', $Prescription);
+ //$this->db->bind(':subCategory', $Prescription);
               
 
         $row = $this->db->resultSet();
@@ -133,17 +136,18 @@ class Order
     }
     public function getsearchmedicines($searchBar)
     {
+        $Prescription='Prescription';
 
         $this->db->query(
             "SELECT 
-        medicine.medicineId ,medicine.name,medicine.brand,medicine.description,medicine.price,subcategory.subCategoryID,subcategory,mainCategory	
+        medicine.QTY,medicine.medicineId ,medicine.name,medicine.brand,medicine.description,medicine.price,subcategory.subCategoryID,subcategory,mainCategory	
      FROM 
      medicine
      INNER JOIN 
      subcategory
      ON 
      subcategory.name = medicine.subCategory 
-     where medicine.brand LIKE '%$searchBar%' OR medicine.name LIKE '%$searchBar%'"
+     where medicine.brand LIKE '%$searchBar%' OR medicine.name LIKE '%$searchBar%' AND subCategory<>'$Prescription'"
         );
 
 
@@ -151,6 +155,7 @@ class Order
 
 
         $this->db->bind(':searchBar', $searchBar);
+        $this->db->bind(':Prescription', $Prescription);
 
 
         $row = $this->db->resultSet();
@@ -276,7 +281,21 @@ class Order
         return  $row;
 }
 
-    // public function getOrderidNonPreparedPrescription($data){
+    public function complaintSearchOrderId($data)
+    {
+        $this->db->query(
+        "SELECT 
+        orderId	
+        FROM 
+        prepared_order
+        where customerId=:userId  AND 	orderId  LIKE '%$data->searchOrderId%'"
+        );
+
+        $this->db->bind(':searchOrderId', $data['searchOrderId']);
+        $this->db->bind(':userId', $data['userId']);
+        $row = $this->db->resultSet();
+        return  $row;
+    }
     //     $this->db->query('SELECT 
     //                             orderId
     //                             FROM 
