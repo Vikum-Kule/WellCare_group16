@@ -14,6 +14,15 @@
     	 $this->view('Man_Notification_Manager', $data);
     }
 
+	public function expirationdrugs(){
+    	$minimums = $this->postModel->expirationdrugsm();
+    	
+    	$data = [
+    		'minimums' => $minimums
+    	];
+
+    	 $this->view('Man_Notification_Manager', $data);
+    }
 
 
 }

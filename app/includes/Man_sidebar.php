@@ -15,7 +15,7 @@
                     <div>
                         <i class="fas fa-tasks"></i>
                     </div>
-                    <span>Notification</span>
+                    <span>Reorder List</span>
                 </a>
             </li>
             <li class="sidebar-nav-item">
