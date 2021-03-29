@@ -48,39 +48,48 @@ function openCloseDropdown(event) {
 //     $(this).parent().addClass("active");
 // });
 
+prescription();
 
 function prescription() {
     var prescription = document.getElementById("prescription-hidden").value;
-    console.log(prescription);
-    const html = '<embed src="http://localhost/mvcfinal/public/img/prescriptions/' + prescription + '" style="display: block; margin-left: auto;margin-right: auto;width: 100%;"></embed>';
-    $('#image_wrapp').html(html);
-    document.getElementById("inputTable").style.width = "50%";
-    var x = document.getElementById("prescriptionCard");
+    if (prescription) {
+        console.log(prescription);
+        const html = '<embed src="http://localhost/mvcfinal/public/img/prescriptions/' + prescription + '" style="display: block; margin-left: auto;margin-right: auto;width: 100%;"></embed>';
+        $('#image_wrapp').html(html);
+    } else {
+        console.log("none");
+        const html = '<div>No Prescription<div>';
+        $('#image_wrapp').html(html);
+    }
+    // document.getElementById("inputTable").style.width = "50%";
+    // var x = document.getElementById("prescriptionCard");
     //var y = document.getElementById("openTab");
     //var z = document.getElementById("hiddenTab");
-    x.style.display = "block";
+    // x.style.display = "block";
     //y.style.display = "none";
     // z.style.display = "block";
 
 
 }
 
+
 function showNote() {
     var x = document.getElementById("noteCard");
-    var y = document.getElementById("selectedMedicine");
-    var z = document.getElementById("priceCard");
+    var z = document.getElementById("prescriptionCard");
     x.style.display = "block";
-    y.style.width = "50%";
     z.style.display = "none";
+    x.style.width = "40%";
+    x.style.float = "right";
 }
 
 function closeNote() {
     var x = document.getElementById("noteCard");
-    var y = document.getElementById("selectedMedicine");
-    var z = document.getElementById("priceCard");
+    // var y = document.getElementById("selectedMedicine");
+    var z = document.getElementById("prescriptionCard");
     x.style.display = "none";
-    y.style.width = "76.66%";
+    // y.style.width = "76.66%";
     z.style.display = "block";
+
 
 }
 

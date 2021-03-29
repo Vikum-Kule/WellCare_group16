@@ -15,11 +15,11 @@
                     <div>
                         <i class="fas fa-tasks"></i>
                     </div>
-                    <span>Notification</span>
+                    <span>Reorder List</span>
                 </a>
             </li>
             <li class="sidebar-nav-item">
-                <a href="http://localhost/mvcfinal/Man_pages/inquiriesmanagerview" class="sidebar-nav-link">
+                <a href="http://localhost/mvcfinal/Man_Inquiry/showinquiries" class="sidebar-nav-link">
                     <div>
                         <i class="fas fa-spinner"></i>
                     </div>
@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li class="sidebar-nav-item">
-                <a href="http://localhost/mvcfinal/Man_pages/stockrefilview" class="sidebar-nav-link">
+                <a href="http://localhost/mvcfinal/Man_Stock_Refilc/showrefill" class="sidebar-nav-link">
                     <div>
                         <i class="fas fa-check-circle"></i>
                     </div>
@@ -48,6 +48,14 @@
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <span>Invoices</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="http://localhost/mvcfinal/Man_Delivery_Assignc/assigndelivery" class="sidebar-nav-link">
+                    <div>
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <span>To Deliver Orders</span>
                 </a>
             </li>
             

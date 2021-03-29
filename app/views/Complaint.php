@@ -17,7 +17,7 @@
 
 <body>
 <div class="topnav" id="myTopnav">
-    <a href="<?php echo URLROOT ?>/orders/makeOrder">Make Order</a>
+    <a href="<?php echo URLROOT ?>/orders/makeOrder">Home</a>
     <?php
     if ($_SESSION['active'] == true) {
       echo ('<a href="#" class="active">Complaints</a>');
@@ -48,9 +48,16 @@
         <label for="orderNumber">Order Number</label>
       </div>
       <div class="col-75">
-        <input type="text" id="OrderNumber" name="OrderNumber" placeholder="Order Number.." value=" <?php if(isset( $data['complaintOrderId'])){ echo $data['complaintOrderId']; }?>">
+        <input type="text" placeholder="Order Number..." name="OrderNumberSearch" id="OrderNumberSearch" list="datalist" onkeyup="searchFunction()" value=" <?php if(isset( $data['complaintOrderId'])){ echo $data['complaintOrderId']; }?>">
+        <datalist id="datalist">
+       
+      
+      
+      </datalist>
       </div>
     </div>
+    
+      
     
   
     
@@ -64,7 +71,7 @@
       </div>
     </div>
     <div class="row">
-      <button  onclick="sendComplaint()">Submit</button>
+      <button  onclick="sendComplaint()">Send</button>
     </div>
     <div id="successMessage"></div>
   

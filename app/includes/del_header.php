@@ -72,31 +72,7 @@
     </div>
     <!-- end navbar -->
     <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/del_sidebar.php");?>
-    <div class="slideDown" style="width: 100%; height: 150px;">  
-        <table style="margin-top: 40px; margin-bottom: 0px">
-            <tr>
-                <td><b>Address: </b></td>
-                <td></td>
-            </tr>
-            <tr>
-            <td><b>Order No: </b></td>
-            <td></td>
-            </tr>
-            
-       </table> 
-    </div>
-    <div class="grabPromo" style="width: 100%; height: 110px;">
-       <table style="margin-top: -15px;">
-            
-            <tr>
-                <td><b>Tel: </b></td>
-                <td></td>
-            </tr>
-            <tr>
-            <td><b>Name: </b></td>
-            <td></td>
-            </tr>
-       </table> 
-    </div>
+    
+    
     <div id="content">
     

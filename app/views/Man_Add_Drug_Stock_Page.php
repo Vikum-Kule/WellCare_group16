@@ -107,71 +107,55 @@
                                 </form>
                                --> </tr>
                                 <tr>
-                                <th>Medicine ID</th>
-                                    <th><input type="text" placeholder="Enter Medicine ID" name="medicineId" id="medicineId" required> </th>
-                                    <th>Generic Name</th>
+                                <th>Generic Name</th>
                                     <th><input type="text" placeholder="Enter Generic Name" name="name" id="name" required> </th>
-                                </tr>
-                                <tr>
                                     <th>Brand Name</th>
                                     <th>
                                     <input type="text" placeholder="Enter Brand Name" name="brand" id="brand" required>
                                     </th>
-                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                <th>Description</th>
                                     <th>
                                     <input type="text" placeholder="Enter Description" name="description" id="description" required>
                                     </th>
-                                </tr>
-                                <tr>
                                     <th>Quantity</th>
                                     <th>
                                     <input type="price" placeholder="Enter Quantity" name="QTY" id="QTY" required>
                                     </th>
-                                    <th>Price</th>
+                                </tr>
+                                <tr>
+                                <th>Price</th>
                                     <th>
                                     <input type="price" placeholder="Enter price" name="price" id="price" required>
                                     </th>
-                                </tr>
-                                <tr>
-                                <th>Expiration Date</th>
-                                    <th>
-                                    <input type="Date" placeholder="Enter Expiration Date" name="EXP" id="EXP" required>
-                                    </th>
-                                    <th>Manufacture Date</th>
-                                    <th>
-                                    <input type="Date" placeholder="Enter Manufacture Date" name="MFD" id="MFD" required>
-                                    </th>
-                                </tr>
-                                <tr>
-                                <th>Dose Status</th>
+                                    <th>Dose Status</th>
                                     <th>
                                     <input type="text" placeholder="Enter Dose Status" name="doseStatus" id="doseStatus" required>
                                     </th>
-                                    <th>Dose</th>
+                                </tr>
+                               
+                                <tr>
+                                <th>Dose</th>
                                     <th>
                                     <input type="text" placeholder="Enter Dose" name="dose" id="dose" required>
                                     </th>
-                                </tr>
-                                <tr>
-                                <th>Tempurature</th>
+                                    <th>Tempurature</th>
                                     <th>
                                     <input type="text" placeholder="Enter Tempurature" name="temperature" id="temperature" required>
                                     </th>
-                                    <th>Sub Category</th>
+                                </tr>
+                                <tr>
+                                <th>Sub Category</th>
                                     <th>
                                     <input type="text" placeholder="Enter Sub Category" name="subCategory" id="subCategory" required>
                                     </th>
-                                </tr>
-                                <tr>
                                     <th>Image Location</th>
                                     <th>
                                     <input type="text" placeholder="Enter Image Location" name="imageLocation" id="imageLocation" required>
                                     </th>
-                                    <!--<th>Image Location</th>
-                                    <th>
-                                    <input type="text" placeholder="Enter Image Location" name="imageLocation" id="imageLocation" required>
-                                    </th>-->
                                 </tr>
+                                
                             </tbody>
                         </table>
                         </form>

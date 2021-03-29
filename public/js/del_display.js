@@ -48,18 +48,43 @@ function opdenSlide(orderId) {
         document.querySelector("#hiddenData" + orderId).style.display = "none";
     });
 }
-var map = document.getElementById('map');
-if (map) {
-    displyTab();
+
+if (document.getElementById("to_deliver")) {
+    counter();
 }
 
-function displyTab() {
-    document.querySelector(".grabPromo").style.display = "block";
+
+
+function counter() {
+
+    var url = "http://localhost/mvcfinal/del_orders/findOrderCount";
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function(data) {
+            var orders = data[0];
+            document.getElementById("to_deliver").innerHTML = orders;
+
+        }
+    });
 }
 
-$('.grabPromo').click(function(e) {
-    $('.slideDown').slideToggle();
-});
+function goback() {
+    window.location.href = "http://localhost/mvcfinal/del_orders/show_streetOrders";
+}
+
+// function initMap() {
+//     var location = {
+//         lat: 6.817353,
+//         lng: 80.021455
+//     };
+//     var map = new google.maps.Map(document.getElementById("map"), {
+//         zoom: 4,
+//         center: location
+//     });
+// }
+
+
 // function showRow_Streets($city) {
 
 //     var url = "http://localhost/mvcfinal/del_orders/findStreets";

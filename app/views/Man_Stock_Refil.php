@@ -3,7 +3,7 @@
 
 <div class="wrapper">
         <div class="row">
-            <div class="col-3 col-m-6 col-sm-6">
+            <!--<div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <h3>100+</h3>
                     <p>To do</p>
@@ -26,7 +26,7 @@
                     <h3>100+</h3>
                     <p>Issues</p>
                 </div>
-            </div>
+            </div>-->
         </div>
 
 
@@ -34,7 +34,7 @@
 
         <div class="card-header">
                         <h3>
-                            Table
+                            Stock Refil Table
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
@@ -44,15 +44,32 @@
                                 <tr>
                                     <th>Refill ID</th>
                                     <th>Brand Name</th>
+                                    <th>Dosage Forms</th>
                                     <th>Dose</th>
                                     <th>Supplier ID</th>
                                     <th>Refill Date and TIme</th>
-                                    <th>Medicine ID</th>
+                                    <th>Expiration Date</th>
+                                    <th>Manufacture Date</th>
+                                    
                                     <th>QTY</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                            <?php foreach($data['refills'] as $refill): ?>
+			                	<tr>
+                                    <td><?php echo $refill->refillId; ?></td>
+                                    <td><?php echo $refill->brandName; ?></td>
+                                    <td><?php echo $refill->doseStatus; ?></td>
+                                    <td><?php echo $refill->dose; ?></td>
+                                    <td><?php echo $refill->supplyId; ?></td>
+                                    <td><?php echo $refill->refillDateTime; ?></td>
+                                    <td><?php echo $refill->EXP; ?></td>
+                                    <td><?php echo $refill->MFD; ?></td>
+                                    
+                                    <td><?php echo $refill->QTY; ?></td>
+                                    
+				                </tr>
+				                <?php endforeach;?>
                             </tbody>
                         </table>
                     </div>

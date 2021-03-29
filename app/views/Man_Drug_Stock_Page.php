@@ -41,14 +41,13 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Medicine ID</th>
+                                    
                                     <th>Generic Name</th>
                                     <th>Brand Name</th>
                                     <th>Description</th>
                                     <th>QTY</th>
                                     <th>Price</th>
-                                    <th>Expiration Date</th>
-                                    <th>Manufacture Date</th>
+                                    
                                     <th>Dose Status</th>
                                     <th>Dose</th>
                                     <th>Tempurature</th>
@@ -61,14 +60,13 @@
                             <tbody>
                                 <?php foreach($data['drugs'] as $drug): ?>
 			                	<tr>
-                                    <td><?php echo $drug->medicineId; ?></td>
+                                   
                                     <td><?php echo $drug->name; ?></td>
                                     <td><?php echo $drug->brand; ?></td>
                                     <td><?php echo $drug->description; ?></td>
                                     <td><?php echo $drug->QTY; ?></td>
                                     <td><?php echo $drug->price; ?></td>
-                                    <td><?php echo $drug->EXP; ?></td>
-                                    <td><?php echo $drug->MFD; ?></td>
+                                   
                                     <td><?php echo $drug->doseStatus; ?></td>
                                     <td><?php echo $drug->dose; ?></td>
                                     <td><?php echo $drug->temperature; ?></td>

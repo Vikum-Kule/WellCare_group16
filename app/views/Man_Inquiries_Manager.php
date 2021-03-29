@@ -3,30 +3,25 @@
 
 <div class="wrapper">
         <div class="row">
-            <div class="col-3 col-m-6 col-sm-6">
+           < <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
-                    <p>To do</p>
+                    <h3><div id="unread"></div></h3>
+                    <p>Unread</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
-                    <p>In progress</p>
+                    <h3><div id="processing"></div></h3>
+                    <p>Processing</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
+                    <h3><div id="completed"></div></h3>
                     <p>Completed</p>
                 </div>
             </div>
-            <div class="col-3 col-m-6 col-sm-6">
-                <div class="notification">
-                    <h3>100+</h3>
-                    <p>Issues</p>
-                </div>
-            </div>
+           
         </div>
 
 
@@ -34,7 +29,7 @@
 
         <div class="card-header">
                         <h3>
-                            Table
+                            Inquiries
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
@@ -50,10 +45,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+                            <?php foreach($data['inquiries'] as $inquiry): ?>
+			                	<tr>
+                                    <td><?php echo $inquiry->inquiryId; ?></td>
+                                    <td><?php echo $inquiry->orderId; ?></td>
+                                    <td><?php echo $inquiry->inquiryDate; ?></td>
+                                    <td><?php echo $inquiry->Inquiry; ?></td>
+                                    <td><?php echo $inquiry->status; ?></td>
+                                    
+                                    
+				                </tr>
+				                <?php endforeach;?>
                             </tbody>
                         </table>
                         </div>
+                        
 
         </div><!--buttons-->
 

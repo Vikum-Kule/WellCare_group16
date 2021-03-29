@@ -6,7 +6,15 @@
             $this->db = new Database;
         }
         public function findallnotifications(){
-            $this->db->query('SELECT medicineId, name, brand, dose, QTY FROM medicine WHERE QTY<50' );
+            $this->db->query('SELECT  name, brand, doseStatus, dose, QTY FROM medicine WHERE QTY<100' );
+
+            $results1 = $this->db->resultSet();
+
+            return $results1;
+        }
+
+        public function expirationdrugsm(){
+            $this->db->query('SELECT  name, brand, doseStatus, dose, QTY FROM medicine WHERE QTY<100' );
 
             $results1 = $this->db->resultSet();
 

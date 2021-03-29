@@ -37,7 +37,9 @@
             ON
             customer. customerId=prepared_order. customerId
             WHERE
-            prepared_order.	status = :status' );
+            prepared_order.	status = :status
+            ORDER BY 
+            customer.FirstName' );
             $this->db->bind(':status', "completed");
             $results = $this->db->resultSet();
             return $results; 
@@ -81,7 +83,7 @@
         public function find_selectOrders($orderId){
             $this->db->query('SELECT 
             customer.PhoneNum, customer.FirstName, customer.LastName,prepared_order.orderId, prepared_order.price, prepared_order.streetAddress1,
-            prepared_order.streetAddress2, prepared_order.city, prepared_order.district
+            prepared_order.streetAddress2, prepared_order.city, prepared_order.district, prepared_order.price
             FROM 
             prepared_order
             INNER JOIN 
@@ -96,6 +98,13 @@
             $this->db->bind(':orderId', $orderId);
             $results = $this->db->resultSet();
             return $results; 
+        }
+
+        public function count_Orders($username){
+            $this->db->query("SELECT COUNT(OrderId ) as count FROM orders WHERE delivery_Username = :delivery_Username");
+            $this->db->bind(':delivery_Username',$username);
+            $count = $this->db->single();
+            return $count;
         }
 
     }

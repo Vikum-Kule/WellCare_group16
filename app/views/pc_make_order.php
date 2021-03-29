@@ -53,12 +53,14 @@
                 </div>
 				<?php endforeach ?>  
 				<div class="card-btn">
-                    <div class="card-btn-content">
+                    <div class="card-btn-content" style="text-align: center;">
                     
-						<img class="left" src="<?php echo URLROOT."/public/img/right (2).png";?>" alt="">
-						<form method="POST" action="<?php echo URLROOT; ?>/pc_view_drug/show_medicine"> <input id="currentId" type="hidden" name="orderId" value="<?php echo $data[2]; ?>">
-                        <img class="right" id="right" src="<?php echo URLROOT."/public/img/right (1).png";?>" alt="">
-                        </form>	
+						<!-- <img class="left" src="<?php echo URLROOT."/public/img/right (2).png";?>" alt=""> -->
+                            <div style="padding: 10px;" >
+                                   <b>Total: </b><div id="totalPrice"></div>
+                            </div>
+                        <!-- <img class="right" id="right" src="<?php echo URLROOT."/public/img/right (1).png";?>" alt=""> -->
+                        
                     </div>
                 </div>
             <!-- <div class="col-3 col-m-6 col-sm-6">
@@ -70,7 +72,7 @@
 			</div>
         
         <div class="row">
-            <div class="col-8 col-m-12 col-sm-12" id="inputTable">
+            <div class="col-8 col-m-12 col-sm-12" id="inputTable" style="width: 60%;">
                 <div class="card">
                     <div class="card-content">
                     <form ‍>
@@ -155,7 +157,7 @@
                 </div>
             </div>
             <div class="col-4 col-m-12 col-sm-12">
-			<div class="card" style="position: relative;">
+			<div class="card" style="position: relative;display:none">
                     <div class="card-header">
                         <h3>
                             Medicine List
@@ -191,12 +193,12 @@
             </div>
         </div>
     
-        <div class="card" id="prescriptionCard" style="width: 50%; display:none;">
+        <div class="card" id="prescriptionCard" style="position: relative;width: 40%; margin-top:-330px;">
                     
                     <div class="card-header">
                         <h3>
                             Prescription
-                            <button class="prescription" id="dsiplayTab" onclick="medicineList()">Close</button>
+                            <button id="gotoNote" onclick="showNote()">Note</button>
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
@@ -207,7 +209,7 @@
                    
             </div>
 		<div class="row">
-        <div class="col-8 col-m-12 col-sm-12" id="selectedMedicine">
+        <div class="col-8 col-m-12 col-sm-12" id="selectedMedicine" style="width: 100%;">
             <div class="card">
                     <div class="card-header">
                         <h3>
@@ -215,7 +217,7 @@
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
-                    <div class="card-content">
+                    <div class="card-content"style="width: 700px;">
                         <table id="display">
                             <thead>
                                 <tr>
@@ -257,7 +259,7 @@
             </div>
         </div>
         
-        <div class="card" id="noteCard" style="width: 50%; display:none;">
+        <div class="card" id="noteCard" style="width: 40%;margin-top:-330px;">
                     <div class="card-header">
                         <h3>
                             Note
@@ -287,7 +289,7 @@
                     </div>
             </div>
 		
-        <div class="col-2 col-m-2 col-sm-2" id="priceCard">
+        <!-- <div class="col-2 col-m-2 col-sm-2" id="priceCard">
 			<div class="card" style="position: relative;">
                     <div class="card-content">
                         <table>
@@ -302,7 +304,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                    <button id="gotoNote" onclick="showNote()">Note</button>
+                                    
                                     </th>
                                 </tr>
                                 <tr></tr>
@@ -311,7 +313,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

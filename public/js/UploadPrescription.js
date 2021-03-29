@@ -51,7 +51,13 @@
                   dataType: 'json',
                   success: function(response) {
                     console.log(response);
-                    const html = '<div class="card"><iframe src="' + URLROOT + '/public/img/tempPrescriptions/' + response[0].tempPrescriptionId+'.'+response[0].ext + '" style="width:100%"></iframe><br><button class="btn" onclick="removePrescription()">Remove</button></div>';
+                    if(response[0].ext=='pdf'){
+                      var html = '<iframe src="' + URLROOT + '/public/img/tempPrescriptions/' + response[0].tempPrescriptionId+'.'+response[0].ext + '" height="500" width="100%"></iframe> <br><button class="btnRemove" onclick="removePrescription()">Remove</button>';
+
+                    }else{
+                      var html = '<div class="card"><img src="' + URLROOT + '/public/img/tempPrescriptions/' + response[0].tempPrescriptionId+'.'+response[0].ext + '" style="width:100%"></iframe><br><button class="btn" onclick="removePrescription()">Remove</button></div>';
+                    }
+                    
                     $("#message").show();
                       $("#message").append(html);
                       $("#upload").hide();
@@ -102,8 +108,16 @@
               $("#message").html(response.message);
 
               if (response.image !== "") {
+                var res = response.image.split(".");
 
-                const html = '<div class="card"><iframe src="' + URLROOT + '/public/img/tempPrescriptions/' + response.image + '" style="width:100%"></iframe><br><button class="btn" onclick="removePrescription()">Remove</button></div>';
+                if(res[1]=='pdf'){
+                  var html = '<iframe src="' + URLROOT + '/public/img/tempPrescriptions/' + response.image+ '" height="500" width="100%"></iframe> <br><button class="btnRemove" onclick="removePrescription()">Remove</button>';
+
+                }else{
+                  var html = '<div class="card"><img src="' + URLROOT + '/public/img/tempPrescriptions/' + response.image+ '" style="width:100%"></iframe><br><button class="btn" onclick="removePrescription()">Remove</button></div>';
+                }
+
+               // const html = '<div class="card"><iframe src="' + URLROOT + '/public/img/tempPrescriptions/' + response.image + '" style="width:100%"></iframe><br><button class="btn" onclick="removePrescription()">Remove</button></div>';
                 $("#message").append(html);
                 $("#upload").hide();
 
@@ -191,15 +205,15 @@
               if (signIn) {
                 console.log(signIn);
                 const html =
-                  '<div id="caption">YOUR ORDER IS PROCESS AFTER CONFIRMED... ' +
+                  '<div id="caption">ENTER YOUR SHIPPING ADDRESS AND PLACE YOUR ORDER... ' +
                   '  <br>CHECK YOUR EMAILS...' +
-                  '  <br>PAY THE AMOUNT OF ORDER TO BANK ACCOUNT NUMBER : XXXXXXXX' +
-                  '  <br>REPLY TO THAT EMAIL,INCLUDE BANK SLIP IMAGES OF RELEVANT PAYMENT OR SCREENSHOTS OF PAYMENT DETAILS WITH ORDER NUMBER' +
+                  '  <br>AFTER GOT DETAILS ABOUT YOUR ORDER THROUGH EMAIL, LOGIN TO WELLCARE WEBSITE AND CONFIRM IT' +
+                 
                   '  <br>THANK YOU !...' +
 
                   ' </div>' +
                   '<br>' +
-                  '<div class="col-25"><label for="address">Address</label> <div>' +
+                  '<div class="col-25"><label for="address">ENTER YOUR SHIPPING ADDRESS</label> <div>' +
                   '<div class="col-75">' +
                   '<input type="text" id="streetAddress1" name="streetAddress1" placeholder="Enter Street Address 1.." value="' + signIn.streetAddress1 + '">' +
                   '<span class="invalidFeedback"></span>' +
@@ -213,7 +227,7 @@
                   ' <input type="text" id="district" name="district" placeholder="Enter Your District .." value="' + signIn.district + '">' +
                   ' <span class="invalidFeedback"></span>' +
                   '</div>' +
-                  '<div ><button id="btnConfirmCheckout" onclick ="confirmCheckout()">confirm</button></div>';
+                  '<div ><button id="btnConfirmCheckout" onclick ="confirmCheckout()">Place Order</button></div>';
 
                 $('#content').html(html);
               } else {

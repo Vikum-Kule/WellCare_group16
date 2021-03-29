@@ -45,12 +45,12 @@
         
         }  
     }
-
     public function show_streetOrders(){
-        if($_SERVER['REQUEST_METHOD']=='POST'){
+        //if($_SERVER['REQUEST_METHOD']=='POST'){
             if(isset($_POST['select'])){
                 $street = $_POST['street'];
-                $order = $this->postModel->findStreetOrders($street);
+                $GLOBALS['glo_street'] =$street;
+                $order = $this->postModel->findStreetOrders($GLOBALS['glo_street']);
                 $data = [
                     $data1=[
                         'order'=> $order
@@ -60,7 +60,7 @@
                 //print_r($data);
                 $this->view('Del_orders_forStreet',$data);        
             }
-        }
+        //}
         
     }
 
@@ -68,11 +68,48 @@
         if($_SERVER['REQUEST_METHOD']=='POST'){
             if(isset($_POST['select'])){
                 $orderId = $_POST['orderId'];
+                $redirect = $_POST['redirect'];
                 $orderData= $this->postModel->find_selectOrders($orderId);
-                $data = [
-                    'orderData'=> $orderData
+                $dataMap = [
+                    'orderData'=> $orderData,
+                    $redirect
                 ];
-                $this->view('del_map',$data);
+                
+                $this->view('del_map',$dataMap);
+            } 
+        }
+    }
+
+    public function findOrderCount(){
+        $username = $_SESSION['username'];
+        $pending= $this->postModel->count_Orders($username);
+		header('Content-type: application/json');
+		echo json_encode($pending->count);
+		return;
+    }
+
+    public function submit_btn(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            if(isset($_POST['canecel'])){
+                if($_POST['canecel'] == "Del_orders_forStreet"){
+                    $street = $_POST['street'];
+                    $order = $this->postModel->findStreetOrders($street);
+                $data = [
+                    $data1=[
+                        'order'=> $order
+                    ],
+                    $street
+                ];
+                //print_r($data);
+                $this->view('Del_orders_forStreet',$data);  
+                }
+                else{
+                    $orders = $this->postModel->findOrders();
+                    $data= [
+                        'orders' => $orders
+                    ];
+                    $this->view('del_location', $data); 
+                }
             } 
         }
     }

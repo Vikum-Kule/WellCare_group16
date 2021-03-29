@@ -578,10 +578,34 @@
 
     width: 100%;
   }
-  .btnComplain input{
-
-
+  .btnCancel{
     background-color: rgba(199, 5, 5, 0.9);
+    color: white;
+    padding: 14px 50px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    text-align: center;
+    margin: 10px 10px ;
+    margin-left: 25%;
+    
+
+
+
+  }
+  .btnInquary{
+    background-color: rgba(255, 94, 0, 0.9);
+    color: white;
+    padding: 14px 50px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    text-align: center;
+    margin: 10px 10px ;
+    margin-left: 25%;
+  }
+  .btnComplain input{
+    background-color: rgba(255, 94, 0, 0.9);
     color: white;
     padding: 14px 50px;
     /* margin: 8px 68px; */
@@ -592,9 +616,7 @@
     text-align: center;
   }
 
-  
-
-  /* model2************************************************************************************ */
+/* model2************************************************************************************ */
   .modal2 {
     position: fixed;
     left: 0;
@@ -706,7 +728,7 @@ margin-bottom: 50px;
       margin-bottom: 10px;
      }
 
-     .disableBtn{
+     .btnCansel{
       background-color: #910000;
 
      }

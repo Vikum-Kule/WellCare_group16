@@ -621,6 +621,14 @@ table td {
     padding: 15px;
 }
 
+#display {
+    font-size: 13px;
+}
+
+#display td {
+    padding: 2px;
+}
+
 table th {
     border-top: 1px solid #f1f1f1;
     border-bottom: 1px solid #f1f1f1;
@@ -757,10 +765,6 @@ button:hover {
 
 #selectedMedicine {
     width: 76.66%;
-}
-
-#noteCard {
-    top: 500;
 }
 
 #overly {

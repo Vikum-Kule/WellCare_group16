@@ -12,6 +12,42 @@ class MyOrders extends Controller{
        $this->view('MyOrders');
 
     }
+    public function cofirmOrderByCustomer(){
+        $obj = file_get_contents('php://input');
+        $json = json_decode($obj);
+
+
+        $data=[
+            'orderId'=>$json->orderId,
+            'responce'=>$this->myOrderModel->cofirmOrderByCustomer($json->orderId)
+
+
+        ];
+        header('Content-Type: application/json');
+		echo json_encode($data);
+
+
+
+
+    }
+    public function cancelOrderByCustomer(){
+        $obj = file_get_contents('php://input');
+        $json = json_decode($obj);
+
+
+        $data=[
+            'orderId'=>$json->orderId,
+            'responce'=>$this->myOrderModel->cancelOrderByCustomer($json->orderId)
+
+
+        ];
+        header('Content-Type: application/json');
+		echo json_encode($data);
+
+
+
+
+    }
     public function complaint(){//myOrders
 
 
@@ -106,12 +142,22 @@ class MyOrders extends Controller{
             'OrderId' => trim($json->OrderNumber),
             'complaint' => trim($json->complaint)
         ];
+            
+        
+        if(!$this->myOrderModel->checkOrderNumber($json->OrderNumber)||empty($json->OrderNumber)||empty($json->complaint)){
+            header('Content-Type: application/json');
+            echo json_encode(false);
 
-    
-        header('Content-Type: application/json');
-		echo json_encode($this->myOrderModel->sendComplaint($data));
-        // header('Content-Type: application/json');
-		// echo json_encode($data);
+
+
+        }else{
+            header('Content-Type: application/json');
+            echo json_encode($this->myOrderModel->sendComplaint($data));
+            // header('Content-Type: application/json');
+            // echo json_encode($data);
+
+        }
+       
         
 
     }
@@ -155,6 +201,22 @@ class MyOrders extends Controller{
 
         header('Content-Type: application/json');
 		echo json_encode($this->myOrderModel->disableMsg($json->orderId));
+
+
+    }public function OrderNumberSearch(){
+        $obj = file_get_contents('php://input');
+        $json = json_decode($obj);
+
+        $data = [
+            'searchOrderId' =>trim($json->searchOrderId),
+            'user_id'=>$_SESSION['user_id']
+            
+        ];
+
+        header('Content-Type: application/json');
+		echo json_encode($this->myOrderModel->OrderNumberSearch($data));
+
+
 
 
     }
