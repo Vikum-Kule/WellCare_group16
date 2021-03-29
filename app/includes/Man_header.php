@@ -41,7 +41,8 @@
                     <img src="<?php echo URLROOT."/public/img/user.png";?>" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
                     <ul id="user-menu" class="dropdown-menu">
                         <li class="dropdown-menu-item">
-                            <a class="dropdown-menu-link">
+                        <a href="<?php echo URLROOT?>/Man_pages/myaccountmanagerview" class="dropdown-menu-link">
+                            
                                 <div>
                                     <i class="fas fa-user-tie"></i>
                                 </div>
@@ -49,11 +50,11 @@
                             </a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="http://localhost/mvcfinal/Man_pages/myaccountmanagerview" class="dropdown-menu-link">
+                            <a href="<?php echo URLROOT?>/users/logout" class="dropdown-menu-link">
                                 <div>
                                     <i class="fas fa-sign-out-alt"></i>
                                 </div>
-                                <span>Logout</span>
+                                <span >logout</span>
                             </a>
                         </li>
                     </ul>

@@ -422,6 +422,26 @@ class Users extends Controller{
        
 
     }
+    public function logoutOther(){
+        $_SESSION['active']=false;
+       unset($_SESSION['user_id']);
+       unset($_SESSION['username']);
+       unset($_SESSION['email']);
+       unset($_SESSION['LastName']);
+       unset($_SESSION['FirstName']);
+       unset( $_SESSION['PhoneNumber']);
+       unset( $_SESSION['NIC']);
+       unset( $_SESSION['streetAddress1']);
+       unset( $_SESSION['streetAddress2']);
+       unset( $_SESSION['address']);
+       unset( $_SESSION['city']);
+       unset( $_SESSION['district']);
+       unset( $_SESSION['postalCode']);
+       
+
+       header('location:' . URLROOT . '/MyOrder/myorder');
+   }
+    
     public function logout(){
          $_SESSION['active']=false;
         unset($_SESSION['user_id']);
