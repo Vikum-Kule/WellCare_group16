@@ -44,13 +44,13 @@
                                 <tr>
                                     <th>Refill ID</th>
                                     <th>Brand Name</th>
-                                    <th>Dosage forms</th>
+                                    <th>Dosage Forms</th>
                                     <th>Dose</th>
                                     <th>Supplier ID</th>
                                     <th>Refill Date and TIme</th>
                                     <th>Expiration Date</th>
                                     <th>Manufacture Date</th>
-                                    <th>Medicine ID</th>
+                                    
                                     <th>QTY</th>
                                 </tr>
                             </thead>
@@ -65,7 +65,7 @@
                                     <td><?php echo $refill->refillDateTime; ?></td>
                                     <td><?php echo $refill->EXP; ?></td>
                                     <td><?php echo $refill->MFD; ?></td>
-                                    <td><?php echo $refill->medicineId; ?></td>
+                                    
                                     <td><?php echo $refill->QTY; ?></td>
                                     
 				                </tr>

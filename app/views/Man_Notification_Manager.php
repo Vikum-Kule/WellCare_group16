@@ -6,34 +6,34 @@
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <h3><div id="totalnotifications"></h3>
-                    <p>Total Notifications</p>
-                </div>
-            </div>
-            <!--<div class="col-3 col-m-6 col-sm-6">
-                <div class="notification">
-                    <h3>100+</h3>
-                    <p>In progress</p>
+                    <p>Running out of Quantity</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <h3>100+</h3>
-                    <p>Completed</p>
+                    <p>Near to Expire</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
+                <div class="notification">
+                    <h3>100+</h3>
+                    <p>Total Medicines to Reorder</p>
+                </div>
+            </div>
+            <!-- <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <h3>100+</h3>
                     <p>Issues</p>
                 </div>
-            </div>-->
+            </div> -->
         </div>
 
 
         <div class="card">
                     <div class="card-header">
                         <h3>
-                            Table
+                            Running out of Quantity
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
@@ -41,27 +41,55 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Medicine Id</th>
+                                    
                                     <th>Generic Name</th>
                                     <th>Brand Name</th>
                                     <th>Dose</th>
+                                    <th>Dose Forms</th>
                                     <th>QTY</th>
-                                    <th>Remove</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach($data['minimums'] as $minimum): ?>
                                 <tr>
-                                    <td><?php echo $minimum->medicineId; ?></td>
+                                    
                                     <td><?php echo $minimum->name; ?></td>
                                     <td><?php echo $minimum->brand; ?></td>
                                     <td><?php echo $minimum->dose; ?></td>
+                                    <td><?php echo $minimum->doseStatus; ?></td>
                                     <td><?php echo $minimum->QTY; ?></td>
-                                    <td><form action="<?php echo URLROOT . "/Man_adddrug/deletedrug/" . $drug->medicineId ?>" method = "POST">
-                                                <input type="submit" name="delete" value="Remove">
-                                    </form></td>
+                                   
                                 </tr>
                                 <?php endforeach;?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>
+                            Near to Expire
+                        </h3>
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+                    <div class="card-content">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Refill ID</th>
+                                    <th>Generic Name</th>
+                                    <th>Brand Name</th>
+                                    <th>Dose</th>
+                                    <th>Dose Forms</th>
+                                    <th>Expiration Date</th>
+                                    <th>QTY</th>
+                                  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
                             </tbody>
                         </table>
                     </div>

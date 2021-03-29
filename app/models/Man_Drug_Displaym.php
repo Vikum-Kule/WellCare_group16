@@ -13,7 +13,7 @@
         }
 		
 		 public function countallnotifications(){
-            $this->db->query("SELECT COUNT(medicineId) as count FROM medicine WHERE QTY<50;");
+            $this->db->query("SELECT COUNT(medicineId) as count FROM medicine WHERE QTY<100;");
            
             $count = $this->db->single();
             return $count;
