@@ -41,16 +41,16 @@
                 <div class="avt dropdown">
                     <img src="<?php echo URLROOT."/public/img/user.png";?>" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
                     <ul id="user-menu" class="dropdown-menu">
-                        <li class="dropdown-menu-item">
+                        <!-- <li class="dropdown-menu-item">
                             <a class="dropdown-menu-link">
                                 <div>
                                     <i class="fas fa-user-tie"></i>
                                 </div>
                                 <span>Profile</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="dropdown-menu-item">
-                            <a href="#" class="dropdown-menu-link">
+                        <a href="<?php echo URLROOT?>/users/logoutOther" class="dropdown-menu-link">
                                 <div>
                                     <i class="fas fa-sign-out-alt"></i>
                                 </div>

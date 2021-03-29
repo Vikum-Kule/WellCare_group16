@@ -285,7 +285,7 @@ class Users extends Controller{
                 $userState = $this->userModel->findState($data['username']);
                 
                // print_r($userState);
-         if(isset($userState->Status)){
+                     if(isset($userState->Status)){
 
                     
 
@@ -373,7 +373,7 @@ class Users extends Controller{
         $_SESSION['active'] = true;
         $_SESSION['username'] = $user->userName;
 	    $_SESSION['email'] = $user->email;
-        header('location:' . URLROOT . '/admin/home');
+        header('location:' . URLROOT . '/admin/showdrugs');
     }
 
     public function createUserSession_pc($user){
@@ -424,22 +424,10 @@ class Users extends Controller{
     }
     public function logoutOther(){
         $_SESSION['active']=false;
-       unset($_SESSION['user_id']);
+       
        unset($_SESSION['username']);
        unset($_SESSION['email']);
-       unset($_SESSION['LastName']);
-       unset($_SESSION['FirstName']);
-       unset( $_SESSION['PhoneNumber']);
-       unset( $_SESSION['NIC']);
-       unset( $_SESSION['streetAddress1']);
-       unset( $_SESSION['streetAddress2']);
-       unset( $_SESSION['address']);
-       unset( $_SESSION['city']);
-       unset( $_SESSION['district']);
-       unset( $_SESSION['postalCode']);
-       
-
-       header('location:' . URLROOT . '/MyOrder/myorder');
+      header('location:' . URLROOT . '/MyOrder/myorder');
    }
     
     public function logout(){
