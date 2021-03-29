@@ -35,7 +35,7 @@
         <!-- nav right -->
         <ul class="navbar-nav nav-right">
             <li class="nav-item mode">
-                <h6>user Name</h6>
+                <h6><?php echo $_SESSION['username']; ?></h6>
             </li>
             <li class="nav-item avt-wrapper">
                 <div class="avt dropdown">
@@ -67,7 +67,7 @@
     <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/Admin_sidebar.php");?>
 
     <div id="content">
-    <img class="left" id="myBtn" onclick="topFunction()" src="<?php echo URLROOT."/public/img/back-to.png";?>" alt="">
+    
     
     
     

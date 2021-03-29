@@ -1,7 +1,17 @@
 <?php require_once ($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/config/config.php");?>
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/Admin_header.php");?>
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/Admin_style.css">
-
+<style>
+     input {
+ width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+    }
+    
+</style>
     <!-- main content -->
     <div class="wrapper">
         <div class="row">
@@ -69,19 +79,7 @@
 
                 </div>
             </div>
-            <div class="col-4 col-m-12 col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>
-                            Progress bar
-                        </h3>
-                        <i class="fas fa-ellipsis-h"></i>
-                    </div>
-                    <div class="card-content">
-
-                    </div>
-                </div>
-            </div>
+            
         </div>
 
         <!-- end main content -->

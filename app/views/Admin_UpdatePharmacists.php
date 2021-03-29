@@ -52,8 +52,6 @@
     <label for="fromDate"><b>fromDate</b></label>
     <input type="text" placeholder="Enter fromDate" name="fromDate" id="fromDate" value="<?php echo $data['phas']->fromDate ?>">
 
-    <label for="toDate"><b>toDate</b></label>
-    <input type="text" placeholder="Enter toDate" name="toDate" id="toDate" value="<?php echo $data['phas']->toDate ?>">
     <label for="licenseNo"><b>licenseNo</b></label>
     <input type="text" placeholder="Enter licenseNo" name="licenseNo" id="licenseNo" value="<?php echo $data['phas']->licenseNo ?>" >
     <label for="NIC"><b>NIC</b></label>

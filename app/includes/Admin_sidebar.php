@@ -52,6 +52,15 @@
                     <span>USERS DETAILS</span>
                 </a>
             </li>
+
+               <li class="sidebar-nav-item">
+                <a href="http://localhost/mvcfinal/admin/dashbordp" class="sidebar-nav-link">
+                    <div>
+                        <i class="fab fa-accusoft"></i>
+                    </div>
+                    <span>DASHBORD</span>
+                </a>
+            </li>
         </ul>
     </div>
     <!-- end sidebar -->

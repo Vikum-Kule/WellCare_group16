@@ -8,6 +8,8 @@ const themeCookieName = 'theme'
 const themeLight = 'light'
 
 const body = document.getElementsByTagName('body')[0]
+//************************************************************************************************
+
 
 function searchBlog(){
     let filter = document.getElementById('filter').value.toUpperCase();
@@ -31,6 +33,9 @@ function searchBlog(){
     }
 
 }
+
+//****************************************************************************************
+
 
 function collapseSidebar() {
     body.classList.toggle('sidebar-expand')

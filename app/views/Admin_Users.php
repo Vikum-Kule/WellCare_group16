@@ -1,7 +1,11 @@
 <?php require_once ($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/config/config.php");?>
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/Admin_header.php");?>
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/Admin_style.css">
-
+<style>
+    .card {
+        width : 1200px;
+    }
+</style>
     <!-- main content -->
     <div class="wrapper">
         <div class="row">
@@ -39,7 +43,7 @@
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
-                    <center>
+                  <!--  <center>
                 <div class="viewform">
                     <form method="post">
                         <br><br>
@@ -51,7 +55,7 @@
                        
                     </form>
                 </div>          
-              </center>
+              </center>-->
 
                     <div class="card-content">
                         <table>
@@ -86,19 +90,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 col-m-12 col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>
-                            Progress bar
-                        </h3>
-                        <i class="fas fa-ellipsis-h"></i>
-                    </div>
-                    <div class="card-content">
-
-                    </div>
-                </div>
-            </div>
+          
+                   
+               
         </div>
 
         <!-- end main content -->

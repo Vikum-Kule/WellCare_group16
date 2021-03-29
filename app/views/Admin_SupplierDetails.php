@@ -2,6 +2,12 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/Admin_header.php");?>
 
     <!-- main content -->
+    <style>
+    
+    .card {
+        width: 1200px;
+    }
+</style>
     <div class="wrapper">
         <div class="row">
  <div class="col-3 col-m-6 col-sm-6">
@@ -13,7 +19,7 @@
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                   <a href="http://localhost/mvcfinal/admin/showsupplier">Supplier Details</a>
-                     <p>dfdfsds</p>
+                     <p>.</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
@@ -36,7 +42,7 @@
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
-                    <center>
+                  <!--  <center>
                 <div class="viewform">
                     <form method="post">
                         <br><br>
@@ -48,7 +54,7 @@
                        
                     </form>
                 </div>          
-              </center>
+              </center>-->
 
                     <div class="card-content">
                         <table>

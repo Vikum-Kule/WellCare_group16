@@ -4,12 +4,51 @@
 
 		public function __construct() {
 			$this->db = new Database;
-		}
+		} 
 		public function drugs(){
 			$this->db->query('SELECT * FROM medicine');
 			$results = $this->db->resultSet();
 			return $results;
 		}
+
+ 		public function dashbordp(){
+            $this->db->query("SELECT COUNT(userName) as count FROM pharmacist");
+          	$results = $this->db->single();
+			return $results; 
+
+        }
+		public function dashbordc(){
+            $this->db->query("SELECT COUNT(userName) as count FROM customer");
+          	$results = $this->db->single();
+			return $results; 
+
+        }
+
+		public function dashbordm(){
+            $this->db->query("SELECT COUNT(userName) as count FROM manager");
+          	$results = $this->db->single();
+			return $results; 
+
+        }
+		public function dashbordd(){
+            $this->db->query("SELECT COUNT(userName) as count FROM deliveryperson");
+          	$results = $this->db->single();
+			return $results; 
+
+        }
+        public function dashbords(){
+            $this->db->query("SELECT COUNT(supplyId) as count FROM supplier");
+          	$results = $this->db->single();
+			return $results; 
+
+        }
+         public function dashbordu(){
+            $this->db->query("SELECT COUNT(userName) as count FROM users");
+          	$results = $this->db->single();
+			return $results; 
+
+        }
+
 		public function customer(){
 			$this->db->query('SELECT * FROM customer');
 			$results = $this->db->resultSet();
@@ -20,6 +59,66 @@
 			$results = $this->db->resultSet();
 			return $results;
 		}
+
+	    public function findUserByEmail($email){
+
+        $this->db->query('SELECT * FROM manager WHERE email = :email');
+
+        $this->db->bind(':email', $email);
+        $row = $this->db->single();
+        //echo $row;
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function findUserByEmailPha($email){
+
+        $this->db->query('SELECT * FROM pharmacist WHERE email = :email');
+
+        $this->db->bind(':email', $email);
+        $row = $this->db->single();
+        //echo $row;
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+     public function findUserByEmaildel($email){
+
+        $this->db->query('SELECT * FROM deliveryperson WHERE email = :email');
+
+        $this->db->bind(':email', $email);
+        $row = $this->db->single();
+        //echo $row;
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+      public function findUserByUsername($userName)
+    {
+        $this->db = new Database;
+        $this->db->query('SELECT * FROM users WHERE userName= :userName');
+        //bind email
+
+        $this->db->bind(':userName', $userName);
+
+        $row2 = $this->db->single();
+        //  echo $this->db->rowCount()
+        //check email already taken
+        if ($this->db->rowCount() > 0) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 		public function setStatus($userName,$userStatus){
 			$this->db->query('INSERT INTO users (userName,Status) VALUES (:userName,:Status)');

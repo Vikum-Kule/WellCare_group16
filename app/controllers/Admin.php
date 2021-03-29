@@ -13,6 +13,26 @@ class Admin extends Controller {
 	 	]; 
 	 	$this->view('Admin_DrugStockPage', $data);
 	 }
+	  public function dashbordp(){
+	  	$countp =$this->postModel->dashbordp();
+	  	$countc =$this->postModel->dashbordc();
+	  	$countm =$this->postModel->dashbordm();
+	  	$countd =$this->postModel->dashbordd();
+	  	$counts =$this->postModel->dashbords();
+	  	$countu =$this->postModel->dashbordu();
+	  	$data=[
+	  		$countp->count,
+	  		$countc->count,
+	  		$countm->count,
+	  		$countd->count,
+	  		$counts->count,
+	  		$countu->count
+	  	];
+	  	//print_r($data);
+	 	
+	 	$this->view('Admin_Dashbord',$data);
+	 }
+
 	  public function customer(){
 	 	$cus =$this->postModel->customer();
 
@@ -217,7 +237,12 @@ class Admin extends Controller {
 	 		'fromDate'=>'',
 	 		'toDate'=>'',
 	 		'licenseNo'=>'',
-	 		'NIC'=>''
+	 		'NIC'=>'',
+	 		'userNameError'=>'',
+            'emailError'=>'',
+            'phoneNumberError'=>'',
+            'passwordError'=>'',
+            'NICError'=>''
 
 	 		
 	 		
@@ -237,15 +262,85 @@ class Admin extends Controller {
 	 			'fromDate'=> trim($_POST['fromDate']),
 	 			'toDate'=> trim($_POST['toDate']),
 	 			'licenseNo'=> trim($_POST['licenseNo']),
-	 			'NIC'=> trim($_POST['NIC'])
+	 			'NIC'=> trim($_POST['NIC']),
+	 			'userNameError'=>'',
+	            'emailError'=>'',
+	            'phoneNumberError'=>'',
+	            'passwordError'=>'',
+	            'NICError'=>''
 	 			
 	 			
 	 			
 
 	 		];
+	 		$nameValidation = "/^[a-zA-Z0-9]*$/";
+
+            $postalCodeVAlidation="/^[0-9]{5}$/";
+            $phoneNumberVAlidation="/^[0-9]{10}$/";
+            
+            $onlyLetters = "/^[a-zA-Z]*$/";
+            $passwordValidation = "/^(.{0,7}|[^a-z]*|[^\d]*)$/i";
+
+                if(empty($data['userName'])){
+                $data['userNameError']='please enter username.';
+
+            }elseif(!preg_match($nameValidation,$data['userName'])){
+                $data['userNameError']='User name can only contain letters and numbers.';
+            }else{
+                if($this->postModel->findUserByUsername($data['userName'])){
+                    $data['userNameError']='User name already taken.';
+
+                }
+            }
+
+           
+            if(empty($data['NIC'])){
+                $data['NICError']='please enter NIC.';
+
+            }
+
+            //validate email
+            if(empty($data['email'])){
+                $data['emailError']='please enter email.';
+
+            }elseif(!filter_var($data['email'],FILTER_VALIDATE_EMAIL)){
+                $data['emailError']='please enter the correct format.';
+
+            }else{
+                if($this->postModel->findUserByEmailPha($data['email'])){
+                    $data['emailError']='Email already taken.';
+
+                }
+            }
+
+            if(empty($data['phoneNumber'])){
+                $data['phoneNumberError']='please enter Phone number.';
+
+            }elseif(!preg_match( $phoneNumberVAlidation,$data['phoneNumber'])){
+                $data['phoneNumberError']='Not a valid phoneNumber';
+            }
+
+             if(empty($data['password'])){
+            $data['passwordError']='Please enter password.';
+
+            }elseif(strlen($data['password'])<6){
+                $data['passwordError']='Password must be at least 8 characters.';
+
+            } elseif (preg_match($passwordValidation, $data['password'])) {
+              $data['passwordError'] = 'Password must have at least one numeric value.';
+            }
+
+             if(empty($data['usernameError']) && empty($data['passwordError'])&& empty($data['emailError']) ){
+
+              $data['password']=password_hash($data['password'],PASSWORD_DEFAULT);
+
+	 		
+
+
 	 		$this->postModel->setStatus($userName,$userStatus);
 	 		$this->postModel->addpharmacistm($data);
 	 	}
+	 }
 	 	$this->view('Admin_pharmacistRegistration', $data);
 	 }
 	  public function showmanager(){
@@ -267,9 +362,13 @@ class Admin extends Controller {
 	 		'phoneNumber'=>'',
 	 		'password'=>'',
 	 		'fromDate'=>'',
-	 		'toDate'=>''
-	 		
-	 	];
+	 		'toDate'=>'',
+	 		'userNameError'=>'',
+	 		'NICError'=>'',
+            'emailError'=>'',
+            'phoneNumberError'=>'',
+            'passwordError'=>''
+          	];
 	 	if($_SERVER['REQUEST_METHOD']=='POST'){
 	 		$_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
 	 		$userName = trim($_POST['userName']);
@@ -284,15 +383,84 @@ class Admin extends Controller {
 	 			'phoneNumber'=> trim($_POST['phoneNumber']),
 	 			'password'=> trim($_POST['password']),
 	 			'fromDate'=> trim($_POST['fromDate']),
-	 			'toDate'=> trim($_POST['toDate'])
-	 			
-	 			
-
+	 			'toDate'=> trim($_POST['toDate']),
+	 			'userNameError'=>'',
+			 	'NICError'=>'',
+		        'emailError'=>'',
+		        'phoneNumberError'=>'',
+		        'passwordError'=>''
+	
 	 		];
+	 		$nameValidation = "/^[a-zA-Z0-9]*$/";
+
+            $postalCodeVAlidation="/^[0-9]{5}$/";
+            $phoneNumberVAlidation="/^[0-9]{10}$/";
+            
+            $onlyLetters = "/^[a-zA-Z]*$/";
+            $passwordValidation = "/^(.{0,7}|[^a-z]*|[^\d]*)$/i";
+
+            if(empty($data['userName'])){
+                $data['userNameError']='please enter username.';
+
+            }elseif(!preg_match($nameValidation,$data['userName'])){
+                $data['userNameError']='User name can only contain letters and numbers.';
+            }else{
+                if($this->postModel->findUserByUsername($data['userName'])){
+                    $data['userNameError']='User name already taken.';
+
+                }
+            }
+
+           
+
+
+
+
+            if(empty($data['NIC'])){
+                $data['NICError']='please enter NIC.';
+
+            }
+
+            //validate email
+            if(empty($data['email'])){
+                $data['emailError']='please enter email.';
+
+            }elseif(!filter_var($data['email'],FILTER_VALIDATE_EMAIL)){
+                $data['emailError']='please enter the correct format.';
+
+            }else{
+                if($this->postModel->findUserByEmail($data['email'])){
+                    $data['emailError']='Email already taken.';
+
+                }
+            }
+
+            if(empty($data['phoneNumber'])){
+                $data['phoneNumberError']='please enter Phone number.';
+
+            }elseif(!preg_match( $phoneNumberVAlidation,$data['phoneNumber'])){
+                $data['phoneNumberError']='Not a valid phoneNumber';
+            }
+
+             if(empty($data['password'])){
+            $data['passwordError']='Please enter password.';
+
+            }elseif(strlen($data['password'])<6){
+                $data['passwordError']='Password must be at least 8 characters.';
+
+            } elseif (preg_match($passwordValidation, $data['password'])) {
+              $data['passwordError'] = 'Password must have at least one numeric value.';
+            }
+
+             if(empty($data['usernameError']) && empty($data['passwordError'])&& empty($data['emailError']) ){
+
+              $data['password']=password_hash($data['password'],PASSWORD_DEFAULT);
+
 	 		
 	 		$this->postModel->setStatus($userName,$userStatus);
 	 		$this->postModel->addmanagerm($data);
 	 	}
+	 }
 	 	$this->view('Admin_Addmanager', $data);
 	 }
 
@@ -323,7 +491,11 @@ class Admin extends Controller {
 	 		'password'=>'',
 	 		'fromDate'=>'',
 	 		'toDate'=>'',
-	 		
+	 		'userNameError'=>'',
+	 		'NICError'=>'',
+            'emailError'=>'',
+            'phoneNumberError'=>'',
+            'passwordError'=>''
 	 		
 	 		
 	 	];
@@ -342,15 +514,85 @@ class Admin extends Controller {
 	 			'password'=> trim($_POST['password']),
 	 			'fromDate'=> trim($_POST['fromDate']),
 	 			'toDate'=> trim($_POST['toDate']),
-	 			
-	 			
+	 			'userNameError'=>'',
+		 		'NICError'=>'',
+	            'emailError'=>'',
+	            'phoneNumberError'=>'',
+	            'passwordError'=>''
+		 			
 
 	 		];
+
+	 		$nameValidation = "/^[a-zA-Z0-9]*$/";
+
+            $postalCodeVAlidation="/^[0-9]{5}$/";
+            $phoneNumberVAlidation="/^[0-9]{10}$/";
+            
+            $onlyLetters = "/^[a-zA-Z]*$/";
+            $passwordValidation = "/^(.{0,7}|[^a-z]*|[^\d]*)$/i";
+
+
+            if(empty($data['userName'])){
+                $data['userNameError']='please enter username.';
+
+            }elseif(!preg_match($nameValidation,$data['userName'])){
+                $data['userNameError']='User name can only contain letters and numbers.';
+            }else{
+                if($this->postModel->findUserByUsername($data['userName'])){
+                    $data['userNameError']='User name already taken.';
+
+                }
+            }
+
+           
+
+
+
+
+            if(empty($data['NIC'])){
+                $data['NICError']='please enter NIC.';
+
+            }
+
+            //validate email
+            if(empty($data['email'])){
+                $data['emailError']='please enter email.';
+
+            }elseif(!filter_var($data['email'],FILTER_VALIDATE_EMAIL)){
+                $data['emailError']='please enter the correct format.';
+
+            }else{
+                if($this->postModel->findUserByEmaildel($data['email'])){
+                    $data['emailError']='Email already taken.';
+
+                }
+            }
+
+            if(empty($data['phoneNumber'])){
+                $data['phoneNumberError']='please enter Phone number.';
+
+            }elseif(!preg_match( $phoneNumberVAlidation,$data['phoneNumber'])){
+                $data['phoneNumberError']='Not a valid phoneNumber';
+            }
+
+             if(empty($data['password'])){
+            $data['passwordError']='Please enter password.';
+
+            }elseif(strlen($data['password'])<6){
+                $data['passwordError']='Password must be at least 8 characters.';
+
+            } elseif (preg_match($passwordValidation, $data['password'])) {
+              $data['passwordError'] = 'Password must have at least one numeric value.';
+            }
+
+             if(empty($data['usernameError']) && empty($data['passwordError'])&& empty($data['emailError']) ){
+
+              $data['password']=password_hash($data['password'],PASSWORD_DEFAULT);
 
 
 				$this->postModel->setStatus($userName,$userStatus);
 				$this->postModel->adddeliverypersonm($data);
-
+			}
 	 		
 	 	}
 	 	$this->view('Admin_AddDeliveryboy', $data);

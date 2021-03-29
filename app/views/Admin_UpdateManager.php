@@ -57,8 +57,6 @@
     <label for="fromDate"><b>fromDate</b></label>
     <input type="text" placeholder="Enter fromDate" name="fromDate" id="fromDate" value="<?php echo $data['mans']->fromDate ?>">
 
-    <label for="toDate"><b>toDate</b></label>
-    <input type="text" placeholder="Enter toDate" name="toDate" id="toDate" value="<?php echo $data['mans']->toDate ?>">
     
 
 
