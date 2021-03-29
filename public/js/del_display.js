@@ -49,13 +49,29 @@ function opdenSlide(orderId) {
     });
 }
 
-$('.grabPromo').click(function(e) {
-    $('.slideDown').slideToggle();
-});
+if (document.getElementById("to_deliver")) {
+    counter();
+}
 
 
 
+function counter() {
 
+    var url = "http://localhost/mvcfinal/del_orders/findOrderCount";
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function(data) {
+            var orders = data[0];
+            document.getElementById("to_deliver").innerHTML = orders;
+
+        }
+    });
+}
+
+function goback() {
+    window.location.href = "http://localhost/mvcfinal/del_orders/show_streetOrders";
+}
 
 // function initMap() {
 //     var location = {

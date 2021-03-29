@@ -327,6 +327,9 @@ c .overlay-scrollbar::-webkit-scrollbar-thumb {
     #allOrder_card {
         display: none;
     }
+    #smallOrders {
+        display: block;
+    }
     #addressCard {
         display: none;
     }
@@ -340,7 +343,7 @@ c .overlay-scrollbar::-webkit-scrollbar-thumb {
     .wrapper {
         padding: 0px;
         margin-left: 0px;
-        padding-top: 15px;
+        padding-top: 60px;
         background: #f1f1f1;
         transition: margin-left .5s;
     }
@@ -430,6 +433,9 @@ c .overlay-scrollbar::-webkit-scrollbar-thumb {
 /* Medium devices >= 768px */
 
 @media only screen and (min-width: 768px) {
+    #smallOrders {
+        display: none;
+    }
     .sidebar {
         width: 72px im !important;
     }
@@ -478,6 +484,9 @@ c .overlay-scrollbar::-webkit-scrollbar-thumb {
 /* laptops/desktops >= 992px */
 
 @media only screen and (min-width: 992px) {
+    #smallOrders {
+        display: none;
+    }
     .sidebar {
         width: 72px !important;
     }
