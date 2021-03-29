@@ -1,6 +1,12 @@
 <?php require_once ($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/config/config.php");?>
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/Admin_header.php");?>
     <!-- main content -->
+    <style>
+    
+    .card {
+        width: 1200px;
+    }
+</style>
     <div class="wrapper">
         <div class="row">
             <div class="col-3 col-m-6 col-sm-6">
@@ -12,7 +18,7 @@
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                   <a href="http://localhost/mvcfinal/admin/showsupplier">Supplier Details</a>
-                     <p>dfdfsds</p>
+                     <p>.</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
@@ -31,10 +37,24 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Table
+                            Manager Details
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
+                   <!-- <center>
+                <div class="viewform">
+                    <form method="post">
+                        <br><br>
+                        <label> Search  </label>
+                        <input type="text" name="code">
+                        
+                        <button class="btn6" type="submit" name="view"><b>View</b></button>
+                        
+                       
+                    </form>
+                </div>          
+              </center>-->
+
                     <div class="card-content">
                         <table>
                            <thead>
@@ -48,7 +68,6 @@
             <th>Email</th>
             <th>Phone Number</th>
             <th>From Date</th>
-            <th>To Date</th>
             <th>Delete</th>
             <th>Update</th>
             
@@ -66,7 +85,7 @@
                         <td><?php echo $mans->email; ?></td>
                         <td><?php echo $mans->phoneNumber; ?></td>
                         <td><?php echo $mans->fromDate; ?></td>
-                        <td><?php echo $mans->toDate; ?></td>
+    
                         
 
                         <td><form action="<?php echo URLROOT . "/admin/deletemanager/" . $mans->userName ?>" method = "POST">

@@ -51,14 +51,12 @@
     <label for="email"><b>email</b></label>
     <input type="email" placeholder="Enter Email" name="email" id="email" value="<?php echo $data['mans']->email ?>" >
      <label for="phoneNumber"><b>phoneNumber</b></label>
-    <input type="Date" placeholder="Enter phoneNumber" name="phoneNumber" id="phoneNumber" value="<?php echo $data['mans']->phoneNumber?>">
+    <input type="number" placeholder="Enter phoneNumber" name="phoneNumber" id="phoneNumber" value="<?php echo $data['mans']->phoneNumber?>">
      <label for="password"><b>password</b></label>
     <input type="text" placeholder="Enter password" name="password" id="password" value="<?php echo $data['mans']->password ?>" required>
     <label for="fromDate"><b>fromDate</b></label>
     <input type="text" placeholder="Enter fromDate" name="fromDate" id="fromDate" value="<?php echo $data['mans']->fromDate ?>">
 
-    <label for="toDate"><b>toDate</b></label>
-    <input type="text" placeholder="Enter toDate" name="toDate" id="toDate" value="<?php echo $data['mans']->toDate ?>">
     
 
 

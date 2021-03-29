@@ -112,6 +112,7 @@ nav ul li a:hover{
 	margin-bottom: 30px;
 }
 
+
 .tabledrug1 tr{
 	border: 1px solid blue;
 	padding: 10px;
@@ -124,6 +125,8 @@ nav ul li a:hover{
 	border: 3px solid blue;
 	padding: 10px;
 }
+
+
 #first{width: 10px;}
 #second{width: 600px;}
 #third{width: 600px;}
@@ -319,3 +322,5 @@ nav ul li a:hover{
 	padding-top: 80px;
 	text-align: center;
 }
+
+
