@@ -36,6 +36,18 @@
     // 	 $this->view('Man_Notification_Manager', $data);
     // }
 
+	public function showexpired(){
+    	
+    	 
+		 $expiries = $this->postModel->expirationdrugsm();
+    	
+    	$data1 = [
+    		'expiries' => $expiries
+    	];
+
+    	 $this->view('Man_notification_expired', $data1);
+    }
+
 
 }
 
