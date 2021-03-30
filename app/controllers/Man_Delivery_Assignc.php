@@ -21,4 +21,15 @@ class Man_Delivery_Assignc extends Controller {
 		$this->view('Man_deliveryAssignedView', $data);
 	}
 
+	public function loadOrders(){
+		
+		header('Content-Type: application/json');
+		echo json_encode($this->postModel->loadOrders());
+
+
+
+
+	}
+
+
 }

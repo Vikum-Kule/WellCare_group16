@@ -109,6 +109,10 @@ class Pages extends Controller {
 
         $this->view('pc_confirmed_orders');
     }
+    public function Man_Delivery_Assign() {
+
+        $this->view('Man_Delivery_Assign');
+    }
 
     
 }
