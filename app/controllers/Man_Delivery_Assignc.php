@@ -13,6 +13,13 @@ class Man_Delivery_Assignc extends Controller {
     	 $this->view('Man_Delivery_Assign', $data);
     }
 
+	public function assignedDetails(){
+		$assignd = $this->postModel->delivery_person();
+		$data =[
+			'assignd'=>$assignd
+		];
+		$this->view('Man_deliveryAssignedView', $data);
+	}
 
 	public function loadOrders(){
 		

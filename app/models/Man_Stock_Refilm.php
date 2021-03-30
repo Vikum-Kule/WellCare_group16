@@ -37,8 +37,8 @@
         public function fill_stock($data){
             $this->db->query('INSERT INTO 
             stock_refill 
-            (supplyId, refillDateTime, medicineId , brandName, doseStatus, dose, QTY, price) 
-            VALUES (:supplyId, current_timestamp(), :medicineId , :brandName, :doseStatus, :dose, :QTY, :price)');
+            (supplyId, refillDateTime, medicineId , brandName, doseStatus, dose, QTY, price,EXP,MFD) 
+            VALUES (:supplyId, current_timestamp(), :medicineId , :brandName, :doseStatus, :dose, :QTY, :price,:EXP,:MFD)');
             
             $this->db->bind(':supplyId', $data['supplyId']);
             $this->db->bind(':medicineId', $data['medicineId']);
@@ -47,6 +47,9 @@
             $this->db->bind(':dose', $data['dose']);
             $this->db->bind(':QTY', $data['QTY']);
             $this->db->bind(':price', $data['price']);
+            $this->db->bind(':EXP',$data['EXP']);
+            $this->db->bind(':MFD',$data['MFD']);
+
             if ($this->db->execute()){
                 return true;
             }
