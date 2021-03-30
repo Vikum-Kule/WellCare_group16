@@ -251,9 +251,9 @@ function displayDetails() {
     const frequency_status = document.querySelector('#stat').value;
     var dose = $("#allDoses").val();
     var doseform = $("#allDoseForm").val();
-    var frequency = document.getElementById("frequency").value;
+    var frequency = $("#frequency").val();
 
-    // console.log(name);
+    console.log(frequency);
     var url = "http://localhost/mvcfinal/pc_input_validation/inputVaidation";
     var price = 0;
     $.ajax({

@@ -68,9 +68,10 @@ function refillData() {
     var supplyId = document.getElementById("supplyId").value;
     var qty = document.getElementById("QTY").value;
     var price = document.getElementById("price").value;
+    var EXP = document.getElementById("EXP").value;
+    var MFD = document.getElementById("MFD").value;
 
-
-    // console.log(data);
+    console.log(EXP);
 
     var url = "http://localhost/mvcfinal/Man_Stock_Refilc/stock_add";
     $.ajax({
@@ -83,9 +84,12 @@ function refillData() {
             dose: dose,
             supplyId: supplyId,
             qty: qty,
-            price: price
+            price: price,
+            MFD: MFD,
+            EXP: EXP
         },
         success: function(data) {
+            console.log(data);
             window.location.href = "http://localhost/mvcfinal/Man_Stock_Refilc/showrefill";
 
 
