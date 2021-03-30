@@ -32,6 +32,33 @@
         }
 
 
+        public function findinvoice($invoiceNo){
+            $this->db->query('SELECT * FROM inquiry WHERE invoiceNo = :invoiceNo' );
+    
+            $this->db->bind(':invoiceNo', $invoiceNo);
+    
+            $row = $this->db->single();
+            return $row;
+        }
+    
+        public function updatedrug($data){
+            $this->db->query('UPDATE inquiry SET invoiceNo = :invoiceNo, medicineList = :medicineList,  WHERE invoiceNo = :invoiceNo');
+    
+    
+            $this->db->bind(':invoiceNo', $data['invoiceNo']);
+            $this->db->bind(':medicineList', $data['nammedicineListe']);
+            
+           
+    
+            if ($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+
     }
 
  ?>

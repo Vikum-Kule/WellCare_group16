@@ -60,13 +60,13 @@
                             <tr>
                                 
                                     <th>Invoice Number</th>
-                                    <th><input type="text" placeholder="Enter Invoice Number" name="invoiceNo" id="invoiceNo" required> </th>
-                               
+                                    <th><input type="text" placeholder="Enter Invoice Number" name="invoiceNo" id="invoiceNo" value = "<?php echo $data['invoice']->invoiceNo ?>"required> </th>
+                                
                                 </tr>
                                 <tr>
 								
                                     <th>Medicine List</th>
-                                    <th><input type="text" placeholder="Enter MedicineList" name="medicineList" id="medicineList" required></th>
+                                    <th><input type="text" placeholder="Enter MedicineList" name="medicineList" id="medicineList" value = "<?php echo $data['invoice']->medicineList ?>"required></th>
                                 
                                 </tr>
                                 </tbody>
@@ -74,7 +74,7 @@
                         </form>
                     </div>
                     <div style="text-align: center;height:50px;">
-                    <button type="submit" name="submit" class="registerbtn">ADD</button>
+                    <button type="submit" name="submit" class="registerbtn">UPDATE</button>
                     </div>
                 </div>
             </div>

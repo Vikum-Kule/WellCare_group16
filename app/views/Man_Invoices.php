@@ -49,7 +49,7 @@
 				<tr>
 					<td><?php echo $invoice->invoiceNo; ?></td>
 					<td><?php echo $invoice->medicineList; ?></td>	
-					<td><a href="#">Update</a></td>
+					<td><div class="button"><button type="button"><a href="<?php echo URLROOT . "/Man_Invoices/updateinvoice/" . $drug->medicineId ?>">Update</a></button></td>
 				</tr>
 				<?php endforeach;?>
 			</tbody>
