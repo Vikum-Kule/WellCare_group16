@@ -5,7 +5,8 @@
 	}
 
     public function show_locations(){
-        $orders = $this->postModel->findOrders();
+        $username = $_SESSION['username'];
+        $orders = $this->postModel->findOrders($username);
         $data= [
             'orders' => $orders
         ];
@@ -21,7 +22,8 @@
     }
 
     public function show_cities(){
-        $city = $this->postModel->show_Cities();
+        $username = $_SESSION['username'];
+        $city = $this->postModel->show_Cities($username);
         
             $data=[
                 'city'=> $city
@@ -90,6 +92,7 @@
 
     public function submit_btn(){
         if($_SERVER['REQUEST_METHOD']=='POST'){
+            $username = $_SESSION['username'];
             if(isset($_POST['canecel'])){
                 if($_POST['canecel'] == "Del_orders_forStreet"){
                     $street = $_POST['street'];
@@ -104,7 +107,7 @@
                 $this->view('Del_orders_forStreet',$data);  
                 }
                 else{
-                    $orders = $this->postModel->findOrders();
+                    $orders = $this->postModel->findOrders($username);
                     $data= [
                         'orders' => $orders
                     ];
