@@ -13,6 +13,31 @@
     	 $this->view('Man_Invoices', $data);
     }
 
+	public function addinvoice(){
+		$data = [
+		  'invoiceNo'=>'',
+			 'medicineList'=>''
+			
+
+		];
+		
+		if($_SERVER['REQUEST_METHOD']=='POST'){
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+		  'invoiceNo' => trim($_POST['invoiceNo']),
+			 'medicineList' => trim($_POST['medicineList'])
+			 
+			];
+
+			if($this->postModel->addinvoicem($data)){
+			header("Location: ". URLROOT . "/Man_Invoices/showinvoices");
+		 }
+		}	
+
+
+		$this->view('Man_Add_Invoice', $data);
+}
 
 
 }

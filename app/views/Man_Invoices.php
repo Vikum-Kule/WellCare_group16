@@ -3,7 +3,7 @@
 
 <div class="wrapper">
         <div class="row">
-            <div class="col-3 col-m-6 col-sm-6">
+            <!-- <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <h3>100+</h3>
                     <p>To do</p>
@@ -26,7 +26,7 @@
                     <h3>100+</h3>
                     <p>Issues</p>
                 </div>
-            </div>
+            </div> -->
         </div>
 
 
@@ -57,7 +57,7 @@
 		
 	</div><!--tableinvoice-->
 	<div class="button">
-		<button type="button"><a href="http://localhost/mvcfinal/Man_pages/addinvoiceview">Add</button>
+		<button type="button"><a href="http://localhost/mvcfinal/Man_Invoices/addinvoice">Add</button>
 	
 	</div><!--button-->
     
