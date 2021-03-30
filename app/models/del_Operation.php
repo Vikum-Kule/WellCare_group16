@@ -6,9 +6,18 @@
             $this->db = new Database;
         }
 
-        public function show_Cities(){
-            $this->db->query('SELECT DISTINCT city FROM prepared_order WHERE status= :status ORDER BY city ASC;');
+        public function show_Cities($username){
+            $this->db->query('SELECT DISTINCT city FROM prepared_order 
+            INNER JOIN
+            orders
+            ON
+            orders.OrderId  = prepared_order.orderId
+            WHERE status= :status
+            AND
+            orders.delivery_Username  = :userName
+            ORDER BY city ASC;');
             $this->db->bind(':status', "completed");
+            $this->db->bind(':userName',$username );
             $results = $this->db->resultSet();
             return $results; 
         }
@@ -27,20 +36,29 @@
             return $results;
         }
 
-        public function findOrders(){
+        public function findOrders($username){
             $this->db->query('SELECT 
             customer.PhoneNum, customer.FirstName, customer.LastName,prepared_order.orderId, prepared_order.price
             FROM 
             prepared_order
             INNER JOIN 
-            customer 
+            customer
+
             ON
             customer. customerId=prepared_order. customerId
+            INNER JOIN
+            orders
+            ON
+            orders.OrderId  = prepared_order.orderId  
             WHERE
             prepared_order.	status = :status
+            AND
+            orders.delivery_Username  = :userName
             ORDER BY 
             customer.FirstName' );
             $this->db->bind(':status', "completed");
+            $this->db->bind(':userName',$username );
+
             $results = $this->db->resultSet();
             return $results; 
         }
