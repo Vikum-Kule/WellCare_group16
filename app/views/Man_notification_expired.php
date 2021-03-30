@@ -48,7 +48,7 @@
                                     <th>Dose Forms</th>
                                     <th>Expiration Date</th>
                                     <th>QTY</th>
-                                    <th>Remove</th>
+                                    
                                   
                                 </tr>
                             </thead>
@@ -63,6 +63,7 @@
                                     <td><?php echo $expiry->doseStatus; ?></td>
                                     <td><?php echo $expiry->EXP; ?></td>
                                     <td><?php echo $expiry->QTY; ?></td>
+                                   
                                 </tr>
                                 <?php endforeach;?>
                             </tbody>

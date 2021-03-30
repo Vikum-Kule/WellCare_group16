@@ -53,7 +53,7 @@
                                     <th>Tempurature</th>
                                     <th>subCategory</th>
                                     <th>imageLocation</th>
-                                    <th>Delete</th>
+                                   
                                     <th>Update</th>
                                 </tr>
                             </thead>
@@ -72,8 +72,8 @@
                                     <td><?php echo $drug->temperature; ?></td>
                                     <td><?php echo $drug->subCategory; ?></td>
                                     <td><?php echo $drug->imageLocation; ?></td>
-                                    <td><a href="<?php echo URLROOT . "/Man_adddrug/deletedrug/" . $drug->medicineId ?>">Delete</a></td>    
-                                    <td><a href="<?php echo URLROOT . "/Man_adddrug/updatedrugs/" . $drug->medicineId ?>">Update</a></td>
+                                        
+                                    <td><div class="button"><button type="button"><a href="<?php echo URLROOT . "/Man_adddrug/updatedrugs/" . $drug->medicineId ?>">Update</a></button></td>
 				                </tr>
 				                <?php endforeach;?>
                             </tbody>
