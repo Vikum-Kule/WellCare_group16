@@ -30,10 +30,11 @@
         </div>
 
 
-        <div class="card">
+        
+                <div class="card">
                     <div class="card-header">
                         <h3>
-                            Running out of Quantity
+                            Expired
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
@@ -41,33 +42,33 @@
                         <table>
                             <thead>
                                 <tr>
-                                    
-                                    <th>Generic Name</th>
+                                    <th>Refill ID</th>                                   
                                     <th>Brand Name</th>
                                     <th>Dose</th>
                                     <th>Dose Forms</th>
+                                    <th>Expiration Date</th>
                                     <th>QTY</th>
-                                    
+                                    <th>Remove</th>
+                                  
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($data['minimums'] as $minimum): ?>
+                            <tbody>
+                                <?php foreach($data1['expiries'] as $expiry): ?>
                                 <tr>
                                     
-                                    <td><?php echo $minimum->name; ?></td>
-                                    <td><?php echo $minimum->brand; ?></td>
-                                    <td><?php echo $minimum->dose; ?></td>
-                                    <td><?php echo $minimum->doseStatus; ?></td>
-                                    <td><?php echo $minimum->QTY; ?></td>
-                                   
+                                    <td><?php echo $expiry->refillId; ?></td>
+                                    <td><?php echo $expiry->brandName; ?></td>
+                                    <td><?php echo $expiry->dose; ?></td>
+                                    <td><?php echo $expiry->doseStatus; ?></td>
+                                    <td><?php echo $expiry->EXP; ?></td>
+                                    <td><?php echo $expiry->QTY; ?></td>
                                 </tr>
                                 <?php endforeach;?>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
-               
 
 
       

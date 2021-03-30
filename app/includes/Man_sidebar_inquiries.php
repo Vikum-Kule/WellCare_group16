@@ -1,19 +1,27 @@
 <div class="sidebar">
         <ul class="sidebar-nav">
         <li class="sidebar-nav-item">
-                <a href="http://localhost/mvcfinal/Man_notifications/shownotification" class="sidebar-nav-link active">
+                <a href="http://localhost/mvcfinal/Man_Inquiry/showinquiries" class="sidebar-nav-link active">
                     <div>
                         <i class="fab fa-accusoft"></i>
                     </div>
-                    <span>Running Out of Stock</span>
+                    <span>Unread</span>
                 </a>
             </li>
             <li class="sidebar-nav-item">
-                <a href="http://localhost/mvcfinal/Man_notifications/showexpired" class="sidebar-nav-link">
+                <a href="http://localhost/mvcfinal/Man_Inquiry/showprocessing" class="sidebar-nav-link">
                     <div>
                         <i class="fas fa-tasks"></i>
                     </div>
-                    <span>Expired</span>
+                    <span>Processing</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="http://localhost/mvcfinal/Man_Inquiry/showcompleted" class="sidebar-nav-link">
+                    <div>
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <span>Completed</span>
                 </a>
             </li>
             
