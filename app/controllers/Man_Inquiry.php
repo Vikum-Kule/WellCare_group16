@@ -31,5 +31,36 @@ class Man_Inquiry extends Controller {
 
     	 $this->view('Man_inquiries_completed', $data);
     }
+	public function processinquiry(){
+		$inquiries1= $this->postModel->findinquiry($inquiryId);
+		$data = [
+			'inquiries1' => $inquiries1,	
+   		];
+
+		$inquiries2= $this->postModel->processinquirym($inquiryId);
+		$inquiries = $this->postModel->findallprocessing();
+    	
+    	$data = [
+    		'inquiries' => $inquiries
+    	];
+    	$this->view('Man_inquiries_processing', $data);
+    }
+
+	public function completeinquiry(){
+		$inquiries1= $this->postModel->findinquiry($inquiryId);
+		$data = [
+			'inquiries1' => $inquiries1,	
+   		];
+
+		$inquiries2= $this->postModel->completeinquirym($inquiryId);
+		$inquiries = $this->postModel->findallcompleted();
+    	
+    	$data = [
+    		'inquiries' => $inquiries
+    	];
+    	$this->view('Man_inquiries_completed', $data);
+    }
+
+	
 
 }
