@@ -55,10 +55,11 @@
 <div class="box">
    <h1>Add Drug Details</h1>
     <hr>
-    
+    <label for="name"><b>medicineId</b></label>
+    <input type="text" placeholder="Enter Generic Name" name="medicineId" id="medicineId">
     <label for="name"><b>Generic Name</b></label>
     <input type="text" placeholder="Enter Generic Name" name="name" id="name">
-    <label for="name"><b>Brand Name</b></label>
+    <label for="name"><b>Brand Name</b></label> 
     <input type="text" placeholder="Enter Brand Name" name="brand" id="brand">
     <label for="description"><b>Description</b></label>
     <input type="text" placeholder="Enter Description" name="description" id="description">
