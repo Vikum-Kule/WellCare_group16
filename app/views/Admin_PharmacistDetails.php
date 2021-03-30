@@ -19,7 +19,7 @@
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                   <a href="http://localhost/mvcfinal/admin/showsupplier">Supplier Details</a>
-                     <p>.</p> 
+                   
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
