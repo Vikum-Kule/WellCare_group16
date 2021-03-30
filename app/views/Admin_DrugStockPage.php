@@ -82,7 +82,7 @@
                         <th>Temperature</th>
                         <th>SubCategory</th>
                         <th>imageLocation</th>
-                        <th>Delete</th>
+                      <!--  <th>Delete</th> -->
                         <th>Update</th>
 
 
@@ -103,11 +103,11 @@
                             <td><?php echo $drug->subCategory; ?></td>
                             <td><?php echo $drug->imageLocation; ?></td>
 
-                            <td>
+                          <!--  <td>
                                 <form action="<?php echo URLROOT . "/admin/deletedrug/" . $drug->medicineId ?>" method="POST">
                                     <input type="submit" name="delete" value="Delete">
                                 </form>
-                            </td>
+                            </td> -->
                             <td><button><a href="<?php echo URLROOT . "/admin/updatedrugs/" . $drug->medicineId ?>">Update</a></button></td>
                         </tr>
                     <?php endforeach; ?>
