@@ -41,6 +41,7 @@
                                 <th>Order ID</th>
                                 <th>Inquiry Date</th>
                                 <th>Inquiry </th>
+                                <th>Processing </th>
                                
                                 </tr>
                             </thead>
@@ -51,7 +52,7 @@
                                     <td><?php echo $inquiry->orderId; ?></td>
                                     <td><?php echo $inquiry->inquiryDate; ?></td>
                                     <td><?php echo $inquiry->Inquiry; ?></td>
-                                    
+                                    <td><a href="<?php echo URLROOT . "/Man_Inquiry/processinquiry/" . $inquiry->inquiryId ?>">Process</a></td>
                                     
                                     
 				                </tr>
