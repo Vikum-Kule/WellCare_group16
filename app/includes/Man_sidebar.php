@@ -52,7 +52,7 @@
                 </a>
             </li>
             <li class="sidebar-nav-item">
-                <a href="http://localhost/mvcfinal/Man_Delivery_Assignc/assigndelivery" class="sidebar-nav-link">
+                <a href="http://localhost/mvcfinal/pages/Man_Delivery_Assign" class="sidebar-nav-link">
                     <div>
                         <i class="fas fa-chart-line"></i>
                     </div>

@@ -344,4 +344,101 @@ class Order
             return true;
         }
     }
+    public function loadOrders(){
+        $this->db->query('SELECT orderId FROM prepared_order WHERE status="completed"' );
+
+        $results = $this->db->resultSet();
+
+        return $results;
+
+
+
+
+
+
+
+    }
+    public function getDeliveryPersons(){
+        $this->db->query('SELECT * FROM deliveryperson' );
+
+        $results = $this->db->resultSet();
+
+        return $results;
+
+
+
+
+
+
+
+    }
+    public function assignDeliveryPerson($data){
+        $this->db->query('INSERT INTO orders(OrderId,delivery_Username) VALUES (:orderid,:deliveryperson)');
+//$this->db->query('UPDATE orders SET OrderId = :orderid, delivery_Username = :deliveryperson');
+        
+        $this->db->bind(':orderid', $data['orderid']);
+        $this->db->bind(':deliveryperson', $data['deliveryperson']);
+       
+        
+        if ($this->db->execute()) {
+           return true;
+        } else {
+           return false;
+        }
+
+
+
+
+
+
+
+    }
+//     $this->db->query('UPDATE customer SET LastName = :lastname, FirstName = :firstname, PhoneNum = :phoneNumber, NIC = :nic ,
+//     streetAddress1 = :streetAddress1 , streetAddress2 = :streetAddress2 , city = :city , district = :district , postalCode = :postalCode WHERE customerId = :id');
+
+// $this->db->bind(':firstname', $data['firstname']);
+// $this->db->bind(':lastname', $data['lastname']);
+// $this->db->bind(':nic', $data['nic']);
+// $this->db->bind(':phoneNumber', $data['phoneNumber']);
+// $this->db->bind(':id', $data['id']);
+// $this->db->bind(':streetAddress1', $data['streetAddress1']);
+// $this->db->bind(':streetAddress2', $data['streetAddress2']);
+// $this->db->bind(':city', $data['city']);
+// $this->db->bind(':district', $data['district']);
+// $this->db->bind(':postalCode', $data['postalCode']);
+
+// if ($this->db->execute()) {
+//    return true;
+// } else {
+//    return false;
+// }
+
+    // $data = [
+    //     'orderid' => $json->orderid,
+    //     'deliveryperson' => $json->deliveryperson,
+       
+    // ];
+
+    // header('Content-Type: application/json');
+    // echo json_encode($this->orderModel->assignDeliveryPerson($data));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

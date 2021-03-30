@@ -13,5 +13,19 @@
 
             return $results;
         }
+        public function loadOrders(){
+            $this->db->query('SELECT orderId FROM prepared_order WHERE status="completed"' );
+
+            $results = $this->db->resultSet();
+
+            return $results;
+
+
+
+
+
+
+
+        }
 
 }

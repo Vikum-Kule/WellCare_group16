@@ -72,6 +72,42 @@ class PrescriptionController extends Controller
 
 
     }
+    public function loadOrders(){
+
+        header('Content-Type: application/json');
+        echo json_encode($this->orderModel->loadOrders());
+    }
+    public function getDeliveryPersons(){
+
+        header('Content-Type: application/json');
+        echo json_encode($this->orderModel->getDeliveryPersons());
+    }
+    public function assignDeliveryPerson(){
+
+        $obj = file_get_contents('php://input');
+        $json = json_decode($obj);
+
+        // orderid: orderid,
+        // deliveryperson:deliveryperson
+        $data = [
+            'orderid' => $json->orderid,
+            'deliveryperson' => $json->deliveryperson,
+           
+        ];
+
+        header('Content-Type: application/json');
+		echo json_encode($this->orderModel->assignDeliveryPerson($data));
+    }
+
+
+
+
+
+
+
+
+
+
 
     public function uploadPrescription()
     {

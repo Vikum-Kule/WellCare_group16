@@ -1,134 +1,127 @@
 <?php
-class Users extends Controller{
-    public function __construct(){
-        $this->userModel=$this->model('User');
-        
+class Users extends Controller
+{
+    public function __construct()
+    {
+        $this->userModel = $this->model('User');
     }
 
-   
-    public function register(){ 
+
+    public function register()
+    {
         $data = [
-            
-            'firstname'=>'',
-            'lastname'=>'',
-            'nic'=>'',
-            'userName'=>'',
-            'password'=>'',
-            'confirmPassword'=>'',
-            'phoneNumber'=>'',
-            'email'=>'',
-            'streetAddress1'=>'',
-            'streetAddress2'=>'',
-            'city'=>'',
-            'district'=>'',
-            'postalCode'=>'',
-            'usernameError'=>'',
-            'passwordError'=>'',
-            'confirmPasswordError'=>'',
-            'emailError'=>'',
-            'nicError'=>'',
-            'firstnameError'=>'',
-            'phoneNumberError'=>'',
-            'streetAddress1Error'=>'',
-            'streetAddress2Error'=>'',
-            'cityError'=>'',
-            'districtError'=>'',
-            'postalCodeError'=>''
+
+            'firstname' => '',
+            'lastname' => '',
+            'nic' => '',
+            'userName' => '',
+            'password' => '',
+            'confirmPassword' => '',
+            'phoneNumber' => '',
+            'email' => '',
+            'streetAddress1' => '',
+            'streetAddress2' => '',
+            'city' => '',
+            'district' => '',
+            'postalCode' => '',
+            'usernameError' => '',
+            'passwordError' => '',
+            'confirmPasswordError' => '',
+            'emailError' => '',
+            'nicError' => '',
+            'firstnameError' => '',
+            'phoneNumberError' => '',
+            'streetAddress1Error' => '',
+            'streetAddress2Error' => '',
+            'cityError' => '',
+            'districtError' => '',
+            'postalCodeError' => ''
         ];
-        if($_SERVER['REQUEST_METHOD']=='POST'){
-            $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
-             'firstname' => trim($_POST['firstname']),
-             'lastname' => trim($_POST['lastname']),
-             'nic' => trim($_POST['nic']),
-             'userName' => trim($_POST['userName']),
-             'password' => trim($_POST['password']),
-             'confirmPassword' => trim($_POST['confirmPassword']), 
-             'phoneNumber' => trim($_POST['phoneNumber']),
-             'email' => trim($_POST['email']),
-             'streetAddress1' => trim($_POST['streetAddress1']),
-             'streetAddress2' => trim($_POST['streetAddress2']),
-             'city' => trim($_POST['city']),
-             'district' => trim($_POST['district']),
-             'postalCode' => trim($_POST['postalCode']),
-             'usernameError' => '',
-             'passwordError' => '',
-             'confirmPasswordError' => '',
-             'emailError' => '',
-             'nicError'=>'',
-             'firstnameError'=>'',
-             'phoneNumberError'=>'',
-             'streetAddress1Error' => '',
-             'streetAddress2Error' => '',
-             'cityError' => '',
-             'districtError' => '',
-             'postalCodeError' => ''
+                'firstname' => trim($_POST['firstname']),
+                'lastname' => trim($_POST['lastname']),
+                'nic' => trim($_POST['nic']),
+                'userName' => trim($_POST['userName']),
+                'password' => trim($_POST['password']),
+                'confirmPassword' => trim($_POST['confirmPassword']),
+                'phoneNumber' => trim($_POST['phoneNumber']),
+                'email' => trim($_POST['email']),
+                'streetAddress1' => trim($_POST['streetAddress1']),
+                'streetAddress2' => trim($_POST['streetAddress2']),
+                'city' => trim($_POST['city']),
+                'district' => trim($_POST['district']),
+                'postalCode' => trim($_POST['postalCode']),
+                'usernameError' => '',
+                'passwordError' => '',
+                'confirmPasswordError' => '',
+                'emailError' => '',
+                'nicError' => '',
+                'firstnameError' => '',
+                'phoneNumberError' => '',
+                'streetAddress1Error' => '',
+                'streetAddress2Error' => '',
+                'cityError' => '',
+                'districtError' => '',
+                'postalCodeError' => ''
             ];
 
             $nameValidation = "/^[a-zA-Z0-9]*$/";
 
-            $postalCodeVAlidation="/^[0-9]{5}$/";
-            $phoneNumberVAlidation="/^[0-9]{10}$/";
-            
+            $postalCodeVAlidation = "/^[0-9]{5}$/";
+            $phoneNumberVAlidation = "/^[0-9]{10}$/";
+
             $onlyLetters = "/^[a-zA-Z]*$/";
             $passwordValidation = "/^(.{0,7}|[^a-z]*|[^\d]*)$/i";
 
             //validate username
-            if(empty($data['userName'])){
-                $data['usernameError']='please enter username.';
-
-            }elseif(!preg_match($nameValidation,$data['userName'])){
-                $data['usernameError']='User name can only contain letters and numbers.';
-            }else{
-                if($this->userModel->findUserByUsername($data['userName'])){
-                    $data['usernameError']='User name already taken.';
-
+            if (empty($data['userName'])) {
+                $data['usernameError'] = 'please enter username.';
+            } elseif (!preg_match($nameValidation, $data['userName'])) {
+                $data['usernameError'] = 'User name can only contain letters and numbers.';
+            } else {
+                if ($this->userModel->findUserByUsername($data['userName'])) {
+                    $data['usernameError'] = 'User name already taken.';
                 }
             }
             //validate nic
-            if(empty($data['nic'])){
-                $data['nicError']='please enter NIC.';
-
+            if (empty($data['nic'])) {
+                $data['nicError'] = 'please enter NIC.';
             }
             //validate firstname
-            if(empty($data['firstname'])){
-                $data['firstnameError']='please enter First name.';
-
+            if (empty($data['firstname'])) {
+                $data['firstnameError'] = 'please enter First name.';
             }
             //validate phonenumber
-            if(empty($data['phoneNumber'])){
-                $data['phoneNumberError']='please enter Phone number.';
-
-            }elseif(!preg_match($phoneNumberVAlidation,$data['phoneNumber'])){
-                $data['phoneNumberError']='Not a valid phoneNumber';
+            if (empty($data['phoneNumber'])) {
+                $data['phoneNumberError'] = 'please enter Phone number.';
+            } elseif (!preg_match($phoneNumberVAlidation, $data['phoneNumber'])) {
+                $data['phoneNumberError'] = 'Not a valid phoneNumber';
             }
 
 
             //validate address
-            if(empty($data['streetAddress1'])){
-                $data['streetAddress1Error']='please enter street address 1.';
-
+            if (empty($data['streetAddress1'])) {
+                $data['streetAddress1Error'] = 'please enter street address 1.';
             }
-            if(empty($data['city'])){
-                $data['cityError']='please enter city.';
-
-            }elseif(!preg_match($onlyLetters,$data['city'])){
-                $data['streetAddress1Error']='Not a valid city.';
+            if (empty($data['city'])) {
+                $data['cityError'] = 'please enter city.';
+            } elseif (!preg_match($onlyLetters, $data['city'])) {
+                $data['streetAddress1Error'] = 'Not a valid city.';
             }
 
-            if(empty($data['district'])){
-                $data['districtError']='please enter district.';
-
-            }elseif(!preg_match($onlyLetters,$data['district'])){
-                $data['districtError']='Not a valid district.';
+            if (empty($data['district'])) {
+                $data['districtError'] = 'please enter district.';
+            } elseif (!preg_match($onlyLetters, $data['district'])) {
+                $data['districtError'] = 'Not a valid district.';
             }
 
-            if(empty($data['postalCode'])){
-                $data['postalCodeError']='please enter postalCode.';
-
-            }elseif(!preg_match($postalCodeVAlidation,$data['postalCode'])){
-                $data['postalCodeError']='Not a valid postalCode';
+            if (empty($data['postalCode'])) {
+                $data['postalCodeError'] = 'please enter postalCode.';
+            } elseif (!preg_match($postalCodeVAlidation, $data['postalCode'])) {
+                $data['postalCodeError'] = 'Not a valid postalCode';
             }
 
 
@@ -136,87 +129,80 @@ class Users extends Controller{
 
 
             //validate email
-            if(empty($data['email'])){
-                $data['emailError']='please enter email.';
-
-            }elseif(!filter_var($data['email'],FILTER_VALIDATE_EMAIL)){
-                $data['emailError']='please enter the correct format.';
-
-            }else{
-                if($this->userModel->findUserByEmail($data['email'])){
-                    $data['emailError']='Email already taken.';
-
+            if (empty($data['email'])) {
+                $data['emailError'] = 'please enter email.';
+            } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                $data['emailError'] = 'please enter the correct format.';
+            } else {
+                if ($this->userModel->findUserByEmail($data['email'])) {
+                    $data['emailError'] = 'Email already taken.';
                 }
             }
 
 
-           //validate password lenth and numeric values
-           if(empty($data['password'])){
-            $data['passwordError']='Please enter password.';
-
-            }elseif(strlen($data['password'])<6){
-                $data['passwordError']='Password must be at least 8 characters.';
-
+            //validate password lenth and numeric values
+            if (empty($data['password'])) {
+                $data['passwordError'] = 'Please enter password.';
+            } elseif (strlen($data['password']) < 6) {
+                $data['passwordError'] = 'Password must be at least 8 characters.';
             } elseif (preg_match($passwordValidation, $data['password'])) {
-              $data['passwordError'] = 'Password must have at least one numeric value.';
+                $data['passwordError'] = 'Password must have at least one numeric value.';
             }
 
             //validate confirm password
-            if(empty($data['confirmPassword'])){
-                $data['confirmPasswordError']='please confirm password.';
-            }else{
-                if($data['password'] !=$data['confirmPassword'] ){
-                    $data['confirmPasswordError']='Password do not match,Please try again.';
-
+            if (empty($data['confirmPassword'])) {
+                $data['confirmPasswordError'] = 'please confirm password.';
+            } else {
+                if ($data['password'] != $data['confirmPassword']) {
+                    $data['confirmPasswordError'] = 'Password do not match,Please try again.';
                 }
             }
 
             //check errors are empty
-            if(empty($data['usernameError']) && empty($data['passwordError']) && empty($data['confirmPasswordError']) && empty($data['emailError'])&& empty($data['streetAddress1Error'])&& empty($data['streetAddress2Error'])&& empty($data['cityError'])&& empty($data['districtError'])&& empty($data['postalCodeError']) ){
+            if (empty($data['usernameError']) && empty($data['passwordError']) && empty($data['confirmPasswordError']) && empty($data['emailError']) && empty($data['streetAddress1Error']) && empty($data['streetAddress2Error']) && empty($data['cityError']) && empty($data['districtError']) && empty($data['postalCodeError'])) {
                 //hash password
-                $data['password']=password_hash($data['password'],PASSWORD_DEFAULT);
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 //REGISTER USER FROM MODEL FUNCTION
-               
+
                 $data2 = [
-            
-                    'email'=>'',
-                    
-                    'pinError'=>'',
-                    
+
+                    'email' => '',
+
+                    'pinError' => '',
+
                 ];
                 $data2 = [
-            
-                    'email'=>$data['email'],
-                    
-                    'pinError'=>'',
-                    
-                    
+
+                    'email' => $data['email'],
+
+                    'pinError' => '',
+
+
                 ];
-                $_SESSION['pin']=rand(1000,9999);
+                $_SESSION['pin'] = rand(1000, 9999);
 
                 $to = $data['email'];
-                $email_Sender= "wellcaregroup16@gmail.com";
+                $email_Sender = "wellcaregroup16@gmail.com";
                 $mail_subject = "Verify email";
                 $email_body = "<b>From: </b> Wellcare Pharmacy<br>";
-                $email_body .="<b>Your Recover Password: </b> {$_SESSION['pin']}<br>";
-                $email_body .="<i>Verify email using this 4 digit pin..</i><br>
+                $email_body .= "<b>Your Recover Password: </b> {$_SESSION['pin']}<br>";
+                $email_body .= "<i>Verify email using this 4 digit pin..</i><br>
                                 <b>Thank you.</b>";
                 $header = "From: {$email_Sender}\r\nContent-type: text/html;";
 
-                $mail_result=mail($to,$mail_subject,$email_body,$header);
+                $mail_result = mail($to, $mail_subject, $email_body, $header);
 
-                if($mail_result){
-                    $data2['pinError']="4 -digit pin sent...";
+                if ($mail_result) {
+                    $data2['pinError'] = "4 -digit pin sent...";
+                } else {
+                    $data2['pinError'] = "Unable to send pin";
                 }
-                else{
-                    $data2['pinError']="Unable to send pin";
-                }
 
-               
 
-                $_SESSION['updateState_userName']=$data['userName'];
-                $_SESSION['updateState_data']=$data;
-                $this->view('verifyEmail',$data2);
+
+                $_SESSION['updateState_userName'] = $data['userName'];
+                $_SESSION['updateState_data'] = $data;
+                $this->view('verifyEmail', $data2);
 
 
                 // header('location: ' . URLROOT . '/Home');
@@ -235,20 +221,21 @@ class Users extends Controller{
         }
 
         $this->view('Register', $data);
-
-        
     }
 
 
-    public function loginVIew(){
+    public function loginVIew()
+    {
         $this->view('Home');
+    }
 
-    } 
-    public function login(){
 
-        
-        
-       
+    public function login()
+    {
+
+
+
+
         $data = [
             'title' => 'Login page',
             'username' => '',
@@ -256,12 +243,12 @@ class Users extends Controller{
             'usernameError' => '',
             'passwordError' => ''
         ];
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-             //Sanitize post data
-             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            //Sanitize post data
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-             $data = [
+            $data = [
                 'username' => trim($_POST['username']),
                 'password' => trim($_POST['password']),
                 'usernameError' => '',
@@ -277,127 +264,126 @@ class Users extends Controller{
             if (empty($data['password'])) {
                 $data['passwordError'] = 'Please enter a password.';
             }
-           
-            
+
+
 
             if (empty($data['usernameError']) && empty($data['passwordError'])) {
                 //check user status..
+                //print_r("x");
                 $userState = $this->userModel->findState($data['username']);
-                
-               // print_r($userState);
-                     if(isset($userState->Status)){
 
-                    
+                // print_r($userState);
+                if (isset($userState->Status)) {
 
-                if($userState->Status == "customer"){
-                   
-                    $loggedInUser = $this->userModel->login($data['username'], $data['password']);
-                
-                    if ($loggedInUser) {
-                        $this->createUserSession($loggedInUser);
-                    } else {
-                        $data['passwordError'] = 'Password or username is incorrect. Please try again.';
 
-                        $this->view('Home', $data);
+
+                    if ($userState->Status == "customer") {
+
+                        $loggedInUser = $this->userModel->login($data['username'], $data['password']);
+
+                        if ($loggedInUser) {
+                            $this->createUserSession($loggedInUser);
+                        } else {
+                            $data['passwordError'] = 'Password or username is incorrect. Please try again.';
+
+                            $this->view('Home', $data);
+                        }
+                    } else if ($userState->Status == "pharmacist") {
+                        $loggedInUser = $this->userModel->loginPharmacist($data['username'], $data['password']);
+
+                        if ($loggedInUser) {
+                            $this->createUserSession_pc($loggedInUser);
+                        } else {
+                            $data['passwordError'] = 'Password or username is incorrect. Please try again.';
+
+                            $this->view('Home', $data);
+                        }
+                    } elseif ($userState->Status == "manager") {
+                        $loggedInUser = $this->userModel->loginManager($data['username'], $data['password']);
+
+                        if ($loggedInUser) {
+                            $this->createUserSession_man($loggedInUser);
+                        } else {
+                            $data['passwordError'] = 'Password or username is incorrect. Please try again.';
+
+                            $this->view('Home', $data);
+                        }
+                    } elseif ($userState->Status == "admin") {
+                        $loggedInUser = $this->userModel->loginAdmin($data['username'], $data['password']);
+
+                        if ($loggedInUser) {
+                            $this->createUserSession_admin($loggedInUser);
+                        } else {
+                            $data['passwordError'] = 'Password or username is incorrect. Please try again.';
+
+                            $this->view('Home', $data);
+                        }
+                    } elseif ($userState->Status == "delivery") {
+                        $loggedInUser = $this->userModel->loginDelivery($data['username'], $data['password']);
+
+                        if ($loggedInUser) {
+                            $this->createUserSession_delivery($loggedInUser);
+                        } else {
+                            $data['passwordError'] = 'Password or username is incorrect. Please try again.';
+
+                            $this->view('Home', $data);
+                        }
                     }
-                }
-                else if($userState->Status == "pharmacist"){
-                    $loggedInUser = $this->userModel->loginPharmacist($data['username'], $data['password']);
-                
-                    if ($loggedInUser) {
-                       $this->createUserSession_pc($loggedInUser);
-                       
-                    } else {
-                        $data['passwordError'] = 'Password or username is incorrect. Please try again.';
+                }else{
 
-                        $this->view('Home', $data);
-                    }
-                }
-
-                elseif($userState->Status == "manager"){
-                    $loggedInUser = $this->userModel->loginManager($data['username'], $data['password']);
-                
-                    if ($loggedInUser) {
-                       $this->createUserSession_man($loggedInUser);
-                       
-                    } else {
-                        $data['passwordError'] = 'Password or username is incorrect. Please try again.';
-
-                        $this->view('Home', $data);
-                    }
-                }
-                elseif($userState->Status == "admin"){
-                    $loggedInUser = $this->userModel->loginAdmin($data['username'], $data['password']);
-                
-                    if ($loggedInUser) {
-                       $this->createUserSession_admin($loggedInUser);
-                       
-                    } else {
-                        $data['passwordError'] = 'Password or username is incorrect. Please try again.';
-
-                        $this->view('Home', $data);
-                    }
-                }
-                elseif($userState->Status == "delivery"){
-                    $loggedInUser = $this->userModel->loginDelivery($data['username'], $data['password']);
-                
-                    if ($loggedInUser) {
-                       $this->createUserSession_delivery($loggedInUser);
-                       
-                    } else {
-                        $data['passwordError'] = 'Password or username is incorrect. Please try again.';
-
-                        $this->view('Home', $data);
-                    }
+                    $data['passwordError'] = 'Password or username is incorrect. Please try again.';
+                    $this->view('Home', $data);
                 }
                 
+            } else {
+                $this->view('Home', $data);
+                $data = [
+                    'username' => '',
+                    'password' => '',
+                    'usernameError' => '',
+                    'passwordError' => ''
+                ];
             }
-
-
-
-
-
-        }else {
-            $data = [
-                'username' => '',
-                'password' => '',
-                'usernameError' => '',
-                'passwordError' => ''
-            ];
+            //$this->view('Home', $data);
+            
         }
-        $this->view('Home', $data);
+    }
 
-    }}
 
-    public function createUserSession_admin($user){
+    public function createUserSession_admin($user)
+    {
         $_SESSION['active'] = true;
         $_SESSION['username'] = $user->userName;
-	    $_SESSION['email'] = $user->email;
+        $_SESSION['email'] = $user->email;
         header('location:' . URLROOT . '/admin/showdrugs');
     }
 
-    public function createUserSession_pc($user){
+    public function createUserSession_pc($user)
+    {
         $_SESSION['active'] = true;
         $_SESSION['username'] = $user->userName;
-	    $_SESSION['email'] = $user->email;
+        $_SESSION['email'] = $user->email;
         header('location:' . URLROOT . '/pc_view_drug/show_requestedOrders');
     }
 
-    public function createUserSession_man($user){
+    public function createUserSession_man($user)
+    {
         $_SESSION['active'] = true;
         $_SESSION['username'] = $user->userName;
-	    $_SESSION['email'] = $user->email;
+        $_SESSION['email'] = $user->email;
         header('location:' . URLROOT . '/Man_Adddrug/showdrugs');
     }
 
-    public function createUserSession_delivery($user){
+    public function createUserSession_delivery($user)
+    {
         $_SESSION['active'] = true;
         $_SESSION['username'] = $user->userName;
-	    $_SESSION['email'] = $user->email;
+        $_SESSION['email'] = $user->email;
         header('location:' . URLROOT . '/Del_orders/show_locations');
     }
 
-    public function createUserSession($user) {
+    public function createUserSession($user)
+    {
         $_SESSION['active'] = true;
         $_SESSION['user_id'] = $user->customerId;
         $_SESSION['username'] = $user->userName;
@@ -412,71 +398,73 @@ class Users extends Controller{
         $_SESSION['district'] = $user->district;
         $_SESSION['postalCode'] = $user->postalCode;
 
-       
+
 
         header('location:' . URLROOT . '/orders/makeOrder');
     }
 
-    public function profile(){
+    public function profile()
+    {
         $this->view('HomeAfterLogin');
-       
-
     }
-    public function logoutOther(){
-        $_SESSION['active']=false;
-       
-       unset($_SESSION['username']);
-       unset($_SESSION['email']);
-      header('location:' . URLROOT . '/MyOrder/myorder');
-   }
-    
-    public function logout(){
-         $_SESSION['active']=false;
+    public function logoutOther()
+    {
+        $_SESSION['active'] = false;
+
+        unset($_SESSION['username']);
+        unset($_SESSION['email']);
+        header('location:' . URLROOT . '/MyOrder/myorder');
+    }
+
+    public function logout()
+    {
+        $_SESSION['active'] = false;
         unset($_SESSION['user_id']);
         unset($_SESSION['username']);
         unset($_SESSION['email']);
         unset($_SESSION['LastName']);
         unset($_SESSION['FirstName']);
-        unset( $_SESSION['PhoneNumber']);
-        unset( $_SESSION['NIC']);
-        unset( $_SESSION['streetAddress1']);
-        unset( $_SESSION['streetAddress2']);
-        unset( $_SESSION['address']);
-        unset( $_SESSION['city']);
-        unset( $_SESSION['district']);
-        unset( $_SESSION['postalCode']);
-        
+        unset($_SESSION['PhoneNumber']);
+        unset($_SESSION['NIC']);
+        unset($_SESSION['streetAddress1']);
+        unset($_SESSION['streetAddress2']);
+        unset($_SESSION['address']);
+        unset($_SESSION['city']);
+        unset($_SESSION['district']);
+        unset($_SESSION['postalCode']);
+
 
         header('location:' . URLROOT . '/MyOrder/myorder');
     }
 
-    public function letUpdateProfile(){
+    public function letUpdateProfile()
+    {
 
-        $this->view('EditProfile',$_SESSION);
-
+        $this->view('EditProfile', $_SESSION);
     }
-   
 
-    public function updateProfile(){
 
-      
-        
-       $data = [
+    public function updateProfile()
+    {
 
-            'id'=>$_SESSION['user_id'],
-            'firstname'=>'',
-            'user_id'=>'',
-            'lastname'=>'',
-            'nic'=>'',
-            'phoneNumber'=>'',
-           
-            'streetAddress1'=>'',
-            'streetAddress2'=>'',
-            'city'=>'',
-            'district'=>'',
-            'postalCode'=>''
-            
-         ];
+
+
+        $data = [
+
+            'id' => $_SESSION['user_id'],
+            'firstname' => '',
+            'user_id' => '',
+            'lastname' => '',
+            'nic' => '',
+            'phoneNumber' => '',
+
+            'streetAddress1' => '',
+            'streetAddress2' => '',
+            'city' => '',
+            'district' => '',
+            'postalCode' => ''
+
+        ];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -499,145 +487,128 @@ class Users extends Controller{
             ];
             $this->userModel->editProfile($data);
         }
-           
-           
-           
-            
-            $_SESSION['LastName'] =$data['lastname'];
-            $_SESSION['FirstName'] =$data['firstname'];
-            $_SESSION['PhoneNumber'] = $data['phoneNumber'];
-            $_SESSION['NIC'] = $data['nic'];
-            $_SESSION['streetAddress1'] = $data['streetAddress1'];
-            $_SESSION['streetAddress2'] = $data['streetAddress2'];
-            $_SESSION['city'] = $data['city'];
-            $_SESSION['district'] = $data['district'];
-            $_SESSION['postalCode'] = $data['postalCode'];
-            
-    
-            header('location:' . URLROOT . '/users/profile');
-        
 
-        
 
+
+
+        $_SESSION['LastName'] = $data['lastname'];
+        $_SESSION['FirstName'] = $data['firstname'];
+        $_SESSION['PhoneNumber'] = $data['phoneNumber'];
+        $_SESSION['NIC'] = $data['nic'];
+        $_SESSION['streetAddress1'] = $data['streetAddress1'];
+        $_SESSION['streetAddress2'] = $data['streetAddress2'];
+        $_SESSION['city'] = $data['city'];
+        $_SESSION['district'] = $data['district'];
+        $_SESSION['postalCode'] = $data['postalCode'];
+
+
+        header('location:' . URLROOT . '/users/profile');
     }
-   
-   
-    public function fogotpassword(){
 
-         
-       
+
+    public function fogotpassword()
+    {
+
+
+
         $data = [
-           
+
             'email' => '',
             'emailError' => '',
-            'successMessage'=>''
-            
+            'successMessage' => ''
+
         ];
-       
-        
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
             //Sanitize post data
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-           
+
 
             $data = [
                 'email' => trim($_POST['email']),
                 'emailError' => '',
-                'successMessage'=>''
-                
+                'successMessage' => ''
+
             ];
-           
-           
+
+
 
             //validate email   /users/fogotPasswordView
-            if(empty($data['email'])){
-                $data['emailError']='please enter email.';
-
-            }elseif(!filter_var($data['email'],FILTER_VALIDATE_EMAIL)){
-                $data['emailError']='please enter the correct format.';
-
-            }else{
-                if(!$this->userModel->findUserByEmail($data['email'])){
-                    $data['emailError']='Email not  found';
-
+            if (empty($data['email'])) {
+                $data['emailError'] = 'please enter email.';
+            } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                $data['emailError'] = 'please enter the correct format.';
+            } else {
+                if (!$this->userModel->findUserByEmail($data['email'])) {
+                    $data['emailError'] = 'Email not  found';
                 }
             }
-           
 
-           
+
+
             if (empty($data['emailError'])) {
 
-                
-                    $_SESSION['email']= $data['email'];
-                   
-                    
-                    
 
-                   
-                    $dataRecoverPassword['recoverpasswords']= bin2hex(openssl_random_pseudo_bytes(4));
-                    
-                    $dataRecoverPassword['recoverEmail']=$data['email'];
-                    $dataRecoverPassword['createdTime']=time();
-                    //email sending...
-                    $to = $dataRecoverPassword['recoverEmail'];
-                    $email_Sender= "wellcaregroup16@gmail.com";
-                    $mail_subject = "Password Recover";
-                    $email_body = "<b>From: </b> Wellcare Pharmacy<br>";
-                    $email_body .="<b>Your Recover Password: </b> {$dataRecoverPassword['recoverpasswords']}<br>";
-                    $email_body .="<i>Please recover your password within 15 minuts..</i><br>
+                $_SESSION['email'] = $data['email'];
+
+
+
+
+
+                $dataRecoverPassword['recoverpasswords'] = bin2hex(openssl_random_pseudo_bytes(4));
+
+                $dataRecoverPassword['recoverEmail'] = $data['email'];
+                $dataRecoverPassword['createdTime'] = time();
+                //email sending...
+                $to = $dataRecoverPassword['recoverEmail'];
+                $email_Sender = "wellcaregroup16@gmail.com";
+                $mail_subject = "Password Recover";
+                $email_body = "<b>From: </b> Wellcare Pharmacy<br>";
+                $email_body .= "<b>Your Recover Password: </b> {$dataRecoverPassword['recoverpasswords']}<br>";
+                $email_body .= "<i>Please recover your password within 15 minuts..</i><br>
                                     <b>Thank you.</b>";
-                    $header = "From: {$email_Sender}\r\nContent-type: text/html;";
+                $header = "From: {$email_Sender}\r\nContent-type: text/html;";
 
-                    $mail_result=mail($to,$mail_subject,$email_body,$header);
+                $mail_result = mail($to, $mail_subject, $email_body, $header);
 
-                    if($mail_result){
-                        echo "Email sent to ".$to;
-                    }
-                    else{
-                        echo "message not sent";
-                    }
+                if ($mail_result) {
+                    echo "Email sent to " . $to;
+                } else {
+                    echo "message not sent";
+                }
 
 
-                    $this->view('temp', $dataRecoverPassword);
-
+                $this->view('temp', $dataRecoverPassword);
 
 
 
-                    if($this->userModel->recoverPassword($dataRecoverPassword)){
 
-                        header('location:' . URLROOT . '/pages/passwordRecoverVIew');
+                if ($this->userModel->recoverPassword($dataRecoverPassword)) {
 
-                    }else{
-                       
-                       
-                        die('Something went wrong');
-                    }
+                    header('location:' . URLROOT . '/pages/passwordRecoverVIew');
+                } else {
 
-            }else{
-                $this->view('FogotPassword',$data);
 
+                    die('Something went wrong');
+                }
+            } else {
+                $this->view('FogotPassword', $data);
             }
-        }else {
+        } else {
             $data = [
                 'email' => '',
-                
+
                 'emailError' => '',
-                'successMessage'=>''
-                
+                'successMessage' => ''
+
             ];
             header('location:' . URLROOT . '/pages/fogotPasswordView');
-            
         }
-       
-        
-
-
-
-
-
     }
-    public function recoverpassword(){
+    public function recoverpassword()
+    {
         $data = [
 
             'recoverPassword' => '',
@@ -679,7 +650,7 @@ class Users extends Controller{
                     $data['recoverPasswordError'] = 'time expired.....';
                 } elseif ($row == false) {
                     $data['recoverPasswordError'] = 'false';
-                }elseif($row[0]->tempPassword!= $data['recoverPassword']){
+                } elseif ($row[0]->tempPassword != $data['recoverPassword']) {
                     $data['recoverPasswordError'] = 'pin not match';
                 }
             }
@@ -717,50 +688,40 @@ class Users extends Controller{
 
         $this->view('passwordRecover', $data);
     }
-    public function verifyEmail(){
-        $data= [
+    public function verifyEmail()
+    {
+        $data = [
 
             'enteredPin' => '',
-            'pinError'=>''
-            
+            'pinError' => ''
+
 
         ];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-            $data= [//$_SESSION['pin']
+            $data = [ //$_SESSION['pin']
                 'enteredPin' => trim($_POST['verifyEmail']),
-                'pinError'=>''
-                
+                'pinError' => ''
+
             ];
-
-        } if (empty($data['enteredPin'])) {
+        }
+        if (empty($data['enteredPin'])) {
             $data['pinError'] = 'ENTER THE 4 DIGIT PIN...';
-            $this->view('verifyEmail',$data);
-        } elseif ($data['enteredPin']!=$_SESSION['pin']) {
+            $this->view('verifyEmail', $data);
+        } elseif ($data['enteredPin'] != $_SESSION['pin']) {
             $data['pinError'] = 'PIN IS INCORRECT...';
-            $this->view('verifyEmail',$data);
-            
-        } else{
-           
+            $this->view('verifyEmail', $data);
+        } else {
 
 
-            $this->userModel->updateStatus( $_SESSION['updateState_userName']);
-            if($this->userModel->register($_SESSION['updateState_data'])){
+
+            $this->userModel->updateStatus($_SESSION['updateState_userName']);
+            if ($this->userModel->register($_SESSION['updateState_data'])) {
                 header('location: ' . URLROOT . '/pages/Home');
-
-            }else{
+            } else {
                 die('Something went wrong');
             }
-
-
-
-
         }
-
-
-
     }
-
-
 }
