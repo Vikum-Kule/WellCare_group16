@@ -52,7 +52,7 @@
                                     <td><?php echo $inquiry->orderId; ?></td>
                                     <td><?php echo $inquiry->inquiryDate; ?></td>
                                     <td><?php echo $inquiry->Inquiry; ?></td>
-                                    <td><a href="<?php echo URLROOT . "/Man_Inquiry/processinquiry/" . $inquiry->inquiryId ?>">Process</a></td>
+                                    <td><div class="button"><button type="button"><a href="<?php echo URLROOT . "/Man_Inquiry/processinquiry/" . $inquiry->inquiryId ?>">Process</a></button></td>
                                     
                                     
 				                </tr>

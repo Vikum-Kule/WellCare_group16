@@ -54,7 +54,7 @@
                                     <td><?php echo $assign->orderId; ?></td>
                                     <td></td>
                                     
-                                    <td><a href="<?php echo URLROOT . "/Man_adddrug/deletedrug/" . $drug->medicineId ?>">Assign</a></td>    
+                                    <td><div class="button"><button type="button"><a href="<?php echo URLROOT . "/Man_adddrug/deletedrug/" . $drug->medicineId ?>">Assign</a></button></td>    
                                     
 				                </tr>
 				                <?php endforeach;?>

@@ -14,8 +14,10 @@
         }
 
         public function expirationdrugsm(){
-            //currentdate=CURDATE();
-            $this->db->query('SELECT  refillId, brandName, dose, doseStatus,EXP,QTY FROM stock_refill WHERE EXP<=CURDATE()' );
+            //$currentdate=CURDATE();
+            //$todays_date = date("Y-m-d");
+            //$today=GETDATE();
+            $this->db->query('SELECT  refillId, brandName, dose, doseStatus,EXP,QTY FROM stock_refill WHERE EXP < CURDATE()' );
 
             $results2 = $this->db->resultSet();
 

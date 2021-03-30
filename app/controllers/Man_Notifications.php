@@ -41,11 +41,11 @@
     	 
 		 $expiries = $this->postModel->expirationdrugsm();
     	
-    	$data1 = [
+    	$data = [
     		'expiries' => $expiries
     	];
 
-    	 $this->view('Man_notification_expired', $data1);
+    	 $this->view('Man_notification_expired', $data);
     }
 
 

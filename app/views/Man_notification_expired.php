@@ -54,7 +54,7 @@
                             </thead>
                             <tbody>
                             <tbody>
-                                <?php foreach($data1['expiries'] as $expiry): ?>
+                                <?php foreach($data['expiries'] as $expiry): ?>
                                 <tr>
                                     
                                     <td><?php echo $expiry->refillId; ?></td>
