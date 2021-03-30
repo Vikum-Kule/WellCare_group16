@@ -20,22 +20,24 @@ class Man_Stock_Refilc extends Controller {
 		$doseForm = $_POST['status'];
 		$total = $_POST['price'] * $_POST['qty'];
 		$medId = $this->postModel->findMedId($brand, $name, $dose,$doseForm);
-		$Qty = $medId->QTY + $_POST['qty'];
-		 $data =[
-			'supplyId'=> $_POST['supplyId'],
-			'refillDateTime'=> '',
-			'medicineId'=> $medId->medicineId,
-			'brandName'=> $_POST['brand'],
-			'doseStatus'=> $_POST['status'],
-			'dose'=> $_POST['dose'],
-			'QTY'=> $_POST['qty'],
-			'price'=> $total
-
-		 ];
+		print_r($medId->QTY);
+		// $Qty = $medId->QTY + ($_POST['qty']);
+		//  $data =[
+		// 	'supplyId'=> $_POST['supplyId'],
+		// 	'refillDateTime'=> '',
+		// 	'medicineId'=> $medId->medicineId,
+		// 	'brandName'=> $_POST['brand'],
+		// 	'doseStatus'=> $_POST['status'],
+		// 	'dose'=> $_POST['dose'],
+		// 	'QTY'=> $_POST['qty'],
+		// 	'price'=> $total,
+		// 	'EXP'=> $_POST['EXP'],
+		// 	'MFD'=> $_POST['MFD']
+		//  ];
 
 		
-		$this->postModel->fill_stock($data);
-		$this->postModel->updateQty($medId,$Qty);
+		// $this->postModel->fill_stock($data);
+		// $this->postModel->updateQty($medId,$Qty);
 		
 
 
