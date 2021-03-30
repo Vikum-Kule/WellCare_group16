@@ -2,7 +2,7 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT']."/MVCFINAL/app/includes/Admin_header.php");?>
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/Admin_style.css">
 <style>
-    .card {
+    /* .card {
         width: 1200px;
     }
 
@@ -13,7 +13,7 @@
   display: inline-block;
   border: none;
   background: #f1f1f1;
-    }
+    } */
 </style>
     <!-- main content -->
     <div class="wrapper">
@@ -52,6 +52,7 @@
 <form action="<?php echo URLROOT; ?>/admin/adddrugs" method="POST">
  
 <div class="container">
+<div class="box">
    <h1>Add Drug Details</h1>
     <hr>
     
@@ -83,7 +84,7 @@
     <button type="submit" name="submit" class="registerbtn">ADD</button>
       
   </div>
-  
+  </div>
   
 </form>
  

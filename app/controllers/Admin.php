@@ -177,10 +177,10 @@ class Admin extends Controller {
 
 	 		];
 	 		//$this->postModel->updatedrug($data);
-	 		if ($this->postModel->updatedrug($data)) {
-	 			header("Location:". URLROOT . "/admin/showdrugs/");
+	 		// if ($this->postModel->updatedrug($data)) {
+	 		// 	header("Location:". URLROOT . "/admin/showdrugs/");
 	 		
-	 		}
+	 		// }
 	 }
 	 $this->view('Admin_UpdateDrug',$data);
 	 
