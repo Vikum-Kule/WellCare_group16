@@ -571,7 +571,7 @@ function rowData_fromReq(orderId) {
                 col1.innerHTML = rowNum - 3;
                 col2.innerHTML = data[1][x].name + "(" + data[1][x].brand + ")";
                 col3.innerHTML = data[1][x].qty;
-                col4.innerHTML = data[1][x].price;
+                col4.innerHTML = data[1][x].price * data[1][x].qty;
             }
 
         }
