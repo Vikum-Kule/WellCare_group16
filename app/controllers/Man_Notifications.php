@@ -10,19 +10,31 @@
     	$data = [
     		'minimums' => $minimums
     	];
-
-    	 $this->view('Man_Notification_Manager', $data);
-    }
-
-	public function expirationdrugs(){
-    	$minimums = $this->postModel->expirationdrugsm();
+		$expiries = $this->postModel->expirationdrugsm();
     	
-    	$data = [
-    		'minimums' => $minimums
+		$data1 = [
+    		'expiries' => $expiries
     	];
-
     	 $this->view('Man_Notification_Manager', $data);
+
+		//  $expiries = $this->postModel->expirationdrugsm();
+    	
+    	// $data1 = [
+    	// 	'expiries' => $expiries
+    	// ];
+
+    	//  $this->view('Man_Notification_Manager', $data1);
     }
+
+	// public function expirationdrugs(){
+    // 	$expiries = $this->postModel->expirationdrugsm();
+    	
+    // 	$data = [
+    // 		'expiries' => $expiries
+    // 	];
+
+    // 	 $this->view('Man_Notification_Manager', $data);
+    // }
 
 
 }

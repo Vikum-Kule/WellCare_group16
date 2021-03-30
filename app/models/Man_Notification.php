@@ -14,11 +14,12 @@
         }
 
         public function expirationdrugsm(){
-            $this->db->query('SELECT  name, brand, doseStatus, dose, QTY FROM medicine WHERE QTY<100' );
+            //currentdate=CURDATE();
+            $this->db->query('SELECT  refillId, brandName, dose, doseStatus,EXP,QTY FROM stock_refill WHERE EXP<=CURDATE()' );
 
-            $results1 = $this->db->resultSet();
+            $results2 = $this->db->resultSet();
 
-            return $results1;
+            return $results2;
         }
 
 

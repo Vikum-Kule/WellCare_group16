@@ -7,7 +7,7 @@
         }
 
         public function assigndeliverym(){
-            $this->db->query('SELECT orderId FROM prepared_order WHERE status="confirmed"' );
+            $this->db->query('SELECT orderId FROM prepared_order WHERE status="completed"' );
 
             $results = $this->db->resultSet();
 
