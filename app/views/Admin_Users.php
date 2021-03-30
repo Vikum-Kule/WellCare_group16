@@ -11,26 +11,26 @@
         <div class="row">
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
-                    <p>To do</p>
+                    <!-- <h3>100+</h3>
+                    <p>To do</p> -->
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
-                    <p>In progress</p>
+                    <!-- <h3>100+</h3>
+                    <p>In progress</p> -->
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
-                    <p>Completed</p>
+                    <!-- <h3>100+</h3>
+                    <p>Completed</p> -->
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
-                    <h3>100+</h3>
-                    <p>Issues</p>
+                    <!-- <h3>100+</h3>
+                    <p>Issues</p> -->
                 </div>
             </div>
         </div>
