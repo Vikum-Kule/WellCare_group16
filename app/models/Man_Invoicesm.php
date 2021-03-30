@@ -13,6 +13,25 @@
 
             return $results;
         }
+
+        public function addinvoicem($data) {
+
+            $this->db->query('INSERT INTO invoice (invoiceNo, medicineList) VALUES (:invoiceNo, :medicineList)');
+            
+            $this->db->bind(':invoiceNo', $data['invoiceNo']);
+            $this->db->bind(':medicineList', $data['medicineList']);
+           
+           
+            if ($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+    
+        }
+
+
     }
 
  ?>

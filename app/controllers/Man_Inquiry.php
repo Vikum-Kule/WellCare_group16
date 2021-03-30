@@ -40,10 +40,10 @@ class Man_Inquiry extends Controller {
 		$inquiries2= $this->postModel->processinquirym($inquiryId);
 		$inquiries = $this->postModel->findallprocessing();
     	
-    	$data = [
+    	$dataa = [
     		'inquiries' => $inquiries
     	];
-    	$this->view('Man_inquiries_processing', $data);
+    	$this->view('Man_inquiries_processing', $dataa);
     }
 
 	public function completeinquiry(){
@@ -55,10 +55,10 @@ class Man_Inquiry extends Controller {
 		$inquiries2= $this->postModel->completeinquirym($inquiryId);
 		$inquiries = $this->postModel->findallcompleted();
     	
-    	$data = [
+    	$dataa = [
     		'inquiries' => $inquiries
     	];
-    	$this->view('Man_inquiries_completed', $data);
+    	$this->view('Man_inquiries_completed', $dataa);
     }
 
 	

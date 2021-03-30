@@ -3,7 +3,7 @@
 
 <div class="wrapper">
         <div class="row">
-            <div class="col-3 col-m-6 col-sm-6">
+            <!-- <div class="col-3 col-m-6 col-sm-6">
                 <div class="notification">
                     <h3>100+</h3>
                     <p>To do</p>
@@ -26,7 +26,7 @@
                     <h3>100+</h3>
                     <p>Issues</p>
                 </div>
-            </div>
+            </div> -->
         </div>
 
 
@@ -34,7 +34,7 @@
   
 
 
-<form action="" method="POST">
+        <form action="<?php echo URLROOT; ?>/Man_Invoices/addinvoice" method="POST">
  
 <!--<div class="container">
    <h1>Add Invoice</h1>
